@@ -1,0 +1,3 @@
+m0/bob/45/22/feu(10_0):eau(20_0):glace(30_0):
+m1/raph/10/11/nul(100_0):bon(0_0):vieux(101_0):
+m2/Gobelin/51/69/Massue(100_0):Baton(200_0):Hache(300_0):

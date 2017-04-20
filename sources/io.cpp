@@ -9,6 +9,8 @@
 // Get the terminal rows number :
 // 	> stty -a | grep "col" | tail -c 22 | head -c 2
 
+using namespace std;
+
 namespace io
 {
 	char de()
@@ -30,40 +32,40 @@ namespace io
 
 	void bienvenue()
 	{
-		std::puts("\n");
-		std::puts("										 Welcome to");
-		std::puts(" __________   ___	___   __________     __________   __________   ___    ___   __________");
-		std::puts("/___   ___/  /  /   /  /  /  _______/    /  _______/  /  ____   /  /  /__ /  /  /  _______/");
-		std::puts("   /  /     /  /__ /  /  /  /__         /  /   __    /  /___/  /  /         /  /  /__");
-		std::puts("  /  /     /   __	/  /   __/        /  /   /  \\  /  ____   /  /  / - /  /  /   __/");
-		std::puts(" /  /     /  /   /  /  /  /______	 /  /___/  /  /  /   /  /  /  /   /  /  /  /______");
-		std::puts("/_ /	    /_ /   /_ /  /_________/	/_________/  /_ /   /_ /  /_ /   /_ /  /_________/");
-		std::puts("\n");
+        std::puts("\n");
+        std::puts("                                         Welcome to");
+        std::puts(" __________   ___    ___   __________     __________   __________   ___    ___   __________");
+        std::puts("/___   ___/  /  /   /  /  /  _______/    /  _______/  /  ____   /  /  /__ /  /  /  _______/");
+        std::puts("   /  /     /  /__ /  /  /  /__         /  /  __     /  /___/  /  /         /  /  /__");
+        std::puts("  /  /     /   __    /  /   __/        /  /  /  \\   /  ____   /  /  / - /  /  /   __/");
+        std::puts(" /  /     /  /   /  /  /  /______     /  /___/  /  /  /   /  /  /  /   /  /  /  /______");
+        std::puts("/_ /     /_ /   /_ /  /_________/    /_________/  /_ /   /_ /  /_ /   /_ /  /_________/");
+        std::puts("\n");
 
-		std::puts("Dans The Game, vous devez débusquer et tuer tous les monstres présents sur la carte. Bonne chance!");
-		std::puts("\n");
+        std::puts("Dans The Game, vous devez débusquer et tuer tous les monstres présents sur la carte. Bonne chance!");
+        std::puts("\n");
 	}
 }
 
 ////! Implémentation classe test
 //personnage::personnage()
 //{
-//	name = "";
-//	description = "";
+//    name = "";
+//    description = "";
 //}
 //
 //personnage::personnage(string nom, string desc)
 //{
-//	name = nom;
-//	description = desc;
+//    name = nom;
+//    description = desc;
 //}
 //
 //string personnage::get_name()
 //{
-//	return name;
+//    return name;
 //}
 //
 //string personnage::get_desc()
 //{
-//	return description;
+//    return description;
 //}
