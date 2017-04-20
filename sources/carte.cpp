@@ -5,9 +5,14 @@
 
 using namespace std;
 
-
-Carte :: Carte (int size)
+Carte :: Carte()
 {
+
+}
+
+Carte :: Carte (int size, string name)
+{
+    this->nom = name;
 	this->taille = size ;
 	this->plateau = new char * [taille];
 	for (int i = 0; i < taille ; i++)
@@ -40,7 +45,7 @@ void Carte :: affichage()
 			else if (plateau[i][j] == 'j') cout << "¤";
 			else cout << plateau[i][j] ;
 		}
-		cout << endl ;
+			cout << endl ;
 	}
 }
 
@@ -51,7 +56,7 @@ void Carte :: sauvegarde()
 	string carte ;
 	cout << "Choisir le nom de la carte : " << endl ;
 	cin >> nom_de_la_carte ;
-	carte = "map/"+ nom_de_la_carte + ".txt" ;
+	carte = nom_de_la_carte + ".txt" ;
 
 	// Vérification que le fichier n'existe pas déjà
 	if (!carte_existe(carte))
@@ -59,7 +64,7 @@ void Carte :: sauvegarde()
 		//ouverture du fichier en écriture
 		ofstream fichier(carte, ios :: out | ios :: trunc) ;
 
-		// Si fichier bien créer
+		// Si fichier bien créé
 		if (fichier)
 		{
 			for (int i = 0 ; i < taille; i++)
@@ -85,6 +90,12 @@ void Carte :: sauvegarde()
 
 }
 
+
+string Carte :: getName()
+{
+    return this->nom;
+}
+
 bool Carte :: carte_existe(string nom)
 {
 	ifstream fichier(nom , ios :: in) ;
@@ -103,9 +114,10 @@ bool Carte :: carte_existe(string nom)
 
 void Carte :: chargement (string nom_selection)
 {
-	string carte = "map/" + nom_selection +".txt" ;
+	string carte = nom_selection + ".txt" ;
 	if (carte_existe(carte))
 	{
+	    cout << "existe";
 		ifstream fichier(carte, ios:: in) ;
 		if (fichier)
 		{
@@ -137,9 +149,9 @@ int Carte :: quel_taille(string nom)
 
 void Carte :: suppression(string nom)
 {
-	string nom_carte = "map/"+nom+".txt" ;
+	string nom_carte = nom + ".txt" ;
 	//delete nom_carte ;
-	if(carte_existe(nom_carte)) cout << "Echec de la suppression" << endl ;
+	if( carte_existe(nom_carte)) cout << "Echec de la suppression" << endl ;
 	else cout << "Carte supprimée" << endl ;
 }
 

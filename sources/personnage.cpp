@@ -8,17 +8,17 @@ using namespace std;
 
 int personnage::getManaMax() //Retourne les points de mana MAX d'un perso
 {
-	return this->manaMax;
+    return this->manaMax;
 }
 
 int personnage::getManaCurrent() //Retourne les points de mana actuel d'un perso
 {
-	return this->manaCurrent;
+    return this->manaCurrent;
 }
 
 string personnage::getDescription() //Retourne la description d'un personnage
 {
-	return this->description;
+    return this->description;
 }
 
 
@@ -27,53 +27,53 @@ string personnage::getDescription() //Retourne la description d'un personnage
 
 string personnage::personnageString() //Convertit toutes les caracs. d'un personnage en string
 {
-	string ligneFichier;
+    string ligneFichier;
 
-	int nbPerso = this->nbLigneFichier("fichierPersonnage.txt");
-	string sNbPerso;
-	sNbPerso = toString(nbPerso);
+    int nbPerso = this->nbLigneFichier("fichierPersonnage.txt");
+    string sNbPerso;
+    sNbPerso = toString(nbPerso);
 
-	string ID;
-	ID = "p" + sNbPerso;
+    string ID;
+    ID = "p" + sNbPerso;
 
-	string sHpMax;
-	sHpMax = toString(this->hpMax);
+    string sHpMax;
+    sHpMax = toString(this->hpMax);
 
-	string sSpeed;
-	sSpeed = toString(this->speed);
+    string sSpeed;
+    sSpeed = toString(this->speed);
 
-	string sManaMax;
-	sManaMax = toString(this->manaMax);
+    string sManaMax;
+    sManaMax = toString(this->manaMax);
 
-	string allSkill="";
+    string allSkill="";
 
-	for (int i=0 ; i<skillVect.size() ; i++) //Conversion de toutes les compétences en une ligne de string
-	{
-		allSkill += skillVect[i].competenceString() + ":";
-	}
+    for (int i=0 ; i<skillVect.size() ; i++) //Conversion de toutes les compétences en une ligne de string
+    {
+        allSkill += skillVect[i].competenceString() + ":";
+    }
 
-	ligneFichier = ID + "/" + this->name + "/" + sHpMax + "/" + sSpeed + "/" + allSkill + "|" + sManaMax + "|" + this->description + '\n'; //Création de la ligne compléte
+    ligneFichier = ID + "/" + this->name + "/" + sHpMax + "/" + sSpeed + "/" + allSkill + "|" + sManaMax + "|" + this->description + '\n'; //Création de la ligne compléte
 
-	return ligneFichier;
+    return ligneFichier;
 }
 
 
 void personnage::savePersoInFile() //Ecrit les carac d'un personnage dans un fichier
 {
-	ofstream fichierPersonnage("fichierPersonnage.txt", ios::out | ios::app); // Ouverture du fichier en écriture, avec curseur en fin de fichier.
+    ofstream fichierPersonnage("fichierPersonnage.txt", ios::out | ios::app); // Ouverture du fichier en écriture, avec curseur en fin de fichier.
 
-	string persoLigne = this->personnageString();
+    string persoLigne = this->personnageString();
 
-	if(fichierPersonnage) //Vérification ouverture du fichier
-	{
-		fichierPersonnage << persoLigne; //Ecriture de la ligne
-		fichierPersonnage.close();
-	}
+    if(fichierPersonnage) //Vérification ouverture du fichier
+    {
+        fichierPersonnage << persoLigne; //Ecriture de la ligne
+        fichierPersonnage.close();
+    }
 
-	else
-	{
-		cerr << "Impossible d'ouvrir le fichier." << endl;
-	}
+    else
+    {
+        cerr << "Impossible d'ouvrir le fichier." << endl;
+    }
 }
 
 
@@ -82,13 +82,13 @@ void personnage::savePersoInFile() //Ecrit les carac d'un personnage dans un fic
 
 bool personnage::enleverMana(int manaCost)
 {
-	this->manaCurrent -= manaCost;
-	if(this->manaCurrent <=0)
-	{
-		return false;
-	}
+    this->manaCurrent -= manaCost;
+    if(this->manaCurrent <=0)
+    {
+        return false;
+    }
 
-	return true;
+    return true;
 }
 
 
@@ -98,16 +98,16 @@ bool personnage::enleverMana(int manaCost)
 
 void personnage::printPersonnage()
 {
-	cout << "nom : " << this->name<< endl;
-	cout << "hp max : " << this->hpMax<< endl;
-	cout << "speed : " << this->speed<< endl;
-	cout << "mana max : " << this->manaMax<<endl;
-	cout << "description : " <<this->description<<endl;
+    cout << "nom : " << this->name<< endl;
+    cout << "hp max : " << this->hpMax<< endl;
+    cout << "speed : " << this->speed<< endl;
+    cout << "mana max : " << this->manaMax<<endl;
+    cout << "description : " <<this->description<<endl;
 
-	for (int i=0 ; i<3 ; i++)
-	{
-		this->skillVect[i].printCompetence();
-	}
+    for (int i=0 ; i<3 ; i++)
+    {
+        this->skillVect[i].printCompetence();
+    }
 
-	cout << endl;
+    cout << endl;
 }

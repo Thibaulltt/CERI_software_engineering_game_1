@@ -3,7 +3,6 @@
 
 #ifndef CARTE_H
 #define CARTE_H
-#pragma once
 
 class Carte
 {
@@ -11,9 +10,11 @@ class Carte
 	int taille ;
 	char ** plateau ;
 	public:
-		Carte(int taille) ;
+	    Carte();
+		Carte(int taille, std::string name) ;
 		void affichage() ;
 		void sauvegarde() ;
+		std::string getName() ;
 		bool carte_existe(std::string nom) ;
 		void chargement (std::string nom_selection);
 		int quel_taille(std::string nom);
