@@ -19,7 +19,8 @@ public:
 	competence(std::string skillName, int damage);
 	~competence();
 
-	std::string getSkillName();
+	std::string getName();
+	std::string getDescription();
 	int getDamage();
 	int getManaCost();
 

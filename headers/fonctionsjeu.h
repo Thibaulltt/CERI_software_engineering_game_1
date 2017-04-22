@@ -52,11 +52,15 @@ public:
 	//	void application_coup(perso &p, compet &a, monstre &m, compet &b);
 };
 
-struct ent_combat
-{
-	monstre * entite;
+//struct ent_combat
+//{
+//	monstre entite;
+//
+//	ent_combat(monstre monst);
+//	monstre Get_entite();
+//	void util_comp(monstre entite, competence comp);
+//};
 
-	void util_comp(monstre * entite, competence * comp);
-};
+bool sort_speed(monstre a, monstre b);
 
 #endif

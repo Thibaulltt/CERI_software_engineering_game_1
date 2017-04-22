@@ -19,18 +19,7 @@ int main()
 	cout << "Width : " << getTerminalWidth() << endl;
 	cout << "Height : " << getTerminalHeight() << endl;
 
-	// personnage test1("Bob", "un mec random");
-	// personnage test2("Roger", "un autre mec random");
-
-	// vector<personnage> vect_test;
-	// vect_test.push_back(test1);
-	// vect_test.push_back(test2);
-
 	bienvenue();
-
-	// personnage choisi = personnage();
-
- 	// choisi = choix_unique_element(vect_test, true);
 
 	return 0;
 }

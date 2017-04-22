@@ -4,13 +4,16 @@
 
 #ifndef MONSTRE_H
 #define MONSTRE_H
+#pragma once
 
 class monstre
 {
 protected:
+	std::string id;
 	std::string name;
 	int hpMax;
 	int hpCurrent;
+	int manaCurrent;
 	int speed;
 	bool alive;
 	std::vector<competence> skillVect;
@@ -29,6 +32,7 @@ public:
 		- skillVect = <vecteur vide>
 	*/
 	monstre();
+
 	//! Constructeur avec carac d'un monstre
 	/*!
 		Constructeur assignant tout, sauf les compétences, qui ne seront pas rajoutées (pas de fonctions).
@@ -37,6 +41,7 @@ public:
 		\param speed La vitesse d'attaque du monstre.
 	*/
 	monstre(std::string name, int hpMax, int speed);
+
 	//! Constructeur avec les compétences
 	/*!
 		\param name Le nom du monstre.
@@ -48,16 +53,24 @@ public:
 
 	template<typename T> std::string toString(const T & valeur); // Conversion de n'importe quoi en string
 
+	//!Getter pour l'ID.
+	std::string getId();
+
 	//! Getter pour le nom.
 	std::string getName();
+
 	//! Getter pour le nombre de points de vie max.
 	int getHpMax();
+
 	//! Getter pour le nombre de points de vie actuels.
 	int getHpCurrent();
+
 	//! Getter pour la vitesse d'attaque du monstre.
 	int getSpeed();
+
 	//! Getter qui permet de savoir si le monstre est en vie.
 	bool getAlive();
+
 	//! Getter qui renvoie un vecteur (std::vector) de compétences.
 	std::vector<competence> getSkillVect();
 
@@ -72,15 +85,18 @@ public:
 		- toutes les compétences , séparées par des <code>:</code>
 	*/
 	std::string monstreString();
+
 	//! Retourne le nombre de lignes d'un fichier.
 	/*!
-		Compte le nb de ligne du fichier pour créer l'identifiant unique d'un monstre. L'identifiant sera <code> nbLignes + 1 </code>
+		Compte le nb de lignes du fichier pour créer l'identifiant unique d'un monstre. L'identifiant sera <code> nbLignes + 1 </code>
 		\return Un entier représentant le nombre de lignes.
 		\param nomFichier Une string (std::string) qui sera le nom du fichier à ouvrir.
 	*/
 	int nbLigneFichier(std::string nomFichier);
+
 	//! Permet d'écrire le monstre dans un fichier de sauvegarde
 	void saveInFile();
+
 	//! Pour tester
 	void printMonstre();
 
@@ -90,6 +106,13 @@ public:
 		\return Un booléen qui est égal à <code>true</code> si le monstre est mort, <code>false</code> sinon.
 	*/
 	bool enleverVie(int degats);
+
+	//! Enlève x points de mana au monstre.
+	/*!
+		Cette fonction ne sert à rien, à part ne pas faire bugger les autres.
+		\return Un booléen vérifiant la capacité à dépenser la mana.
+	*/
+	bool enleverMana(int manaCost);
 };
 
 

@@ -79,7 +79,7 @@ void personnage::savePersoInFile() //Ecrit les carac d'un personnage dans un fic
 
 //FONCTIONS DE JEU PERSONNAGE
 
-
+///Problème ici, si la dépense de mana n'est pas possible, la mana est quand même dépensée
 bool personnage::enleverMana(int manaCost)
 {
 	this->manaCurrent -= manaCost;
