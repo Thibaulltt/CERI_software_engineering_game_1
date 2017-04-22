@@ -8,7 +8,7 @@ using namespace std;
 
 
 
-voentiteId personnage::printPersonnage()
+void personnage::printPersonnage()
 {
 	cout << "nom : " << this->entiteName<< endl;
 	cout << "hp max : " << this->entiteHpMax<< endl;

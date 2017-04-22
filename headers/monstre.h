@@ -37,7 +37,7 @@ public:
 
 
 	//! Pour tester
-	voentiteId printMonstre();
+	void printMonstre();
 
 
 };

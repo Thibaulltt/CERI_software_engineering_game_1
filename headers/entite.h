@@ -50,13 +50,13 @@ public:
 
 
 
-	template<typeentiteName T> std::string toString(const T & valeur); // Conversion de n'importe quoi en string
+	template<typename T> std::string toString(const T & valeur); // Conversion de n'importe quoi en string
 
 	//!Getter pour l'entiteId.
 	std::string getEntiteId();
 
 	//! Getter pour le nom.
-	std::string getentiteName();
+	std::string getEntiteName();
 
 	//! Getter pour la entiteDescription.
 	std::string getEntiteDescription();
@@ -104,10 +104,10 @@ public:
 	std::string entiteString(std::string lettreEntite, std::string nomFichier);
 
 	//! Permet d'écrire le entite dans un fichier de sauvegarde
-	voentiteId saveInFile(std::string lettreEntite, std::string nomFichier);
+	void saveInFile(std::string lettreEntite, std::string nomFichier);
 
 	//! Pour tester
-	voentiteId printEntite();
+	void printEntite();
 
 	//! Enlève x points de vie au entite.
 	/*!
@@ -121,7 +121,7 @@ public:
 		Cette fonction ne sert à rien, à part ne pas faire bugger les autres.
 		\return Un booléen vérifiant la capacité à dépenser la mana.
 	*/
-	bool enleverMana(int manaCost);
+	bool enleverMana(int skillManaCost);
 
 
 };

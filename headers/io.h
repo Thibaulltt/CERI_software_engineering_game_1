@@ -25,10 +25,10 @@ namespace io
 		\param Ech Détermine si on veut que l'entrée utilisateur soit affichée ou pas.
 		\sa de(), long_input()
 	*/
-	extern voentiteId ChangeTerminal(bool Ech = 0);
+	extern void ChangeTerminal(bool Ech = 0);
 
 	//! Remet le terminal à zero
-	extern voentiteId ResetTerminal();
+	extern void ResetTerminal();
 
 	//! Input
 	/*!
@@ -37,7 +37,7 @@ namespace io
 	extern char de();
 
 	//! Enlève le dernier caractère d'un stringstream.
-	extern voentiteId removeLastChar(std::stringstream& i);
+	extern void removeLastChar(std::stringstream& i);
 
 	//! Long input
 	/*!
@@ -49,7 +49,7 @@ namespace io
 	/*!
 		Affiche un message de bienvenue.
 	*/
-	voentiteId bienvenue();
+	void bienvenue();
 
 	//! Retourne la largeur du terminal
 	int getTerminalWentiteIdth();
@@ -77,7 +77,7 @@ namespace io
 		Cette fonction permet de créer rapentiteIdement une compétence pour pouvoir l'utiliser facilement après.
 
 		Mode opératoire :
-		- On crée les variables qui vont tenir les infos rentrées (skillentiteName, damage, manaCost)
+		- On crée les variables qui vont tenir les infos rentrées (skillName, skillDamage, skillManaCost)
 		- On rentre
 	*/
 	competence createCompetence(); //Creer une competence
@@ -99,9 +99,9 @@ namespace io
 		Affiche le nom et la entiteDescription d'un objet.
 		\param object Objet à afficher.
 	*/
-	template<typeentiteName T> voentiteId afficher(T object)
+	template<typename T> void afficher(T object)
 	{
-		std::cout << (object).getentiteName();                            //Affiche le nom
+		std::cout << (object).getEntiteName();                            //Affiche le nom
 		std::cout << ", \"" << (object).getEntiteDescription() << "\"";  //Affiche la entiteDescription
 	}
 
@@ -113,9 +113,9 @@ namespace io
 		\param need_desc entiteDescription ou non.
 		\sa afficher()
 	*/
-	template<typeentiteName T> voentiteId liste_elements(std::vector<T> vect_element)
+	template<typename T> void liste_elements(std::vector<T> vect_element)
 	{
-		typeentiteName std::vector<T>::iterator itv;                              //Variable de parcours de vecteur
+		typename std::vector<T>::iterator itv;                              //Variable de parcours de vecteur
 		int cpt = 0;                                                        //Compteur d'éléments
 
 		for (itv = vect_element.begin(); itv != vect_element.end(); itv++)  //Parcours vecteur
@@ -136,7 +136,7 @@ namespace io
 		\return L'élement choisi.
 		\sa liste_elements(), afficher()
 	*/
-	template<typeentiteName T> T choix_unique_element(std::vector<T> vect_element)
+	template<typename T> T choix_unique_element(std::vector<T> vect_element)
 	{
 		std::string type_entiteName = typeentiteId(T).entiteName();						//String à partir du type appelant
 

@@ -51,15 +51,15 @@ public:
 	/*!
 		Manque carte pour pouvoir finaliser cette partie.
 	*/
-	voentiteId demarrer_jeu();
+	void demarrer_jeu();
 
 	//! Module de combat
 	/*!
 		Fonction permettant de gérer le combat.
 	*/
 
-	//	voentiteId combat(perso &p, monstre &m);
-	//	voentiteId application_coup(perso &p, compet &a, monstre &m, compet &b);
+	//	void combat(perso &p, monstre &m);
+	//	void application_coup(perso &p, compet &a, monstre &m, compet &b);
 };
 
 //struct ent_combat
@@ -68,7 +68,7 @@ public:
 //
 //	ent_combat(monstre monst);
 //	monstre Get_entite();
-//	voentiteId util_comp(monstre entite, competence comp);
+//	void util_comp(monstre entite, competence comp);
 //};
 
 bool sort_entiteSpeed(monstre a, monstre b);

@@ -6,25 +6,25 @@ using namespace std;
 
 competence::competence()       //Constructeur de compétence ventiteIde
 {
-	this->skillentiteName = "Inconnu";
-	this->damage = 0;
-	this->manaCost = 0;
+	this->skillName = "Inconnu";
+	this->skillDamage = 0;
+	this->skillManaCost = 0;
 }
 
 
-competence::competence(string skillentiteName, int damage, int manaCost) //Constructeur de competence
+competence::competence(string skillName, int skillDamage, int skillManaCost) //Constructeur de competence
 {
-	this->skillentiteName = skillentiteName;
-	this->damage = damage;
-	this->manaCost = manaCost;
+	this->skillName = skillName;
+	this->skillDamage = skillDamage;
+	this->skillManaCost = skillManaCost;
 }
 
 
-competence::competence(string skillentiteName, int damage) //Constructeur de competence sans mana (pour monstre)
+competence::competence(string skillName, int skillDamage) //Constructeur de competence sans mana (pour monstre)
 {
-	this->skillentiteName = skillentiteName;
-	this->damage = damage;
-	this->manaCost = 0;
+	this->skillName = skillName;
+	this->skillDamage = skillDamage;
+	this->skillManaCost = 0;
 }
 
 
@@ -40,9 +40,9 @@ competence::~competence()
 
 //GET ATTRIBUTS COMPETENCE
 
-string competence::getentiteName() //Retourne le nom d'une compétence
+string competence::getEntiteName() //Retourne le nom d'une compétence
 {
-	return this->skillentiteName;
+	return this->skillName;
 }
 
 string competence::getEntiteDescription()
@@ -50,19 +50,19 @@ string competence::getEntiteDescription()
 	return "";
 }
 
-int competence::getDamage() //Retourne le nb de dégats d'une compétence
+int competence::getskillDamage() //Retourne le nb de dégats d'une compétence
 {
-	return this->damage;
+	return this->skillDamage;
 }
 
-int competence::getManaCost() //Retourne le cout en mana d'une compétence
+int competence::getskillManaCost() //Retourne le cout en mana d'une compétence
 {
-	return this->manaCost;
+	return this->skillManaCost;
 }
 
 
 
-template<typeentiteName T>string competence::toString( const T & valeur ) //Convertit n'importe quoi en string
+template<typename T>string competence::toString( const T & valeur ) //Convertit n'importe quoi en string
 {
 	ostringstream flux;
 	flux << valeur;
@@ -72,23 +72,23 @@ template<typeentiteName T>string competence::toString( const T & valeur ) //Conv
 
 string competence::competenceString() //Convertit une compétence en une ligne de string formatée
 {
-	string sDamage;
-	sDamage = toString(this->damage);
+	string sskillDamage;
+	sskillDamage = toString(this->skillDamage);
 
-	string sManaCost;
-	sManaCost = toString(this->manaCost);
+	string sskillManaCost;
+	sskillManaCost = toString(this->skillManaCost);
 
 	string ligneCompetence;
-	ligneCompetence = skillentiteName + "(" + sDamage + "_" + sManaCost + ")";
+	ligneCompetence = skillName + "(" + sskillDamage + "_" + sskillManaCost + ")";
 
 	return ligneCompetence;
 }
 
 
-voentiteId competence::printCompetence() //Affichage pour test
+void competence::printCompetence() //Affichage pour test
 {
-	cout << "skill entiteName : " << this->skillentiteName << endl;
-	cout << "skill damage : " << this->damage<< endl;
-	cout << "skill manacost : " << this->manaCost<< endl;
+	cout << "skill entiteName : " << this->skillName << endl;
+	cout << "skill skillDamage : " << this->skillDamage<< endl;
+	cout << "skill skillManaCost : " << this->skillManaCost<< endl;
 }
 

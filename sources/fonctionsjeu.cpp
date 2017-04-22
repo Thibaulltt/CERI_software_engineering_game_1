@@ -12,7 +12,7 @@ jeu::jeu()
 jeu::~jeu()
 {}
 
-voentiteId jeu::demarrer_jeu()
+void jeu::demarrer_jeu()
 {
 	bienvenue();
 
@@ -32,7 +32,7 @@ voentiteId jeu::demarrer_jeu()
 //	return entite;
 //}
 //
-//voentiteId ent_combat::util_comp(monstre entite, competence comp)
+//void ent_combat::util_comp(monstre entite, competence comp)
 //{
 //
 //}
@@ -48,7 +48,7 @@ bool sort_entiteSpeed(monstre a, monstre b)
 }
 
 /*
-voentiteId jeu::combat(perso &p, monstre &m)
+void jeu::combat(perso &p, monstre &m)
 {
 	while (monstre_mort == 0)
 	{
@@ -60,7 +60,7 @@ voentiteId jeu::combat(perso &p, monstre &m)
 	}
 }
 
-voentiteId jeu::application_coup(perso &p, compet &a, monstre &m, compet &b)
+void jeu::application_coup(perso &p, compet &a, monstre &m, compet &b)
 {
 	int jeu_degats_joueur = a.getDegats();
 	int jeu_degats_monstre = b.getDegats();

@@ -40,7 +40,7 @@ entite::entite(string entiteId, string entiteName, int entiteHpMax, int entiteSp
 //-------------------------------------------FONCTIONS
 
 
-template<typeentiteName T>string entite::toString( const T & valeur ) //Conversion de n'importe quoi en string
+template<typename T>string entite::toString( const T & valeur ) //Conversion de n'importe quoi en string
 {
 	ostringstream flux;
 	flux << valeur;
@@ -56,7 +56,7 @@ string entite::getEntiteId() //Rretourne l'entiteId d'une entite
 }
 
 
-string entite::getentiteName() //Retourne le nom d'une entite
+string entite::getEntiteName() //Retourne le nom d'une entite
 {
 	return this->entiteName;
 }
@@ -169,7 +169,7 @@ string entite::entiteString(string lettreEntite, string nomFichier) //Convertit 
 }
 
 
-voentiteId entite::saveInFile(string lettreEntite,string nomFichier) //Ecrit les carac d'un entite dans un fichier
+void entite::saveInFile(string lettreEntite,string nomFichier) //Ecrit les carac d'un entite dans un fichier
 {
 	ofstream fichierentite(nomFichier.c_str(), ios::out | ios::app); // Ouverture du fichier en écriture, avec curseur en fin de fichier.
 
@@ -205,15 +205,15 @@ bool entite::enleverVie(int degats)
 
 ///Problème ici, si la dépense de mana n'est pas possible, la mana est quand même dépensée.
 ///De même, <= 0 empêche d'utiliser les compétences qui utilisent exactement le bon montant de mana.
-bool entite::enleverMana(int manaCost)
+bool entite::enleverMana(int skillManaCost)
 {
-	if (this->entiteManaCurrent>= manaCost)
+	if (this->entiteManaCurrent>= skillManaCost)
 	{
-		this->entiteManaCurrent -= manaCost;
+		this->entiteManaCurrent -= skillManaCost;
 		return true;
 	}
 
-	if(this->entiteManaCurrent < manaCost)
+	if(this->entiteManaCurrent < skillManaCost)
 	{
 		return false;
 	}
@@ -223,7 +223,7 @@ bool entite::enleverMana(int manaCost)
 // TESTS
 
 
-voentiteId entite::printEntite()
+void entite::printEntite()
 {
 	cout << "nom : " << this->entiteName<< endl;
 	cout << "hp max : " << this->entiteHpMax<< endl;

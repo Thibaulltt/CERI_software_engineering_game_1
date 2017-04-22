@@ -23,7 +23,7 @@ public:
 	};
 
 	//! Fonction de test
-	voentiteId printPersonnage();
+	void printPersonnage();
 };
 
 #endif

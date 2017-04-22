@@ -15,7 +15,7 @@ using namespace std;
 
 namespace io
 {
-	voentiteId ChangeTerminal(bool Ech)
+	void ChangeTerminal(bool Ech)
 	{
 		tcgetattr(0, &before);			/* Grab old terminal i/o settings */
 		after = before;				/* Make new settings same as old settings */
@@ -24,7 +24,7 @@ namespace io
 		tcsetattr(0, TCSANOW, &after);		/* Use these new terminal i/o settings now */
 	}
 
-	voentiteId ResetTerminal()
+	void ResetTerminal()
 	{
 		tcsetattr(0, TCSANOW, &before);		// Restore old terminal I/O settings
 	}
@@ -56,7 +56,7 @@ namespace io
 		return input.str().length() == 1 ? long_input() : input.str();
 	}
 
-	voentiteId removeLastChar(std::stringstream& input)
+	void removeLastChar(std::stringstream& input)
 	{
 		std::stringstream str;
 		std::string s = input.str();
@@ -68,7 +68,7 @@ namespace io
 		}
 	}
 
-	voentiteId bienvenue()
+	void bienvenue()
 	{
 		std::puts("\n");
 		std::puts("                                         Welcome to");
@@ -142,52 +142,52 @@ namespace io
 
 	competence createCompetence() //Permet à l'utilisateur de créer une compétence pour personnage
 	{
-		string skillentiteName;
-		int damage;
-		int manaCost;
+		string skillName;
+		int skillDamage;
+		int skillManaCost;
 
 		cout << "Entrez le nom de la compétence : ";
-		cin >> skillentiteName;
+		cin >> skillName;
 
 		cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-		cin >> damage;
-		while(!checkInput(damage))
+		cin >> skillDamage;
+		while(!checkInput(skillDamage))
 		{
 			cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-			cin >> damage;
+			cin >> skillDamage;
 		}
 
 		cout << "Entrez le cout en mana de la competence : ";
-		cin >> manaCost;
-		while(!checkInput(manaCost))
+		cin >> skillManaCost;
+		while(!checkInput(skillManaCost))
 		{
 			cout << "Entrez le cout en mana de la competence : ";
-			cin >> manaCost;
+			cin >> skillManaCost;
 		}
 
-		competence creation(skillentiteName, damage, manaCost);
+		competence creation(skillName, skillDamage, skillManaCost);
 
 		return creation;
 	}
 
 /*	competence createCompetenceMonstre() //Permet à l'utilisateur de créer une compétence pour monstre
 	{
-		string skillentiteName;
-		int damage;
-		int manaCost;
+		string skillName;
+		int skillDamage;
+		int skillManaCost;
 
 		cout << "Entrez le nom de la compétence : ";
-		cin >> skillentiteName;
+		cin >> skillName;
 
 		cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-		cin >> damage;
-		while(!checkInput(damage))
+		cin >> skillDamage;
+		while(!checkInput(skillDamage))
 		{
 			cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-			cin >> damage;
+			cin >> skillDamage;
 		}
 
-		competence creation(skillentiteName, damage);
+		competence creation(skillName, skillDamage);
 
 		return creation;
 	}
@@ -241,9 +241,9 @@ namespace io
 	vector<competence> loadCompetenceFromFile(string nomFichier,int numLigne)
 	{
 		int nbSeparateur = 0;
-		string sSkillentiteName;
-		string sDamage;
-		string sManaCost;
+		string sskillName;
+		string sskillDamage;
+		string sskillManaCost;
 
 		string laLigne="";
 
@@ -282,7 +282,7 @@ namespace io
 
 							if ((parcoursSkill !='(') && (parcoursSkill != ':') && (nbParenthese == 0) )//Champ nom de compétence
 							{
-								sSkillentiteName += parcoursSkill;
+								sskillName += parcoursSkill;
 								continue;
 							}
 
@@ -294,7 +294,7 @@ namespace io
 
 							if ((parcoursSkill !='(') && (parcoursSkill != ':') && (nbParenthese == 1) ) //Champ de dégats
 							{
-								sDamage+= parcoursSkill;
+								sskillDamage+= parcoursSkill;
 							}
 
 							if ((parcoursSkill !='(') && (parcoursSkill != ':') && (nbParenthese == 1) && (parcoursSkill == '_'))//Detection du champ de cout en mana
@@ -305,7 +305,7 @@ namespace io
 
 							if ((parcoursSkill !='(') && (parcoursSkill != ':') && (nbParenthese == 1) && (nbUnderscore == 1)) //Champ de cout en mana
 							{
-								sManaCost+=parcoursSkill;
+								sskillManaCost+=parcoursSkill;
 								continue;
 							}
 
@@ -316,22 +316,22 @@ namespace io
 
 							if (parcoursSkill == ':') //Fin de l'analyse d'une compétence
 							{
-								int damage;
-								istringstream (sDamage) >> damage; //Conversion string to int
+								int skillDamage;
+								istringstream (sskillDamage) >> skillDamage; //Conversion string to int
 
-								int manaCost;
-								istringstream (sManaCost) >> manaCost;
+								int skillManaCost;
+								istringstream (sskillManaCost) >> skillManaCost;
 
-								competence skill(sSkillentiteName, damage, manaCost); //On crée la compétence
+								competence skill(sskillName, skillDamage, skillManaCost); //On crée la compétence
 								allSkills.push_back(skill); //On la met dans le vecteur
 
-								sSkillentiteName=""; // On reset tout pour passer à la prochaine compétence
-								sDamage="";
-								sManaCost="";
+								sskillName=""; // On reset tout pour passer à la prochaine compétence
+								sskillDamage="";
+								sskillManaCost="";
 								nbParenthese=0;
 								nbUnderscore=0;
-								damage=0;
-								manaCost=0;
+								skillDamage=0;
+								skillManaCost=0;
 								continue;
 							}
 							if (parcoursSkill== '|')

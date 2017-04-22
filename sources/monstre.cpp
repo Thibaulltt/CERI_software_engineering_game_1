@@ -16,7 +16,7 @@ using namespace std;
 // TESTS
 
 
-voentiteId monstre::printMonstre()
+void monstre::printMonstre()
 {
 	cout << "nom : " << this->entiteName<< endl;
 	cout << "hp max : " << this->entiteHpMax<< endl;
