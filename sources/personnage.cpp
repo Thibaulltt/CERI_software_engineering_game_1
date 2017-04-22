@@ -8,17 +8,17 @@ using namespace std;
 
 
 
-void personnage::printPersonnage()
+voentiteId personnage::printPersonnage()
 {
-	cout << "nom : " << this->name<< endl;
-	cout << "hp max : " << this->hpMax<< endl;
-	cout << "speed : " << this->speed<< endl;
-	cout << "mana max : " << this->manaMax<<endl;
-	cout << "description : " <<this->description<<endl;
+	cout << "nom : " << this->entiteName<< endl;
+	cout << "hp max : " << this->entiteHpMax<< endl;
+	cout << "entiteSpeed : " << this->entiteSpeed<< endl;
+	cout << "mana max : " << this->entiteManaMax<<endl;
+	cout << "entiteDescription : " <<this->entiteDescription<<endl;
 
 	for (int i=0 ; i<3 ; i++)
 	{
-		this->skillVect[i].printCompetence();
+		this->entiteSkillVect[i].printCompetence();
 	}
 
 	cout << endl;

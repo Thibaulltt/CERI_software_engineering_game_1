@@ -9,24 +9,24 @@
 
 class competence
 {
-	std::string skillName;
+	std::string skillentiteName;
 	int damage;
 	int manaCost;
 
 public:
 	competence();
-	competence(std::string skillName, int damage, int manaCost);
-	competence(std::string skillName, int damage);
+	competence(std::string skillentiteName, int damage, int manaCost);
+	competence(std::string skillentiteName, int damage);
 	~competence();
 
-	std::string getName();
-	std::string getDescription();
+	std::string getentiteName();
+	std::string getEntiteDescription();
 	int getDamage();
 	int getManaCost();
 
-	template<typename T> std::string toString(const T & valeur);
+	template<typeentiteName T> std::string toString(const T & valeur);
 
-	void printCompetence(); //Test
+	voentiteId printCompetence(); //Test
 
 	std::string competenceString(); //Convertit les carac. d'une comp�tence en une string format�e
 };

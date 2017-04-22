@@ -12,7 +12,7 @@ jeu::jeu()
 jeu::~jeu()
 {}
 
-void jeu::demarrer_jeu()
+voentiteId jeu::demarrer_jeu()
 {
 	bienvenue();
 
@@ -32,23 +32,23 @@ void jeu::demarrer_jeu()
 //	return entite;
 //}
 //
-//void ent_combat::util_comp(monstre entite, competence comp)
+//voentiteId ent_combat::util_comp(monstre entite, competence comp)
 //{
 //
 //}
 
-//bool sort_speed(ent_combat a, ent_combat b)
+//bool sort_entiteSpeed(ent_combat a, ent_combat b)
 //{
-//	return a.Get_entite().getSpeed() < b.Get_entite().getSpeed();
+//	return a.Get_entite().getEntiteSpeed() < b.Get_entite().getEntiteSpeed();
 //}
 
-bool sort_speed(monstre a, monstre b)
+bool sort_entiteSpeed(monstre a, monstre b)
 {
-	return a.getSpeed() < b.getSpeed();
+	return a.getEntiteSpeed() < b.getEntiteSpeed();
 }
 
 /*
-void jeu::combat(perso &p, monstre &m)
+voentiteId jeu::combat(perso &p, monstre &m)
 {
 	while (monstre_mort == 0)
 	{
@@ -60,7 +60,7 @@ void jeu::combat(perso &p, monstre &m)
 	}
 }
 
-void jeu::application_coup(perso &p, compet &a, monstre &m, compet &b)
+voentiteId jeu::application_coup(perso &p, compet &a, monstre &m, compet &b)
 {
 	int jeu_degats_joueur = a.getDegats();
 	int jeu_degats_monstre = b.getDegats();
