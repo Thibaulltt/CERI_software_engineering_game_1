@@ -72,8 +72,8 @@ namespace io
 	{
 		std::puts("\n");
 		std::puts("                                         Welcome to");
-		std::puts(" __________   ___    ___   __________     __________   __________   ___    ___   __________");
-		std::puts("/___   ___/  /  /   /  /  /  _______/    /  _______/  /  ____   /  /  /__ /  /  /  _______/");
+		std::puts(" __________   ___    ___   __________     __________   __________   __     ___   __________");
+		std::puts("/___   ___/  /  /   /  /  /  _______/    /  _______/  /  ____   /  /  \\__ /  /  /  _______/");
 		std::puts("   /  /     /  /__ /  /  /  /__         /  /  __     /  /___/  /  /         /  /  /__");
 		std::puts("  /  /     /   __    /  /   __/        /  /  /  \\   /  ____   /  /  / - /  /  /   __/");
 		std::puts(" /  /     /  /   /  /  /  /______     /  /___/  /  /  /   /  /  /  /   /  /  /  /______");
@@ -127,6 +127,7 @@ namespace io
 		else
 			return std::stoi(h1.substr(0,h1.size()-1));
 	}
+
 	bool checkInput(int x) //Verifie que l'utilisateur entre bien un entier
 	{
 		if (!cin)
@@ -138,7 +139,6 @@ namespace io
 		}
 		return true;
 	}
-
 
 	competence createCompetence() //Permet à l'utilisateur de créer une compétence pour personnage
 	{
@@ -219,15 +219,15 @@ namespace io
 			cin >> speed;
 		}
 
-		monstre creation(name, hpMax, speed); //Créé le monstre
+		monstre creation = monstre(name, hpMax, speed); //Crée le monstre
 
 		vector<competence> skills = creation.getSkillVect();
 
-		for (int i=0 ; i<3 ; i++) //Rempli le tableau de compétences avec de nouvelles compétences
+		for (int i=0 ; i<3 ; i++) //Remplit le tableau de compétences avec de nouvelles compétences
 		{
 			// PREVOIR UN SWITCH POUR SAVOIR SI L'USER VEUT CONTINUER A RENTRER DES COMPETENCES
 			// PENSER A CHANGER LE 3 DANS LA BOUCLE EN 11
-		   skills.push_back(this->createCompetenceMonstre());
+		   skills.push_back(createCompetenceMonstre());
 		}
 
 		creation.printMonstre();
@@ -432,7 +432,7 @@ namespace io
 
 				istringstream (sSpeed) >> speed; //Conversion string to int
 
-				allSkills = this->loadCompetenceFromFile("fichierMonstre.txt",cptLigne); //Récupération des compétences
+				allSkills = loadCompetenceFromFile("fichierMonstre.txt",cptLigne); //Récupération des compétences
 
 				monstre creation(sName, hpMax, speed, allSkills); //Création du monstre
 
@@ -504,70 +504,68 @@ namespace io
 					parcoursCarac = uneLigne[i];
 				 //   if(nbSeparateur <4) // Récupération des carac. d'un monstre
 				   // {
-						if ((parcoursCarac == '/') || (parcoursCarac == '|'))
-						{
-							nbSeparateur++;
-						}
+					if ((parcoursCarac == '/') || (parcoursCarac == '|'))
+					{
+						nbSeparateur++;
+					}
 
-						if (nbSeparateur == 0) // Champ ID
-						{
-							sID+=parcoursCarac;
-						}
+					if (nbSeparateur == 0) // Champ ID
+					{
+						sID+=parcoursCarac;
+					}
 
-						if (nbSeparateur == 1) //Champ Nom
-						{
-							if (parcoursCarac == '/')
-							{
-								continue;
-							}
-							sName+=parcoursCarac;
-						}
-
-						if (nbSeparateur == 2) //Champ hpMax
-						{
-							if (parcoursCarac == '/')  continue;
-							sHpMax+=parcoursCarac;
-						}
-
-						if (nbSeparateur == 3) //Champ vitesse
-						{
-							if (parcoursCarac == '/')  continue;
-							sSpeed+=parcoursCarac;
-						}
-
-						if(nbSeparateur == 4)
+					if (nbSeparateur == 1) //Champ Nom
+					{
+						if (parcoursCarac == '/')
 						{
 							continue;
 						}
+						sName+=parcoursCarac;
+					}
 
-						if(nbSeparateur >= 5) //Champ compétence + manaMax + description
+					if (nbSeparateur == 2) //Champ hpMax
+					{
+						if (parcoursCarac == '/')  continue;
+						sHpMax+=parcoursCarac;
+					}
+
+					if (nbSeparateur == 3) //Champ vitesse
+					{
+						if (parcoursCarac == '/')  continue;
+						sSpeed+=parcoursCarac;
+					}
+
+					if(nbSeparateur == 4)
+					{
+						continue;
+					}
+
+					if(nbSeparateur >= 5) //Champ compétence + manaMax + description
+					{
+						if(parcoursCarac == '|')
 						{
-							if(parcoursCarac == '|')
-							{
-								nbBarre++;
-							}
-
-							if(nbBarre == 0) continue;
-
-							if (nbBarre == 1) //Champ manaMax
-							{
-								if(parcoursCarac=='|') continue;
-								sManaMax+=parcoursCarac;
-							}
-
-							if (nbBarre == 2) //Champ Description
-							{
-								if(parcoursCarac=='|') continue;
-								description+=parcoursCarac;
-							}
-
-							if (nbBarre==3)
-							{
-								break;
-							}
-
+							nbBarre++;
 						}
 
+						if(nbBarre == 0) continue;
+
+						if (nbBarre == 1) //Champ manaMax
+						{
+							if(parcoursCarac=='|') continue;
+							sManaMax+=parcoursCarac;
+						}
+
+						if (nbBarre == 2) //Champ Description
+						{
+							if(parcoursCarac=='|') continue;
+							description+=parcoursCarac;
+						}
+
+						if (nbBarre==3)
+						{
+							break;
+						}
+					}
 				}
 
 
@@ -577,7 +575,7 @@ namespace io
 
 				istringstream (sManaMax) >> manaMax; //Conversion string to int
 
-				allSkills = this->loadCompetenceFromFile("fichierPersonnage.txt",cptLigne); //Récupération des compétences
+				allSkills = loadCompetenceFromFile("fichierPersonnage.txt",cptLigne); //Récupération des compétences
 
 				personnage creation(sName, hpMax, speed, manaMax, description, allSkills); //Création du personnage
 

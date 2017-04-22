@@ -21,13 +21,31 @@ void jeu::demarrer_jeu()
 	// custom_buffer.affichercarte(jeu_carte);
 }
 
+//
+//ent_combat::ent_combat(monstre monst)
+//{
+//	entite = monst;
+//}
+//
+//monstre ent_combat::Get_entite()
+//{
+//	return entite;
+//}
+//
+//void ent_combat::util_comp(monstre entite, competence comp)
+//{
+//
+//}
 
+//bool sort_speed(ent_combat a, ent_combat b)
+//{
+//	return a.Get_entite().getSpeed() < b.Get_entite().getSpeed();
+//}
 
-void ent_combat::util_comp(monstre * entite, competence * comp)
+bool sort_speed(monstre a, monstre b)
 {
-
+	return a.getSpeed() < b.getSpeed();
 }
-
 
 /*
 void jeu::combat(perso &p, monstre &m)

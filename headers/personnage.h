@@ -2,6 +2,7 @@
 
 #ifndef PERSONNAGE_H
 #define PERSONNAGE_H
+#pragma once
 
 class personnage : public monstre //Classe personnage héritant de la classe monstre
 {
@@ -42,7 +43,7 @@ public:
 	int getManaMax();
 	//! Getter pour la mana actuelle du personnage
 	int getManaCurrent();
-	//! Getter pour la desciption du personnage
+	//! Getter pour la description du personnage
 	std::string getDescription();
 
 	//! Convertit toutes les caracs. d'un personnage en string

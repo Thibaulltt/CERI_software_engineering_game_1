@@ -40,9 +40,14 @@ competence::~competence()
 
 //GET ATTRIBUTS COMPETENCE
 
-string competence::getSkillName() //Retourne le nom d'une compétence
+string competence::getName() //Retourne le nom d'une compétence
 {
 	return this->skillName;
+}
+
+string competence::getDescription()
+{
+	return "";
 }
 
 int competence::getDamage() //Retourne le nb de dégats d'une compétence

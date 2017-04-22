@@ -53,6 +53,11 @@ template<typename T>string monstre::toString( const T & valeur ) //Conversion de
 
 //-----GET ATTRIBUTS
 
+string monstre::getId()
+{
+	return this->id;
+}
+
 string monstre::getName() //Retourne le nom d'un monstre
 {
 	return this->name;
@@ -179,6 +184,18 @@ bool monstre::enleverVie(int degats)
 	return false;
 }
 
+///Problème ici, si la dépense de mana n'est pas possible, la mana est quand même dépensée
+bool monstre::enleverMana(int manaCost)
+{
+	this->manaCurrent -= manaCost;
+	if(this->manaCurrent <=0)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 
 // TESTS
 
@@ -189,7 +206,7 @@ void monstre::printMonstre()
 	cout << "hp max : " << this->hpMax<< endl;
 	cout << "speed : " << this->speed<< endl;
 
-	for (int i=0 ; i<3 ; i++)
+	for (int i=0 ; i<this->skillVect.size() ; i++)
 	{
 		this->skillVect[i].printCompetence();
 	}

@@ -1,4 +1,4 @@
-#include "carte.h"
+#include "../headers/carte.h"
 #include <iostream>
 #include <fstream>
 #include <limits>
@@ -27,7 +27,7 @@ Carte :: Carte (int size, string name, string desc)
 		for (int j = 0 ; j< taille ; j++)
 		{
 			plateau[i][j] = "v" ;
-			
+
 		}
 	}
 	this -> case_dispo= taille*taille;
@@ -57,27 +57,27 @@ void Carte :: coordonneejoueur()
 		cin >> coordonneejoueur2;
 		if (coordonneejoueur1 < taille && coordonneejoueur2 < taille)
 		{
-			plateau[coordonneejoueur1][coordonneejoueur2]="j";	
+			plateau[coordonneejoueur1][coordonneejoueur2]="j";
 			placement_fait=true;
 		}
-		else 
+		else
 		{
 			cout << "vos coordonnées sont hors de la carte!!" << endl;
 		}
 	}
 	case_dispo = case_dispo - 1;
-}	
+}
 
 void Carte::coordonneeobstacle()
 {
 	int nbr_obstacle=0;
 	int coordonneeobstacle1;
 	int coordonneeobstacle2;
-	cout<< "Combien d'obstacle, sur la carte, voulez vous?";
+	cout<< "Combien d'obstacles voulez vous sur la carte?";
 	cin >> nbr_obstacle;
 	while (nbr_obstacle >= case_dispo)
 	{
-		cout<< "Vous avez choisi trop d'obstacle." << endl << "Combien d'obstacle voulez vous sur la carte?";
+		cout<< "Vous avez choisi trop d'obstacles." << endl << "Combien d'obstacle voulez vous sur la carte?";
 		cin >> nbr_obstacle;
 	}
 	int i = 1;
@@ -94,17 +94,17 @@ void Carte::coordonneeobstacle()
 				plateau[coordonneeobstacle1][coordonneeobstacle2] = "o";
 				i++;
 			}
-			else 
+			else
 			{
-				cout << "cette case est deja occupée, Veuillez en choisir une autre " << endl; 
+				cout << "Cette case est deja occupée, Veuillez en choisir une autre " << endl;
 			}
 		}
 		else
 		{
 			cout << "Vos coordonnées sont hors de la carte!!" << endl;
-		}	
+		}
 	}
-	case_dispo = case_dispo - nbr_obstacle; 
+	case_dispo = case_dispo - nbr_obstacle;
 }
 
 void Carte::coordonneemonstre()
@@ -121,9 +121,9 @@ void Carte::coordonneemonstre()
 	int i = 1;
 	while (i <= nombre_monstre)
 	{
-		cout << "Choisissez la premiere coordonnée où le monstre doit apparaitre :" ;
+		cout << "Choisissez la premiere coordonnée où le monstre doit apparaître :" ;
 		cin >> coordonneemonstre1;
-		cout << "Choisissez la deuxieme coordonnée où le monstre doit apparaitre :" ;
+		cout << "Choisissez la deuxieme coordonnée où le monstre doit apparaître :" ;
 		cin >> coordonneemonstre2;
 		if (coordonneemonstre1 < taille && coordonneemonstre2 < taille)
 		{
@@ -132,13 +132,13 @@ void Carte::coordonneemonstre()
 				plateau[coordonneemonstre1][coordonneemonstre2] = "m";
 				i++;
 			}
-			else 
+			else
 			{
-				cout << "Cette case est deja occupée veuillez en choisir une autre " << endl; 
+				cout << "Cette case est deja occupée veuillez en choisir une autre " << endl;
 			}
 		}
 		else
-		{ 
+		{
 			cout << "Vos coordonnées sont hors de la carte!!" << endl;
 		}
 	}
@@ -188,10 +188,10 @@ void Carte :: sauvegarde()
 	string type_obstacle;
 	string monstre;
 	int nbligne=nbLigneFichier(carte);
-	
+
 	//ouverture du fichier en écriture
 	ofstream fichier(carte, ios :: app) ;
-		
+
 	// Si fichier bien ouvert
 	if (fichier)
 	{
@@ -207,24 +207,24 @@ void Carte :: sauvegarde()
 				{
 					cout << "Quelle est l'obstacle à la case "<< i << " "<< j << ":";
 					cin >> type_obstacle;
-					fichier << "(" << i << "," << j << ","<< type_obstacle << ")"; 
+					fichier << "(" << i << "," << j << ","<< type_obstacle << ")";
 				}
 				if (plateau[i][j]=="m")
 				{
 					cout << "Quelle est le monstre à la case "<< i << " "<< j << ":";
 					cin >> monstre;
-					fichier << "(" << i << "," << j << ","<< monstre << ")"; 
+					fichier << "(" << i << "," << j << ","<< monstre << ")";
 				}
 				if (plateau[i][j]=="j")
-					fichier << "(" << i << "," << j << ",joueur" << ")"; 
-			} 
-			
+					fichier << "(" << i << "," << j << ",joueur" << ")";
+			}
+
 		}
 		fichier << '\n' ;
 		// On referme le fichier
 		fichier.close() ;
 		cout << "Carte sauvegardée" << endl ;
-	} 
+	}
 	else cerr << "échec de la sauvegarde" << endl ;
 	return ;
 }
@@ -256,7 +256,7 @@ vector <Carte> Carte :: chargement ()
 			string nom = "" ;
 			string description = "" ;
 			string taille= "";
-			string coordonnee1 = "" ; 
+			string coordonnee1 = "" ;
 			string coordonnee2 = "" ;
 			string type = "" ;
 			int count = 0 ;

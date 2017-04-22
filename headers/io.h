@@ -2,8 +2,11 @@
 #include <vector>
 #include <typeinfo>
 #include <termios.h>	// Needed for terminal input manipulation
-#include <stdio.h>	// Needed for terminal input manipulation
+#include <stdio.h>		// Needed for terminal input manipulation
 #include <sstream>
+#include "../headers/competence.h"
+#include "../headers/monstre.h"
+#include "../headers/personnage.h"
 
 #ifndef IO_H
 #define IO_H
@@ -68,6 +71,7 @@ namespace io
 		\param x on sait pas ce qu'il fait la, mais il est la.
 	*/
 	bool checkInput(int x); //Vérifie que l'user entre des entier
+
 	//! Creer une competence
 	/*!
 		Cette fonction permet de créer rapidement une compétence pour pouvoir l'utiliser facilement après.
@@ -77,27 +81,31 @@ namespace io
 		- On rentre
 	*/
 	competence createCompetence(); //Creer une competence
+
 	//! Créer une compétence pour monstre (sans mana)
 	competence createCompetenceMonstre(); //Créer une compétence pour monstre (sans mana)
+
 	//! Créer un monstre
 	monstre createMonstre(); //Créer un monstre
+
 	//! Récupérer les compétences d'un monstre dans le .txt
 	std::vector<competence> loadCompetenceFromFile(std::string nomFichier,int numLigne);
+
 	//Retourne un vecteur contenant tous les monstres du fichier .txt
 	std::vector<monstre> loadAllMonstreFromFile();
+
 	//! Retourne un vecteur contenant tous les personnages du fichier .txt
 	std::vector<personnage> loadAllPersonnageFromFile();
 
 	//! Affichage d'objet.
 	/*!
-		Affiche le nom (et éventuellement la description) d'un objet.
+		Affiche le nom et la description d'un objet.
 		\param object Objet à afficher.
-		\param need_desc Description ou non.
 	*/
-	template<typename T> void afficher(T object, bool need_desc)
+	template<typename T> void afficher(T object)
 	{
 		std::cout << (object).getName();                            //Affiche le nom
-		//std::cout << ", \"" << (object).getDescription() << "\"";  //Affiche la description
+		std::cout << ", \"" << (object).getDescription() << "\"";  //Affiche la description
 	}
 
 
@@ -108,7 +116,7 @@ namespace io
 		\param need_desc Description ou non.
 		\sa afficher()
 	*/
-	template<typename T> void liste_elements(std::vector<T> vect_element, bool need_desc)
+	template<typename T> void liste_elements(std::vector<T> vect_element)
 	{
 		typename std::vector<T>::iterator itv;                              //Variable de parcours de vecteur
 		int cpt = 0;                                                        //Compteur d'éléments
@@ -117,7 +125,7 @@ namespace io
 		{
 			cpt++;                                                          //Incrémentation compteur
 			std::cout << cpt%10 << "- ";                                    //Numéro de l'élément (0 - 9)
-			afficher((* itv), need_desc);                                   //Affichage de l'élément
+			afficher((* itv));												//Affichage de l'élément
 			std::cout << "   ";
 		}
 	}
@@ -131,18 +139,18 @@ namespace io
 		\return L'élement choisi.
 		\sa liste_elements(), afficher()
 	*/
-	template<typename T> T choix_unique_element(std::vector<T> vect_element, bool need_desc)
+	template<typename T> T choix_unique_element(std::vector<T> vect_element)
 	{
-		std::string type_name = typeid(T).name();                            //String à partir du type appelant
+		std::string type_name = typeid(T).name();						//String à partir du type appelant
 
 		while (isdigit(type_name[0]))
 		{
-			type_name = type_name.substr(1, type_name.size());            //Conservation des caractères pertinents
+			type_name = type_name.substr(1, type_name.size());			//Conservation des caractères pertinents
 		}
 
-		std::cout << "Veuillez choisir votre " << type_name << " (0-9): ";
+		std::cout << "Veuillez choisir votre " << type_name << " (1-9): ";
 
-		liste_elements(vect_element, need_desc);                        //Affichage des éléments parmi lesquels choisir
+		liste_elements(vect_element);                        			//Affichage des éléments parmi lesquels choisir
 
 		char c_input = de();                                            //Input utilisateur
 		int input = c_input - '0';                                      //Transcription en chiffres
@@ -157,10 +165,10 @@ namespace io
 		T choix = vect_element[input - 1];                              //Sélection de l'objet dans son vecteur
 
 		std::cout << std::endl << "Vous avez choisi: ";
-		afficher(choix, need_desc);                                     //Affichage de l'objet choisi
+		afficher(choix);												//Affichage de l'objet choisi
 		std::puts("\n");
 
-		return choix;                                                   //Renvoi de l'objet choisi
+		return choix;													//Renvoi de l'objet choisi
     }
 }
 
