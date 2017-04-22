@@ -10,19 +10,19 @@
 class competence
 {
 	std::string skillName;
-	int damage;
-	int manaCost;
+	int skillDamage;
+	int skillManaCost;
 
 public:
 	competence();
-	competence(std::string skillName, int damage, int manaCost);
-	competence(std::string skillName, int damage);
+	competence(std::string skillName, int skillDamage, int skillManaCost);
+	competence(std::string skillName, int skillDamage);
 	~competence();
 
-	std::string getName();
-	std::string getDescription();
-	int getDamage();
-	int getManaCost();
+	std::string getEntiteName();
+	std::string getEntiteDescription();
+	int getskillDamage();
+	int getskillManaCost();
 
 	template<typename T> std::string toString(const T & valeur);
 

@@ -37,14 +37,14 @@ void jeu::demarrer_jeu()
 //
 //}
 
-//bool sort_speed(ent_combat a, ent_combat b)
+//bool sort_entiteSpeed(ent_combat a, ent_combat b)
 //{
-//	return a.Get_entite().getSpeed() < b.Get_entite().getSpeed();
+//	return a.Get_entite().getEntiteSpeed() < b.Get_entite().getEntiteSpeed();
 //}
 
-bool sort_speed(monstre a, monstre b)
+bool sort_entiteSpeed(monstre a, monstre b)
 {
-	return a.getSpeed() < b.getSpeed();
+	return a.getEntiteSpeed() < b.getEntiteSpeed();
 }
 
 /*

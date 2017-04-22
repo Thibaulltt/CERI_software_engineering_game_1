@@ -84,7 +84,7 @@ namespace io
 		std::puts("\n");
 	}
 
-	int getTerminalWidth()
+	int getTerminalWentiteIdth()
 	{
 		FILE * r;
 		std::string w1,w2;
@@ -143,29 +143,29 @@ namespace io
 	competence createCompetence() //Permet à l'utilisateur de créer une compétence pour personnage
 	{
 		string skillName;
-		int damage;
-		int manaCost;
+		int skillDamage;
+		int skillManaCost;
 
 		cout << "Entrez le nom de la compétence : ";
 		cin >> skillName;
 
 		cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-		cin >> damage;
-		while(!checkInput(damage))
+		cin >> skillDamage;
+		while(!checkInput(skillDamage))
 		{
 			cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-			cin >> damage;
+			cin >> skillDamage;
 		}
 
 		cout << "Entrez le cout en mana de la competence : ";
-		cin >> manaCost;
-		while(!checkInput(manaCost))
+		cin >> skillManaCost;
+		while(!checkInput(skillManaCost))
 		{
 			cout << "Entrez le cout en mana de la competence : ";
-			cin >> manaCost;
+			cin >> skillManaCost;
 		}
 
-		competence creation(skillName, damage, manaCost);
+		competence creation(skillName, skillDamage, skillManaCost);
 
 		return creation;
 	}
@@ -173,21 +173,21 @@ namespace io
 /*	competence createCompetenceMonstre() //Permet à l'utilisateur de créer une compétence pour monstre
 	{
 		string skillName;
-		int damage;
-		int manaCost;
+		int skillDamage;
+		int skillManaCost;
 
 		cout << "Entrez le nom de la compétence : ";
 		cin >> skillName;
 
 		cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-		cin >> damage;
-		while(!checkInput(damage))
+		cin >> skillDamage;
+		while(!checkInput(skillDamage))
 		{
 			cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-			cin >> damage;
+			cin >> skillDamage;
 		}
 
-		competence creation(skillName, damage);
+		competence creation(skillName, skillDamage);
 
 		return creation;
 	}
@@ -195,33 +195,33 @@ namespace io
 
 	monstre createMonstre() //Permet à l'utilisateur de créer un monstre avec des caractéristiques choisies
 	{
-		string name;
-		int hpMax;
-		int speed;
+		string entiteName;
+		int entiteHpMax;
+		int entiteSpeed;
 
 		cout << "Entrez le nom du monstre : ";
-		cin >> name;
+		cin >> entiteName;
 		cout << endl;
 
 		cout << "Entrez son nombre de points de vie : ";
-		cin >> hpMax;
-		while(!checkInput(hpMax))
+		cin >> entiteHpMax;
+		while(!checkInput(entiteHpMax))
 		{
 			cout << "Entrez son nombre de points de vie : ";
-			cin >> hpMax;
+			cin >> entiteHpMax;
 		}
 
 		cout << "Entrez sa vitesse : ";
-		cin >> speed;
-		while(!checkInput(speed))
+		cin >> entiteSpeed;
+		while(!checkInput(entiteSpeed))
 		{
 			cout << "Entrez sa vitesse : ";
-			cin >> speed;
+			cin >> entiteSpeed;
 		}
 
-		monstre creation = monstre(name, hpMax, speed); //Crée le monstre
+		monstre creation = monstre(entiteName, entiteHpMax, entiteSpeed); //Crée le monstre
 
-		vector<competence> skills = creation.getSkillVect();
+		vector<competence> skills = creation.getEntiteSkillVect();
 
 		for (int i=0 ; i<3 ; i++) //Remplit le tableau de compétences avec de nouvelles compétences
 		{
@@ -241,9 +241,9 @@ namespace io
 	vector<competence> loadCompetenceFromFile(string nomFichier,int numLigne)
 	{
 		int nbSeparateur = 0;
-		string sSkillName;
-		string sDamage;
-		string sManaCost;
+		string sskillName;
+		string sskillDamage;
+		string sskillManaCost;
 
 		string laLigne="";
 
@@ -282,7 +282,7 @@ namespace io
 
 							if ((parcoursSkill !='(') && (parcoursSkill != ':') && (nbParenthese == 0) )//Champ nom de compétence
 							{
-								sSkillName += parcoursSkill;
+								sskillName += parcoursSkill;
 								continue;
 							}
 
@@ -294,7 +294,7 @@ namespace io
 
 							if ((parcoursSkill !='(') && (parcoursSkill != ':') && (nbParenthese == 1) ) //Champ de dégats
 							{
-								sDamage+= parcoursSkill;
+								sskillDamage+= parcoursSkill;
 							}
 
 							if ((parcoursSkill !='(') && (parcoursSkill != ':') && (nbParenthese == 1) && (parcoursSkill == '_'))//Detection du champ de cout en mana
@@ -305,7 +305,7 @@ namespace io
 
 							if ((parcoursSkill !='(') && (parcoursSkill != ':') && (nbParenthese == 1) && (nbUnderscore == 1)) //Champ de cout en mana
 							{
-								sManaCost+=parcoursSkill;
+								sskillManaCost+=parcoursSkill;
 								continue;
 							}
 
@@ -316,22 +316,22 @@ namespace io
 
 							if (parcoursSkill == ':') //Fin de l'analyse d'une compétence
 							{
-								int damage;
-								istringstream (sDamage) >> damage; //Conversion string to int
+								int skillDamage;
+								istringstream (sskillDamage) >> skillDamage; //Conversion string to int
 
-								int manaCost;
-								istringstream (sManaCost) >> manaCost;
+								int skillManaCost;
+								istringstream (sskillManaCost) >> skillManaCost;
 
-								competence skill(sSkillName, damage, manaCost); //On crée la compétence
+								competence skill(sskillName, skillDamage, skillManaCost); //On crée la compétence
 								allSkills.push_back(skill); //On la met dans le vecteur
 
-								sSkillName=""; // On reset tout pour passer à la prochaine compétence
-								sDamage="";
-								sManaCost="";
+								sskillName=""; // On reset tout pour passer à la prochaine compétence
+								sskillDamage="";
+								sskillManaCost="";
 								nbParenthese=0;
 								nbUnderscore=0;
-								damage=0;
-								manaCost=0;
+								skillDamage=0;
+								skillManaCost=0;
 								continue;
 							}
 							if (parcoursSkill== '|')
@@ -364,15 +364,15 @@ namespace io
 
 		int nbSeparateur = 0; //Compteur de /
 		int nbBarre = 0; //Compteur de |
-		string sID;
-		string sName;
-		string sHpMax;
-		string sSpeed;
-		string sManaMax;
-		string description;
-		int hpMax;
-		int speed;
-		int manaMax;
+		string sentiteId;
+		string sentiteName;
+		string sentiteHpMax;
+		string sentiteSpeed;
+		string sentiteManaMax;
+		string entiteDescription;
+		int entiteHpMax;
+		int entiteSpeed;
+		int entiteManaMax;
 		int cptLigne=0;
 		vector<competence> allSkills;
 
@@ -385,17 +385,17 @@ namespace io
 			while (getline(fichierEntite, uneLigne)) //Parcours de tout le fichier et stockage d'une ligne
 			{
 				cptLigne++; //Reset de toutes les variables afin de stocker une nouvelle ligne
-				sName="";
-				sID="";
-				sHpMax="";
-				hpMax=0;
-				sSpeed="";
-				speed=0;
-				sManaMax="";
-				manaMax=0;
+				sentiteName="";
+				sentiteId="";
+				sentiteHpMax="";
+				entiteHpMax=0;
+				sentiteSpeed="";
+				entiteSpeed=0;
+				sentiteManaMax="";
+				entiteManaMax=0;
 				nbSeparateur=0;
 				nbBarre=0;
-				description="";
+				entiteDescription="";
 				allSkills.clear();
 
 
@@ -409,9 +409,9 @@ namespace io
 						nbSeparateur++;
 					}
 
-					if (nbSeparateur == 0) // Champ ID
+					if (nbSeparateur == 0) // Champ entiteId
 					{
-						sID+=parcoursCarac;
+						sentiteId+=parcoursCarac;
 					}
 
 					if (nbSeparateur == 1) //Champ Nom
@@ -420,19 +420,19 @@ namespace io
 						{
 							continue;
 						}
-						sName+=parcoursCarac;
+						sentiteName+=parcoursCarac;
 					}
 
-					if (nbSeparateur == 2) //Champ hpMax
+					if (nbSeparateur == 2) //Champ entiteHpMax
 					{
 						if (parcoursCarac == '/')  continue;
-						sHpMax+=parcoursCarac;
+						sentiteHpMax+=parcoursCarac;
 					}
 
 					if (nbSeparateur == 3) //Champ vitesse
 					{
 						if (parcoursCarac == '/')  continue;
-						sSpeed+=parcoursCarac;
+						sentiteSpeed+=parcoursCarac;
 					}
 
 					if(nbSeparateur == 4)
@@ -440,7 +440,7 @@ namespace io
 						continue;
 					}
 
-					if(nbSeparateur >= 5) //Champ compétence + manaMax + description
+					if(nbSeparateur >= 5) //Champ compétence + entiteManaMax + entiteDescription
 					{
 						if(parcoursCarac == '|')
 						{
@@ -449,16 +449,16 @@ namespace io
 
 						if(nbBarre == 0) continue;
 
-						if (nbBarre == 1) //Champ manaMax
+						if (nbBarre == 1) //Champ entiteManaMax
 						{
 							if(parcoursCarac=='|') continue;
-							sManaMax+=parcoursCarac;
+							sentiteManaMax+=parcoursCarac;
 						}
 
-						if (nbBarre == 2) //Champ Description
+						if (nbBarre == 2) //Champ entiteDescription
 						{
 							if(parcoursCarac=='|') continue;
-							description+=parcoursCarac;
+							entiteDescription+=parcoursCarac;
 						}
 
 						if (nbBarre==3)
@@ -469,15 +469,15 @@ namespace io
 				}
 
 
-				istringstream (sHpMax) >> hpMax; //Conversion string to int
+				istringstream (sentiteHpMax) >> entiteHpMax; //Conversion string to int
 
-				istringstream (sSpeed) >> speed; //Conversion string to int
+				istringstream (sentiteSpeed) >> entiteSpeed; //Conversion string to int
 
-				istringstream (sManaMax) >> manaMax; //Conversion string to int
+				istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
 
 				allSkills = loadCompetenceFromFile("fichierEntite.txt",cptLigne); //Récupération des compétences
 
-				entite creation(sID, sName, hpMax, speed, manaMax, description, allSkills); //Création du entite
+				entite creation(sentiteId, sentiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills); //Création du entite
 
 				allPerso.push_back(creation); //Stockage du perso dans le vecteur de retour
 

@@ -7,33 +7,33 @@ using namespace std;
 
 // --------------------CONSTRUCTEURS
 
-entite::entite()      //Constructeur vide
+entite::entite()      //Constructeur ventiteIde
 {
-	this->id="";
-	this->name = "Inconnu";
-	this->description = "";
-	this->hpMax = 0;
-	this->hpCurrent = hpMax;
-	this->manaMax = 0;
-	this->manaCurrent = 0;
-	this->speed = 0;
-	this->alive = true;
-	vector<competence> skillVect;
+	this->entiteId="";
+	this->entiteName = "Inconnu";
+	this->entiteDescription = "";
+	this->entiteHpMax = 0;
+	this->entiteHpCurrent = entiteHpMax;
+	this->entiteManaMax = 0;
+	this->entiteManaCurrent = 0;
+	this->entiteSpeed = 0;
+	this->entiteAlive = true;
+	vector<competence> entiteSkillVect;
 }
 
 
-entite::entite(string id, string name, int hpMax, int speed, int manaMax, string description, std::vector<competence> allSkills) //Constructeur avec arguments de caractéristiques du entite
+entite::entite(string entiteId, string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax, string entiteDescription, std::vector<competence> allSkills) //Constructeur avec arguments de caractéristiques du entite
 {
-	this->id=id;
-	this->name = name;
-	this->description = "";
-	this->hpMax = hpMax;
-	this->hpCurrent = this->hpMax;
-	this->manaMax = manaMax;
-	this->manaCurrent = manaMax;
-	this->speed = speed;
-	this->alive = true;
-	vector<competence> skillVect = allSkills;
+	this->entiteId=entiteId;
+	this->entiteName = entiteName;
+	this->entiteDescription = "";
+	this->entiteHpMax = entiteHpMax;
+	this->entiteHpCurrent = this->entiteHpMax;
+	this->entiteManaMax = entiteManaMax;
+	this->entiteManaCurrent = entiteManaMax;
+	this->entiteSpeed = entiteSpeed;
+	this->entiteAlive = true;
+	vector<competence> entiteSkillVect = allSkills;
 }
 
 
@@ -50,69 +50,69 @@ template<typename T>string entite::toString( const T & valeur ) //Conversion de 
 
 //-----GET ATTRIBUTS
 
-string entite::getId() //Rretourne l'id d'une entite
+string entite::getEntiteId() //Rretourne l'entiteId d'une entite
 {
-	return this->id;
+	return this->entiteId;
 }
 
 
-string entite::getName() //Retourne le nom d'une entite
+string entite::getEntiteName() //Retourne le nom d'une entite
 {
-	return this->name;
+	return this->entiteName;
 }
 
 
-string entite::getDescription() //Retourne la description d'une entite
+string entite::getEntiteDescription() //Retourne la entiteDescription d'une entite
 {
-	return this->description;
+	return this->entiteDescription;
 }
 
 
-int entite::getHpMax() //Retourne le nombre de points de vie max d'une entite
+int entite::getEntiteHpMax() //Retourne le nombre de points de vie max d'une entite
 {
-	return this->hpMax;
+	return this->entiteHpMax;
 }
 
 
-int entite::getHpCurrent() //Retourne le nombre de points de vie actuel d'une entite
+int entite::getEntiteHpCurrent() //Retourne le nombre de points de vie actuel d'une entite
 {
-	return this->hpCurrent;
+	return this->entiteHpCurrent;
 }
 
 
-int entite::getManaMax() //Retourne les points de mana MAX d'une entite
+int entite::getEntiteManaMax() //Retourne les points de mana MAX d'une entite
 {
-	return this->manaMax;
+	return this->entiteManaMax;
 }
 
-int entite::getManaCurrent() //Retourne les points de mana actuel d'une entite
+int entite::getEntiteManaCurrent() //Retourne les points de mana actuel d'une entite
 {
-	return this->manaCurrent;
-}
-
-
-int entite::getSpeed() //Retourne la vitesse d'une entite
-{
-	return this->speed;
+	return this->entiteManaCurrent;
 }
 
 
-bool entite::getAlive() //Retourne l'�tat de vie ou de mort d'un entite
+int entite::getEntiteSpeed() //Retourne la vitesse d'une entite
 {
-	return this->alive;
+	return this->entiteSpeed;
 }
 
 
-vector<competence> entite::getSkillVect() //Retourne le vecteur de compétence d'un entite
+bool entite::getEntiteAlive() //Retourne l'�tat de vie ou de mort d'un entite
 {
-	return this->skillVect;
+	return this->entiteAlive;
+}
+
+
+vector<competence> entite::getEntiteSkillVect() //Retourne le vecteur de compétence d'un entite
+{
+	return this->entiteSkillVect;
 }
 
 
 // POUR SAUVEGARDE DANS FICHIER
 
 
-int entite::nbLigneFichier(string nomFichier) //Compte le nb de ligne du fichier pour créer l'identifiant unique d'un entite
+int entite::nbLigneFichier(string nomFichier) //Compte le nb de ligne du fichier pour créer l'entiteIdentifiant unique d'un entite
 {
 	ifstream fichier(nomFichier.c_str()); //Ouverture en mode lecture
 	int nbLigne = 0;
@@ -144,25 +144,25 @@ string entite::entiteString(string lettreEntite, string nomFichier) //Convertit 
 	string sNbEntite;
 	sNbEntite = toString(nbEntite);
 
-	string ID;
-	ID = lettreEntite + sNbEntite;
+	string entiteId;
+	entiteId = lettreEntite + sNbEntite;
 
-	string sHpMax;
-	sHpMax = toString(this->hpMax);
+	string sentiteHpMax;
+	sentiteHpMax = toString(this->entiteHpMax);
 
-	string sSpeed;
-	sSpeed = toString(this->speed);
+	string sentiteSpeed;
+	sentiteSpeed = toString(this->entiteSpeed);
 
-	string sManaMax;
-	sManaMax = toString(this->manaMax);
+	string sentiteManaMax;
+	sentiteManaMax = toString(this->entiteManaMax);
 
 	string allSkill="";
-	for (int i=0 ; i< skillVect.size() ; i++) //Conversion de toutes les compétences en une ligne de string
+	for (int i=0 ; i< entiteSkillVect.size() ; i++) //Conversion de toutes les compétences en une ligne de string
 	{
-		allSkill += skillVect[i].competenceString() + ":";
+		allSkill += entiteSkillVect[i].competenceString() + ":";
 	}
 
-		ligneFichier = ID + "/" + this->name + "/" + sHpMax + "/" + sSpeed + "/" + allSkill + "|" + sManaMax + "|" + this->description + '\n'; //Création de la ligne compléte
+		ligneFichier = entiteId + "/" + this->entiteName + "/" + sentiteHpMax + "/" + sentiteSpeed + "/" + allSkill + "|" + sentiteManaMax + "|" + this->entiteDescription + '\n'; //Création de la ligne compléte
 
 
 	return ligneFichier;
@@ -193,11 +193,11 @@ void entite::saveInFile(string lettreEntite,string nomFichier) //Ecrit les carac
 
 bool entite::enleverVie(int degats)
 {
-	this->hpCurrent-=degats;
+	this->entiteHpCurrent-=degats;
 
-	if(this->hpCurrent <= 0)
+	if(this->entiteHpCurrent <= 0)
 	{
-		this->alive = false;
+		this->entiteAlive = false;
 		return true; //Si mort, return true
 	}
 	return false;
@@ -205,15 +205,15 @@ bool entite::enleverVie(int degats)
 
 ///Problème ici, si la dépense de mana n'est pas possible, la mana est quand même dépensée.
 ///De même, <= 0 empêche d'utiliser les compétences qui utilisent exactement le bon montant de mana.
-bool entite::enleverMana(int manaCost)
+bool entite::enleverMana(int skillManaCost)
 {
-	if (this->manaCurrent>= manaCost)
+	if (this->entiteManaCurrent>= skillManaCost)
 	{
-		this->manaCurrent -= manaCost;
+		this->entiteManaCurrent -= skillManaCost;
 		return true;
 	}
 
-	if(this->manaCurrent < manaCost)
+	if(this->entiteManaCurrent < skillManaCost)
 	{
 		return false;
 	}
@@ -225,13 +225,13 @@ bool entite::enleverMana(int manaCost)
 
 void entite::printEntite()
 {
-	cout << "nom : " << this->name<< endl;
-	cout << "hp max : " << this->hpMax<< endl;
-	cout << "speed : " << this->speed<< endl;
+	cout << "nom : " << this->entiteName<< endl;
+	cout << "hp max : " << this->entiteHpMax<< endl;
+	cout << "entiteSpeed : " << this->entiteSpeed<< endl;
 
-	for (int i=0 ; i<this->skillVect.size() ; i++)
+	for (int i=0 ; i<this->entiteSkillVect.size() ; i++)
 	{
-		this->skillVect[i].printCompetence();
+		this->entiteSkillVect[i].printCompetence();
 	}
 
 	cout << endl;

@@ -18,13 +18,13 @@ using namespace std;
 
 void monstre::printMonstre()
 {
-	cout << "nom : " << this->name<< endl;
-	cout << "hp max : " << this->hpMax<< endl;
-	cout << "speed : " << this->speed<< endl;
+	cout << "nom : " << this->entiteName<< endl;
+	cout << "hp max : " << this->entiteHpMax<< endl;
+	cout << "entiteSpeed : " << this->entiteSpeed<< endl;
 
-	for (int i=0 ; i<this->skillVect.size() ; i++)
+	for (int i=0 ; i<this->entiteSkillVect.size() ; i++)
 	{
-		this->skillVect[i].printCompetence();
+		this->entiteSkillVect[i].printCompetence();
 	}
 
 	cout << endl;

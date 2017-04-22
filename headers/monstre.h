@@ -8,32 +8,32 @@ class monstre : public entite
 {
 
 public:
-	//! Constructeur vide
+	//! Constructeur ventiteIde
 	/*
-		Crée un monstre vide.
-		\warning Le monstre sera vide. Cela signifie qu'il ne sera pas utilisable pour le jeu, sa vie étant égale à 0
+		Crée un monstre ventiteIde.
+		\warning Le monstre sera ventiteIde. Cela signifie qu'il ne sera pas utilisable pour le jeu, sa vie étant égale à 0
 		\post Le monstre crée aura les paramètres suivants:
-		- name = "Inconnu"
-		- hpMax = 0
-		- hpCurrent = 0
-		- speed = 0
-		- alive = true (sera changé immédiatement en false)
-		- skillVect = <vecteur vide>
+		- entiteName = "Inconnu"
+		- entiteHpMax = 0
+		- entiteHpCurrent = 0
+		- entiteSpeed = 0
+		- entiteAlive = true (sera changé immédiatement en false)
+		- entiteSkillVect = <vecteur ventiteIde>
 	*/
 	monstre():entite(){};
 
 
 	//! Constructeur avec tout
 	/*!
-		\param id L'identifiant du monstre
-		\param name Le nom du monstre
-		\param hpMax Les points de vie max du monstre
-		\param speed La vitesse du monstre
-		\param manaMax Les points de mana max du monstre
-		\param description La description du monstre
+		\param entiteId L'entiteIdentifiant du monstre
+		\param entiteName Le nom du monstre
+		\param entiteHpMax Les points de vie max du monstre
+		\param entiteSpeed La vitesse du monstre
+		\param entiteManaMax Les points de mana max du monstre
+		\param entiteDescription La entiteDescription du monstre
 		\param allSkills Un vecteur (std::vector) contenant toutes les compétences de ce monstre.
 	*/
-	monstre(std::string id, std::string name, int hpMax, int speed, int manaMax, std::string description, std::vector<competence> allSkills) : entite(id, name, hpMax, speed, manaMax, description, allSkills ){};
+	monstre(std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax, std::string entiteDescription, std::vector<competence> allSkills) : entite(entiteId, entiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills ){};
 
 
 	//! Pour tester

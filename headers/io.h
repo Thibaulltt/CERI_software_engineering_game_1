@@ -52,7 +52,7 @@ namespace io
 	void bienvenue();
 
 	//! Retourne la largeur du terminal
-	int getTerminalWidth();
+	int getTerminalWentiteIdth();
 
 	//! Retourne la hauteur du terminal
 	int getTerminalHeight();
@@ -63,7 +63,7 @@ namespace io
 
 		Mode opératoire :
 		- Vérification du failbit de l'entrée utilisateur (std::cin::failbit)
-			-# Vidage du buffer
+			-# VentiteIdage du buffer
 			-# Ignore 256 caractères ou jusqu'a <pre>\n</pre>
 			-# Affichage d'un message d'erreur d'entrée utilisateur.
 			-# Retourne faux
@@ -74,10 +74,10 @@ namespace io
 
 	//! Creer une competence
 	/*!
-		Cette fonction permet de créer rapidement une compétence pour pouvoir l'utiliser facilement après.
+		Cette fonction permet de créer rapentiteIdement une compétence pour pouvoir l'utiliser facilement après.
 
 		Mode opératoire :
-		- On crée les variables qui vont tenir les infos rentrées (skillName, damage, manaCost)
+		- On crée les variables qui vont tenir les infos rentrées (skillName, skillDamage, skillManaCost)
 		- On rentre
 	*/
 	competence createCompetence(); //Creer une competence
@@ -96,13 +96,13 @@ namespace io
 
 	//! Affichage d'objet.
 	/*!
-		Affiche le nom et la description d'un objet.
+		Affiche le nom et la entiteDescription d'un objet.
 		\param object Objet à afficher.
 	*/
 	template<typename T> void afficher(T object)
 	{
-		std::cout << (object).getName();                            //Affiche le nom
-		std::cout << ", \"" << (object).getDescription() << "\"";  //Affiche la description
+		std::cout << (object).getEntiteName();                            //Affiche le nom
+		std::cout << ", \"" << (object).getEntiteDescription() << "\"";  //Affiche la entiteDescription
 	}
 
 
@@ -110,7 +110,7 @@ namespace io
 	/*!
 		Parcourt le vecteur de stockage des objets chargés, et les affiche.
 		\param vect_element Vecteur d'éléments.
-		\param need_desc Description ou non.
+		\param need_desc entiteDescription ou non.
 		\sa afficher()
 	*/
 	template<typename T> void liste_elements(std::vector<T> vect_element)
@@ -130,22 +130,22 @@ namespace io
 
 	//! Choix d'un élément unique
 	/*!
-		Fonction qui prend un vecteur d'éléments en entrée ainsi qu'un booléen (affichage ou non de la description), et affiche puis renvoie l'élément choisi.
+		Fonction qui prend un vecteur d'éléments en entrée ainsi qu'un booléen (affichage ou non de la entiteDescription), et affiche puis renvoie l'élément choisi.
 		\param vect_element Vecteur de l'élément à choisir.
-		\param need_desc Nécessité de description ou non.
+		\param need_desc Nécessité de entiteDescription ou non.
 		\return L'élement choisi.
 		\sa liste_elements(), afficher()
 	*/
 	template<typename T> T choix_unique_element(std::vector<T> vect_element)
 	{
-		std::string type_name = typeid(T).name();						//String à partir du type appelant
+		std::string type_entiteName = typeentiteId(T).entiteName();						//String à partir du type appelant
 
-		while (isdigit(type_name[0]))
+		while (isdigit(type_entiteName[0]))
 		{
-			type_name = type_name.substr(1, type_name.size());			//Conservation des caractères pertinents
+			type_entiteName = type_entiteName.substr(1, type_entiteName.size());			//Conservation des caractères pertinents
 		}
 
-		std::cout << "Veuillez choisir votre " << type_name << " (1-9): ";
+		std::cout << "Veuillez choisir votre " << type_entiteName << " (1-9): ";
 
 		liste_elements(vect_element);                        			//Affichage des éléments parmi lesquels choisir
 

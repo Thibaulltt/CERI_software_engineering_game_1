@@ -4,27 +4,27 @@ using namespace std;
 
 // --------------------CONSTRUCTEURS
 
-competence::competence()       //Constructeur de compétence vide
+competence::competence()       //Constructeur de compétence ventiteIde
 {
 	this->skillName = "Inconnu";
-	this->damage = 0;
-	this->manaCost = 0;
+	this->skillDamage = 0;
+	this->skillManaCost = 0;
 }
 
 
-competence::competence(string skillName, int damage, int manaCost) //Constructeur de competence
+competence::competence(string skillName, int skillDamage, int skillManaCost) //Constructeur de competence
 {
 	this->skillName = skillName;
-	this->damage = damage;
-	this->manaCost = manaCost;
+	this->skillDamage = skillDamage;
+	this->skillManaCost = skillManaCost;
 }
 
 
-competence::competence(string skillName, int damage) //Constructeur de competence sans mana (pour monstre)
+competence::competence(string skillName, int skillDamage) //Constructeur de competence sans mana (pour monstre)
 {
 	this->skillName = skillName;
-	this->damage = damage;
-	this->manaCost = 0;
+	this->skillDamage = skillDamage;
+	this->skillManaCost = 0;
 }
 
 
@@ -40,24 +40,24 @@ competence::~competence()
 
 //GET ATTRIBUTS COMPETENCE
 
-string competence::getName() //Retourne le nom d'une compétence
+string competence::getEntiteName() //Retourne le nom d'une compétence
 {
 	return this->skillName;
 }
 
-string competence::getDescription()
+string competence::getEntiteDescription()
 {
 	return "";
 }
 
-int competence::getDamage() //Retourne le nb de dégats d'une compétence
+int competence::getskillDamage() //Retourne le nb de dégats d'une compétence
 {
-	return this->damage;
+	return this->skillDamage;
 }
 
-int competence::getManaCost() //Retourne le cout en mana d'une compétence
+int competence::getskillManaCost() //Retourne le cout en mana d'une compétence
 {
-	return this->manaCost;
+	return this->skillManaCost;
 }
 
 
@@ -72,14 +72,14 @@ template<typename T>string competence::toString( const T & valeur ) //Convertit 
 
 string competence::competenceString() //Convertit une compétence en une ligne de string formatée
 {
-	string sDamage;
-	sDamage = toString(this->damage);
+	string sskillDamage;
+	sskillDamage = toString(this->skillDamage);
 
-	string sManaCost;
-	sManaCost = toString(this->manaCost);
+	string sskillManaCost;
+	sskillManaCost = toString(this->skillManaCost);
 
 	string ligneCompetence;
-	ligneCompetence = skillName + "(" + sDamage + "_" + sManaCost + ")";
+	ligneCompetence = skillName + "(" + sskillDamage + "_" + sskillManaCost + ")";
 
 	return ligneCompetence;
 }
@@ -87,8 +87,8 @@ string competence::competenceString() //Convertit une compétence en une ligne d
 
 void competence::printCompetence() //Affichage pour test
 {
-	cout << "skill name : " << this->skillName << endl;
-	cout << "skill damage : " << this->damage<< endl;
-	cout << "skill manacost : " << this->manaCost<< endl;
+	cout << "skill entiteName : " << this->skillName << endl;
+	cout << "skill skillDamage : " << this->skillDamage<< endl;
+	cout << "skill skillManaCost : " << this->skillManaCost<< endl;
 }
 
