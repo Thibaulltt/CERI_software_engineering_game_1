@@ -47,9 +47,6 @@ public:
 	*/
 	entite(std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax,std::string entiteDescription, std::vector<competence> allSkills);
 
-
-
-
 	template<typename T> std::string toString(const T & valeur); // Conversion de n'importe quoi en string
 
 	//!Getter pour l'id.

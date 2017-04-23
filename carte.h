@@ -36,7 +36,6 @@ class Carte
 		//bool carte_existe(std::string nom) ;
 		//int quel_taille(std::string nom);
 		//void suppression(std::string nom);
-		static std::vector<Carte> chargement ();	///A déplacer dans io.h
 		Carte operator=(const Carte & a_copier);
 
 };

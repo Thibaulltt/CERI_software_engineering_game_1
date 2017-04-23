@@ -12,36 +12,32 @@ Carte :: Carte()
 	this->nom = "";
 	this->description = "";
 	this->nbr_monstre = 0 ;
-	this -> case_dispo = 0;
+	this->case_dispo = 0;
 }
 
-Carte :: Carte (int size, string name, string desc)
+Carte :: Carte (int taille, string name, string desc)
 {
-	verif_taille(size);
+	this->taille = verif_taille(taille);
 	this->nom = name;
 	this->description = desc;
+
 	this->plateau = new string * [taille];
 	for (int i = 0; i < taille ; i++)
 	{
 		plateau[i] = new string [taille];
-		for (int j = 0 ; j< taille ; j++)
-		{
-			plateau[i][j] = "" ;
-
-		}
 	}
 	this -> case_dispo = taille*taille;
 }
 
 
-void Carte::verif_taille(int size)
+int Carte::verif_taille(int taille)
 {
-	while ( size < 4  || size > 255)
+	while ( taille < 4  || taille > 255)
 	{
-		cout << "Taille impossible veuillez choisir une taille entre 5 et 255 "<<endl << "choix de la taille :" << endl;
-		cin >> size;
+		cout << "Taille impossible, veuillez choisir une taille entre 5 et 255 "<<endl << "choix de la taille :" << endl;
+		cin >> taille;
 	}
-	this-> taille=size;
+	return taille;
 }
 
 void Carte :: coordonneejoueur()
@@ -239,200 +235,30 @@ string Carte :: getDescription()
     return this->description;
 }
 
-
-
-
-vector <Carte> Carte :: chargement ()
+void Carte :: setName(string name)
 {
-	vector <Carte> selectionnable ;
-	ifstream fichier("fichierCarte.txt", ios :: in) ;
-	if (fichier)
+	nom = name;
+}
+
+void Carte :: setDescription(string desc)
+{
+	description = desc;
+}
+
+void Carte :: setPlateau(int taille)
+{
+	plateau = new string * [taille];
+
+	for (int i = 0; i < taille ; i++)
 	{
-		string current_line;
-
-//cerr << "1" << endl ;
-//cerr << "current_line : " << current_line << endl ;
-		while (getline(fichier, current_line))
-		{
-//cerr << "2" << endl ;
-			bool init = false;
-			bool fait = false ;
-			Carte carte_temporaire ;
-			string id = "" ;
-			string nom = "" ;
-			string description = "" ;
-			string taille= "";
-			string coordonnee1 = "" ;
-			string coordonnee2 = "" ;
-			string type = "" ;
-			int count_c = 0 ;
-			int count_coordonnee = 0 ;
-			int i = 0 ;
-//cerr << "id : " << id << endl ;
-//cerr << "nom : " << nom << endl ;
-//cerr << "description : " << description << endl ;
-//cerr << "taille : " << taille << endl ;
-//cerr << "coordonnée 1 : " << coordonnee1 << endl ;
-//cerr << "coordonnée 2 : " << coordonnee2 << endl ;
-//cerr << "type : " << type << endl ;
-//cerr << "count_c : " << count_c << endl ;
-//cerr << "count_coordonnee : " << count_coordonnee << endl ;
-//cerr << "i : " << i << endl ;
-			while (current_line[i+1] != '\0')
-			{
-				char tmp = current_line[i] ;
-//cerr << "3" << endl ;
-//cerr << "tmp : " << tmp << endl ;
-				if (tmp == '|')
-				{
-					count_c++ ;
-					i++ ;
-//cerr << "4_1 : " << endl ;
-//cerr << "count_c : " << count_c << endl ;
-//cerr << "i : " << i << endl ;
-				}
-				else if (count_c == 0)
-				{
-					id = id + tmp ;
-					i++ ;
-//cerr << "4_2 : " << endl ;
-//cerr << "id : " << id << endl ;
-//cerr << "i : " << i << endl ;
-				}
-				else if (count_c == 1)
-				{
-					nom = nom + tmp ;
-					i++ ;
-//cerr << "4_3 : " << endl ;
-//cerr << "nom : " << nom << endl ;
-//cerr << "i : " << i << endl ;
-				}
-				else if (count_c == 2)
-				{
-					description = description + tmp ;
-					i++ ;
-//cerr << "4_4 : " << endl ;
-//cerr << "description : " << description << endl ;
-//cerr << "i : " << i << endl ;
-				}
-				else if (count_c == 3)
-				{
-					taille = taille + tmp ;
-					i++ ;
-//cerr << "4_5 : " << endl ;
-//cerr << "taille : " << taille << endl ;
-//cerr << "i : " << i << endl ;
-				}
-//cerr << "5 : " << endl ;
-//cerr << "t : " << t << endl ;
-//cerr << "taille : " << carte_temporaire.taille << endl ;
-//cerr << "nom : " << carte_temporaire.nom << endl ;
-//cerr << "description : " << carte_temporaire.description << endl ;
-				if (count_c == 4)
-				{
-				int t = atoi(taille.c_str());
-				carte_temporaire.taille = t ;
-
-				if (init == false)
-				{
-					init = true;
-
-					carte_temporaire.plateau = new string * [t];
-
-					for (int i = 0 ; i < t ; i++)
-					{
-						carte_temporaire.plateau[i] = new string [t] ;
-					}
-				}
-
-				carte_temporaire.nom = nom ;
-				carte_temporaire.description = description ;
-
-//cerr << "6 : " << endl ;
-//cerr << "count_c : " << count_c << endl ;
-					if (fait)
-					{
-						type = "";
-						coordonnee1 = "" ;
-						coordonnee2 = "" ;
-						if (current_line[i+1] != '\0') fait = false ;
-					}
-					else if (tmp == ')')
-					{
-						fait = true ;
-						count_coordonnee = 0 ;
-						i++ ;
-						int coor1 = atoi(coordonnee1.c_str()) ;
-						int coor2 = atoi(coordonnee2.c_str()) ;
-						carte_temporaire.plateau[coor1][coor2] = type;
-//cerr << "7_1 : " << endl ;
-//cerr << "count_c_coordonnee : " << count_c_coordonnee << endl ;
-//cerr << "i : " << i << endl ;
-//cerr << "coor1 : " << coor1 << endl ;
-//cerr << "coor2 : " << coor2 << endl ;
-//cerr << "plateau : " << carte_temporaire.plateau[coor1][coor2] << endl ;
-
-					}
-					else if (tmp == ',')
-					{
-						count_coordonnee ++ ;
-						i++ ;
-//cerr << "7_2 : " << endl ;for (int i = 0; i < taille; i++)
-//cerr << "count_coordonnee : " << count_coordonnee << endl ;
-//cerr << "i : " << i << endl ;
-					}
-					else if (tmp == '(')
-					{
-						i ++ ;
-//cerr << "7_3 : " << endl ;
-//cerr << "i : " << i << endl ;
-					}
-					else if ((tmp != '(') && (tmp != ')') && (tmp != ','))
-					{
-//cerr << "7_4 : " << endl ;
-						if (count_coordonnee == 0)
-						{
-							coordonnee1 = coordonnee1 + tmp ;
-							i ++ ;
-//cerr << "7_4_1 : " << endl ;
-//cerr << "coordonnée 1 : " << coordonnee1 << endl ;
-//cerr << "i : " << i << endl ;
-						}
-						else if (count_coordonnee == 1)
-						{
-							coordonnee2 = coordonnee2 + tmp ;
-							i++ ;
-//cerr << "7_4_2 : " << endl ;
-//cerr << "coordonnée 2 : " << coordonnee2 << endl ;
-//cerr << "i : " << i << endl ;
-						}
-						else if (count_coordonnee == 2)
-						{
-							type = type + tmp ;
-							i++ ;
-//cerr << "7_4_3 : " << endl ;
-//cerr << "type : " << type << endl ;
-//cerr << "i : " << i << endl ;
-						}
-					}
-				}
-			}
-
-
-//cerr << "enregistrement dans selectionnable" << endl ;
-			selectionnable.push_back(carte_temporaire) ;
-
-//			for (int i = 0; i < carte_temporaire.taille; i++)
-//			{
-//				for (int j = 0; j < carte_temporaire.taille; j++)
-//				{
-//					cout << carte_temporaire.plateau[i][j];
-//				}
-//				cout << endl;
-//			}
-		}
+		plateau[i] = new string [taille];
 	}
-	return selectionnable ;
+}
+
+void Carte :: setCase(int i, int j, string value)
+{
+    plateau[i][j] = value;
+    cout << "test valeur: " << plateau[i][j] << endl;
 }
 
 Carte Carte::operator=(const Carte & a_copier)
