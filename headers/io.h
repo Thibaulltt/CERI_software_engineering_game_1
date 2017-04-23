@@ -6,6 +6,7 @@
 #include <termios.h>	// Needed for terminal input manipulation
 #include <typeinfo>
 #include <vector>
+#include "../headers/carte.h"
 #include "../headers/competence.h"
 #include "../headers/monstre.h"
 #include "../headers/personnage.h"
@@ -92,6 +93,9 @@ namespace io
 
 	//! Récupérer les compétences d'un monstre dans le .txt
 	std::vector<competence> loadCompetenceFromFile(std::string nomFichier,int numLigne);
+
+	//! Récupérer les cartes dans le .txt
+	std::vector<Carte> loadAllCarteFromFile(std::string nomFichier);
 
 	//! Affichage d'objet.
 	/*!

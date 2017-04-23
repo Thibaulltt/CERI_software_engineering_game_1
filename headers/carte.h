@@ -19,7 +19,7 @@ class Carte
 	public:
 		Carte();
 		Carte(int taille, std::string name, std::string description) ;
-		void verif_taille(int size);
+		int verif_taille(int taille);
 		void coordonneejoueur();
 		void coordonneeobstacle();
 		void coordonneemonstre();
@@ -29,10 +29,14 @@ class Carte
 		void sauvegarde() ;
 		std::string getName() ;
 		std::string getDescription() ;
+		void setName(std::string name);
+		void setDescription(std::string desc);
+		void setPlateau(int taille);
+		void setCase(int i, int j, std::string value);
 		//bool carte_existe(std::string nom) ;
 		//int quel_taille(std::string nom);
 		//void suppression(std::string nom);
-		static std::vector<Carte> chargement ();	///A déplacer dans fonctionsjeu.h
+		static std::vector<Carte> chargement ();	///A déplacer dans io.h
 		Carte operator=(const Carte & a_copier);
 
 };

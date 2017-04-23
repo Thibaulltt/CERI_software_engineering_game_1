@@ -4,6 +4,7 @@
 #include "../headers/competence.h"
 #include "../headers/personnage.h"
 #include <stack>
+#include <vector>
 
 #ifndef FONCTIONSJEU_H
 #define FONCTIONSJEU_H
@@ -22,14 +23,16 @@ using namespace io;
 class jeu
 {
 	//! Carte du jeu, à choisir au début du jeu.
-	Carte * jeu_carte;
+	Carte jeu_carte;
 
 	//! Personnage choisi par le joueur, à choisir au début du jeu.
-	personnage * jeu_perso;
-	// std::stack<> jeu_coups;
+	personnage jeu_perso;	//Peut-être passer à un vecteur, pour évolution du code (plusieurs persos)
+
+	//! Vecteur contenant les monstres présents sur la carte
+	std::vector<monstre> jeu_monstres;
 
 	//! Compte le nombre de monstres restant sur la carte.
-	int jeu_nombre_monstre;
+	int jeu_nombre_monstres;
 
 public:
 	//! Constructeur par défaut sans argument.
@@ -47,11 +50,22 @@ public:
 	//! Destructeur par défaut.
 	~jeu();
 
+	Carte getCarte();
+
+	personnage getPerso();
+
+	std::vector<monstre> getMonstres();
+
+	int getNbMonstres();
+
 	//! Fonction permettant de déterminer comment va démarrer la partie.
 	/*!
-		Manque carte pour pouvoir finaliser cette partie.
+		Affichage d'un message de bienvenue.
+		Choix du personnage.
+		Choix de la carte.
+		Chargement des monstres.
 	*/
-	void demarrer_jeu();
+	void preparation_partie();
 
 	//! Module de combat
 	/*!
