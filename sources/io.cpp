@@ -1,36 +1,21 @@
-#include <vector>
-#include <termios.h>	// Needed for terminal input manipulation
-#include <stdio.h>	// Needed for terminal input manipulation
 #include <fstream>
 #include <iostream>
+#include <stdio.h>	// Needed for terminal input manipulation
+#include <termios.h>	// Needed for terminal input manipulation
+#include <vector>
 #include "../headers/carte.h"
 #include "../headers/io.h"
+
+// Notes :
+// Get the terminal column number :
+// 	> stty -a | grep "col" | tail -c 22 | tail -c 13 | head -c 3
+// Get the terminal rows number :
+// 	> stty -a | grep "col" | tail -c 22 | head -c 2
 
 using namespace std;
 
 namespace io
 {
-	// Variable :
-
-	int TermWidth = 0;
-	int TermHeight = 0;
-
-	string BLANK = "\033[0m";
-	string RED = "\033[91m";
-	string GREEN = "\033[92m";
-	string YELLOW = "\033[93m";
-	string BLUE = "\033[94m";
-	string MAGENTA = "\033[95m";
-
-	int mapPositionX = 0;
-	int mapPositionY = 0;
-
-	std::pair<int,int> currentPlayerPosition(0,0);
-
-	///////////////////////////////////////////////////
-	/////////// FONCTIONS LIEES AU TERMINAL ///////////
-	///////////////////////////////////////////////////
-
 	void ChangeTerminal(bool Ech)
 	{
 		tcgetattr(0, &before);			/* Grab old terminal i/o settings */
@@ -64,10 +49,7 @@ namespace io
 			if (charInput != 127)
 				input << charInput;
 			else
-			{
-
 				removeLastChar(input);
-			}
 			//	if (input.tellp() > 0)
 			//		input.seekp(-1, input.cur);
 		} while(charInput != 10);
@@ -78,18 +60,29 @@ namespace io
 	void removeLastChar(std::stringstream& input)
 	{
 		std::stringstream str;
-		// Mode opératoire #1
 		std::string s = input.str();
-		// Mode opératoire #2
 		if (s.size() != 0)
 		{
-			// Mode opératoire #2.1
 			s.erase(s.end()-1);
-			// Mode opératoire #2.2
 			input.str("");
-			// Mode opératoire #2.3
 			input << s;
 		}
+	}
+
+	void bienvenue()
+	{
+		std::puts("\n");
+		std::puts("                                         Welcome to");
+		std::puts(" __________   ___    ___   __________     __________   __________   __     ___   __________");
+		std::puts("/___   ___/  /  /   /  /  /  _______/    /  _______/  /  ____   /  /  \\__ /  /  /  _______/");
+		std::puts("   /  /     /  /__ /  /  /  /__         /  /  __     /  /___/  /  /         /  /  /__");
+		std::puts("  /  /     /   __    /  /   __/        /  /  /  \\   /  ____   /  /  / - /  /  /   __/");
+		std::puts(" /  /     /  /   /  /  /  /______     /  /___/  /  /  /   /  /  /  /   /  /  /  /______");
+		std::puts("/_ /     /_ /   /_ /  /_________/    /_________/  /_ /   /_ /  /_ /   /_ /  /_________/");
+		std::puts("\n");
+
+		std::puts("Dans The Game, vous devez débusquer et tuer tous les monstres présents sur la carte. Bonne chance!");
+		std::puts("\n");
 	}
 
 	int getTerminalWidth()
@@ -109,15 +102,9 @@ namespace io
 		fclose(r);
 		system("rm dump.txt");
 		if (w1[0] == 'c')
-		{
-			io::TermWidth = std::stoi(w2.substr(0,w2.size()-1));
-			return io::TermWidth;
-		}
+			return std::stoi(w2.substr(0,w2.size()-1));
 		else
-		{
-			io::TermWidth = std::stoi(w1.substr(0,w1.size()-1));
-			return io::TermWidth;
-		}
+			return std::stoi(w1.substr(0,w1.size()-1));
 	}
 
 	int getTerminalHeight()
@@ -137,114 +124,9 @@ namespace io
 		fclose(r);
 		system("rm dump.txt");
 		if (h1[0] == 'r')
-		{
-			io::TermHeight = std::stoi(h2.substr(0,h2.size()-1));
-			return io::TermHeight;
-		}
+			return std::stoi(h2.substr(0,h2.size()-1));
 		else
-		{
-			io::TermHeight = std::stoi(h1.substr(0,h1.size()-1));
-			return io::TermHeight;
-		}
-	}
-
-	void clearScreen()
-	{
-		std::cout << '\n'*TermHeight;
-	}
-
-	void afficherCarte(Carte& c, int t)
-	{
-		// On prends le plateau en copie
-		std::string ** map = c.plateau;					// ATTENTE D'UN PARTAGE DU PLATEAU
-
-		// On (re)vérifie la taille du terminal
-		checkTerminalSize();
-
-		// On efface l'écran
-		clearScreen();
-
-		// Prendre la position de la carte
-		// currentPlayerPosition = c.playerPosition();			// ATTENTE DE LA FONCTION
-
-		// Si le joueur est plus bas que l'affichage de la carte
-		while (currentPlayerPosition.first >= TermWidth)
-			mapPositionX += TermWidth;
-
-		// Si le joueur est plus sur la droite que la carte
-		while (currentPlayerPosition.second >= TermHeight)
-			mapPositionY += TermHeight;
-
-		int displayX = mapPositionX;
-		int displayY = mapPositionY;
-		int TermPosX = 0;
-		int TermPosY = 0;
-
-		// On affiche les petites cases WUBBA LUBBA DUB DUB
-		while (TermPosY < TermHeight && displayY < t)
-		{
-			while (TermPosX < TermWidth && displayX < t)
-			{
-				std::cout << map[displayX][displayY];		// RESTE A AJOUTER LA COULEUR
-				TermPosX++;
-				displayX++;
-			}
-			if (TermPosY != TermHeight-1)
-				std::cout << std::endl;
-			TermPosY++;
-			TermPosX=0;
-			displayY++;
-			displayX=0;
-		}
-	}
-
-	void afficherInteractions()
-	{
-		// Si le joueur est dans le bas de la carte, on affiche les
-		// interactions possibles sur le haut de la fenêtre Terminal
-		if (currentPlayerPosition.first >= (mapPositionY+TermHeight-6))
-			printf("\033[0,0H");
-		else
-			printf("\033[%d,OH",(mapPositionY+TermHeight-6));
-
-		// afficher les interactions possibles
-		cout << BLUE << '%'*TermWidth << BLANK;
-		cout << BLUE << '%' << BLANK << "  Voici les actions possibles à ce point dans le jeu :" << ' '*(TermWidth-56) << BLUE << '%' << BLANK << std::endl;
-		//if (enough_space())// si assez d'espace, on affiche la merde
-		cout << BLUE << '%'*TermWidth << BLANK;
-		printf("\033[%dD", TermWidth - 1);	// Gauche de TermWidth-1 cases
-		printf("\033[1A");			// Haut d'1 case
-	}
-
-	void checkTerminalSize()
-	{
-		// Met à jour la taille du terminal
-		getTerminalHeight();
-		getTerminalWidth();
-		while (TermHeight < 15 || TermWidth < 91)
-		{
-			std::cout << "Votre terminal n'est pas dimensionné correctement.";
-			std::cout << "Veuillez redimensionner votre terminal afin d'avoir";
-			std::cout << "une taille d'au moins 15 lignes par 91 colonnes." << std::endl;
-			getTerminalWidth();
-			getTerminalHeight();
-		}
-	}
-
-	void bienvenue()
-	{
-		std::puts("\n");
-		std::puts("                                         Welcome to");
-		std::puts(" __________   ___    ___   __________     __________   __________   __     ___   __________");
-		std::puts("/___   ___/  /  /   /  /  /  _______/    /  _______/  /  ____   /  /  \\__ /  /  /  _______/");
-		std::puts("   /  /     /  /__ /  /  /  /__         /  /  __     /  /___/  /  /         /  /  /__");
-		std::puts("  /  /     /   __    /  /   __/        /  /  /  \\   /  ____   /  /  / - /  /  /   __/");
-		std::puts(" /  /     /  /   /  /  /  /______     /  /___/  /  /  /   /  /  /  /   /  /  /  /______");
-		std::puts("/_ /     /_ /   /_ /  /_________/    /_________/  /_ /   /_ /  /_ /   /_ /  /_________/");
-		std::puts("\n");
-
-		std::puts("Dans The Game, vous devez débusquer et tuer tous les monstres présents sur la carte. Bonne chance!");
-		std::puts("\n");
+			return std::stoi(h1.substr(0,h1.size()-1));
 	}
 
 	bool checkInput(int x) //Verifie que l'utilisateur entre bien un entier
