@@ -1,6 +1,6 @@
-#include "../headers/entite.h"
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include "../headers/entite.h"
 
 using namespace std;
 
@@ -191,16 +191,14 @@ void entite::saveInFile(string lettreEntite,string nomFichier) //Ecrit les carac
 // FONCTIONS
 
 
-bool entite::enleverVie(int degats)
+void entite::enleverVie(int degats)
 {
 	this->entiteHpCurrent-=degats;
 
 	if(this->entiteHpCurrent <= 0)
 	{
 		this->entiteAlive = false;
-		return true; //Si mort, return true
 	}
-	return false;
 }
 
 

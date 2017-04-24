@@ -47,9 +47,9 @@ void Carte :: coordonneejoueur()
 	bool placement_fait = false;
 	while (placement_fait==false)
 	{
-		cout << "Choisissez la premiere coordonnée où le joueur doit apparaitre :" ;
+		cout << "Choisissez la premiere coordonnée où le joueur doit apparaître :" ;
 		cin >> coordonneejoueur1;
-		cout << "Choisissez la deuxieme coordonnée où le joueur doit apparaitre :" ;
+		cout << "Choisissez la deuxieme coordonnée où le joueur doit apparaître :" ;
 		cin >> coordonneejoueur2;
 		if (coordonneejoueur1 < taille && coordonneejoueur2 < taille)
 		{
@@ -58,7 +58,7 @@ void Carte :: coordonneejoueur()
 		}
 		else
 		{
-			cout << "vos coordonnées sont hors de la carte!!" << endl;
+			cout << "Vos coordonnées sont hors de la carte!!" << endl;
 		}
 	}
 	case_dispo = case_dispo - 1;
@@ -69,19 +69,19 @@ void Carte::coordonneeobstacle()
 	int nbr_obstacle=0;
 	int coordonneeobstacle1;
 	int coordonneeobstacle2;
-	cout<< "Combien d'obstacle, sur la carte, voulez vous?";
+	cout<< "Combien d'obstacle voulez-vous sur la carte?";
 	cin >> nbr_obstacle;
 	while (nbr_obstacle >= case_dispo)
 	{
-		cout<< "Vous avez choisi trop d'obstacle." << endl << "Combien d'obstacle voulez vous sur la carte?";
+		cout<< "Vous avez choisi trop d'obstacles." << endl << "Combien d'obstacles voulez-vous sur la carte?";
 		cin >> nbr_obstacle;
 	}
 	int i = 1;
 	while (i <= nbr_obstacle)
 	{
-		cout << "Choisissez la premiere coordonnée où l'obstacle doit apparaitre :" ;
+		cout << "Choisissez la premiere coordonnée où l'obstacle doit apparaître :" ;
 		cin >> coordonneeobstacle1;
-		cout << "Choisissez la deuxieme coordonnée où l'obstacle doit apparaitre :" ;
+		cout << "Choisissez la deuxieme coordonnée où l'obstacle doit apparaître :" ;
 		cin >> coordonneeobstacle2;
 		if (coordonneeobstacle1 < taille && coordonneeobstacle2 < taille)
 		{
@@ -92,7 +92,7 @@ void Carte::coordonneeobstacle()
 			}
 			else
 			{
-				cout << "cette case est deja occupée, Veuillez en choisir une autre " << endl;
+				cout << "Cette case est deja occupée, veuillez en choisir une autre " << endl;
 			}
 		}
 		else
@@ -117,9 +117,9 @@ void Carte::coordonneemonstre()
 	int i = 1;
 	while (i <= nombre_monstre)
 	{
-		cout << "Choisissez la premiere coordonnée où le monstre doit apparaitre :" ;
+		cout << "Choisissez la premiere coordonnée où le monstre doit apparaître :" ;
 		cin >> coordonneemonstre1;
-		cout << "Choisissez la deuxieme coordonnée où le monstre doit apparaitre :" ;
+		cout << "Choisissez la deuxieme coordonnée où le monstre doit apparaître :" ;
 		cin >> coordonneemonstre2;
 		if (coordonneemonstre1 < taille && coordonneemonstre2 < taille)
 		{
@@ -130,7 +130,7 @@ void Carte::coordonneemonstre()
 			}
 			else
 			{
-				cout << "Cette case est deja occupée veuillez en choisir une autre " << endl;
+				cout << "Cette case est deja occupée, veuillez en choisir une autre " << endl;
 			}
 		}
 		else
@@ -201,13 +201,13 @@ void Carte :: sauvegarde()
 			{
 				if (plateau[i][j]=="o")
 				{
-					cout << "Quelle est l'obstacle à la case "<< i << " "<< j << ":";
+					cout << "Quel est l'obstacle à la case "<< i << " "<< j << ":";
 					cin >> type_obstacle;
 					fichier << "(" << i << "," << j << ","<< type_obstacle << ")";
 				}
 				if (plateau[i][j]=="m")
 				{
-					cout << "Quelle est le monstre à la case "<< i << " "<< j << ":";
+					cout << "Quel est le monstre à la case "<< i << " "<< j << ":";
 					cin >> monstre;
 					fichier << "(" << i << "," << j << ","<< monstre << ")";
 				}
@@ -221,7 +221,7 @@ void Carte :: sauvegarde()
 		fichier.close() ;
 		cout << "Carte sauvegardée" << endl ;
 	}
-	else cerr << "échec de la sauvegarde" << endl ;
+	else cerr << "Echec de la sauvegarde" << endl ;
 	return ;
 }
 
@@ -258,7 +258,6 @@ void Carte :: setPlateau(int taille)
 void Carte :: setCase(int i, int j, string value)
 {
     plateau[i][j] = value;
-    cout << "test valeur: " << plateau[i][j] << endl;
 }
 
 Carte Carte::operator=(const Carte & a_copier)

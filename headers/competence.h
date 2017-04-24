@@ -1,7 +1,6 @@
-#include <string>
 #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 
 #ifndef COMPETENCE_H
 #define COMPETENCE_H

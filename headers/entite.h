@@ -111,7 +111,7 @@ public:
 		Cette fonction permet d'enlever des points de vie. Elle permet aussi de savoir si une entite est en vie (ptsVie < 0) ou si elle est morte.
 		\return Un booléen qui est égal à <code>true</code> si le entite est mort, <code>false</code> sinon.
 	*/
-	bool enleverVie(int degats);
+	void enleverVie(int degats);
 
 	//! Enlève x points de mana a l'entite.
 	/*!

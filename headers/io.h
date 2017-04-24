@@ -8,7 +8,6 @@
 #include <vector>
 #include "../headers/carte.h"
 #include "../headers/competence.h"
-#include "../headers/carte.h"
 #include "../headers/monstre.h"
 #include "../headers/personnage.h"
 
@@ -23,32 +22,6 @@ namespace io
 	//! Structures qui gardent les paramètres du terminal.
 	static struct termios before, after;
 
-	//! Variable retennant la valeur de la largeur de la fenêtre du terminal. Elle permet de réduire le nombre de calculs à faire (étant donné que cette valeur est obtenue avec l'ouverture d'un fichier, son calcul prends donc quelques temps).
-	extern int TermWidth;
-	//! Variable retennant la valeur de la hauteur de la fenêtre du terminal. Elle permet de réduire le nombre de calculs à faire (étant donné que cette valeur est obtenue avec l'ouverture d'un fichier, son calcul prends donc quelques temps).
-	extern int TermHeight;
-
-	//! Chaîne de caractères permettant de remettre à zéro la couleur du texte
-	extern std::string BLANK;
-	//! Chaîne de caractères permettant de rendre le texte affiché de couleur rouge
-	extern std::string RED;
-	//! Chaîne de caractères permettant de rendre le texte affiché de couleur verte
-	extern std::string GREEN;
-	//! Chaîne de caractères permettant de rendre le texte affiché de couleur jaune
-	extern std::string YELLOW;
-	//! Chaîne de caractères permettant de rendre le texte affiché de couleur bleue
-	extern std::string BLUE;
-	//! Chaîne de caractères permettant de rendre le texte affiché de couleur magenta
-	extern std::string MAGENTA;
-
-	//! Variable permettant de retenir à partir de quelle coordonnée "x" la carte est affichée (si la carte est plus grande que la fenêtre de terminal, cette valeur ne sera pas toujours à 0 ...)
-	extern int mapPositionX;
-	//! Variable permettant de retenir à partir de quelle coordonnée "y" la carte est affichée (si la carte est plus grande que la fenêtre de terminal, cette valeur ne sera pas toujours à 0 ...)
-	extern int mapPositiony;
-
-	//! Paire de valeurs (std::pair) gardant la position actuelle du joueur dans
-	extern std::pair<int,int> currentPlayerPosition;
-
 	//! Changement des paramètres du terminal
 	/*!
 		Permet de changer le mode d'entrée de stdin du terminal. Les paramètres présents auparavant sont sauvegardés.
@@ -58,40 +31,15 @@ namespace io
 	extern void ChangeTerminal(bool Ech = 0);
 
 	//! Remet le terminal à zero
-	/*
-		Cette fonction se sert de la valeur TermHeight pour afficher le nombre de lignes vides nécessaires sur la fenêtre terminal afin de vider complètement l'écran.
-	*/
 	extern void ResetTerminal();
 
 	//! Input
 	/*!
 		Gestion des entrées utilisateur, ne prends qu'un seul caractère à la fois.
-
-		Voici son mode opératoire :
-		-# On crée une variable (char)
-		-# On change la façon dont le terminal gère l'entrée utilisateur avec ChangeTerminal()
-		-# On utilise la fonction std::getchar() (qui ne prends maintenant qu'un seul caractère sans avoir besoin d'appuyer sur entrée, grâce à ChangeTerminal())
-		-# On remets les paramètres du terminal comme avant avec ResetTerminal()
-		-# On retourne l'entrée utilisateur
-		\sa ChangeTerminal(); ResetTerminal(); long_input()
 	*/
 	extern char de();
 
 	//! Enlève le dernier caractère d'un stringstream.
-	/*!
-		Le but de cette fonction est d'enlever le dernier caractère d'un flux de caractères (std::stringstream) étant donné que le C++ ne propose pas de fonction par défaut pour cette fonctionnalité.
-
-		Voici son mode opératoire :
-		-# On prends tout le contenu du stringstream et on le met dans une chaîne de caractères (std::string)
-		-# Si la chaîne de caractère contient au moins 1 caractère :
-		    -# Alors on utilise la fonction std::string::erase(std::string::iterator) pour enlever le dernier caractère
-		    -# On remplace le contenu du flux de caractère par du vide
-		    -# On remet la chaîne de caractère coupée dans le flux.
-		    
-		\pre La fonction recevra un stringstream d'entrée utilisateur. Son but est d'enlever le dernier caractère entré (cette fonction est appelée dans long_input() dans une condition si le caractère rentré est 127, aussi connu sous le nom de DEL ASCII).
-		\post La fonction ne retourne rien, car le seul argument est passé par argument (lol) et est donc automatiquement modifié.
-		\param i C'est un flux de caractères (std::stringstream) à partir duquel il faudra enlever le dernier caractère.
-	*/
 	extern void removeLastChar(std::stringstream& i);
 
 	//! Long input
@@ -100,17 +48,17 @@ namespace io
 	*/
 	extern std::string long_input();
 
-	//! Retourne la largeur du terminal
-	int getTerminalWidth();
-
-	//! Retourne la hauteur du terminal
-	int getTerminalHeight();
-
 	//! Message d'accueil
 	/*!
 		Affiche un message de bienvenue.
 	*/
 	void bienvenue();
+
+	//! Retourne la largeur du terminal
+	int getTerminalWidth();
+
+	//! Retourne la hauteur du terminal
+	int getTerminalHeight();
 
 	//! Vérifie que l'user entre des entier
 	/*!
@@ -119,13 +67,13 @@ namespace io
 		Mode opératoire :
 		- Vérification du failbit de l'entrée utilisateur (std::cin::failbit)
 			-# Vidage du buffer
-			-# Ignore 256 caractères ou jusqu'a <code>\n</code>
+			-# Ignore 256 caractères ou jusqu'a <pre>\n</pre>
 			-# Affichage d'un message d'erreur d'entrée utilisateur.
 			-# Retourne faux
 		- Sinon retourne vrai
 		\param x on sait pas ce qu'il fait là, mais il est là.
 	*/
-	bool checkInput(int x); //Vérifie que l'user entre des entier
+	bool checkInput(int x); //Vérifie que l'user entre des entiers
 
 	//! Creer une competence
 	/*!
@@ -138,22 +86,13 @@ namespace io
 	competence createCompetence(); //Creer une competence
 
 	//! Créer une compétence pour monstre (sans mana)
-	competence createCompetenceMonstre();
+	competence createCompetenceMonstre(); //Créer une compétence pour monstre (sans mana)
 
 	//! Créer un monstre
-	monstre createMonstre();
+	monstre createMonstre(); //Créer un monstre
 
 	//! Récupérer les compétences d'un monstre dans le .txt
 	std::vector<competence> loadCompetenceFromFile(std::string nomFichier,int numLigne);
-
-
-	//! Efface l'écran.
-	extern void clearScreen();
-
-	//! Affichage de la carte
-	extern void afficherCarte(Carte&, int);
-
-	extern void checkTerminalSize();
 
 	//! Récupérer les cartes dans le .txt
 	std::vector<Carte> loadAllCarteFromFile(std::string nomFichier);

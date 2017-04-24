@@ -7,19 +7,19 @@ using namespace io;
 
 int main()
 {
-	cout << "Test " << BLUE << "io::" << MAGENTA << "de()" << BLANK << " : ";
+	cout << "Input de: ";
 	char r = de();
-	cout << endl << "Resultat " << BLUE << "io::" << MAGENTA << "de()" << BLANK << " : " << r << endl;
-	cout << "Resultat " << YELLOW << "int" << BLANK << "( " << BLUE << "io::" << MAGENTA << "de()" << BLANK << " ) : " << int(r) << endl;
+	cout << endl << "Result de : " << r << endl;
+	cout << "Result de : " << int(r) << endl;
 
-	cout << "Test " << BLUE << "io::" << MAGENTA << "long_input()" << BLANK << " : ";
+	cout << "Input long : ";
 	string s = long_input();
-	cout << "Resultat : " << s << endl;
+	cout << "Result : " << s << endl;
 
-	cout << "Test " << BLUE << "io::" << MAGENTA << "getTerminalWidth()" << BLANK << " : " << getTerminalWidth() << endl;
-	cout << "Test " << BLUE << "io::" << MAGENTA << "getTerminalHeight()" << BLANK << " : " << getTerminalHeight() << endl;
-	cout << "Test " << BLUE << "io::" << RED << "TermWidth" << BLANK << " : " << io::TermWidth << endl;
-	cout << "Test " << BLUE << "io::" << RED << "TermWidth" << BLANK << " : " << io::TermHeight << endl;
+	cout << "Width : " << getTerminalWidth() << endl;
+	cout << "Height : " << getTerminalHeight() << endl;
+
+	bienvenue();
 
 	return 0;
 }
