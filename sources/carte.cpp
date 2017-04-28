@@ -9,6 +9,7 @@
 using namespace io;
 using namespace std;
 
+// Constructeur sans argument
 Carte::Carte()
 {
 	this->nom = "";
@@ -17,6 +18,7 @@ Carte::Carte()
 	this->case_dispo = 0;
 }
 
+// Constructeur avec arguments
 Carte::Carte (int taille, string name, string desc)
 {
 	this->taille = verif_taille(taille);
@@ -29,6 +31,7 @@ Carte::Carte (int taille, string name, string desc)
 		plateau[i] = new string [taille];
 	}
 	this -> case_dispo = taille*taille;
+	this -> nbr_monstre = taille ;
 }
 
 Carte::Carte(Carte& a_copier)
@@ -37,7 +40,7 @@ Carte::Carte(Carte& a_copier)
 	this -> nom = a_copier.nom;
 	this -> description = a_copier.description;
 	this -> taille = a_copier.taille;
-	
+
 	this -> plateau = new string * [taille];
 
 	for (int i = 0; i < taille; i++)
@@ -222,6 +225,7 @@ void Carte::sauvegarde()
 		fichier << nom << "|" ;
 		fichier << description << "|";
 		fichier << taille << "|";
+		fichier << nbr_monstre << "|";
 		for (int i = 0 ; i < taille; i++)
 		{
 			for (int j = 0 ; j < taille ; j++)
@@ -236,6 +240,7 @@ void Carte::sauvegarde()
 				{
 					cout << "Quel est le monstre à la case "<< i << " "<< j << ":";
 					cin >> monstre;
+					// io de()
 					fichier << "(" << i << "," << j << ","<< monstre << ")";
 				}
 				if (plateau[i][j]=="j")
@@ -254,7 +259,7 @@ void Carte::sauvegarde()
 
 string Carte::getName()
 {
-	return this->nom;
+    return this->nom;
 }
 
 string Carte::getDescription()
@@ -351,4 +356,20 @@ void Carte::afficher_detail()
 	cout << "Description: " << description << endl;
 
 	cout << endl;
+}
+
+Carte Carte :: CarteDefaut()
+{
+	Carte def (5, "defaut", "carte par défaut") ;
+  def.id = "C0000" ;
+	plateau[0][0]="joueur" ;
+	plateau[2][0]="m0" ;
+	plateau[2][1]="m0" ;
+	plateau[2][2]="m0" ;
+	plateau[2][3]="m0" ;
+	plateau[2][4]="m0" ;
+	plateau[1][3]="arbre" ;
+    def.case_dispo = 24 ;
+	def.nbr_monstre = 5 ;
+	return def ;
 }

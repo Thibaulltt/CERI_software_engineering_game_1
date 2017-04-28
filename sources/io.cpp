@@ -445,10 +445,8 @@ namespace io
 		string skillName;
 		int skillDamage;
 		int skillManaCost;
-
 		cout << "Entrez le nom de la compétence : ";
 		cin >> skillName;
-
 		cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
 		cin >> skillDamage;
 		while(!checkInput(skillDamage))
@@ -456,23 +454,17 @@ namespace io
 			cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
 			cin >> skillDamage;
 		}
-
 		competence creation(skillName, skillDamage);
-
 		return creation;
 	}
-
-
 	monstre createMonstre() //Permet à l'utilisateur de créer un monstre avec des caractéristiques choisies
 	{
 		string entiteName;
 		int entiteHpMax;
 		int entiteSpeed;
-
 		cout << "Entrez le nom du monstre : ";
 		cin >> entiteName;
 		cout << endl;
-
 		cout << "Entrez son nombre de points de vie : ";
 		cin >> entiteHpMax;
 		while(!checkInput(entiteHpMax))
@@ -480,7 +472,6 @@ namespace io
 			cout << "Entrez son nombre de points de vie : ";
 			cin >> entiteHpMax;
 		}
-
 		cout << "Entrez sa vitesse : ";
 		cin >> entiteSpeed;
 		while(!checkInput(entiteSpeed))
@@ -488,22 +479,16 @@ namespace io
 			cout << "Entrez sa vitesse : ";
 			cin >> entiteSpeed;
 		}
-
 		monstre creation = monstre(entiteName, entiteHpMax, entiteSpeed); //Crée le monstre
-
 		vector<competence> skills = creation.getSkillVect();
-
 		for (int i=0 ; i<3 ; i++) //Remplit le tableau de compétences avec de nouvelles compétences
 		{
 			// PREVOIR UN SWITCH POUR SAVOIR SI L'USER VEUT CONTINUER A RENTRER DES COMPETENCES
 			// PENSER A CHANGER LE 3 DANS LA BOUCLE EN 11
 		   skills.push_back(createCompetenceMonstre());
 		}
-
 		creation.printMonstre();
-
 		creation.saveInFile(); //Le sauvegarde dans le fichier texte
-
 		return creation;
 	}
 */
@@ -612,9 +597,11 @@ namespace io
 
 				}
 			}
+			fichierMonstre.close();
 		}
 
 	}
+
 
 	vector<competence> loadCompetenceFromFile(string nomFichier,int numLigne)
 	{
@@ -734,6 +721,8 @@ namespace io
 	vector <Carte> loadAllCarteFromFile(string nomFichier)
 	{
 		vector<Carte> selectionnable ;
+		Carte defaut;
+		selectionnable.push_back(defaut.CarteDefaut());
 		ifstream fichier(nomFichier, ios :: in) ;
 
 		if (fichier)
@@ -743,7 +732,7 @@ namespace io
 			{
 				bool init = false;
 				Carte carte_temporaire ;
-				string id, nom, description, taille, coordonnee1, coordonnee2, type = "" ;
+				string id, nom, description, taille, nbr_monstre, coordonnee1, coordonnee2, type = "" ;
 				int i = 0 ;
 				std::stringstream entree;
 				// Prise ID
@@ -769,6 +758,12 @@ namespace io
 					entree << current_line[i++];
 				i++;
 				taille = entree.str();
+				entree.str("");
+				// Prise NOMBRE DE MONSTRE
+				while (current_line[i] != '|')
+					entree << current_line[i++];
+				i++;
+				nbr_monstre = entree.str();
 				entree.str("");
 				int t = atoi(taille.c_str());
 				carte_temporaire.setName(nom);
@@ -798,3 +793,98 @@ namespace io
 		return selectionnable ;
 	}
 }
+
+bool checkSeparatorCarte(string uneLigne) //Retourne false si le nb de séparateurs dans une ligne n'est pas le nombre définit
+	{
+		int cptBarre=0;
+		char parcours;
+
+		for (int i=0; i<uneLigne.length(); i++)
+		{
+			parcours = uneLigne[i];
+
+			if(parcours=='|')
+			{
+				cptBarre++;
+			}
+		}
+
+		if(cptBarre == 5)
+		{
+			return true;
+		}
+
+		return false;
+	}
+bool checkSeparatorCoordonnee(std::string nomFichier, int numLigne) //Retourne false si le nb de séparateurs dans un champ de compétence n'est pas le nombre définit
+	{
+		int nbSeparateur = 0;
+
+		string laLigne="";
+
+		char parcoursCoordonnee;
+		int cptLigne=0;
+		int nbParentheseO=0;
+		int nbParentheseF=0;
+		int nbVirgules=0;
+
+		ifstream fichierCarte(nomFichier.c_str(), ios::in); //Ouverture en mode lecture
+
+		if(fichierCarte)
+		{
+			while (getline(fichierCarte, laLigne)) //Parcours des lignes
+			{
+				cptLigne++;
+				if (cptLigne==numLigne) //Si on est sur la ligne recherchée
+				{
+					for(int i=0; i<laLigne.length() ; i++) //Boucle de parcours de toute la ligne
+					{
+						parcoursCoordonnee = laLigne[i]; //Variable de parcours de la ligne
+
+						if(nbSeparateur < 5) //Recherche du champ compétence sur la ligne
+						{
+							if (parcoursCoordonnee == '|')
+							{
+								nbSeparateur++;
+							}
+						}
+
+						if (nbSeparateur==5) //Si le curseur est sur le champ compétence.
+						{
+
+							if (parcoursCoordonnee == '(')
+							{
+								nbParentheseO++;
+							}
+							if (parcoursCoordonnee == ',')
+							{
+								nbVirgules++;
+							}
+							if (parcoursCoordonnee == ')')
+							{
+								nbParentheseF++;
+								if((nbParentheseO == 1) && (nbParentheseF == 1) && (nbVirgules == 2)) //Verification bon nb de séparateurs
+								{
+									nbParentheseO=0; //Reset des compteurs
+									nbParentheseF=0;
+									nbVirgules=0;
+									continue;
+								}
+								else
+								{
+									return false;
+								}
+
+							}
+							if (parcoursCoordonnee== '\0') //Fin du champ compétence
+							{
+								return true;
+							}
+						}
+					}
+
+				}
+			}
+		}
+
+	}

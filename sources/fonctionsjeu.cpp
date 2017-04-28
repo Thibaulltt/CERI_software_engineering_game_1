@@ -9,23 +9,23 @@ jeu::jeu()
 {
 	bienvenue();
 
-		//Choix personnage
+			//Choix personnage
 	vector<personnage> tous_persos;							//Vecteur personnages
 	personnage pers;										//Dummy identification type template
 	string nom_file = "fichierPersonnage.txt";				//Nom fichier source personnages
 	tous_persos = loadAllEntiteFromFile(pers, nom_file);	//Remplissage vecteur personnages depuis fichier
-	jeu_perso = choix_unique_element(tous_persos, 0);		//Choix + assignation personnage partie
+	choix_unique_element(jeu_perso, tous_persos, 0);		//Choix + assignation personnage partie
 
 		//Choix carte
 	vector<Carte> toutes_cartes;							//Vecteur cartes
 	nom_file = "sources/fichierCarte.txt";							//Nom fichier source cartes
 	toutes_cartes = loadAllCarteFromFile(nom_file);			//Chargement carte depuis fichier
-	Carte jeu_carte = choix_unique_element(toutes_cartes, 0);//Choix + assignation carte partie
-	///jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
+	choix_unique_element(jeu_carte, toutes_cartes, 0);//Choix + assignation carte partie
+    ///jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
 
 		//Chargement monstres
-	monstre mons;						//Dummy identification type template
-	nom_file = "fichierMonstre.txt";			//Nom fichier source monstres
+	monstre mons;											//Dummy identification type template
+	nom_file = "fichierMonstre.txt";						//Nom fichier source monstres
 	jeu_monstres = loadAllEntiteFromFile(mons, nom_file);	//Chargement monstres depuis fichier
 }
 
@@ -161,7 +161,6 @@ void jeu::deplacement()
 
 }
 
-
 int jeu::combat(string id_monstre)
 {
 	puts("** Combat **");
@@ -268,13 +267,13 @@ competence jeu::choix_comp(entite & indiv)
 	if (indiv.is_personnage())	//Personnage
 	{
 		puts("\n- Choix de compétence -");
-		comp_util = choix_unique_element(indiv.getSkillVect(), 0);	//Choix manuel
+		choix_unique_element(comp_util, indiv.getSkillVect(), 0);	//Choix manuel
 
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
 			puts("Vous n'avez pas assez de mana pour utiliser cette compétence!");
 			puts("- Choix de compétence -");
-			comp_util = choix_unique_element(indiv.getSkillVect(), 0);	//Choix manuel
+			choix_unique_element(comp_util, indiv.getSkillVect(), 0);	//Choix manuel
 		}
 	}
 	else	//Monstre
@@ -295,7 +294,7 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 	if (indiv.is_personnage())	//Personnage
 	{
 		cout << "- Choix de la cible pour la compétence " << comp_util.getName() << " -" << endl;
-		target = choix_unique_element(vect_entite, 1);
+		choix_unique_element(target, vect_entite, 1);
 	}
 	else	//Monstre
 	{
