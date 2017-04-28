@@ -144,6 +144,20 @@ namespace io
  	*/
  	extern bool checkSeparatorEntite(std::string uneLigne);
 
+	//!Verifie qu'un champ compétences est correct dans un fichier texte d'entités (bon nombre de séparateurs)
+	/*!
+		Cette fonction permet de vérifier qu'un champ compétences d'une ligne contient bien le bon nombre de séparateurs pour éviter les erreurs dans le chargement d'une entité
+
+		Mode opératoire:
+		- Recherche de la ligne dans le fichier
+		- Parcours de toute la ligne
+		- A chaque séparateur trouvé, on ajoute 1 aux compteurs
+		- Si le nombre de séparateurs correspond au nombre défini, on retourne true
+		\param nomFichier Le nom du fichier .txt dans lequel on fait la vérification
+		\param numLigne Le numéro de la ligne à vérifier
+	*/
+	extern bool checkSeparatorSkill(std::string nomFichier, int numLigne);
+
 	//! Créer une competence
 	/*!
 		Cette fonction permet de créer rapidement une compétence pour pouvoir l'utiliser facilement après.
@@ -221,7 +235,6 @@ namespace io
 	/*!
 		Parcourt le vecteur de stockage des objets chargés, et les affiche.
 		\param vect_element Vecteur d'éléments.
-		\param need_desc description ou non.
 		\sa afficher()
 	*/
 	template<typename T> void liste_elements(std::vector<T> vect_element)
@@ -317,18 +330,18 @@ namespace io
 	//! Chargement des cartes
 	/*!
 		Lit toutes les lignes d'un fichier, et remplit un vecteur avec des objets construits à partir des informations récupérées.
-        \param nomFichier Le nom du fichier à partir duquel on lit les informations.
-        \return Un vecteur contenant les cartes créées.
+        	\param nomFichier Le nom du fichier à partir duquel on lit les informations.
+        	\return Un vecteur contenant les cartes créées.
 	*/
 	std::vector<Carte> loadAllCarteFromFile(std::string nomFichier);
 
-    //! Chargement des entités
+	//! Chargement des entités
 	/*!
-        Lit toutes les lignes d'un fichier, et remplit un vecteur avec des objets construits à partir des informations récupérées.
-        \param temp Objet dummy permettant au compilateur de comprendre de quel type d'objet il s'agit.
-        \param nomFichier Le nom du fichier à partir duquel on lit les informations.
-        \return Un vecteur contenant les entités créées.
-        \sa loadCompetenceFromFile()
+        	Lit toutes les lignes d'un fichier, et remplit un vecteur avec des objets construits à partir des informations récupérées.
+        	\param temp Objet dummy permettant au compilateur de comprendre de quel type d'objet il s'agit.
+        	\param nomFichier Le nom du fichier à partir duquel on lit les informations.
+        	\return Un vecteur contenant les entités créées.
+        	\sa loadCompetenceFromFile()
 	*/
     	template<typename T> std::vector<T> loadAllEntiteFromFile(T temp, std::string nomFichier)
 	{
@@ -447,16 +460,18 @@ namespace io
 
 
 				std::istringstream (sentiteHpMax) >> entiteHpMax; //Conversion string to int
-
 				std::istringstream (sentiteSpeed) >> entiteSpeed; //Conversion string to int
-
 				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
+				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
+				if (checkSeparatorSkill(nomFichier, cptLigne) == true) //Verification que le champ compétence est correct
+				{
+					allSkills = loadCompetenceFromFile(nomFichier, 2); //Récupération des compétences
+					T creation(sentiteId, sentiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills); //Création de l'entite
+					allEntite.push_back(creation); //Stockage du perso dans le vecteur de retour
+				}
 
-				allSkills = loadCompetenceFromFile(nomFichier, cptLigne); //Récupération des compétences
-
-				T creation(sentiteId, sentiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills); //Création de l'entite
-
-				allEntite.push_back(creation); //Stockage du perso dans le vecteur de retour
+				else
+					continue;
 
 			}
 
