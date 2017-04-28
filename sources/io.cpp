@@ -356,11 +356,11 @@ namespace io
 		return j;
 	}
 
-	void setPlayerPosition(int i, int j)		
- 	{		
- 		currentPlayerPosition = std::make_pair(i,j);		
+	void setPlayerPosition(int i, int j)
+ 	{
+ 		currentPlayerPosition = std::make_pair(i,j);
  	}
-	
+
 	void bienvenue()
 	{
 		std::puts("\n");
@@ -532,6 +532,86 @@ namespace io
 		}
 
 		return false;
+	}
+
+	bool checkSeparatorSkill(std::string nomFichier, int numLigne) //Retourne false si le nb de séparateurs dans un champ de compétence n'est pas le nombre définit
+	{
+		int nbSeparateur = 0;
+
+		string laLigne="";
+
+		char parcoursSkill;
+		int cptLigne=0;
+		int nbParentheseO=0;
+		int nbParentheseF=0;
+		int nbUnderscore=0;
+
+		ifstream fichierMonstre(nomFichier.c_str(), ios::in); //Ouverture en mode lecture
+
+		if(fichierMonstre)
+		{
+			while (getline(fichierMonstre, laLigne)) //Parcours des lignes
+			{
+				cptLigne++;
+				if (cptLigne==numLigne) //Si on est sur la ligne recherchée
+				{
+					for(int i=0; i<laLigne.length() ; i++) //Boucle de parcours de toute la ligne
+					{
+						parcoursSkill = laLigne[i]; //Variable de parcours de la ligne
+
+						if(nbSeparateur < 4) //Recherche du champ compétence sur la ligne
+						{
+							if (parcoursSkill == '/')
+							{
+								nbSeparateur++;
+							}
+						}
+
+						if (nbSeparateur==4) //Si le curseur est sur le champ compétence.
+						{
+							if (parcoursSkill == '/')  continue; //Dernier séparateur
+
+							if (parcoursSkill == '(')
+							{
+								nbParentheseO++;
+							}
+
+							if (parcoursSkill == ')')
+							{
+								nbParentheseF++;
+							}
+
+							if (parcoursSkill == '_')
+							{
+								nbUnderscore++;
+							}
+
+							if (parcoursSkill == ':') //Fin de l'analyse d'une compétence
+							{
+								if((nbParentheseO == 1) && (nbParentheseF == 1) && (nbUnderscore == 1)) //Verification bon nb de séparateurs
+								{
+									nbParentheseO=0; //Reset des compteurs
+									nbParentheseF=0;
+									nbUnderscore=0;
+									continue;
+								}
+								else
+								{
+									return false;
+								}
+
+							}
+							if (parcoursSkill== '|') //Fin du champ compétence
+							{
+								return true;
+							}
+						}
+					}
+
+				}
+			}
+		}
+
 	}
 
 	vector<competence> loadCompetenceFromFile(string nomFichier,int numLigne)
