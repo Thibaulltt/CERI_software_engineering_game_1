@@ -4,7 +4,9 @@
 #include <limits>
 #include <vector>
 #include <string>
+#include "../header/io.h"
 
+using namespace io;
 using namespace std;
 
 Carte :: Carte()
@@ -264,7 +266,9 @@ void Carte :: setPlateau(int taille)
 
 void Carte :: setCase(int i, int j, string value)
 {
-    plateau[i][j] = value;
+	plateau[i][j] = value;
+	if (value == "joueur")
+		io::setPlayerPosition(i,j);
 }
 
 void Carte :: setNbrMonstre(int nbr_monstre)
