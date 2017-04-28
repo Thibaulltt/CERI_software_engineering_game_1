@@ -443,10 +443,8 @@ namespace io
 		string skillName;
 		int skillDamage;
 		int skillManaCost;
-
 		cout << "Entrez le nom de la compétence : ";
 		cin >> skillName;
-
 		cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
 		cin >> skillDamage;
 		while(!checkInput(skillDamage))
@@ -454,23 +452,17 @@ namespace io
 			cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
 			cin >> skillDamage;
 		}
-
 		competence creation(skillName, skillDamage);
-
 		return creation;
 	}
-
-
 	monstre createMonstre() //Permet à l'utilisateur de créer un monstre avec des caractéristiques choisies
 	{
 		string entiteName;
 		int entiteHpMax;
 		int entiteSpeed;
-
 		cout << "Entrez le nom du monstre : ";
 		cin >> entiteName;
 		cout << endl;
-
 		cout << "Entrez son nombre de points de vie : ";
 		cin >> entiteHpMax;
 		while(!checkInput(entiteHpMax))
@@ -478,7 +470,6 @@ namespace io
 			cout << "Entrez son nombre de points de vie : ";
 			cin >> entiteHpMax;
 		}
-
 		cout << "Entrez sa vitesse : ";
 		cin >> entiteSpeed;
 		while(!checkInput(entiteSpeed))
@@ -486,22 +477,16 @@ namespace io
 			cout << "Entrez sa vitesse : ";
 			cin >> entiteSpeed;
 		}
-
 		monstre creation = monstre(entiteName, entiteHpMax, entiteSpeed); //Crée le monstre
-
 		vector<competence> skills = creation.getSkillVect();
-
 		for (int i=0 ; i<3 ; i++) //Remplit le tableau de compétences avec de nouvelles compétences
 		{
 			// PREVOIR UN SWITCH POUR SAVOIR SI L'USER VEUT CONTINUER A RENTRER DES COMPETENCES
 			// PENSER A CHANGER LE 3 DANS LA BOUCLE EN 11
 		   skills.push_back(createCompetenceMonstre());
 		}
-
 		creation.printMonstre();
-
 		creation.saveInFile(); //Le sauvegarde dans le fichier texte
-
 		return creation;
 	}
 */
@@ -732,6 +717,8 @@ namespace io
 	vector <Carte> loadAllCarteFromFile(string nomFichier)
 	{
 		vector<Carte> selectionnable ;
+		Carte defaut ; 
+		selectionnable.push_back(defaut.CarteDefaut()) ;
 		ifstream fichier(nomFichier, ios :: in) ;
 
 		if (fichier)
@@ -741,7 +728,7 @@ namespace io
 			{
 				bool init = false;
 				Carte carte_temporaire ;
-				string id, nom, description, taille, coordonnee1, coordonnee2, type = "" ;
+				string id, nom, description, taille, nbr_monstre , coordonnee1, coordonnee2, type = "" ;
 				int i = 0 ;
 				std::stringstream entree;
 				// Prise ID
@@ -767,6 +754,12 @@ namespace io
 					entree << current_line[i++];
 				i++;
 				taille = entree.str();
+				entree.str("");
+				// Prise NOMBRE DE MONSTRE
+				while (current_line[i] != '|')
+					entree << current_line[i++];
+				i++;
+				nbr_monstre = entree.str();
 				entree.str("");
 				int t = atoi(taille.c_str());
 				carte_temporaire.setName(nom);
