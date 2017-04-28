@@ -152,6 +152,7 @@ namespace io
 	*/
 	extern bool checkSeparatorSkill(std::string nomFichier, int numLigne);
 
+
 	//! Créer une competence
 	/*!
 		Cette fonction permet de créer rapidement une compétence pour pouvoir l'utiliser facilement après.
@@ -456,7 +457,7 @@ namespace io
 				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
 				if (checkSeparatorSkill(nomFichier, cptLigne) == true) //Verification que le champ compétence est correct
 				{
-					allSkills = loadCompetenceFromFile(nomFichier, 2); //Récupération des compétences
+					allSkills = loadCompetenceFromFile(nomFichier, cptLigne); //Récupération des compétences
 					T creation(sentiteId, sentiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills); //Création de l'entite
 					allEntite.push_back(creation); //Stockage du perso dans le vecteur de retour
 				}
@@ -475,6 +476,65 @@ namespace io
 		}
 
 		return allEntite;
+	}
+
+
+	//! Supprimer une entité
+	/*!
+	Cette fonction permet de supprimer une entité choisie par l'utilisateur.
+
+	Mode opératoire :
+	- Affichage de toutes les entités disponibles dans le vecteur d'entités
+	- L'utilisateur choisit laquelle il supprime
+	- On efface du vecteur l'entité choisie
+	- Effacement de tout le fichier
+	- Réecriture du fichier via le vecteur d'entité actualisé
+	\param nomFichier Le nom du fichier .txt dans lequel on veut supprimer une entité
+	\param allEntite Vecteur contenant toutes les entités disponibles
+	\param lettreEntite String permettant de savoir si on est en train de traiter un monstre ou un personnage (pour identifiant)
+	*/
+	template <typename T> void deleteLineEntite(std::string nomFichier, T allEntite, std::string lettreEntite)
+	{
+		int cpt = 0;
+		for (int i = 0; i < allEntite.size(); i++) //Affichage de toutes les entités
+		{
+			std::cout << ++cpt << "- ";
+			allEntite[i].afficher_brut();
+			allEntite[i].afficher_detail();
+			std::cout << std::endl;
+		}
+
+		std::cout << "Choisissez l'entite à supprimer : "; //Choix de l'utilisateur
+		std::string sInput = long_input();
+		int input;
+		std::istringstream(sInput) >> input;
+
+		while (input <= 0 || input > allEntite.size())                //Input incorrect
+		{
+			std::puts("Input incorrect. Réessayez!");
+			sInput = long_input();                                   //Input utilisateur
+			std::istringstream(sInput) >> input;                          //Trancription en chiffres
+		}
+
+		allEntite.erase(allEntite.begin() + input); //Suppression de la case dans le vecteur
+
+		std::ofstream fichierEntite(nomFichier.c_str(), std::ios::trunc); //Ouverture et suprresion de tout le fichier
+
+		if (fichierEntite)
+		{
+			for (int i = 0; i < allEntite.size(); i++)
+			{
+
+				allEntite[i].saveInFile(lettreEntite, nomFichier); //Ecriture d'une ligne dans le fichier
+			}
+
+			fichierEntite.close();
+		}
+
+		else
+		{
+			std::cerr << "Impossible d'ouvrir le fichier." << std::endl;
+		}
 	}
 }
 

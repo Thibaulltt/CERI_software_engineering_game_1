@@ -595,9 +595,11 @@ namespace io
 
 				}
 			}
+			fichierMonstre.close();
 		}
 
 	}
+
 
 	vector<competence> loadCompetenceFromFile(string nomFichier,int numLigne)
 	{
