@@ -9,18 +9,18 @@ jeu::jeu()
 {
 	bienvenue();
 
-		//Choix personnage
+			//Choix personnage
 	vector<personnage> tous_persos;							//Vecteur personnages
 	personnage pers;										//Dummy identification type template
 	string nom_file = "fichierPersonnage.txt";				//Nom fichier source personnages
 	tous_persos = loadAllEntiteFromFile(pers, nom_file);	//Remplissage vecteur personnages depuis fichier
-	jeu_perso = choix_unique_element(tous_persos, 0);		//Choix + assignation personnage partie
+	choix_unique_element(jeu_perso, tous_persos, 0);		//Choix + assignation personnage partie
 
 		//Choix carte
 	vector<Carte> toutes_cartes;							//Vecteur cartes
 	nom_file = "fichierCarte.txt";							//Nom fichier source cartes
 	toutes_cartes = loadAllCarteFromFile(nom_file);			//Chargement carte depuis fichier
-	Carte jeu_carte = choix_unique_element(toutes_cartes, 0);//Choix + assignation carte partie
+	choix_unique_element(jeu_carte, toutes_cartes, 0);//Choix + assignation carte partie
     ///jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
 
 		//Chargement monstres
