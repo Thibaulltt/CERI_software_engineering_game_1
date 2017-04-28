@@ -334,7 +334,7 @@ void Carte::afficher_detail()
 Carte Carte :: CarteDefaut()
 {
 	Carte def (5, "defaut", "carte par défaut") ;
-	def.id = "C0000" ;
+  def.id = "C0000" ;
 	plateau[0][0]="joueur" ;
 	plateau[2][0]="m0" ;
 	plateau[2][1]="m0" ;
@@ -342,7 +342,7 @@ Carte Carte :: CarteDefaut()
 	plateau[2][3]="m0" ;
 	plateau[2][4]="m0" ;	
 	plateau[1][3]="arbre" ;
-	def.case_dispo = 24 ;
+    def.case_dispo = 24 ;
 	def.nbr_monstre = 5 ;
 	return def ;
 }
