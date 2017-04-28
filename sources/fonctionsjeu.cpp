@@ -213,13 +213,13 @@ competence jeu::choix_comp(entite & indiv)
 	if (indiv.is_personnage())	//Personnage
 	{
 		puts("\n- Choix de compétence -");
-		comp_util = choix_unique_element(indiv.getSkillVect(), 0);	//Choix manuel
+		choix_unique_element(comp_util, indiv.getSkillVect(), 0);	//Choix manuel
 
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
 			puts("Vous n'avez pas assez de mana pour utiliser cette compétence!");
 			puts("- Choix de compétence -");
-			comp_util = choix_unique_element(indiv.getSkillVect(), 0);	//Choix manuel
+			choix_unique_element(comp_util, indiv.getSkillVect(), 0);	//Choix manuel
 		}
 	}
 	else	//Monstre
@@ -240,7 +240,7 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 	if (indiv.is_personnage())	//Personnage
 	{
 		cout << "- Choix de la cible pour la compétence " << comp_util.getName() << " -" << endl;
-		target = choix_unique_element(vect_entite, 1);
+		choix_unique_element(target, vect_entite, 1);
 	}
 	else	//Monstre
 	{
