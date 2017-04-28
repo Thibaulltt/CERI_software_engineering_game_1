@@ -17,7 +17,18 @@ class Carte
 	int case_dispo;
 
 	public:
+		//! Carte()
+		/*! Constructeur sans argument */
 		Carte();
+		//! Carte()
+		/*! Constructeur avec arguments
+		\param taille int
+		taille d'un coté, la carte est carré
+		\param nom string
+		Nom que l'on va donner à la carte
+		\param description string
+		description brève de la carte
+		*/
 		Carte(int taille, std::string name, std::string description) ;
 		int verif_taille(int taille);
 		void coordonneejoueur();
@@ -44,6 +55,7 @@ class Carte
 		std::string** getPlateau(){return plateau;}
 		void afficher_detail();
 		bool caseAccessible(int i, int j);
+		Carte CarteDefaut() ;
 };
 
 #endif
