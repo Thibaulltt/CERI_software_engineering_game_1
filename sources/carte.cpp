@@ -195,6 +195,7 @@ void Carte::sauvegarde()
 		fichier << nom << "|" ;
 		fichier << description << "|";
 		fichier << taille << "|";
+		fichier << nbr_monstre << "|";
 		for (int i = 0 ; i < taille; i++)
 		{
 			for (int j = 0 ; j < taille ; j++)
@@ -209,6 +210,7 @@ void Carte::sauvegarde()
 				{
 					cout << "Quel est le monstre à la case "<< i << " "<< j << ":";
 					cin >> monstre;
+					// io de()
 					fichier << "(" << i << "," << j << ","<< monstre << ")";
 				}
 				if (plateau[i][j]=="j")
@@ -227,12 +229,12 @@ void Carte::sauvegarde()
 
 string Carte :: getName()
 {
-	return this->nom;
+    return this->nom;
 }
 
 string Carte :: getDescription()
 {
-	return this->description;
+    return this->description;
 }
 
 void Carte::setTaille(int taille)
@@ -262,9 +264,7 @@ void Carte :: setPlateau(int taille)
 
 void Carte :: setCase(int i, int j, string value)
 {
-	plateau[i][j] = value;
-	if (value == "joueur")
-		io::setPlayerPosition(i,j);
+    plateau[i][j] = value;
 }
 
 void Carte :: setNbrMonstre(int nbr_monstre)
