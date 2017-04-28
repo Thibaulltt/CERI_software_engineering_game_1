@@ -19,6 +19,7 @@ class Carte
 	public:
 		Carte();
 		Carte(int taille, std::string name, std::string description) ;
+		Carte(Carte&);
 		int verif_taille(int taille);
 		void coordonneejoueur();
 		void coordonneeobstacle();

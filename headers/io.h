@@ -285,7 +285,7 @@ namespace io
 				input = c_input - '0';                                      //Trancription en chiffres
 			}
 
-			T choix = vect_element[input - 1];                              //Sélection de l'objet dans son vecteur
+			T choix = new T(vect_element[input - 1]);                              //Sélection de l'objet dans son vecteur
 
 			if (combat == false)
 			{

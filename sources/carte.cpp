@@ -4,10 +4,12 @@
 #include <limits>
 #include <vector>
 #include <string>
+#include "../headers/io.h"
 
+using namespace io;
 using namespace std;
 
-Carte :: Carte()
+Carte::Carte()
 {
 	this->nom = "";
 	this->description = "";
@@ -15,7 +17,7 @@ Carte :: Carte()
 	this->case_dispo = 0;
 }
 
-Carte :: Carte (int taille, string name, string desc)
+Carte::Carte (int taille, string name, string desc)
 {
 	this->taille = verif_taille(taille);
 	this->nom = name;
@@ -29,6 +31,31 @@ Carte :: Carte (int taille, string name, string desc)
 	this -> case_dispo = taille*taille;
 }
 
+Carte::Carte(Carte& a_copier)
+{
+	this -> id = a_copier.id;
+	this -> nom = a_copier.nom;
+	this -> description = a_copier.description;
+	this -> taille = a_copier.taille;
+	
+	this -> plateau = new string * [taille];
+
+	for (int i = 0; i < taille; i++)
+	{
+		this -> plateau[i] = new string [taille];
+	}
+
+	for (int i = 0; i < taille; i++)
+	{
+		for (int j = 0; j < taille; j++)
+		{
+			this -> plateau[i][j] = a_copier.plateau[i][j];
+		}
+	}
+
+	this -> nbr_monstre = a_copier.nbr_monstre;
+	this -> case_dispo = a_copier.case_dispo;
+}
 
 int Carte::verif_taille(int taille)
 {
@@ -40,7 +67,7 @@ int Carte::verif_taille(int taille)
 	return taille;
 }
 
-void Carte :: coordonneejoueur()
+void Carte::coordonneejoueur()
 {
 	int coordonneejoueur1;
 	int coordonneejoueur2;
@@ -141,7 +168,7 @@ void Carte::coordonneemonstre()
 	case_dispo = case_dispo - nbr_monstre;
 }
 
-void Carte :: affichage_normal()
+void Carte::affichage_normal()
 {
 	for (int i=0; i<taille; i++)
 	{
@@ -186,7 +213,7 @@ void Carte::sauvegarde()
 	int nbligne=nbLigneFichier(carte);
 
 	//ouverture du fichier en écriture
-	ofstream fichier(carte, ios :: app) ;
+	ofstream fichier(carte, ios::app) ;
 
 	// Si fichier bien ouvert
 	if (fichier)
@@ -225,32 +252,34 @@ void Carte::sauvegarde()
 	return ;
 }
 
-string Carte :: getName()
+string Carte::getName()
 {
 	return this->nom;
 }
 
-string Carte :: getDescription()
+string Carte::getDescription()
 {
 	return this->description;
 }
 
-void Carte::setTaille(int taille)
+void Carte::setTaille(int t)
 {
-	this -> taille = taille;
+	cout << "TAILLE DEMANDEE : " << t << endl;
+	this->taille = t;
+	cout << "TAILLE ASSIGNéE : " << this->taille << endl;
 }
 
-void Carte :: setName(string name)
+void Carte::setName(string name)
 {
 	nom = name;
 }
 
-void Carte :: setDescription(string desc)
+void Carte::setDescription(string desc)
 {
 	description = desc;
 }
 
-void Carte :: setPlateau(int taille)
+void Carte::setPlateau(int taille)
 {
 	plateau = new string * [taille];
 
@@ -260,19 +289,19 @@ void Carte :: setPlateau(int taille)
 	}
 }
 
-void Carte :: setCase(int i, int j, string value)
+void Carte::setCase(int i, int j, string value)
 {
 	plateau[i][j] = value;
 	if (value == "joueur")
 		io::setPlayerPosition(i,j);
 }
 
-void Carte :: setNbrMonstre(int nbr_monstre)
+void Carte::setNbrMonstre(int nbr_monstre)
 {
 	this -> nbr_monstre = nbr_monstre;
 }
 
-void Carte :: setCaseDispo(int case_dispo)
+void Carte::setCaseDispo(int case_dispo)
 {
 	this -> case_dispo = case_dispo;
 }

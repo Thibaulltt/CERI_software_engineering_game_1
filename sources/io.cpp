@@ -156,7 +156,8 @@ namespace io
 
 	void clearScreen()
 	{
-		std::cout << '\n'*TermHeight;
+		for (int i = 0; i < TermHeight; i++)
+			cout << "\n";
 	}
 
 	void afficherCarte(Carte& c, int t)
@@ -174,11 +175,11 @@ namespace io
 		// currentPlayerPosition = c.playerPosition();			// ATTENTE DE LA FONCTION
 
 		// Si le joueur est plus bas que l'affichage de la carte
-		while (currentPlayerPosition.first >= TermWidth)
+		while (currentPlayerPosition.first >= mapPositionX+TermWidth)
 			mapPositionX += TermWidth;
 
 		// Si le joueur est plus sur la droite que la carte
-		while (currentPlayerPosition.second >= TermHeight)
+		while (currentPlayerPosition.second >= mapPositionY+TermHeight)
 			mapPositionY += TermHeight;
 
 		int displayX = mapPositionX;
@@ -337,6 +338,7 @@ namespace io
 			std::cout << "une taille d'au moins 15 lignes par 91 colonnes." << std::endl;
 			getTerminalWidth();
 			getTerminalHeight();
+			de();
 		}
 	}
 
@@ -772,6 +774,7 @@ namespace io
 				carte_temporaire.setName(nom);
 				carte_temporaire.setDescription(description);
 				carte_temporaire.setPlateau(t);
+				carte_temporaire.setTaille(t);
 				// Prise obstacles
 				while (i < current_line.size() && current_line[i+1] != '\0')
 				{

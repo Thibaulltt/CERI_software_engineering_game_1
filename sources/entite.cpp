@@ -36,6 +36,20 @@ entite::entite(string entiteId, string entiteName, int entiteHpMax, int entiteSp
 	this->entiteSkillVect = allSkills;
 }
 
+entite::entite(entite & en)
+{
+	this->entiteId=en.entiteId;
+	this->entiteName = en.entiteName;
+	this->entiteDescription = en.entiteDescription;
+	this->entiteHpMax = en.entiteHpMax;
+	this->entiteHpCurrent = en.entiteHpMax;
+	this->entiteManaMax = en.entiteManaMax;
+	this->entiteManaCurrent = en.entiteManaMax;
+	this->entiteSpeed = en.entiteSpeed;
+	this->entiteAlive = true;
+	this->entiteSkillVect = en.allSkills;
+}
+
 
 //-------------------------------------------FONCTIONS
 

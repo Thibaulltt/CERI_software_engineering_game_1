@@ -18,14 +18,14 @@ jeu::jeu()
 
 		//Choix carte
 	vector<Carte> toutes_cartes;							//Vecteur cartes
-	nom_file = "fichierCarte.txt";							//Nom fichier source cartes
+	nom_file = "sources/fichierCarte.txt";							//Nom fichier source cartes
 	toutes_cartes = loadAllCarteFromFile(nom_file);			//Chargement carte depuis fichier
 	Carte jeu_carte = choix_unique_element(toutes_cartes, 0);//Choix + assignation carte partie
-    ///jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
+	///jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
 
 		//Chargement monstres
-	monstre mons;											//Dummy identification type template
-	nom_file = "fichierMonstre.txt";						//Nom fichier source monstres
+	monstre mons;						//Dummy identification type template
+	nom_file = "fichierMonstre.txt";			//Nom fichier source monstres
 	jeu_monstres = loadAllEntiteFromFile(mons, nom_file);	//Chargement monstres depuis fichier
 }
 
@@ -54,8 +54,11 @@ int jeu::getNbMonstres()
 
 void jeu::afficherJeu()
 {
+	cout << "TAILLE : " << jeu_carte.getTaille() << endl;
+	cout << "TAILLE : " << jeu_carte.getPlateau() << endl;
+	//clearScreen();
 	io::afficherCarte(jeu_carte, jeu_carte.getTaille());
-	afficherMouvements();
+	//										afficherMouvements();
 }
 
 std::string jeu::genererDeplacement(std::vector<bool>& v)
@@ -101,9 +104,61 @@ std::string jeu::genererDeplacement(std::vector<bool>& v)
 	return deplacements + "|";
 }
 
+std::string jeu::genererInputAccepte(vector<bool> b)
+{
+	std::string s = "";
+	if (b[0] == true)
+		s += "Zz";
+	if (b[1] == true)
+		s += "Qq";
+	if (b[2] == true)
+		s += "Ss";
+	if (b[3] == true)
+		s += "Dd";
+	return s;
+}
+
 void jeu::deplacement()
 {
-	return;
+	std::vector<bool> b(4,false);
+	std::string deplacement_possibles = genererDeplacement(b);
+	std::string inputAccepte = genererInputAccepte(b);
+	int x = currentPlayerPosition.first;
+	int y = currentPlayerPosition.second;
+	afficherMouvements(deplacement_possibles,"Dans quelle direction voulez-vous vous déplacer ?");
+	char deplacement_demande = de();
+	while (deplacement_possibles.find(deplacement_demande) == string::npos)
+	{
+		afficherMouvements(deplacement_possibles,"Cette case est innaccessible !");
+		deplacement_demande = de();
+	}
+	switch (deplacement_demande) {
+		case 'z':
+			updateMap(std::make_pair(x,--y));
+			break;
+		case 'Z':
+			updateMap(std::make_pair(x,--y));
+			break;
+		case 's':
+			updateMap(std::make_pair(x,++y));
+			break;
+		case 'S':
+			updateMap(std::make_pair(x,++y));
+			break;
+		case 'q':
+			updateMap(std::make_pair(--x,y));
+			break;
+		case 'Q':
+			updateMap(std::make_pair(--x,y));
+			break;
+		case 'd':
+			updateMap(std::make_pair(++x,y));
+			break;
+		case 'D':
+			updateMap(std::make_pair(++x,y));
+			break;
+	}
+
 }
 
 
