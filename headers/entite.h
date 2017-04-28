@@ -76,6 +76,12 @@ public:
 	//! Getter pour la mana actuelle de l'entite
 	int getManaCurrent();
 
+	//! Setter pour points de vie actuels
+	void setHpCurrent(int current);
+
+	//! Setter pour points de mana actuels
+	void setManaCurrent(int current);
+
 	//! Getter qui renvoie un vecteur (std::vector) de compétences.
 	std::vector<competence> getSkillVect();
 
@@ -129,6 +135,12 @@ public:
 	*/
 	bool enleverMana(int skillManaCost);
 
+
+	//! Affichage brut
+	/*!
+	Permet d'afficher les information nécessaires à la gestion des entités (suppression)
+	*/
+	void afficher_brut();
 
 };
 

@@ -108,6 +108,16 @@ vector<competence> entite::getSkillVect() //Retourne le vecteur de compétences 
 	return this->entiteSkillVect;
 }
 
+void entite::setHpCurrent(int current)
+{
+	entiteHpCurrent = current;
+}
+
+void entite::setManaCurrent(int current)
+{
+	entiteManaCurrent = current;
+}
+
 
 // POUR SAUVEGARDE DANS FICHIER
 
@@ -123,6 +133,7 @@ int entite::nbLigneFichier(string nomFichier) //Compte le nb de lignes du fichie
 		while(getline(fichier, ligne)) //Stockage de chaque ligne du fichier
 		{
 			nbLigne++;
+			cout << "yo le nb de ligne : " << nbLigne << endl;
 		}
 		fichier.close(); //On ferme le fichier
 	}
@@ -162,8 +173,7 @@ string entite::entiteString(string lettreEntite, string nomFichier) //Convertit 
 		allSkill += entiteSkillVect[i].competenceString() + ":";
 	}
 
-		ligneFichier = entiteId + "/" + this->entiteName + "/" + sentiteHpMax + "/" + sentiteSpeed + "/" + allSkill + "|" + sentiteManaMax + "|" + this->entiteDescription + '\n'; //Création de la ligne compléte
-
+		ligneFichier = entiteId + "/" + this->entiteName + "/" + sentiteHpMax + "/" + sentiteSpeed + "/" + allSkill + "|" + sentiteManaMax + "|" + this->entiteDescription + "|" + '\r'+'\n'; //Création de la ligne compléte
 
 	return ligneFichier;
 }
@@ -224,7 +234,6 @@ bool entite::enleverMana(int skillManaCost)
 
 // TESTS
 
-
 void entite::afficher_detail()
 {
 	cout << endl << endl << "Détails de l'entité " << this->entiteName << endl << endl;
@@ -269,4 +278,10 @@ void entite::afficher_combat()
 		}
 	}
 	cout << endl;
+}
+
+
+void entite::afficher_brut()
+{
+	cout << entiteName << ", " << entiteHpMax << "HP, " << entiteManaMax << "MP, vitesse " << entiteSpeed;
 }
