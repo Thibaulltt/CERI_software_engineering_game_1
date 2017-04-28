@@ -158,6 +158,30 @@ namespace io
 	*/
 	extern bool checkSeparatorSkill(std::string nomFichier, int numLigne);
 
+
+
+
+	//! Supprimer une entité
+	/*!
+	Cette fonction permet de supprimer une entité choisie par l'utilisateur.
+
+	Mode opératoire :
+	- Affichage de toutes les entités disponibles dans le vecteur d'entités
+	- L'utilisateur choisit laquelle il supprime
+	- On efface du vecteur l'entité choisie
+	- Effacement de tout le fichier
+	- Réecriture du fichier via le vecteur d'entité actualisé
+	\param nomFichier Le nom du fichier .txt dans lequel on veut supprimer une entité
+	\param allEntite Vecteur contenant toutes les entités disponibles
+	\param lettreEntite String permettant de savoir si on est en train de traiter un monstre ou un personnage (pour identifiant)
+	*/
+	extern void deleteLineEntite(std::string nomFichier, std::vector<monstre> allEntite, std::string lettreEntite);
+
+
+
+
+
+
 	//! Créer une competence
 	/*!
 		Cette fonction permet de créer rapidement une compétence pour pouvoir l'utiliser facilement après.
