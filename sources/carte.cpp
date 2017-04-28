@@ -4,11 +4,12 @@
 #include <limits>
 #include <vector>
 #include <string>
-#include "../header/io.h"
+#include "../headers/io.h"
 
-using namespace io;
 using namespace std;
+using namespace io;
 
+// Constructeur sans argument
 Carte :: Carte()
 {
 	this->nom = "";
@@ -17,6 +18,7 @@ Carte :: Carte()
 	this->case_dispo = 0;
 }
 
+// Constructeur avec arguments
 Carte :: Carte (int taille, string name, string desc)
 {
 	this->taille = verif_taille(taille);
@@ -29,6 +31,7 @@ Carte :: Carte (int taille, string name, string desc)
 		plateau[i] = new string [taille];
 	}
 	this -> case_dispo = taille*taille;
+	this -> nbr_monstre = taille ;
 }
 
 
@@ -326,4 +329,20 @@ void Carte::afficher_detail()
 	cout << "Description: " << description << endl;
 
 	cout << endl;
+}
+
+Carte Carte :: CarteDefaut()
+{
+	Carte def (5, "defaut", "carte par défaut") ;
+	def.id = "C0000" ;
+	plateau[0][0]="joueur" ;
+	plateau[2][0]="m0" ;
+	plateau[2][1]="m0" ;
+	plateau[2][2]="m0" ;
+	plateau[2][3]="m0" ;
+	plateau[2][4]="m0" ;	
+	plateau[1][3]="arbre" ;
+	def.case_dispo = 24 ;
+	def.nbr_monstre = 5 ;
+	return def ;
 }
