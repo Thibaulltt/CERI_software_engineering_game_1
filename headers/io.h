@@ -70,7 +70,6 @@ namespace io
 	//! Input
 	/*!
 		Gestion des entrées utilisateur, ne prends qu'un seul caractère à la fois.
-
 		Voici son mode opératoire :
 		-# On crée une variable (char)
 		-# On change la façon dont le terminal gère l'entrée utilisateur avec ChangeTerminal()
@@ -84,7 +83,6 @@ namespace io
 	//! Enlève le dernier caractère d'un stringstream.
 	/*!
 		Le but de cette fonction est d'enlever le dernier caractère d'un flux de caractères (std::stringstream) étant donné que le C++ ne propose pas de fonction par défaut pour cette fonctionnalité.
-
 		Voici son mode opératoire :
 		-# On prends tout le contenu du stringstream et on le met dans une chaîne de caractères (std::string)
 		-# Si la chaîne de caractère contient au moins 1 caractère :
@@ -92,7 +90,6 @@ namespace io
 		    -# Alors on utilise la fonction std::string::erase(std::string::iterator) pour enlever le dernier caractère
 		    -# On remplace le contenu du flux de caractère par du vide
 		    -# On remet la chaîne de caractère coupée dans le flux.
-
 		\pre La fonction recevra un stringstream d'entrée utilisateur. Son but est d'enlever le dernier caractère entré (cette fonction est appelée dans long_input() dans une condition si le caractère rentré est 127, aussi connu sous le nom de DEL ASCII).
 		\post La fonction ne retourne rien, car le seul argument est passé **par argument** et est donc automatiquement modifié.
 		\param i C'est un flux de caractères (std::stringstream) à partir duquel il faudra enlever le dernier caractère.
@@ -120,7 +117,6 @@ namespace io
 	//! Vérifie que l'user entre des entier
 	/*!
 		Cette fonction vérifie que l'entrée utilisateur est bien un entier.
-
 		Mode opératoire :
 		- Vérification du failbit de l'entrée utilisateur (std::cin::failbit)
 			-# Vidage du buffer
@@ -135,7 +131,6 @@ namespace io
 	//!Verifie qu'une ligne est correcte dans un fichier texte d'entités (bon nombre de séparateurs)		 +	//! Créer une competence
  	/*!
  		Cette fonction permet de vérifier qu'une ligne contient bien le bon nombre de séparateurs pour éviter les erreurs dans le chargement d'une entité
-
  		Mode opératoire:
  		- Parcours de toute la string passée en paramétre
  		- A chaque séparateur trouvé, on ajoute 1 aux compteurs
@@ -147,7 +142,6 @@ namespace io
 	//!Verifie qu'un champ compétences est correct dans un fichier texte d'entités (bon nombre de séparateurs)
 	/*!
 		Cette fonction permet de vérifier qu'un champ compétences d'une ligne contient bien le bon nombre de séparateurs pour éviter les erreurs dans le chargement d'une entité
-
 		Mode opératoire:
 		- Recherche de la ligne dans le fichier
 		- Parcours de toute la ligne
@@ -161,7 +155,6 @@ namespace io
 	//! Créer une competence
 	/*!
 		Cette fonction permet de créer rapidement une compétence pour pouvoir l'utiliser facilement après.
-
 		Mode opératoire :
 		- On crée les variables qui vont tenir les infos rentrées (skillName, skillDamage, skillManaCost)
 		- On rentre
@@ -186,7 +179,6 @@ namespace io
 	//! Fonction permettant d'afficher un overlay sur la carte
 	/*!
 		Fonction permettant d'afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller.
-
 		Ne fait qu'appeller afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
 		\sa afficherMouvements(std::string erreur_deplacement) & afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
 	*/
@@ -194,7 +186,6 @@ namespace io
 	//! Fonction permettant d'afficher un overlay sur la carte
 	/*!
 		Fonction permettant d'afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller. Il affiche aussi un message d'erreur si demandé.
-
 		Ne fait qu'appeller afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
 		\sa afficherMouvements() & afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
 	*/
@@ -202,7 +193,6 @@ namespace io
 	//! Fonction permettant d'afficher un overlay sur la carte
 	/*!
 		Fonction permettant d'afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller.
-
 		Ne fait qu'appeller afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
 		\sa afficherMouvements() & afficherMouvements(std::string erreur_deplacement)
 	*/
@@ -253,13 +243,14 @@ namespace io
 
 	//! Choix d'un élément unique
 	/*!
-		Fonction qui prend un vecteur d'éléments en entrée ainsi qu'un booléen, et affiche puis renvoie l'élément choisi.
+		Fonction qui prend un élément, un vecteur d'éléments ainsi qu'un booléen en entrée, et affiche les caractéristiques assignées à l'élément.
+		\param element Elément dont les caractéristiques doivent être établies.
 		\param vect_element Vecteur de l'élément à choisir.
 		\param combat Situation de combat ou non.
 		\return L'élement choisi.
 		\sa liste_elements(), afficher(), afficher_detail()
 	*/
-	template<typename T> T choix_unique_element(std::vector<T> vect_element, bool combat)
+	template<typename T> void choix_unique_element(T & element, std::vector<T> vect_element, bool combat)
 	{
 		std::string type_name = typeid(T).name();						//String à partir du type appelant
 
@@ -285,27 +276,27 @@ namespace io
 				input = c_input - '0';                                      //Trancription en chiffres
 			}
 
-			T choix = vect_element[input - 1];                              //Sélection de l'objet dans son vecteur
+			element = vect_element[input - 1];                              //Sélection de l'objet dans son vecteur
 
 			if (combat == false)
 			{
-				choix.afficher_detail();
+				element.afficher_detail();
 				puts("Appuyez sur \"v\" pour valider votre choix, ou sur une autre touche pour revenir au menu de sélection");
 				c_input = de();
 
 				if (c_input == 'v' || c_input == 'V')
 				{
 					std::cout << std::endl << "Vous avez choisi: ";
-					afficher(choix);												//Affichage de l'objet choisi
+					afficher(element);												//Affichage de l'objet choisi
 					std::puts("\n");
-					return choix;													//Renvoi de l'objet choisi
+					return;
 				}
 				else
 				{
 					continue;
 				}
 			}
-			return choix;
+			return;
 		}
 	}
 
