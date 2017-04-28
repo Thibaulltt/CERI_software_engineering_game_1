@@ -227,12 +227,12 @@ void Carte::sauvegarde()
 
 string Carte :: getName()
 {
-    return this->nom;
+	return this->nom;
 }
 
 string Carte :: getDescription()
 {
-    return this->description;
+	return this->description;
 }
 
 void Carte::setTaille(int taille)
@@ -262,7 +262,9 @@ void Carte :: setPlateau(int taille)
 
 void Carte :: setCase(int i, int j, string value)
 {
-    plateau[i][j] = value;
+	plateau[i][j] = value;
+	if (value == "joueur")
+		io::setPlayerPosition(i,j);
 }
 
 void Carte :: setNbrMonstre(int nbr_monstre)
