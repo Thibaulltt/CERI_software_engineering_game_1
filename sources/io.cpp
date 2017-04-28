@@ -610,9 +610,56 @@ namespace io
 
 				}
 			}
+			fichierMonstre.close();
 		}
 
 	}
+
+	void deleteLineEntite(string nomFichier, vector<monstre> allEntite, string lettreEntite)
+	{
+		int cpt= 0;
+		for (int i = 0; i < allEntite.size(); i++) //Affichage de toutes les entités
+		{
+			cout << ++cpt << "- ";
+			allEntite[i].afficher_brut();
+			allEntite[i].afficher_detail();
+			cout << endl;
+		}
+
+		cout << "Choisissez l'entite à supprimer : "; //Choix de l'utilisateur
+		string sInput = long_input();
+		int input;
+		istringstream(sInput) >> input;
+		
+		while (input <= 0 || input > allEntite.size())                //Input incorrect
+		{
+			std::puts("Input incorrect. Réessayez!");
+			sInput = long_input();                                   //Input utilisateur
+			istringstream(sInput) >> input;                          //Trancription en chiffres
+		}
+
+		allEntite.erase(allEntite.begin() + input); //Suppression de la case dans le vecteur
+
+		ofstream fichierEntite(nomFichier.c_str(), ios::trunc); //Ouverture et suprresion de tout le fichier
+
+		if (fichierEntite)
+		{
+			for (int i = 0; i < allEntite.size(); i++)
+			{
+
+				allEntite[i].saveInFile(lettreEntite, nomFichier); //Ecriture d'une ligne dans le fichier
+			}
+
+			fichierEntite.close();
+		}
+
+		else
+		{
+			cerr << "Impossible d'ouvrir le fichier." << endl;
+		}
+
+	}
+
 
 	vector<competence> loadCompetenceFromFile(string nomFichier,int numLigne)
 	{
