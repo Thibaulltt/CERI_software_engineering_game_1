@@ -77,7 +77,7 @@ void Carte::coordonneeobstacle()
 	int nbr_obstacle=0;
 	int coordonneeobstacle1;
 	int coordonneeobstacle2;
-	cout<< "Combien d'obstacle voulez-vous sur la carte?";
+	cout<< "Combien d'obstacles voulez-vous sur la carte?";
 	cin >> nbr_obstacle;
 	while (nbr_obstacle >= case_dispo)
 	{
@@ -118,7 +118,7 @@ void Carte::coordonneemonstre()
 	int coordonneemonstre2;
 	while ((nombre_monstre < taille) || (nombre_monstre > case_dispo))
 	{
-		cout<< "Combien de monstre voulez-vous sur la carte?";
+		cout<< "Combien de monstres voulez-vous sur la carte?";
 		cin >> nombre_monstre;
 	}
 	this -> nbr_monstre = nombre_monstre;
@@ -247,8 +247,8 @@ string Carte :: getDescription()
 
 void Carte::setTaille(int taille)
 {
-	cout << "TAILLE DEMANDEE : " << t << endl;
-	this->taille = t;
+	cout << "TAILLE DEMANDEE : " << taille << endl;
+	this->taille = taille;
 	cout << "TAILLE ASSIGNéE : " << this->taille << endl;
 }
 
