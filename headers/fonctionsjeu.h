@@ -20,6 +20,7 @@ using namespace io;
 */
 class jeu
 {
+public:
 	//! Carte du jeu, à choisir au début du jeu.
 	Carte jeu_carte;
 
@@ -32,7 +33,6 @@ class jeu
 	//! Compte le nombre de monstres restant sur la carte.
 	int jeu_nombre_monstres = 1;							///Temporaire!!
 
-public:
 	//! Constructeur par défaut sans argument.
 	/*!
 		Affichage d'un message de bienvenue.
@@ -134,14 +134,14 @@ public:
 
 	//! Appliquer compétence
 	/*!
-        Permet d'appliquer les effets de la compétence choisie sur la cible choisie.
-        Si la cible meurt, décrémente le compteur de personnages/monstres vivants.
-        Supprime les cibles mortes du vecteur d'entités.
-        \param target Cible de la compétence.
-        \param vect_entite Le vecteur duquel on tire la cible de la compétence.
-        \param comp_util La compétence à utiliser.
-        \param nb_players Le nombre total de joueurs de la partie.
-        \param nb_monsters Le nombre de monstres du combat en cours.
+        	Permet d'appliquer les effets de la compétence choisie sur la cible choisie.
+        	Si la cible meurt, décrémente le compteur de personnages/monstres vivants.
+        	Supprime les cibles mortes du vecteur d'entités.
+        	\param target Cible de la compétence.
+        	\param vect_entite Le vecteur duquel on tire la cible de la compétence.
+        	\param comp_util La compétence à utiliser.
+        	\param nb_players Le nombre total de joueurs de la partie.
+        	\param nb_monsters Le nombre de monstres du combat en cours.
 		\return Un entier: 1 si tous les monstres sont morts, 0 si tous les joueurs sont morts, 2 sinon.
 		\sa enleverVie()
 	*/

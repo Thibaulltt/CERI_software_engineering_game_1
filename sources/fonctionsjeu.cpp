@@ -10,23 +10,23 @@ jeu::jeu()
 	bienvenue();
 
 			//Choix personnage
-	vector<personnage> tous_persos;							//Vecteur personnages
-	personnage pers;										//Dummy identification type template
-	string nom_file = "fichierPersonnage.txt";				//Nom fichier source personnages
-	tous_persos = loadAllEntiteFromFile(pers, nom_file);	//Remplissage vecteur personnages depuis fichier
+	vector<personnage> tous_persos;					//Vecteur personnages
+	personnage pers;						//Dummy identification type template
+	string nom_file = "fichierPersonnage.txt";			//Nom fichier source personnages
+	tous_persos = loadAllEntiteFromFile(pers, nom_file);		//Remplissage vecteur personnages depuis fichier
 	choix_unique_element(jeu_perso, tous_persos, 0);		//Choix + assignation personnage partie
 
 		//Choix carte
-	vector<Carte> toutes_cartes;							//Vecteur cartes
-	nom_file = "sources/fichierCarte.txt";							//Nom fichier source cartes
+	vector<Carte> toutes_cartes;					//Vecteur cartes
+	nom_file = "fichierCarte.txt";					//Nom fichier source cartes
 	toutes_cartes = loadAllCarteFromFile(nom_file);			//Chargement carte depuis fichier
-	choix_unique_element(jeu_carte, toutes_cartes, 0);//Choix + assignation carte partie
-    ///jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
+	choix_unique_element(jeu_carte, toutes_cartes, 0);		//Choix + assignation carte partie
+	///jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
 
 		//Chargement monstres
-	monstre mons;											//Dummy identification type template
-	nom_file = "fichierMonstre.txt";						//Nom fichier source monstres
-	jeu_monstres = loadAllEntiteFromFile(mons, nom_file);	//Chargement monstres depuis fichier
+	monstre mons;							//Dummy identification type template
+	nom_file = "fichierMonstre.txt";				//Nom fichier source monstres
+	jeu_monstres = loadAllEntiteFromFile(mons, nom_file);		//Chargement monstres depuis fichier
 }
 
 jeu::~jeu()
@@ -55,7 +55,7 @@ int jeu::getNbMonstres()
 void jeu::afficherJeu()
 {
 	cout << "TAILLE : " << jeu_carte.getTaille() << endl;
-	cout << "TAILLE : " << jeu_carte.getPlateau() << endl;
+	cout << "PLATOS : " << jeu_carte.getPlateau() << endl;
 	//clearScreen();
 	io::afficherCarte(jeu_carte, jeu_carte.getTaille());
 	//										afficherMouvements();

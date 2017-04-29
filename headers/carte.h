@@ -27,15 +27,13 @@ class Carte
 		Carte();
 
 		//! Carte
-		/*! Constructeur avec arguments
-		\param taille int
-		taille d'un coté, la carte est carré
-		\param nom string : Nom que l'on va donner à la carte
-		\param description string : description brève de la carte
-    */
+		/*!
+			Constructeur avec arguments
+			\param taille Taille d'un coté, la carte est carré
+			\param nom Nom que l'on va donner à la carte
+			\param description Description brève de la carte
+		*/
 		Carte(int taille, std::string name, std::string description) ;
-
-		Carte(Carte&);
 
 		//! Verif_taille()
 		/*!  Verifie que la taille de la carte est acceptable
@@ -73,12 +71,12 @@ class Carte
 		void setNbrMonstre(int nbr_monstre);
 		void setCaseDispo(int case_dispo);
 
-		Carte operator=(const Carte & a_copier);
+		Carte operator=(const Carte a_copier);
 		int getTaille(){return taille;}
 		std::string** getPlateau(){return plateau;}
 		void afficher_detail();
 		bool caseAccessible(int i, int j);
-  	Carte CarteDefaut() ; // A modifier nombre de case_dispo = 18 pas 24
+		Carte CarteDefaut() ; // A modifier nombre de case_dispo = 18 pas 24
 };
 
 #endif

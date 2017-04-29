@@ -75,7 +75,10 @@ namespace io
 			}
 		} while(charInput != 10);
 		ResetTerminal();
-		return input.str().length() == 1 ? long_input() : input.str();
+		std::string resultat = input.str();
+		if (int(resultat[resultat.size()-1]) == 10)
+			resultat = resultat.substr(0,resultat.size()-1);
+		return resultat.size() == 0 ? long_input() : resultat;
 	}
 
 	void removeLastChar(std::stringstream& input)
@@ -722,7 +725,7 @@ namespace io
 	{
 		vector<Carte> selectionnable ;
 		Carte defaut;
-		selectionnable.push_back(defaut.CarteDefaut());
+		//selectionnable.push_back(defaut.CarteDefaut());
 		ifstream fichier(nomFichier, ios :: in) ;
 
 		if (fichier)
@@ -731,7 +734,6 @@ namespace io
 			while (getline(fichier, current_line))
 			{
 				bool init = false;
-				Carte carte_temporaire ;
 				string id, nom, description, taille, nbr_monstre, coordonnee1, coordonnee2, type = "" ;
 				int i = 0 ;
 				std::stringstream entree;
@@ -760,16 +762,13 @@ namespace io
 				taille = entree.str();
 				entree.str("");
 				// Prise NOMBRE DE MONSTRE
-				while (current_line[i] != '|')
-					entree << current_line[i++];
-				i++;
-				nbr_monstre = entree.str();
-				entree.str("");
+				// while (current_line[i] != '|')
+				// 	entree << current_line[i++];
+				// i++;
+				// nbr_monstre = entree.str();
+				// entree.str("");
 				int t = atoi(taille.c_str());
-				carte_temporaire.setName(nom);
-				carte_temporaire.setDescription(description);
-				carte_temporaire.setPlateau(t);
-				carte_temporaire.setTaille(t);
+				Carte carte_temporaire(t,nom,description);
 				// Prise obstacles
 				while (i < current_line.size() && current_line[i+1] != '\0')
 				{

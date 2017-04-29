@@ -34,32 +34,6 @@ Carte::Carte (int taille, string name, string desc)
 	this -> nbr_monstre = taille ;
 }
 
-Carte::Carte(Carte& a_copier)
-{
-	this -> id = a_copier.id;
-	this -> nom = a_copier.nom;
-	this -> description = a_copier.description;
-	this -> taille = a_copier.taille;
-
-	this -> plateau = new string * [taille];
-
-	for (int i = 0; i < taille; i++)
-	{
-		this -> plateau[i] = new string [taille];
-	}
-
-	for (int i = 0; i < taille; i++)
-	{
-		for (int j = 0; j < taille; j++)
-		{
-			this -> plateau[i][j] = a_copier.plateau[i][j];
-		}
-	}
-
-	this -> nbr_monstre = a_copier.nbr_monstre;
-	this -> case_dispo = a_copier.case_dispo;
-}
-
 int Carte::verif_taille(int taille)
 {
 	while ( taille < 4  || taille > 255)
@@ -311,7 +285,7 @@ void Carte::setCaseDispo(int case_dispo)
 	this -> case_dispo = case_dispo;
 }
 
-Carte Carte::operator=(const Carte & a_copier)
+Carte Carte::operator=(const Carte a_copier)
 {
 	this -> id = a_copier.id;
 	this -> nom = a_copier.nom;
@@ -358,10 +332,10 @@ void Carte::afficher_detail()
 	cout << endl;
 }
 
-Carte Carte :: CarteDefaut()
+Carte Carte::CarteDefaut()
 {
 	Carte def (5, "defaut", "carte par défaut") ;
-  def.id = "C0000" ;
+ 	def.id = "C0000" ;
 	plateau[0][0]="joueur" ;
 	plateau[2][0]="m0" ;
 	plateau[2][1]="m0" ;
@@ -369,7 +343,7 @@ Carte Carte :: CarteDefaut()
 	plateau[2][3]="m0" ;
 	plateau[2][4]="m0" ;
 	plateau[1][3]="arbre" ;
-    def.case_dispo = 24 ;
+	def.case_dispo = 24 ;
 	def.nbr_monstre = 5 ;
 	return def ;
 }
