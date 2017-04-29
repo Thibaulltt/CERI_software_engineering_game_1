@@ -73,10 +73,10 @@ class Carte
 		void setCase(int i, int j, std::string value);
 		void setNbrMonstre(int nbr_monstre);
 		void setCaseDispo(int case_dispo);
-
 		Carte operator=(const Carte a_copier);
 		int getTaille(){return taille;}
 		std::string** getPlateau(){return plateau;}
+		int getNbrMonstres(){return nbr_monstre;}
 		void afficher_detail();
 		void afficher_brut();
 		bool caseAccessible(int i, int j);
