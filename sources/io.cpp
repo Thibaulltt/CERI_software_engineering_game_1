@@ -160,7 +160,7 @@ namespace io
 	void clearScreen()
 	{
 		for (int i = 0; i < TermHeight; i++)
-			cout << "\n";
+		cout << "\n";
 	}
 
 	void afficherCarte(Carte& c, int t)
@@ -254,7 +254,7 @@ namespace io
 		int deplacementNecessaire;
 
 		// Pour une raison X ou Y, cet appel printf(positionDansTerminal) ne marchait pas.
-		// ¯\_(ツ)_/¯
+		// ¯\_(ツ)_/¯ .Je pense que c'est plutôt pour la raison Y, mais ça n'engage que moi
 		std::string s = "printf \"\033["+std::to_string(interactionsOverlayX)+";0H\"";
 		system(s.c_str());
 
@@ -443,13 +443,62 @@ namespace io
 		}
 	}
 
+	string choix_nom()
+	{
+		puts("- Choix nom -");
+
+		string input = long_input();
+		return input;
+	}
+
+	string choix_description()
+	{
+		puts("- Choix description -");
+
+		string input = long_input();
+		return input;
+	}
+
+	int choix_taille()
+	{
+		puts("- Choix taille -");
+
+		string s_input = long_input();                                            //Input utilisateur
+		int input = atoi(s_input.c_str());
+
+		while (input < 5 && input > 254)                				//Input incorrect
+		{
+			puts("Taille impossible, veuillez choisir une taille entre 5 et 254!");
+			s_input = long_input();
+			int input = atoi(s_input.c_str());
+		}
+		return input;
+	}
+
+	void creationCarte()
+	{
+		string name = choix_nom();
+		string desc = choix_description();
+		int tail = choix_taille();
+
+		Carte a_creer(tail, name, desc, 0);
+
+		a_creer.coordonneejoueur();
+		a_creer.coordonneeobstacle();
+		a_creer.coordonneemonstre();
+
+		a_creer.saisie();
+	}
+
 /*	competence createCompetenceMonstre() //Permet à l'utilisateur de créer une compétence pour monstre
 	{
 		string skillName;
 		int skillDamage;
 		int skillManaCost;
+
 		cout << "Entrez le nom de la compétence : ";
 		cin >> skillName;
+
 		cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
 		cin >> skillDamage;
 		while(!checkInput(skillDamage))
@@ -457,17 +506,23 @@ namespace io
 			cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
 			cin >> skillDamage;
 		}
+
 		competence creation(skillName, skillDamage);
+
 		return creation;
 	}
+
+
 	monstre createMonstre() //Permet à l'utilisateur de créer un monstre avec des caractéristiques choisies
 	{
 		string entiteName;
 		int entiteHpMax;
 		int entiteSpeed;
+
 		cout << "Entrez le nom du monstre : ";
 		cin >> entiteName;
 		cout << endl;
+
 		cout << "Entrez son nombre de points de vie : ";
 		cin >> entiteHpMax;
 		while(!checkInput(entiteHpMax))
@@ -475,6 +530,7 @@ namespace io
 			cout << "Entrez son nombre de points de vie : ";
 			cin >> entiteHpMax;
 		}
+
 		cout << "Entrez sa vitesse : ";
 		cin >> entiteSpeed;
 		while(!checkInput(entiteSpeed))
@@ -482,16 +538,22 @@ namespace io
 			cout << "Entrez sa vitesse : ";
 			cin >> entiteSpeed;
 		}
+
 		monstre creation = monstre(entiteName, entiteHpMax, entiteSpeed); //Crée le monstre
+
 		vector<competence> skills = creation.getSkillVect();
+
 		for (int i=0 ; i<3 ; i++) //Remplit le tableau de compétences avec de nouvelles compétences
 		{
 			// PREVOIR UN SWITCH POUR SAVOIR SI L'USER VEUT CONTINUER A RENTRER DES COMPETENCES
 			// PENSER A CHANGER LE 3 DANS LA BOUCLE EN 11
 		   skills.push_back(createCompetenceMonstre());
 		}
+
 		creation.printMonstre();
+
 		creation.saveInFile(); //Le sauvegarde dans le fichier texte
+
 		return creation;
 	}
 */
@@ -604,7 +666,6 @@ namespace io
 		}
 
 	}
-
 
 	vector<competence> loadCompetenceFromFile(string nomFichier,int numLigne)
 	{
@@ -720,11 +781,10 @@ namespace io
 		return allSkills;
 	}
 
-
 	vector <Carte> loadAllCarteFromFile(string nomFichier)
 	{
 		vector<Carte> selectionnable ;
-		Carte defaut;
+		//Carte defaut;
 		//selectionnable.push_back(defaut.CarteDefaut());
 		ifstream fichier(nomFichier, ios :: in) ;
 
@@ -733,7 +793,6 @@ namespace io
 			string current_line;
 			while (getline(fichier, current_line))
 			{
-				bool init = false;
 				string id, nom, description, taille, nbr_monstre, coordonnee1, coordonnee2, type = "" ;
 				int i = 0 ;
 				std::stringstream entree;
@@ -762,13 +821,16 @@ namespace io
 				taille = entree.str();
 				entree.str("");
 				// Prise NOMBRE DE MONSTRE
-				// while (current_line[i] != '|')
-				// 	entree << current_line[i++];
-				// i++;
-				// nbr_monstre = entree.str();
-				// entree.str("");
+				while (current_line[i] != '|')
+					entree << current_line[i++];
+				i++;
+				nbr_monstre = entree.str();
+				entree.str("");
 				int t = atoi(taille.c_str());
-				Carte carte_temporaire(t,nom,description);
+				int nb_m = atoi(nbr_monstre.c_str());
+
+				Carte carte_temporaire(t, nom, description, nb_m);
+
 				// Prise obstacles
 				while (i < current_line.size() && current_line[i+1] != '\0')
 				{
@@ -815,6 +877,7 @@ bool checkSeparatorCarte(string uneLigne) //Retourne false si le nb de séparate
 
 		return false;
 	}
+
 bool checkSeparatorCoordonnee(std::string nomFichier, int numLigne) //Retourne false si le nb de séparateurs dans un champ de compétence n'est pas le nombre définit
 	{
 		int nbSeparateur = 0;
