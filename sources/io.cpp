@@ -166,16 +166,13 @@ namespace io
 	void afficherCarte(Carte& c, int t)
 	{
 		// On prends le plateau en copie
-		std::string ** map = c.getPlateau();					// ATTENTE D'UN PARTAGE DU PLATEAU
+		std::string ** map = c.getPlateau();
 
 		// On (re)vérifie la taille du terminal
 		checkTerminalSize();
 
 		// On efface l'écran
 		clearScreen();
-
-		// Prendre la position de la carte
-		// currentPlayerPosition = c.playerPosition();			// ATTENTE DE LA FONCTION
 
 		// Si le joueur est plus bas que l'affichage de la carte
 		while (currentPlayerPosition.first >= mapPositionX+TermWidth)
@@ -190,12 +187,22 @@ namespace io
 		int TermPosX = 0;
 		int TermPosY = 0;
 
+		printf("\033[0;0H");	// Remet le curseur au debut
+
 		// On affiche les petites cases WUBBA LUBBA DUB DUB
 		while (TermPosY < TermHeight && displayY < t)
 		{
 			while (TermPosX < TermWidth && displayX < t)
 			{
-				std::cout << map[displayX][displayY];		// RESTE A AJOUTER LA COULEUR
+				if (map[displayX][displayY] == "joueur")
+					std::cout << RED << 'X' << BLANK;
+				else if (map[displayX][displayY][0] == 'm')
+					std::cout << BLUE << 'X' << BLANK;
+				else if (map[displayX][displayY][0] == 'a')
+					std::cout << GREEN << 'X' << BLANK;
+				else
+					std::cout << 'o';
+				// std::cout << map[displayX][displayY];		// RESTE A AJOUTER LA COULEUR
 				TermPosX++;
 				displayX++;
 			}
@@ -210,10 +217,12 @@ namespace io
 
 	void updateMap(std::pair<int,int> newPlayerPos)
 	{
-		printf("\033[%i;%iH", currentPlayerPosition.first, currentPlayerPosition.second);
+		printf("\033[%c;%cH", currentPlayerPosition.second, currentPlayerPosition.first);
 		cout << BLANK << ' ' << BLANK;
-		printf("\033[%i;%iH", newPlayerPos.first, newPlayerPos.second);
-		cout << BLUE << 'X' << BLANK;
+		printf("\033[%c;%cH", newPlayerPos.second, newPlayerPos.first);
+		cout << GREEN << 'X' << BLANK;
+		currentPlayerPosition.first = newPlayerPos.first;
+		currentPlayerPosition.second = newPlayerPos.second;
 	}
 
 	void afficherMouvements()
@@ -325,8 +334,8 @@ namespace io
 		cout << flush;
 
 		// Remet le curseur dans l'overlay
-		printf("\033[15A");			// Haut de deux lignes
-		printf("\033[%dD", TermWidth - 2);	// Gauche de TermWidth-2 cases
+		printf("\033[2A");			// Haut de deux lignes
+		printf("\033[%dC", TermWidth/2);	// Gauche de TermWidth-2 cases
 	}
 
 	void checkTerminalSize()

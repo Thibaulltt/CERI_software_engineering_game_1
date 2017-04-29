@@ -35,6 +35,8 @@ class Carte
 		*/
 		Carte(int taille, std::string name, std::string description) ;
 
+		Carte(int taille, std::string name, std::string description, int nb_monstre) ;
+
 		//! Verif_taille()
 		/*!
 			Verifie que la taille de la carte est acceptable
@@ -52,7 +54,7 @@ class Carte
 		void coordonneejoueur();
 
 		//! Coordonnée obstacle
-		/*! 
+		/*!
 			Demande le nombre d'obstacles souhaités,
 			vérifie que ce nombre est possible en fonction du nombre de cases dispo sur la carte,
 			Demande et initialise les coordonnées de chaque obstacle.

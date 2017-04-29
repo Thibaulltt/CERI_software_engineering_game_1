@@ -54,11 +54,10 @@ int jeu::getNbMonstres()
 
 void jeu::afficherJeu()
 {
-	cout << "TAILLE : " << jeu_carte.getTaille() << endl;
-	cout << "PLATOS : " << jeu_carte.getPlateau() << endl;
-	//clearScreen();
-	io::afficherCarte(jeu_carte, jeu_carte.getTaille());
-	//										afficherMouvements();
+	afficherCarte(jeu_carte, jeu_carte.getTaille());
+	deplacement();
+	deplacement();
+	deplacement();
 }
 
 std::string jeu::genererDeplacement(std::vector<bool>& v)
@@ -70,7 +69,7 @@ std::string jeu::genererDeplacement(std::vector<bool>& v)
 	std::string deplacements = "";
 
 	// Si le joueur peut se déplacer vers le haut :
-	if (y != 0 && jeu_carte.caseAccessible(x,y-1))
+	if (y >= 0 && jeu_carte.caseAccessible(x,y-1))
 	{
 		deplacements += "| Z - Haut ";
 		v[0] = true;
@@ -78,7 +77,7 @@ std::string jeu::genererDeplacement(std::vector<bool>& v)
 	else
 		v[0] = false;
 	// Si le joueur peut se deplacer vers la gauche :
-	if(x != 0 && jeu_carte.caseAccessible(x-1,y))
+	if(x >= 0 && jeu_carte.caseAccessible(x-1,y))
 	{
 		deplacements += "| Q - Gauche ";
 		v[1] = true;
@@ -86,7 +85,7 @@ std::string jeu::genererDeplacement(std::vector<bool>& v)
 	else
 		v[1] = false;
 	// Si le joueur peut se déplacer vers le bas
-	if (y != max && jeu_carte.caseAccessible(x,y+1))
+	if (y < max && jeu_carte.caseAccessible(x,y+1))
 	{
 		deplacements += "| S - Bas ";
 		v[2] = true;
@@ -94,13 +93,14 @@ std::string jeu::genererDeplacement(std::vector<bool>& v)
 	else
 		v[2] = false;
 	// Si le joueur peut se déplacer vers la droite :
-	if (x != max && jeu_carte.caseAccessible(x+1,y))
+	if (x < max && jeu_carte.caseAccessible(x+1,y))
 	{
 		deplacements += "| D - Droite ";
 		v[3] = true;
 	}
 	else
 		v[3] = false;
+	cout << endl;
 	return deplacements + "|";
 }
 
@@ -129,33 +129,34 @@ void jeu::deplacement()
 	char deplacement_demande = de();
 	while (deplacement_possibles.find(deplacement_demande) == string::npos)
 	{
-		afficherMouvements(deplacement_possibles,"Cette case est innaccessible !");
+		std::string s = "Cette case est innaccessible !" + std::string(1,deplacement_demande);
+		afficherMouvements(deplacement_possibles,s);
 		deplacement_demande = de();
 	}
 	switch (deplacement_demande) {
 		case 'z':
-			updateMap(std::make_pair(x,--y));
+			updateMap(std::make_pair(x,y-1));
 			break;
 		case 'Z':
-			updateMap(std::make_pair(x,--y));
+			updateMap(std::make_pair(x,y-1));
 			break;
 		case 's':
-			updateMap(std::make_pair(x,++y));
+			updateMap(std::make_pair(x,y+1));
 			break;
 		case 'S':
-			updateMap(std::make_pair(x,++y));
+			updateMap(std::make_pair(x,y+1));
 			break;
 		case 'q':
-			updateMap(std::make_pair(--x,y));
+			updateMap(std::make_pair(x-1,y));
 			break;
 		case 'Q':
-			updateMap(std::make_pair(--x,y));
+			updateMap(std::make_pair(x-1,y));
 			break;
 		case 'd':
-			updateMap(std::make_pair(++x,y));
+			updateMap(std::make_pair(x+1,y));
 			break;
 		case 'D':
-			updateMap(std::make_pair(++x,y));
+			updateMap(std::make_pair(x+1,y));
 			break;
 	}
 

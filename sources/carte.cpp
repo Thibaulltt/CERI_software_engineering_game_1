@@ -33,8 +33,40 @@ Carte::Carte (int taille, string name, string desc)
 	{
 		plateau[i] = new string [taille];
 	}
+
+	for (int i = 0; i < taille; i++)
+	{
+		for (int j = 0; j < taille; j++)
+		{
+			plateau[i][j] = "v";
+		}
+	}
 	this -> case_dispo = taille*taille;
 	this -> nbr_monstre = taille ;
+}
+
+Carte::Carte (int taille, string name, string desc, int nb_monstre)
+{
+	this->nom = name;
+	this->description = desc;
+	this->taille = taille;
+
+	this->plateau = new string * [taille];
+	for (int i = 0; i < taille ; i++)
+	{
+		plateau[i] = new string [taille];
+	}
+
+	for (int i = 0; i < taille; i++)
+	{
+		for (int j = 0; j < taille; j++)
+		{
+			plateau[i][j] = "v";
+		}
+	}
+
+	this -> nbr_monstre = nb_monstre;
+	this -> case_dispo = taille * taille;
 }
 
 int Carte::verif_taille(int taille)
@@ -321,7 +353,7 @@ Carte Carte::operator=(const Carte a_copier)
 bool Carte::caseAccessible(int i, int j)
 {
 	if (i < 0 || i > taille || j < 0 || j > taille)
-		return false;
+	 	return false;
 	return plateau[i][j] == "v";
 }
 
