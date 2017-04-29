@@ -9,24 +9,24 @@ jeu::jeu()
 {
 	bienvenue();
 
-			//Choix personnage
-	vector<personnage> tous_persos;					//Vecteur personnages
-	personnage pers;						//Dummy identification type template
-	string nom_file = "fichierPersonnage.txt";			//Nom fichier source personnages
-	tous_persos = loadAllEntiteFromFile(pers, nom_file);		//Remplissage vecteur personnages depuis fichier
+		//Choix personnage
+	vector<personnage> tous_persos;							//Vecteur personnages
+	personnage pers;										//Dummy identification type template
+	string nom_file = "fichierPersonnage.txt";				//Nom fichier source personnages
+	tous_persos = loadAllEntiteFromFile(pers, nom_file);	//Remplissage vecteur personnages depuis fichier
 	choix_unique_element(jeu_perso, tous_persos, 0);		//Choix + assignation personnage partie
 
 		//Choix carte
-	vector<Carte> toutes_cartes;					//Vecteur cartes
-	nom_file = "fichierCarte.txt";					//Nom fichier source cartes
+	vector<Carte> toutes_cartes;							//Vecteur cartes
+	nom_file = "fichierCarte.txt";							//Nom fichier source cartes
 	toutes_cartes = loadAllCarteFromFile(nom_file);			//Chargement carte depuis fichier
 	choix_unique_element(jeu_carte, toutes_cartes, 0);		//Choix + assignation carte partie
-	///jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
+    jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
 
 		//Chargement monstres
-	monstre mons;							//Dummy identification type template
-	nom_file = "fichierMonstre.txt";				//Nom fichier source monstres
-	jeu_monstres = loadAllEntiteFromFile(mons, nom_file);		//Chargement monstres depuis fichier
+	monstre mons;											//Dummy identification type template
+	nom_file = "fichierMonstre.txt";						//Nom fichier source monstres
+	jeu_monstres = loadAllEntiteFromFile(mons, nom_file);	//Chargement monstres depuis fichier
 }
 
 jeu::~jeu()
@@ -52,13 +52,15 @@ int jeu::getNbMonstres()
 	return jeu_nombre_monstres;
 }
 
+void jeu::setJeuCarte(Carte jeu_map)
+{
+	jeu_carte = jeu_map;
+}
+
 void jeu::afficherJeu()
 {
-	cout << "TAILLE : " << jeu_carte.getTaille() << endl;
-	cout << "PLATOS : " << jeu_carte.getPlateau() << endl;
-	//clearScreen();
 	io::afficherCarte(jeu_carte, jeu_carte.getTaille());
-	//										afficherMouvements();
+	afficherMouvements();
 }
 
 std::string jeu::genererDeplacement(std::vector<bool>& v)
@@ -104,62 +106,11 @@ std::string jeu::genererDeplacement(std::vector<bool>& v)
 	return deplacements + "|";
 }
 
-std::string jeu::genererInputAccepte(vector<bool> b)
-{
-	std::string s = "";
-	if (b[0] == true)
-		s += "Zz";
-	if (b[1] == true)
-		s += "Qq";
-	if (b[2] == true)
-		s += "Ss";
-	if (b[3] == true)
-		s += "Dd";
-	return s;
-}
-
 void jeu::deplacement()
 {
-	std::vector<bool> b(4,false);
-	std::string deplacement_possibles = genererDeplacement(b);
-	std::string inputAccepte = genererInputAccepte(b);
-	int x = currentPlayerPosition.first;
-	int y = currentPlayerPosition.second;
-	afficherMouvements(deplacement_possibles,"Dans quelle direction voulez-vous vous déplacer ?");
-	char deplacement_demande = de();
-	while (deplacement_possibles.find(deplacement_demande) == string::npos)
-	{
-		afficherMouvements(deplacement_possibles,"Cette case est innaccessible !");
-		deplacement_demande = de();
-	}
-	switch (deplacement_demande) {
-		case 'z':
-			updateMap(std::make_pair(x,--y));
-			break;
-		case 'Z':
-			updateMap(std::make_pair(x,--y));
-			break;
-		case 's':
-			updateMap(std::make_pair(x,++y));
-			break;
-		case 'S':
-			updateMap(std::make_pair(x,++y));
-			break;
-		case 'q':
-			updateMap(std::make_pair(--x,y));
-			break;
-		case 'Q':
-			updateMap(std::make_pair(--x,y));
-			break;
-		case 'd':
-			updateMap(std::make_pair(++x,y));
-			break;
-		case 'D':
-			updateMap(std::make_pair(++x,y));
-			break;
-	}
-
+	return;
 }
+
 
 int jeu::combat(string id_monstre)
 {
@@ -267,13 +218,18 @@ competence jeu::choix_comp(entite & indiv)
 	if (indiv.is_personnage())	//Personnage
 	{
 		puts("\n- Choix de compétence -");
-		choix_unique_element(comp_util, indiv.getSkillVect(), 0);	//Choix manuel
+		choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
 
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
 			puts("Vous n'avez pas assez de mana pour utiliser cette compétence!");
 			puts("- Choix de compétence -");
-			choix_unique_element(comp_util, indiv.getSkillVect(), 0);	//Choix manuel
+			choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+		}
+
+		if (indiv.getManaCurrent() > indiv.getManaMax())
+		{
+			indiv.setManaCurrent(indiv.getManaMax());
 		}
 	}
 	else	//Monstre
@@ -291,20 +247,23 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 {
 	entite target;
 
-	if (indiv.is_personnage())	//Personnage
+	if (indiv.getAlive() == true)
 	{
-		cout << "- Choix de la cible pour la compétence " << comp_util.getName() << " -" << endl;
-		choix_unique_element(target, vect_entite, 1);
-	}
-	else	//Monstre
-	{
-		int cible = rand() % vect_p.size();	//Choix aléatoire
-		target = vect_entite[cible];
-	}
+		if (indiv.is_personnage())	//Personnage
+		{
+			cout << "- Choix de la cible pour la compétence " << comp_util.getName() << " -" << endl;
+			choix_unique_element(target, vect_entite, 1);
+		}
+		else	//Monstre
+		{
+			int cible = rand() % vect_p.size();	//Choix aléatoire
+			target = vect_entite[cible];
+		}
 
-	cout << endl << endl << indiv.getName() << " utilise la compétence ";
-	cout << comp_util.getName();
-	cout << " sur " << target.getName() << " (" << comp_util.getDamage() << " dégâts)." << endl;
+		cout << endl << endl << indiv.getName() << " utilise la compétence ";
+		cout << comp_util.getName();
+		cout << " sur " << target.getName() << " (" << comp_util.getDamage() << " dégâts)." << endl;
+	}
 
 	return target;
 }
@@ -318,6 +277,12 @@ int jeu::appliquer_comp(entite target, vector<entite> & vect_entite, competence 
 		if ((* ite).getID() == target.getID())
 		{
 			(* ite) = (* ite).enleverVie(comp_util.getDamage());	//Application attaque
+
+			if ((* ite).getHpCurrent() > (* ite).getHpMax())
+			{
+                (* ite).setHpCurrent((* ite).getHpMax());
+			}
+
 			break;
 		}
 	}
@@ -334,7 +299,7 @@ int jeu::appliquer_comp(entite target, vector<entite> & vect_entite, competence 
 			cout << "Le monstre " << (* ite).getName() << " est mort." << endl;
 			nb_monsters--;
 		}
-		vect_entite.erase(ite);
+//		vect_entite.erase(ite);
 	}
 
 	//Check conséquences combat
