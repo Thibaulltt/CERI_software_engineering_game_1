@@ -47,8 +47,6 @@ public:
 	*/
 	entite(std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax,std::string entiteDescription, std::vector<competence> allSkills);
 
-	template<typename T> std::string toString(const T & valeur); // Conversion de n'importe quoi en string
-
 	//!Getter pour l'id.
 	std::string getID();
 
@@ -131,6 +129,7 @@ public:
 	//! Enlève x points de mana a l'entite.
 	/*!
 		Cette fonction ne sert à rien, à part ne pas faire bugger les autres.
+		En fait, elle sert à dépenser la mana si c'est possible.
 		\return Un booléen vérifiant la capacité à dépenser la mana.
 	*/
 	bool enleverMana(int skillManaCost);
@@ -138,7 +137,7 @@ public:
 
 	//! Affichage brut
 	/*!
-	Permet d'afficher les information nécessaires à la gestion des entités (suppression)
+		Permet d'afficher les information nécessaires à la gestion des entités (suppression)
 	*/
 	void afficher_brut();
 

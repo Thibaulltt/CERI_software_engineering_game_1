@@ -152,7 +152,6 @@ namespace io
 	*/
 	extern bool checkSeparatorSkill(std::string nomFichier, int numLigne);
 
-
 	//! Créer une competence
 	/*!
 		Cette fonction permet de créer rapidement une compétence pour pouvoir l'utiliser facilement après.
@@ -310,6 +309,40 @@ namespace io
 	*/
     	void aff_combat(std::vector<entite> vect_entite);
 
+	//! Choix du nom
+	/*!
+		Permet de choisir un nom.
+	*/
+	std::string choix_nom();
+
+	//! Choix de la description
+	/*!
+		Permet de choisir une description.
+	*/
+	std::string choix_description();
+
+	//! Choix de la taille
+	/*!
+		Permet de choisir la taille de la carte.
+		La taille doit être supérieure à 4 et inférieure à 255.
+	*/
+	int choix_taille();
+
+	//! Création d'une carte
+	/*!
+		Permet de créer une carte et de la rajouter dans le fichier des cartes.
+		- Demande un nom pour la carte.
+		- Demande une description pour la carte.
+		- Demande une taille pour la carte.
+		- Construit la carte.
+		- Demande le placement du joueur.
+		- Demande le placement des obstacles.
+		- Demande le placement des monstres.
+		- Assigne des monstres aux emplacements choisis.
+		- Ecrit la carte dans le fichier.
+	*/
+	void creationCarte();
+
 	//! Chargement des compétences
 	/*!
 		Lit une ligne d'un fichier, et remplit un vecteur avec des objets construits à partir des informations récupérées.
@@ -466,7 +499,6 @@ namespace io
 					continue;
 
 			}
-
 			fichierEntite.close();
 		}
 
@@ -478,63 +510,87 @@ namespace io
 		return allEntite;
 	}
 
-
 	//! Supprimer une entité
 	/*!
-	Cette fonction permet de supprimer une entité choisie par l'utilisateur.
-
+	Cette fonction permet de supprimer un élément choisi par l'utilisateur.
 	Mode opératoire :
-	- Affichage de toutes les entités disponibles dans le vecteur d'entités
-	- L'utilisateur choisit laquelle il supprime
-	- On efface du vecteur l'entité choisie
+	- L'utilisateur choisit l'élément à supprimer dans le vecteur
+	- On efface du vecteur l'élément choisi
 	- Effacement de tout le fichier
-	- Réecriture du fichier via le vecteur d'entité actualisé
+	- Réecriture du fichier via le vecteur d'élément actualisé
 	\param nomFichier Le nom du fichier .txt dans lequel on veut supprimer une entité
-	\param allEntite Vecteur contenant toutes les entités disponibles
+	\param allEntite Vecteur contenant tous les éléments disponibles
 	\param lettreEntite String permettant de savoir si on est en train de traiter un monstre ou un personnage (pour identifiant)
 	*/
-	template <typename T> void deleteLineEntite(std::string nomFichier, T allEntite, std::string lettreEntite)
+	template <typename T> void deleteLineElement(std::string nomFichier, T allEntite, std::string lettreEntite)
 	{
 		int cpt = 0;
-		for (int i = 0; i < allEntite.size(); i++) //Affichage de toutes les entités
+
+		while(1)
 		{
-			std::cout << ++cpt << "- ";
-			allEntite[i].afficher_brut();
-			allEntite[i].afficher_detail();
-			std::cout << std::endl;
-		}
+			std::cout << "Choisissez l'élément à supprimer (1-9) (q pour annuler): "; //Choix de l'utilisateur
+			std::string sInput = long_input();
 
-		std::cout << "Choisissez l'entite à supprimer : "; //Choix de l'utilisateur
-		std::string sInput = long_input();
-		int input;
-		std::istringstream(sInput) >> input;
-
-		while (input <= 0 || input > allEntite.size())                //Input incorrect
-		{
-			std::puts("Input incorrect. Réessayez!");
-			sInput = long_input();                                   //Input utilisateur
-			std::istringstream(sInput) >> input;                          //Trancription en chiffres
-		}
-
-		allEntite.erase(allEntite.begin() + input); //Suppression de la case dans le vecteur
-
-		std::ofstream fichierEntite(nomFichier.c_str(), std::ios::trunc); //Ouverture et suprresion de tout le fichier
-
-		if (fichierEntite)
-		{
-			for (int i = 0; i < allEntite.size(); i++)
+			if (sInput == "q" || sInput == "Q")
 			{
-
-				allEntite[i].saveInFile(lettreEntite, nomFichier); //Ecriture d'une ligne dans le fichier
+				return;
 			}
 
-			fichierEntite.close();
-		}
+			int input = atoi(sInput.c_str());
 
-		else
-		{
-			std::cerr << "Impossible d'ouvrir le fichier." << std::endl;
+			while (input <= 0 && input > allEntite.size())                //Input incorrect
+			{
+				std::puts("Input incorrect. Réessayez!");
+				sInput = long_input();                                   //Input utilisateur
+				input = atoi(sInput.c_str());
+
+				if (sInput == "q" || sInput == "Q")
+				{
+					return;
+				}
+			}
+
+			allEntite.erase(allEntite.begin() + input); //Suppression de la case dans le vecteur
+
+			if (allEntite.size() == 0)
+			{
+				std::cout << "Il n'y a plus rien à supprimer!";
+				break;
+			}
+			else
+			{
+				for (int i = 0; i < allEntite.size(); i++) //Affichage de toutes les entités
+				{
+					std::cout << ++cpt << "- ";
+					allEntite[i].afficher_brut();
+				}
+			}
+
+			std::ofstream fichierEntite(nomFichier.c_str(), std::ios::trunc); //Ouverture et suprresion de tout le fichier
+
+			if (fichierEntite)
+			{
+				for (int i = 0; i < allEntite.size(); i++)
+				{
+
+					allEntite[i].saveInFile(lettreEntite, nomFichier); //Ecriture d'une ligne dans le fichier
+				}
+
+				fichierEntite.close();
+			}
+			else
+			{
+				std::cerr << "Impossible d'ouvrir le fichier." << std::endl;
+			}
 		}
+		return;
+	}
+
+	template<typename T> std::string toString( const T & valeur ) //Conversion de n'importe quoi en string
+	{
+		std::ostringstream flux;
+		flux << valeur;
+		return flux.str();
 	}
 }
 
