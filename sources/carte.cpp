@@ -249,6 +249,7 @@ void Carte::setTaille(int t)
 }
 
 void Carte::setName(string name)
+
 {
 	nom = name;
 }
