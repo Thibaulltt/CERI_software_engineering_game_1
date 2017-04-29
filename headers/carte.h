@@ -33,16 +33,7 @@ class Carte
 			\param nom Nom que l'on va donner à la carte
 			\param description Description brève de la carte
 		*/
-		Carte(int taille, std::string name, std::string description) ;
-
-		//! Verif_taille()
-		/*!
-			Verifie que la taille de la carte est acceptable
-			La taille doit être supérieure à 4 et inférieure à 255
-			\param taille int : taille à tester. Si la taille n'entre pas dans les critères, on redemande la taille
-			\return taille acceptée
-		*/
-		int verif_taille(int taille);
+		Carte(int taille, std::string name, std::string description, int nb_monstre);
 
 		//! Coordonnée Joueur
 		/*!
@@ -52,7 +43,7 @@ class Carte
 		void coordonneejoueur();
 
 		//! Coordonnée obstacle
-		/*! 
+		/*!
 			Demande le nombre d'obstacles souhaités,
 			vérifie que ce nombre est possible en fonction du nombre de cases dispo sur la carte,
 			Demande et initialise les coordonnées de chaque obstacle.
@@ -61,9 +52,10 @@ class Carte
 		*/
 		void coordonneeobstacle();
 		void coordonneemonstre();
-		void affichage_normal();
 		int nbLigneFichier(std::string nomFichier);
-		void sauvegarde() ;
+		void saisie() ;
+		void saveInFile(std::string lettreCarte, std::string nomFichier);
+		std::string carteString(std::string lettreEntite, std::string nomFichier);
 		std::string getName() ;
 		std::string getDescription() ;
 		void setTaille(int taille);
@@ -75,8 +67,9 @@ class Carte
 		void setCaseDispo(int case_dispo);
 		Carte operator=(const Carte a_copier);
 		int getTaille(){return taille;}
-		std::string** getPlateau(){return plateau;}
+		std::string ** getPlateau(){return plateau;}
 		int getNbrMonstres(){return nbr_monstre;}
+		void affichage_normal();
 		void afficher_detail();
 		void afficher_brut();
 		bool caseAccessible(int i, int j);
