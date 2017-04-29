@@ -9,34 +9,33 @@
 using namespace io;
 using namespace std;
 
-Carte :: Carte()
+// Constructeur sans argument
+Carte::Carte()
 {
 	this->id = "";
-	this->nom = "";
-	this->description = "";
+  	this->nom = "";
+  	this->description = "";
 	this->taille = 0;
 	this->plateau = NULL;
-	this->nbr_monstre = 0 ;
-	this->case_dispo = 0;
-
+  	this->nbr_monstre = 0 ;
+  	this->case_dispo = 0;
 }
 
-Carte :: Carte (int taille, string name, string desc)
+// Constructeur avec arguments
+Carte::Carte (int taille, string name, string desc)
 {
+	this->taille = verif_taille(taille);
 	this->nom = name;
 	this->description = desc;
-	this->taille = verif_taille(taille);
 
 	this->plateau = new string * [taille];
 	for (int i = 0; i < taille ; i++)
 	{
 		plateau[i] = new string [taille];
 	}
-
-	this -> nbr_monstre = taille;
-	this -> case_dispo = taille * taille;
+	this -> case_dispo = taille*taille;
+	this -> nbr_monstre = taille ;
 }
-
 
 int Carte::verif_taille(int taille)
 {
@@ -48,7 +47,7 @@ int Carte::verif_taille(int taille)
 	return taille;
 }
 
-void Carte :: coordonneejoueur()
+void Carte::coordonneejoueur()
 {
 	int coordonneejoueur1;
 	int coordonneejoueur2;
@@ -77,7 +76,7 @@ void Carte::coordonneeobstacle()
 	int nbr_obstacle=0;
 	int coordonneeobstacle1;
 	int coordonneeobstacle2;
-	cout<< "Combien d'obstacles voulez-vous sur la carte?";
+	cout<< "Combien d'obstacle voulez-vous sur la carte?";
 	cin >> nbr_obstacle;
 	while (nbr_obstacle >= case_dispo)
 	{
@@ -118,7 +117,7 @@ void Carte::coordonneemonstre()
 	int coordonneemonstre2;
 	while ((nombre_monstre < taille) || (nombre_monstre > case_dispo))
 	{
-		cout<< "Combien de monstres voulez-vous sur la carte?";
+		cout<< "Combien de monstre voulez-vous sur la carte?";
 		cin >> nombre_monstre;
 	}
 	this -> nbr_monstre = nombre_monstre;
@@ -138,7 +137,7 @@ void Carte::coordonneemonstre()
 			}
 			else
 			{
-				cout << "Cette case est déjà occupée, veuillez en choisir une autre " << endl;
+				cout << "Cette case est deja occupée, veuillez en choisir une autre " << endl;
 			}
 		}
 		else
@@ -149,7 +148,7 @@ void Carte::coordonneemonstre()
 	case_dispo = case_dispo - nbr_monstre;
 }
 
-void Carte :: affichage_normal()
+void Carte::affichage_normal()
 {
 	for (int i=0; i<taille; i++)
 	{
@@ -194,7 +193,7 @@ void Carte::sauvegarde()
 	int nbligne=nbLigneFichier(carte);
 
 	//ouverture du fichier en écriture
-	ofstream fichier(carte, ios :: app) ;
+	ofstream fichier(carte, ios::app) ;
 
 	// Si fichier bien ouvert
 	if (fichier)
@@ -235,34 +234,35 @@ void Carte::sauvegarde()
 	return ;
 }
 
-string Carte :: getName()
+string Carte::getName()
 {
     return this->nom;
 }
 
-string Carte :: getDescription()
+string Carte::getDescription()
 {
-    return this->description;
+	return this->description;
 }
 
-void Carte::setTaille(int taille)
+void Carte::setTaille(int t)
 {
-	cout << "TAILLE DEMANDEE : " << taille << endl;
-	this->taille = taille;
+	cout << "TAILLE DEMANDEE : " << t << endl;
+	this->taille = t;
 	cout << "TAILLE ASSIGNéE : " << this->taille << endl;
 }
 
-void Carte :: setName(string name)
+void Carte::setName(string name)
+
 {
 	nom = name;
 }
 
-void Carte :: setDescription(string desc)
+void Carte::setDescription(string desc)
 {
 	description = desc;
 }
 
-void Carte :: setPlateau(int taille)
+void Carte::setPlateau(int taille)
 {
 	plateau = new string * [taille];
 
@@ -272,19 +272,19 @@ void Carte :: setPlateau(int taille)
 	}
 }
 
-void Carte :: setCase(int i, int j, string value)
+void Carte::setCase(int i, int j, string value)
 {
 	plateau[i][j] = value;
 	if (value == "joueur")
 		io::setPlayerPosition(i,j);
 }
 
-void Carte :: setNbrMonstre(int nbr_monstre)
+void Carte::setNbrMonstre(int nbr_monstre)
 {
 	this -> nbr_monstre = nbr_monstre;
 }
 
-void Carte :: setCaseDispo(int case_dispo)
+void Carte::setCaseDispo(int case_dispo)
 {
 	this -> case_dispo = case_dispo;
 }
@@ -330,14 +330,10 @@ void Carte::afficher_detail()
 	cout << endl << endl << "Détails de la carte " << nom << endl << endl;
 	cout << "Taille: " << taille << " * " << taille << " = " << taille * taille << " cases au total." << endl;
 	cout << "Nombre total de monstres sur la carte: " << nbr_monstre << endl;
+	cout << "Nombre d'obstacles présents sur la carte: " << case_dispo << endl;
 	cout << "Description: " << description << endl;
 
 	cout << endl;
-}
-
-void Carte::afficher_brut()
-{
-    cout << nom << ", " << taille * taille << " cases, " << nbr_monstre << " monstres, " << case_dispo << " obstacles";
 }
 
 Carte Carte::CarteDefaut()

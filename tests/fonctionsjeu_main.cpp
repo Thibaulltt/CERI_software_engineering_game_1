@@ -8,6 +8,6 @@ using namespace std;
 int main()
 {
 	jeu a;
-	a.demarrer_jeu();
+	a.afficherJeu();
 	return 0;
 }
