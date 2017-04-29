@@ -6,32 +6,35 @@
 #include <string>
 #include "../headers/io.h"
 
-using namespace std;
 using namespace io;
+using namespace std;
 
-// Constructeur sans argument
 Carte :: Carte()
 {
+	this->id = "";
 	this->nom = "";
 	this->description = "";
+	this->taille = 0;
+	this->plateau = NULL;
 	this->nbr_monstre = 0 ;
 	this->case_dispo = 0;
+
 }
 
-// Constructeur avec arguments
 Carte :: Carte (int taille, string name, string desc)
 {
-	this->taille = verif_taille(taille);
 	this->nom = name;
 	this->description = desc;
+	this->taille = verif_taille(taille);
 
 	this->plateau = new string * [taille];
 	for (int i = 0; i < taille ; i++)
 	{
 		plateau[i] = new string [taille];
 	}
-	this -> case_dispo = taille*taille;
-	this -> nbr_monstre = taille ;
+
+	this -> nbr_monstre = taille;
+	this -> case_dispo = taille * taille;
 }
 
 
@@ -135,7 +138,7 @@ void Carte::coordonneemonstre()
 			}
 			else
 			{
-				cout << "Cette case est deja occupée, veuillez en choisir une autre " << endl;
+				cout << "Cette case est déjà occupée, veuillez en choisir une autre " << endl;
 			}
 		}
 		else
@@ -244,7 +247,9 @@ string Carte :: getDescription()
 
 void Carte::setTaille(int taille)
 {
-	this -> taille = taille;
+	cout << "TAILLE DEMANDEE : " << t << endl;
+	this->taille = t;
+	cout << "TAILLE ASSIGNéE : " << this->taille << endl;
 }
 
 void Carte :: setName(string name)
@@ -284,7 +289,7 @@ void Carte :: setCaseDispo(int case_dispo)
 	this -> case_dispo = case_dispo;
 }
 
-Carte Carte::operator=(const Carte & a_copier)
+Carte Carte::operator=(const Carte a_copier)
 {
 	this -> id = a_copier.id;
 	this -> nom = a_copier.nom;
@@ -325,24 +330,28 @@ void Carte::afficher_detail()
 	cout << endl << endl << "Détails de la carte " << nom << endl << endl;
 	cout << "Taille: " << taille << " * " << taille << " = " << taille * taille << " cases au total." << endl;
 	cout << "Nombre total de monstres sur la carte: " << nbr_monstre << endl;
-	cout << "Nombre d'obstacles présents sur la carte: " << case_dispo << endl;
 	cout << "Description: " << description << endl;
 
 	cout << endl;
 }
 
-Carte Carte :: CarteDefaut()
+void Carte::afficher_brut()
+{
+    cout << nom << ", " << taille * taille << " cases, " << nbr_monstre << " monstres, " << case_dispo << " obstacles";
+}
+
+Carte Carte::CarteDefaut()
 {
 	Carte def (5, "defaut", "carte par défaut") ;
-  def.id = "C0000" ;
+ 	def.id = "C0000" ;
 	plateau[0][0]="joueur" ;
 	plateau[2][0]="m0" ;
 	plateau[2][1]="m0" ;
 	plateau[2][2]="m0" ;
 	plateau[2][3]="m0" ;
-	plateau[2][4]="m0" ;	
+	plateau[2][4]="m0" ;
 	plateau[1][3]="arbre" ;
-    def.case_dispo = 24 ;
+	def.case_dispo = 24 ;
 	def.nbr_monstre = 5 ;
 	return def ;
 }
