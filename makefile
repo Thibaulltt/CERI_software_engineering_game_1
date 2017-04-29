@@ -19,13 +19,6 @@ OALL=$(OIO) $(OCARTE) $(OENTITE) $(OMONSTRE) $(OFONCTIONS) $(OCOMPETENCE) $(OPER
 
 # Cibles que l'on peut compiler directement :
 all:
-	#@make -s ca	# Carte
-	#@make -s co	# Compétences
-	#@make -s mo	# Monstre
-	#@make -s pe	# Personnage
-	#@make -s en	# Entite
-	#@make -s fj	# Fonctions jeu
-	#@make -s io	# IO
 	@make -s main.exe
 ca:
 	@make archives/carte.a

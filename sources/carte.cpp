@@ -319,12 +319,12 @@ void Carte::saveInFile(string lettreCarte, string nomFichier) //Ecrit les carac 
 	}
 }
 
-string Carte :: getName()
+string Carte::getName()
 {
     return this->nom;
 }
 
-string Carte :: getDescription()
+string Carte::getDescription()
 {
     return this->description;
 }
@@ -336,17 +336,17 @@ void Carte::setTaille(int taille)
 	cout << "TAILLE ASSIGNéE : " << this->taille << endl;
 }
 
-void Carte :: setName(string name)
+void Carte::setName(string name)
 {
 	nom = name;
 }
 
-void Carte :: setDescription(string desc)
+void Carte::setDescription(string desc)
 {
 	description = desc;
 }
 
-void Carte :: setPlateau(int taille)
+void Carte::setPlateau(int taille)
 {
 	plateau = new string * [taille];
 
@@ -356,19 +356,19 @@ void Carte :: setPlateau(int taille)
 	}
 }
 
-void Carte :: setCase(int i, int j, string value)
+void Carte::setCase(int i, int j, string value)
 {
 	plateau[i][j] = value;
 	if (value == "joueur")
 		io::setPlayerPosition(i,j);
 }
 
-void Carte :: setNbrMonstre(int nbr_monstre)
+void Carte::setNbrMonstre(int nbr_monstre)
 {
 	this -> nbr_monstre = nbr_monstre;
 }
 
-void Carte :: setCaseDispo(int case_dispo)
+void Carte::setCaseDispo(int case_dispo)
 {
 	this -> case_dispo = case_dispo;
 }
