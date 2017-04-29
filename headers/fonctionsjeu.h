@@ -20,7 +20,6 @@ using namespace io;
 */
 class jeu
 {
-public:
 	//! Carte du jeu, à choisir au début du jeu.
 	Carte jeu_carte;
 
@@ -33,6 +32,7 @@ public:
 	//! Compte le nombre de monstres restant sur la carte.
 	int jeu_nombre_monstres = 1;							///Temporaire!!
 
+public:
 	//! Constructeur par défaut sans argument.
 	/*!
 		Affichage d'un message de bienvenue.
