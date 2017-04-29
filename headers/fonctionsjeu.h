@@ -21,7 +21,7 @@ using namespace io;
 class jeu
 {
 	//! Carte du jeu, à choisir au début du jeu.
-	Carte jeu_carte;								///A remettre en privé
+	Carte jeu_carte;
 
 	//! Personnage choisi par le joueur, à choisir au début du jeu.
 	personnage jeu_perso;
@@ -43,8 +43,6 @@ public:
 		\sa perso(), carte(), monstre()
 	*/
 	jeu();
-
-	void debut_partie();
 
 	//! Destructeur par défaut.
 	~jeu();
@@ -137,14 +135,14 @@ public:
 
 	//! Appliquer compétence
 	/*!
-        Permet d'appliquer les effets de la compétence choisie sur la cible choisie.
-        Si la cible meurt, décrémente le compteur de personnages/monstres vivants.
-        Supprime les cibles mortes du vecteur d'entités.
-        \param target Cible de la compétence.
-        \param vect_entite Le vecteur duquel on tire la cible de la compétence.
-        \param comp_util La compétence à utiliser.
-        \param nb_players Le nombre total de joueurs de la partie.
-        \param nb_monsters Le nombre de monstres du combat en cours.
+		Permet d'appliquer les effets de la compétence choisie sur la cible choisie.
+		Si la cible meurt, décrémente le compteur de personnages/monstres vivants.
+		Supprime les cibles mortes du vecteur d'entités.
+		\param target Cible de la compétence.
+		\param vect_entite Le vecteur duquel on tire la cible de la compétence.
+		\param comp_util La compétence à utiliser.
+		\param nb_players Le nombre total de joueurs de la partie.
+		\param nb_monsters Le nombre de monstres du combat en cours.
 		\return Un entier: 1 si tous les monstres sont morts, 0 si tous les joueurs sont morts, 2 sinon.
 		\sa enleverVie()
 	*/
