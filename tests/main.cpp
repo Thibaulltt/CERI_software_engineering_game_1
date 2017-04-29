@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <iostream>
 #include <stdlib.h>
-#include <typeinfo>
 #include "../headers/carte.h"
 #include "../headers/fonctionsjeu.h"
 #include "../headers/io.h"
@@ -15,7 +14,6 @@ int main()
 
 	int persos_vivants = 1;
 	int nbMonstres = a.getNbMonstres();
-
 
 	while (persos_vivants != 0 && nbMonstres > 0)
 	{
