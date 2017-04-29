@@ -26,8 +26,8 @@ int main ()
 		switch (choix)
 		{
 		case 1:
-            test.config_carte();
-            break;
+			test.config_carte();
+			break;
 
 		case 2:
 			test.config_monstre();

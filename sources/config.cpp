@@ -61,18 +61,18 @@ void config::config_carte()
 void config::config_monstre()
 {
 	string nom_fichier = "fichierMonstre.txt";
-    vector<monstre> vect_monstre;
-    vector<monstre>::iterator itp;
+	vector<monstre> vect_monstre;
+	vector<monstre>::iterator itp;
 
 	monstre duh;
-    vect_monstre = loadAllEntiteFromFile(duh, nom_fichier);
+	vect_monstre = loadAllEntiteFromFile(duh, nom_fichier);
 
-    //Affichage tous monstres
-    int cpt = 0;
-    for (itp = vect_monstre.begin(); itp != vect_monstre.end(); itp++)	///Penser à remettre begin() + 3 pour persos par défaut
+	//Affichage tous monstres
+	int cpt = 0;
+	for (itp = vect_monstre.begin(); itp != vect_monstre.end(); itp++)	///Penser à remettre begin() + 3 pour persos par défaut
 	{
 		cout << ++cpt << "- ";
-        (* itp).afficher_brut();
+		(* itp).afficher_brut();
 	}
 
 	while(1)
@@ -110,18 +110,18 @@ void config::config_monstre()
 void config::config_perso()
 {
 	string nom_fichier = "fichierPersonnage.txt";
-    vector<personnage> vect_perso;
-    vector<personnage>::iterator itp;
+	vector<personnage> vect_perso;
+	vector<personnage>::iterator itp;
 
 	personnage duh;
-    vect_perso = loadAllEntiteFromFile(duh, nom_fichier);
+	vect_perso = loadAllEntiteFromFile(duh, nom_fichier);
 
-    //Affichage tous personnages
-    int cpt = 0;
-    for (itp = vect_perso.begin(); itp != vect_perso.end(); itp++)	///Penser à remettre begin() + 3 pour persos par défaut
+	//Affichage tous personnages
+	int cpt = 0;
+	for (itp = vect_perso.begin(); itp != vect_perso.end(); itp++)	///Penser à remettre begin() + 3 pour persos par défaut
 	{
 		cout << ++cpt << "- ";
-        (* itp).afficher_brut();
+		(* itp).afficher_brut();
 	}
 
 	while(1)
