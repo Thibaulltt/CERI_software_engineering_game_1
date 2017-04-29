@@ -784,8 +784,19 @@ namespace io
 	vector <Carte> loadAllCarteFromFile(string nomFichier)
 	{
 		vector<Carte> selectionnable ;
-		//Carte defaut;
-		//selectionnable.push_back(defaut.CarteDefaut());
+		// Carte par défaut
+		Carte defaut(5, "c0000|defaut", "carte par défaut", 5);
+		defaut.setCase(0,0,"joueur");
+		defaut.setCase(2,0,"m0");
+		defaut.setCase(2,1,"m0");
+		defaut.setCase(2,2,"m0");
+		defaut.setCase(2,3,"m0");
+		defaut.setCase(2,4,"m0");
+		defaut.setCase(1,3,"arbre");
+		defaut.setNbrMonstre(5);
+		defaut.setCaseDispo(18);
+ 		selectionnable.push_back(defaut);
+
 		ifstream fichier(nomFichier, ios :: in) ;
 
 		if (fichier)

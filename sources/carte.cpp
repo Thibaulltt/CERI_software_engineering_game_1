@@ -423,19 +423,3 @@ void Carte::afficher_brut()
 {
     cout << nom << ", " << taille * taille << " cases, " << nbr_monstre << " monstres" << endl;
 }
-
-//Carte Carte::CarteDefaut()
-//{
-//	Carte def (5, "defaut", "carte par défaut", 5) ;
-// 	def.id = "C0000" ;
-//	plateau[0][0]="joueur" ;
-//	plateau[2][0]="m0" ;
-//	plateau[2][1]="m0" ;
-//	plateau[2][2]="m0" ;
-//	plateau[2][3]="m0" ;
-//	plateau[2][4]="m0" ;
-//	plateau[1][3]="arbre" ;
-//	def.case_dispo = 24 ;
-//	def.nbr_monstre = 5 ;
-//	return def ;
-//}
