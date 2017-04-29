@@ -36,7 +36,8 @@ class Carte
 		Carte(int taille, std::string name, std::string description) ;
 
 		//! Verif_taille()
-		/*!  Verifie que la taille de la carte est acceptable
+		/*!
+			Verifie que la taille de la carte est acceptable
 			La taille doit être supérieur à 4 et inférieur à 255
 			\param taille int : taille à tester. Si la taille n'entre pas dans les critères, on redemande la taille
 			\return taille acceptée
@@ -44,13 +45,15 @@ class Carte
 		int verif_taille(int taille);
 
 		//! Coordonnée Joueur
-		/*! Initialise les coordonnées du spawn de départ du joueur
+		/*!
+			Initialise les coordonnées du spawn de départ du joueur
 			On réactualise le nombre de case dispo
 		*/
 		void coordonneejoueur();
 
 		//! Coordonnée obstacle
-		/*! Demande le nombre dobstacle souhaité,
+		/*! 
+			Demande le nombre d'obstacles souhaités,
 			vérifie que ce nombre est possible en fonction du nombre de cases dispo sur la carte,
 			Demande et initailise les coordonnées de chaque obstacles.
 			On ne demande pas le genre d'obstacle voulu maintenant.
