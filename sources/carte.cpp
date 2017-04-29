@@ -12,10 +12,13 @@ using namespace std;
 // Constructeur sans argument
 Carte::Carte()
 {
-	this->nom = "";
-	this->description = "";
-	this->nbr_monstre = 0 ;
-	this->case_dispo = 0;
+	this->id = "";
+  	this->nom = "";
+  	this->description = "";
+	this->taille = 0;
+	this->plateau = NULL;
+  	this->nbr_monstre = 0 ;
+  	this->case_dispo = 0;
 }
 
 // Constructeur avec arguments
