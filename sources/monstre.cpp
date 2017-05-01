@@ -4,17 +4,13 @@
 
 using namespace std;
 
+int monstre::nbElemProt = 3;
 
-// --------------------CONSTRUCTEURS
-
-
-
-//-------------------------------------------FONCTIONS
-
-
-
-// TESTS
-
+monstre::monstre()
+{
+	entite();
+	this -> entiteId = "m";
+}
 
 void monstre::printMonstre()
 {

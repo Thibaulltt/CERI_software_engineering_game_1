@@ -222,7 +222,6 @@ void jeu::deplacement()
 			break;
 	}
 	updateMap(std::make_pair(y,x));
-
 }
 
 

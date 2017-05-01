@@ -8,10 +8,9 @@
 #include <vector>
 #include "../headers/carte.h"
 #include "../headers/competence.h"
-#include "../headers/carte.h"
+#include "../headers/entite.h"
 #include "../headers/monstre.h"
 #include "../headers/personnage.h"
-#include "../headers/entite.h"
 
 #ifndef IO_H
 #define IO_H
@@ -114,7 +113,7 @@ namespace io
 	*/
 	extern void bienvenue();
 
-	//! Vérifie que l'user entre des entier
+	//! Vérifie que l'user entre des entiers
 	/*!
 		Cette fonction vérifie que l'entrée utilisateur est bien un entier.
 		Mode opératoire :
@@ -151,21 +150,6 @@ namespace io
 		\param numLigne Le numéro de la ligne à vérifier
 	*/
 	extern bool checkSeparatorSkill(std::string nomFichier, int numLigne);
-
-	//! Créer une competence
-	/*!
-		Cette fonction permet de créer rapidement une compétence pour pouvoir l'utiliser facilement après.
-		Mode opératoire :
-		- On crée les variables qui vont tenir les infos rentrées (skillName, skillDamage, skillManaCost)
-		- On rentre
-	*/
-	extern competence createCompetence(); //Creer une competence
-
-	//! Créer une compétence pour monstre (sans mana)
-	extern competence createCompetenceMonstre();
-
-	//! Créer un monstre
-	extern monstre createMonstre();
 
 	//! Efface l'écran.
 	extern void clearScreen();
@@ -302,61 +286,27 @@ namespace io
 
 	//! Affichage des entités du combat
 	/*!
-        Parcourt le vecteur d'entités, affiche les personnages.
-        Parcourt de nouveau le vecteur, affiche les monstres.
-        \param vect_entité Le vecteur d'entités à afficher.
-        \sa afficher_combat()
+		Parcourt le vecteur d'entités, affiche les personnages.
+		Parcourt de nouveau le vecteur, affiche les monstres.
+		\param vect_entité Le vecteur d'entités à afficher.
+		\sa afficher_combat()
 	*/
-    	void aff_combat(std::vector<entite> vect_entite);
-
-	//! Choix du nom
-	/*!
-		Permet de choisir un nom.
-	*/
-	std::string choix_nom();
-
-	//! Choix de la description
-	/*!
-		Permet de choisir une description.
-	*/
-	std::string choix_description();
-
-	//! Choix de la taille
-	/*!
-		Permet de choisir la taille de la carte.
-		La taille doit être supérieure à 4 et inférieure à 255.
-	*/
-	int choix_taille();
-
-	//! Création d'une carte
-	/*!
-		Permet de créer une carte et de la rajouter dans le fichier des cartes.
-		- Demande un nom pour la carte.
-		- Demande une description pour la carte.
-		- Demande une taille pour la carte.
-		- Construit la carte.
-		- Demande le placement du joueur.
-		- Demande le placement des obstacles.
-		- Demande le placement des monstres.
-		- Assigne des monstres aux emplacements choisis.
-		- Ecrit la carte dans le fichier.
-	*/
-	void creationCarte();
+		void aff_combat(std::vector<entite> vect_entite);
 
 	//! Chargement des compétences
 	/*!
 		Lit une ligne d'un fichier, et remplit un vecteur avec des objets construits à partir des informations récupérées.
-        \param nomFichier Le nom du fichier à partir duquel on lit les informations.
-        \param numLigne La ligne sur laquelle on recherche les informations.
-        \return Un vecteur contenant les compétences créées.
+		\param nomFichier Le nom du fichier à partir duquel on lit les informations.
+		\param numLigne La ligne sur laquelle on recherche les informations.
+		\return Un vecteur contenant les compétences créées.
 	*/
 	std::vector<competence> loadCompetenceFromFile(std::string nomFichier,int numLigne);
 
 	//! Chargement des cartes
 	/*!
 		Lit toutes les lignes d'un fichier, et remplit un vecteur avec des objets construits à partir des informations récupérées.
-        	\param nomFichier Le nom du fichier à partir duquel on lit les informations.
-        	\return Un vecteur contenant les cartes créées.
+		\param nomFichier Le nom du fichier à partir duquel on lit les informations.
+		\return Un vecteur contenant les cartes créées.
 	*/
 	std::vector<Carte> loadAllCarteFromFile(std::string nomFichier);
 
@@ -368,7 +318,7 @@ namespace io
         	\return Un vecteur contenant les entités créées.
         	\sa loadCompetenceFromFile()
 	*/
-    	template<typename T> std::vector<T> loadAllEntiteFromFile(T temp, std::string nomFichier)
+	template<typename T> std::vector<T> loadAllEntiteFromFile(T temp, std::string nomFichier)
 	{
 		std::vector<T> allEntite; //Vecteur de retour
 
@@ -510,88 +460,21 @@ namespace io
 		return allEntite;
 	}
 
-	//! Supprimer une entité
-	/*!
-	Cette fonction permet de supprimer un élément choisi par l'utilisateur.
-	Mode opératoire :
-	- L'utilisateur choisit l'élément à supprimer dans le vecteur
-	- On efface du vecteur l'élément choisi
-	- Effacement de tout le fichier
-	- Réecriture du fichier via le vecteur d'élément actualisé
-	\param nomFichier Le nom du fichier .txt dans lequel on veut supprimer une entité
-	\param allEntite Vecteur contenant tous les éléments disponibles
-	\param lettreEntite String permettant de savoir si on est en train de traiter un monstre ou un personnage (pour identifiant)
-	*/
-	template <typename T> void deleteLineElement(std::string nomFichier, T allEntite, std::string lettreEntite)
-	{
-		int cpt = 0;
-
-		while(1)
-		{
-			std::cout << "Choisissez l'élément à supprimer (1-9) (q pour annuler): "; //Choix de l'utilisateur
-			std::string sInput = long_input();
-
-			if (sInput == "q" || sInput == "Q")
-			{
-				return;
-			}
-
-			int input = atoi(sInput.c_str());
-
-			while (input <= 0 && input > allEntite.size())                //Input incorrect
-			{
-				std::puts("Input incorrect. Réessayez!");
-				sInput = long_input();                                   //Input utilisateur
-				input = atoi(sInput.c_str());
-
-				if (sInput == "q" || sInput == "Q")
-				{
-					return;
-				}
-			}
-
-			allEntite.erase(allEntite.begin() + input); //Suppression de la case dans le vecteur
-
-			if (allEntite.size() == 0)
-			{
-				std::cout << "Il n'y a plus rien à supprimer!";
-				break;
-			}
-			else
-			{
-				for (int i = 0; i < allEntite.size(); i++) //Affichage de toutes les entités
-				{
-					std::cout << ++cpt << "- ";
-					allEntite[i].afficher_brut();
-				}
-			}
-
-			std::ofstream fichierEntite(nomFichier.c_str(), std::ios::trunc); //Ouverture et suprresion de tout le fichier
-
-			if (fichierEntite)
-			{
-				for (int i = 0; i < allEntite.size(); i++)
-				{
-
-					allEntite[i].saveInFile(lettreEntite, nomFichier); //Ecriture d'une ligne dans le fichier
-				}
-
-				fichierEntite.close();
-			}
-			else
-			{
-				std::cerr << "Impossible d'ouvrir le fichier." << std::endl;
-			}
-		}
-		return;
-	}
-
 	template<typename T> std::string toString( const T & valeur ) //Conversion de n'importe quoi en string
 	{
 		std::ostringstream flux;
 		flux << valeur;
 		return flux.str();
 	}
+
+
+	//! Convertit un string en int
+	/*!
+		Renvoie 0 si l'input n'est pas convertible.
+		\param input String à convertir
+		\return Entier obtenu suite à la conversion
+	*/
+	int To_int(std::string input);
 }
 
 #endif

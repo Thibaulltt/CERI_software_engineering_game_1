@@ -3,10 +3,13 @@
 
 using namespace std;
 
+int personnage::nbElemProt = 3;
 
-//FONCTIONS DE TEST
-
-
+personnage::personnage()
+{
+	entite();
+	this -> entiteId = "p";
+}
 
 void personnage::printPersonnage()
 {

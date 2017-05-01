@@ -8,8 +8,11 @@ class monstre : public entite
 {
 
 public:
+
+	static int nbElemProt;
+
 	//! Constructeur vide
-	/*
+	/*!
 		Crée un monstre vide.
 		\warning Le monstre sera vide. Cela signifie qu'il ne sera pas utilisable pour le jeu, sa vie étant égale à 0
 		\post Le monstre crée aura les paramètres suivants:
@@ -20,7 +23,7 @@ public:
 		- entiteAlive = true (sera changé immédiatement en false)
 		- entiteSkillVect = <vecteur vide>
 	*/
-	monstre():entite(){};
+	monstre();
 
 
 	//! Constructeur avec tout
@@ -33,7 +36,7 @@ public:
 		\param entiteDescription La description du monstre
 		\param allSkills Un vecteur (std::vector) contenant toutes les compétences de ce monstre.
 	*/
-	monstre(std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax, std::string entiteDescription, std::vector<competence> allSkills) : entite(entiteId, entiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills ){};
+	monstre(std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax, std::string entiteDescription, std::vector<competence> allSkills) : entite(entiteId, entiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills){};
 
 
 	//! Pour tester

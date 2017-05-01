@@ -1,4 +1,3 @@
-#include "../headers/carte.h"
 #include "../headers/config.h"
 #include "../headers/io.h"
 
@@ -17,7 +16,6 @@ int main ()
 		puts("2- Configuration des monstres");
 		puts("3- Configuration des personnages");
 		puts("q- Quitter le module de configuration");
-
 		puts("\n");
 
 		char c_choix = de();

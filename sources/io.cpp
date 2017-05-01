@@ -1,8 +1,8 @@
-#include <vector>
-#include <termios.h>	// Needed for terminal input manipulation
-#include <stdio.h>	// Needed for terminal input manipulation
 #include <fstream>
 #include <iostream>
+#include <stdio.h>	// Needed for terminal input manipulation
+#include <termios.h>	// Needed for terminal input manipulation
+#include <vector>
 #include "../headers/carte.h"
 #include "../headers/io.h"
 
@@ -419,36 +419,6 @@ namespace io
 		return true;
 	}
 
-	competence createCompetence() //Permet à l'utilisateur de créer une compétence pour personnage
-	{
-		string skillName;
-		int skillDamage;
-		int skillManaCost;
-
-		cout << "Entrez le nom de la compétence : ";
-		cin >> skillName;
-
-		cout << "Entrez le nombre de dégâts de la compétence (chiffre négatif pour du soin) : ";
-		cin >> skillDamage;
-		while(!checkInput(skillDamage))
-		{
-			cout << "Entrez le nombre de dégâts de la compétence (chiffre négatif pour du soin) : ";
-			cin >> skillDamage;
-		}
-
-		cout << "Entrez le coût en mana de la compétence : ";
-		cin >> skillManaCost;
-		while(!checkInput(skillManaCost))
-		{
-			cout << "Entrez le coût en mana de la compétence : ";
-			cin >> skillManaCost;
-		}
-
-		competence creation(skillName, skillDamage, skillManaCost);
-
-		return creation;
-	}
-
 	void aff_combat(vector<entite> vect_entite)
 	{
 		for (int i = 0; i < vect_entite.size(); i++)
@@ -467,121 +437,6 @@ namespace io
 			}
 		}
 	}
-
-	string choix_nom()
-	{
-		puts("- Choix nom -");
-
-		string input = long_input();
-		return input;
-	}
-
-	string choix_description()
-	{
-		puts("- Choix description -");
-
-		string input = long_input();
-		return input;
-	}
-
-	int choix_taille()
-	{
-		puts("- Choix taille -");
-
-		string s_input = long_input();                                            //Input utilisateur
-		int input = atoi(s_input.c_str());
-
-		while (input < 5 && input > 254)                				//Input incorrect
-		{
-			puts("Taille impossible, veuillez choisir une taille entre 5 et 254!");
-			s_input = long_input();
-			int input = atoi(s_input.c_str());
-		}
-		return input;
-	}
-
-	void creationCarte()
-	{
-		string name = choix_nom();
-		string desc = choix_description();
-		int tail = choix_taille();
-
-		Carte a_creer(tail, name, desc, 0);
-
-		a_creer.coordonneejoueur();
-		a_creer.coordonneeobstacle();
-		a_creer.coordonneemonstre();
-
-		a_creer.saisie();
-	}
-
-/*	competence createCompetenceMonstre() //Permet à l'utilisateur de créer une compétence pour monstre
-	{
-		string skillName;
-		int skillDamage;
-		int skillManaCost;
-
-		cout << "Entrez le nom de la compétence : ";
-		cin >> skillName;
-
-		cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-		cin >> skillDamage;
-		while(!checkInput(skillDamage))
-		{
-			cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-			cin >> skillDamage;
-		}
-
-		competence creation(skillName, skillDamage);
-
-		return creation;
-	}
-
-
-	monstre createMonstre() //Permet à l'utilisateur de créer un monstre avec des caractéristiques choisies
-	{
-		string entiteName;
-		int entiteHpMax;
-		int entiteSpeed;
-
-		cout << "Entrez le nom du monstre : ";
-		cin >> entiteName;
-		cout << endl;
-
-		cout << "Entrez son nombre de points de vie : ";
-		cin >> entiteHpMax;
-		while(!checkInput(entiteHpMax))
-		{
-			cout << "Entrez son nombre de points de vie : ";
-			cin >> entiteHpMax;
-		}
-
-		cout << "Entrez sa vitesse : ";
-		cin >> entiteSpeed;
-		while(!checkInput(entiteSpeed))
-		{
-			cout << "Entrez sa vitesse : ";
-			cin >> entiteSpeed;
-		}
-
-		monstre creation = monstre(entiteName, entiteHpMax, entiteSpeed); //Crée le monstre
-
-		vector<competence> skills = creation.getSkillVect();
-
-		for (int i=0 ; i<3 ; i++) //Remplit le tableau de compétences avec de nouvelles compétences
-		{
-			// PREVOIR UN SWITCH POUR SAVOIR SI L'USER VEUT CONTINUER A RENTRER DES COMPETENCES
-			// PENSER A CHANGER LE 3 DANS LA BOUCLE EN 11
-		   skills.push_back(createCompetenceMonstre());
-		}
-
-		creation.printMonstre();
-
-		creation.saveInFile(); //Le sauvegarde dans le fichier texte
-
-		return creation;
-	}
-*/
 
 	bool checkSeparatorEntite(string uneLigne) //Retourne false si le nb de séparateurs dans une ligne n'est pas le nombre définit
 	{
@@ -684,12 +539,10 @@ namespace io
 							}
 						}
 					}
-
 				}
 			}
 			fichierMonstre.close();
 		}
-
 	}
 
 	vector<competence> loadCompetenceFromFile(string nomFichier,int numLigne)
@@ -810,7 +663,7 @@ namespace io
 	{
 		vector<Carte> selectionnable ;
 		// Carte par défaut
-		Carte defaut(5, "c0000|defaut", "carte par défaut", 5);
+		Carte defaut(5, "defaut", "carte par défaut", 5);
 		defaut.setCase(0,0,"joueur");
 		defaut.setCase(2,0,"m0");
 		defaut.setCase(2,1,"m0");
@@ -818,9 +671,12 @@ namespace io
 		defaut.setCase(2,3,"m0");
 		defaut.setCase(2,4,"m0");
 		defaut.setCase(1,3,"arbre");
+		defaut.setId("c0000");
 		defaut.setNbrMonstre(5);
 		defaut.setCaseDispo(18);
  		selectionnable.push_back(defaut);
+
+		Carte::nbElemProt = 1;
 
 		ifstream fichier(nomFichier, ios :: in) ;
 
@@ -888,6 +744,25 @@ namespace io
 			}
 		}
 		return selectionnable ;
+	}
+
+	int To_int(string input)
+	{
+		stringstream ss (input);
+		int output = 0;
+
+		while (ss >> output || !ss.eof())
+		{
+			if (ss.fail())
+			{
+				ss.clear();
+				string nether;
+				ss >> nether;
+				continue;
+			}
+		}
+
+		return output;
 	}
 }
 
@@ -980,9 +855,7 @@ bool checkSeparatorCoordonnee(std::string nomFichier, int numLigne) //Retourne f
 							}
 						}
 					}
-
 				}
 			}
 		}
-
 	}
