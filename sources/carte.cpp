@@ -438,8 +438,12 @@ Carte Carte::operator=(const Carte a_copier)
 
 bool Carte::caseAccessible(int i, int j)
 {
-	if (i < 0 || i > taille || j < 0 || j > taille)
+	if (i < 0 || j < 0)
 		return false;
+	if (i >= taille || j >= taille)
+		return false;
+	if (plateau[i][j] == "joueur")
+		return true;
 	return plateau[i][j] == "v";
 }
 

@@ -63,6 +63,65 @@ void jeu::afficherJeu()
 	deplacement();
 	deplacement();
 	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	deplacement();
+	de();
 }
 std::string jeu::genererDeplacement(std::vector<bool>& v)
 {
@@ -73,7 +132,7 @@ std::string jeu::genererDeplacement(std::vector<bool>& v)
 	std::string deplacements = "";
 
 	// Si le joueur peut se déplacer vers le haut :
-	if (y >= 0 && jeu_carte.caseAccessible(x,y-1))
+	if (y-1 >= 0 && jeu_carte.caseAccessible(x,y-1))
 	{
 		deplacements += "| Z - Haut ";
 		v[0] = true;
@@ -81,7 +140,7 @@ std::string jeu::genererDeplacement(std::vector<bool>& v)
 	else
 		v[0] = false;
 	// Si le joueur peut se deplacer vers la gauche :
-	if(x >= 0 && jeu_carte.caseAccessible(x-1,y))
+	if(x-1 >= 0 && jeu_carte.caseAccessible(x-1,y))
 	{
 		deplacements += "| Q - Gauche ";
 		v[1] = true;
@@ -89,7 +148,7 @@ std::string jeu::genererDeplacement(std::vector<bool>& v)
 	else
 		v[1] = false;
 	// Si le joueur peut se déplacer vers le bas
-	if (y < max && jeu_carte.caseAccessible(x,y+1))
+	if (y+1 <= max && jeu_carte.caseAccessible(x,y+1))
 	{
 		deplacements += "| S - Bas ";
 		v[2] = true;
@@ -97,7 +156,7 @@ std::string jeu::genererDeplacement(std::vector<bool>& v)
 	else
 		v[2] = false;
 	// Si le joueur peut se déplacer vers la droite :
-	if (x < max && jeu_carte.caseAccessible(x+1,y))
+	if (x+1 <= max && jeu_carte.caseAccessible(x+1,y))
 	{
 		deplacements += "| D - Droite ";
 		v[3] = true;
@@ -131,39 +190,38 @@ void jeu::deplacement()
 	int y = currentPlayerPosition.second;
 	afficherMouvements(deplacement_possibles,"Dans quelle direction voulez-vous vous déplacer ?");
 	char deplacement_demande = de();
-	while (deplacement_possibles.find(deplacement_demande) == string::npos)
+	while (inputAccepte.find(deplacement_demande) == string::npos)
 	{
-		std::string s = "Cette case est innaccessible !" + std::string(1,deplacement_demande);
-		afficherMouvements(deplacement_possibles,s);
+		afficherMouvements(deplacement_possibles,"Cette case est innaccessible !");
 		deplacement_demande = de();
 	}
 	switch (deplacement_demande) {
 		case 'z':
-			updateMap(std::make_pair(x,y-1));
+			y--;
 			break;
 		case 'Z':
-			updateMap(std::make_pair(x,y-1));
+			y--;
 			break;
 		case 's':
-			updateMap(std::make_pair(x,y+1));
+			y++;
 			break;
 		case 'S':
-			updateMap(std::make_pair(x,y+1));
+			y++;
 			break;
 		case 'q':
-			updateMap(std::make_pair(x-1,y));
+			x--;
 			break;
 		case 'Q':
-			updateMap(std::make_pair(x-1,y));
+			x--;
 			break;
 		case 'd':
-			updateMap(std::make_pair(x+1,y));
+			x++;
 			break;
 		case 'D':
-			updateMap(std::make_pair(x+1,y));
+			x++;
 			break;
 	}
-
+	updateMap(std::make_pair(y,x));
 }
 
 
