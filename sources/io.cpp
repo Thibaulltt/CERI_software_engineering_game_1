@@ -318,10 +318,7 @@ namespace io
 		cout << couleurDelimiteur;
 		cout << delimiteur;
 		cout << BLANK;
-		cout << currentPlayerPosition.first;
-		cout << ";";
-		cout << currentPlayerPosition.second;
-		cout << std::string(TermWidth-7, ' ');
+		cout << std::string(TermWidth-2, ' ');
 		cout << couleurDelimiteur;
 		cout << delimiteur;
 		cout << BLANK;
