@@ -22,6 +22,9 @@ class Carte
 
 	public:
 
+		//! Nombre de cartes protégées
+		static int nbElemProt;
+
 		//! Carte
 		/*! Constructeur sans argument */
 		Carte();
@@ -59,6 +62,7 @@ class Carte
 		std::string getName() ;
 		std::string getDescription() ;
 		void setTaille(int taille);
+		void setId(std::string id);
 		void setName(std::string name);
 		void setDescription(std::string desc);
 		void setPlateau(int taille);

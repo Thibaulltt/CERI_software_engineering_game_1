@@ -11,14 +11,12 @@ competence::competence()       //Constructeur de compétence vide
 	this->skillManaCost = 0;
 }
 
-
 competence::competence(string skillName, int skillDamage, int skillManaCost) //Constructeur de competence
 {
 	this->skillName = skillName;
 	this->skillDamage = skillDamage;
 	this->skillManaCost = skillManaCost;
 }
-
 
 competence::competence(string skillName, int skillDamage) //Constructeur de competence sans mana (pour monstre)
 {
@@ -27,13 +25,10 @@ competence::competence(string skillName, int skillDamage) //Constructeur de comp
 	this->skillManaCost = 0;
 }
 
-
 competence::~competence()
 {
 
 }
-
-
 
 // --------------------FONCTIONS
 
@@ -67,7 +62,6 @@ template<typename T>string competence::toString( const T & valeur ) //Convertit 
 	return flux.str();
 }
 
-
 string competence::competenceString() //Convertit une compétence en une ligne de string formatée
 {
 	string sskillDamage;
@@ -81,7 +75,6 @@ string competence::competenceString() //Convertit une compétence en une ligne d
 
 	return ligneCompetence;
 }
-
 
 void competence::afficher_detail()
 {

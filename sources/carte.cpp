@@ -1,15 +1,17 @@
-#include "../headers/carte.h"
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <limits>
-#include <vector>
 #include <string>
+#include <vector>
+#include "../headers/carte.h"
 #include "../headers/io.h"
 
 using namespace io;
 using namespace std;
 
-Carte :: Carte()
+int Carte::nbElemProt = 0;
+
+Carte::Carte()
 {
 	this->id = "";
 	this->nom = "";
@@ -21,7 +23,7 @@ Carte :: Carte()
 
 }
 
-Carte :: Carte (int taille, string name, string desc, int nb_monstre)
+Carte::Carte (int taille, string name, string desc, int nb_monstre)
 {
 	this->nom = name;
 	this->description = desc;
@@ -45,7 +47,7 @@ Carte :: Carte (int taille, string name, string desc, int nb_monstre)
 	this -> case_dispo = taille * taille;
 }
 
-void Carte :: coordonneejoueur()
+void Carte::coordonneejoueur()
 {
 	puts("- Choix placement joueur -");
 
@@ -55,11 +57,11 @@ void Carte :: coordonneejoueur()
 
 	while (placement_fait == false)
 	{
-		cout << "Choisissez la premiere coordonnée où le joueur doit apparaître: ";
+		puts("- Choix première coordonnée du joueur -");
 		string s_input = long_input();
 		coordonneejoueur1 = atoi(s_input.c_str());
 
-		cout << "Choisissez la deuxieme coordonnée où le joueur doit apparaître: ";
+		puts("- Choix seconde coordonnée du joueur -");
 		s_input = long_input();
 		coordonneejoueur2 = atoi(s_input.c_str());
 
@@ -70,7 +72,7 @@ void Carte :: coordonneejoueur()
 		}
 		else
 		{
-			puts("Vos coordonnées sont hors de la carte!!");
+			puts("Vos coordonnées sont hors de la carte! Réessayez!");
 		}
 	}
 	case_dispo = case_dispo - 1;
@@ -78,31 +80,31 @@ void Carte :: coordonneejoueur()
 
 void Carte::coordonneeobstacle()
 {
-	puts("Choix placement obstacles");
+	puts("- Choix obstacles -");
 
 	int nbr_obstacle=0;
 	int coordonneeobstacle1 = 0;
 	int coordonneeobstacle2 = 0;
 	int i = 1;
 
-	cout << "Combien d'obstacle voulez-vous sur la carte?";
+	puts("- Choix nombre d'obstacles -");
 	string s_input = long_input();
 	nbr_obstacle = atoi(s_input.c_str());
 
 	while (nbr_obstacle >= case_dispo)
 	{
-		cout << "Vous avez choisi trop d'obstacles.\nCombien d'obstacles voulez-vous sur la carte?";
+		cout << "Vous avez choisi trop d'obstacles.\n- Choix nombre d'obstacles -\n";
 		s_input = long_input();
 		nbr_obstacle = atoi(s_input.c_str());
 	}
 
 	while (i <= nbr_obstacle)
 	{
-		cout << "Choisissez la premiere coordonnée où l'obstacle doit apparaître :";
+		cout << "- Choix première coordonnée de l'obstacle " << i << " -\n";
 		s_input = long_input();
 		coordonneeobstacle1 = atoi(s_input.c_str());
 
-		cout << "Choisissez la deuxieme coordonnée où l'obstacle doit apparaître :";
+		cout << "- Choix seconde coordonnée de l'obstacle " << i << " -\n";
 		s_input = long_input();
 		coordonneeobstacle2 = atoi(s_input.c_str());
 
@@ -115,12 +117,12 @@ void Carte::coordonneeobstacle()
 			}
 			else
 			{
-				puts("Cette case est deja occupée, veuillez en choisir une autre ");
+				puts("Cette case est deja occupée, veuillez en choisir une autre!");
 			}
 		}
 		else
 		{
-			puts("Vos coordonnées sont hors de la carte!!");
+			puts("Vos coordonnées sont hors de la carte! Réessayez!");
 		}
 	}
 	case_dispo = case_dispo - nbr_obstacle;
@@ -128,36 +130,33 @@ void Carte::coordonneeobstacle()
 
 void Carte::coordonneemonstre()
 {
-	puts("- Choix placement monstres -");;
+	puts("- Choix monstres -");;
 
-	int nombre_monstre = 0;
+	int nbr_monstre = 0;
 	int coordonneemonstre1 = 0;
 	int coordonneemonstre2 = 0;
 	int i = 1;
 
-	cout << "Combien de monstres voulez-vous sur la carte?";
+	puts("- Choix nombre de monstres -");
 	string s_input = long_input();
-	nombre_monstre = atoi(s_input.c_str());
+	nbr_monstre = atoi(s_input.c_str());
 
-	while ((nombre_monstre < taille) && (nombre_monstre > case_dispo))
+	while ((nbr_monstre > taille) && (nbr_monstre > case_dispo))
 	{
-		cout << "test nombre monstres: " << nombre_monstre;
-		cout << "test case dispo: " << case_dispo;
-		cout << "Combien de monstres voulez-vous sur la carte?";
+		puts("- Choix nombre de monstres -");
 		s_input = long_input();
-		nombre_monstre = atoi(s_input.c_str());
+		nbr_monstre = atoi(s_input.c_str());
 	}
 
-	setNbrMonstre(nombre_monstre);
+	setNbrMonstre(nbr_monstre);
 
-	while (i <= nombre_monstre)
+	while (i <= nbr_monstre)
 	{
-		cout << "Choisissez la premiere coordonnée où le monstre doit apparaître :";
+		cout << "- Choix première coordonnée du monstre " << i << " -\n";
 		s_input = long_input();
 		coordonneemonstre1 = atoi(s_input.c_str());
 
-
-		cout << "Choisissez la deuxieme coordonnée où le monstre doit apparaître :";
+		cout << "- Choix seconde coordonnée du monstre " << i << " -\n";
 		s_input = long_input();
 		coordonneemonstre2 = atoi(s_input.c_str());
 
@@ -170,18 +169,18 @@ void Carte::coordonneemonstre()
 			}
 			else
 			{
-				puts("Cette case est déjà occupée, veuillez en choisir une autre ");
+				puts("Cette case est déjà occupée, veuillez en choisir une autre!");
 			}
 		}
 		else
 		{
-			puts("Vos coordonnées sont hors de la carte!!");
+			puts("Vos coordonnées sont hors de la carte! Réessayez!");
 		}
 	}
 	case_dispo = case_dispo - nbr_monstre;
 }
 
-void Carte :: affichage_normal()
+void Carte::affichage_normal()
 {
 	for (int i=0; i<taille; i++)
 	{
@@ -221,8 +220,9 @@ void Carte::saisie()
 	// Nom de la carte
 	string carte = "fichierCarte.txt" ;
 	string type_obstacle = "";
-	string monstre = "";
+	string s_monst = "";
 	int nbligne=nbLigneFichier(carte);
+	int parc = 1;
 
 	//ouverture du fichier en écriture
 	ofstream fichier(carte, ios :: app) ;
@@ -236,28 +236,57 @@ void Carte::saisie()
 		fichier << taille << "|";
 		fichier << nbr_monstre << "|";
 
+
+		//Choix joueur + obstacles
 		for (int i = 0 ; i < taille; i++)
 		{
 			for (int j = 0 ; j < taille ; j++)
 			{
+				if (plateau[i][j]=="j")
+				{
+					fichier << "(" << i << "," << j << ",joueur" << ")";
+				}
 				if (plateau[i][j]=="o")
 				{
-					cout << "Quel est l'obstacle à la case ("<< i << ","<< j << "): ";
+					cout << "- Choix obstacle " << parc << "[case ("<< i << ","<< j << ")] -\n";
+					parc++;
 					type_obstacle = long_input();
 
 					fichier << "(" << i << "," << j << ","<< type_obstacle << ")";
 				}
+			}
+		}
+
+		puts("- Monstres disponibles -");
+
+		monstre duh;
+		vector<monstre> vect_monstre;
+
+		vect_monstre = loadAllEntiteFromFile(duh, "fichierMonstre.txt");
+
+		for (int i = 0; i < vect_monstre.size(); i++)
+		{
+			cout << i << "- ";
+			vect_monstre[i].afficher_brut();
+			cout << "\n";
+		}
+
+		for (int i = 0 ; i < taille; i++)
+		{
+			for (int j = 0 ; j < taille ; j++)
+			{
 				if (plateau[i][j]=="m")
 				{
-					cout << "Quelle est l'id du monstre à la case ("<< i << ","<< j << "): ";
-					monstre = long_input();
-					fichier << "(" << i << "," << j << ","<< monstre << ")";
-				}
-				if (plateau[i][j]=="j")
-					fichier << "(" << i << "," << j << ",joueur" << ")";
-			}
+					cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << ") -\n";
+					s_monst = long_input();
+					int monst = atoi(s_monst.c_str());
 
+					fichier << "(" << i << "," << j << ",m"<< monst << ")";
+				}
+
+			}
 		}
+
 		fichier << '\r';
 		fichier << '\n';
 		// On referme le fichier
@@ -296,7 +325,7 @@ string Carte::carteString(string lettreCarte, string nomFichier) //Convertit tou
 		}
 	}
 
-	ligneFichier = carteId + "|" + nom + "|" + description + "|" + toString(taille) + "|" + toString(nbr_monstre) + "|" + allElements;
+	ligneFichier = carteId + "|" + nom + "|" + description + "|" + toString(taille) + "|" + toString(nbr_monstre) + "|" + allElements + "\r\n";
 
 	return ligneFichier;
 }
@@ -334,6 +363,11 @@ void Carte::setTaille(int taille)
 	cout << "TAILLE DEMANDEE : " << taille << endl;
 	this->taille = taille;
 	cout << "TAILLE ASSIGNéE : " << this->taille << endl;
+}
+
+void Carte::setId(std::string id)
+{
+    this -> id = id;
 }
 
 void Carte::setName(string name)
