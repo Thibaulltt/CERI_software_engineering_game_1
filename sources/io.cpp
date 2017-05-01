@@ -166,13 +166,16 @@ namespace io
 	void afficherCarte(Carte& c, int t)
 	{
 		// On prends le plateau en copie
-		std::string ** map = c.getPlateau();
+		std::string ** map = c.getPlateau();					// ATTENTE D'UN PARTAGE DU PLATEAU
 
 		// On (re)vérifie la taille du terminal
 		checkTerminalSize();
 
 		// On efface l'écran
 		clearScreen();
+
+		// Prendre la position de la carte
+		// currentPlayerPosition = c.playerPosition();			// ATTENTE DE LA FONCTION
 
 		// Si le joueur est plus bas que l'affichage de la carte
 		while (currentPlayerPosition.first >= mapPositionX+TermWidth)
@@ -187,22 +190,12 @@ namespace io
 		int TermPosX = 0;
 		int TermPosY = 0;
 
-		printf("\033[0;0H");	// Remet le curseur au debut
-
 		// On affiche les petites cases WUBBA LUBBA DUB DUB
 		while (TermPosY < TermHeight && displayY < t)
 		{
 			while (TermPosX < TermWidth && displayX < t)
 			{
-				if (map[displayX][displayY] == "joueur")
-					std::cout << RED << 'X' << BLANK;
-				else if (map[displayX][displayY][0] == 'm')
-					std::cout << BLUE << 'X' << BLANK;
-				else if (map[displayX][displayY][0] == 'a')
-					std::cout << GREEN << 'X' << BLANK;
-				else
-					std::cout << 'o';
-				// std::cout << map[displayX][displayY];		// RESTE A AJOUTER LA COULEUR
+				std::cout << map[displayX][displayY];		// RESTE A AJOUTER LA COULEUR
 				TermPosX++;
 				displayX++;
 			}
@@ -217,12 +210,10 @@ namespace io
 
 	void updateMap(std::pair<int,int> newPlayerPos)
 	{
-		printf("\033[%c;%cH", currentPlayerPosition.second, currentPlayerPosition.first);
+		printf("\033[%i;%iH", currentPlayerPosition.first, currentPlayerPosition.second);
 		cout << BLANK << ' ' << BLANK;
-		printf("\033[%c;%cH", newPlayerPos.second, newPlayerPos.first);
-		cout << GREEN << 'X' << BLANK;
-		currentPlayerPosition.first = newPlayerPos.first;
-		currentPlayerPosition.second = newPlayerPos.second;
+		printf("\033[%i;%iH", newPlayerPos.first, newPlayerPos.second);
+		cout << BLUE << 'X' << BLANK;
 	}
 
 	void afficherMouvements()
@@ -334,8 +325,8 @@ namespace io
 		cout << flush;
 
 		// Remet le curseur dans l'overlay
-		printf("\033[2A");			// Haut de deux lignes
-		printf("\033[%dC", TermWidth/2);	// Gauche de TermWidth-2 cases
+		printf("\033[15A");			// Haut de deux lignes
+		printf("\033[%dD", TermWidth - 2);	// Gauche de TermWidth-2 cases
 	}
 
 	void checkTerminalSize()
@@ -403,36 +394,6 @@ namespace io
 		return true;
 	}
 
-	competence createCompetence() //Permet à l'utilisateur de créer une compétence pour personnage
-	{
-		string skillName;
-		int skillDamage;
-		int skillManaCost;
-
-		cout << "Entrez le nom de la compétence : ";
-		cin >> skillName;
-
-		cout << "Entrez le nombre de dégâts de la compétence (chiffre négatif pour du soin) : ";
-		cin >> skillDamage;
-		while(!checkInput(skillDamage))
-		{
-			cout << "Entrez le nombre de dégâts de la compétence (chiffre négatif pour du soin) : ";
-			cin >> skillDamage;
-		}
-
-		cout << "Entrez le coût en mana de la compétence : ";
-		cin >> skillManaCost;
-		while(!checkInput(skillManaCost))
-		{
-			cout << "Entrez le coût en mana de la compétence : ";
-			cin >> skillManaCost;
-		}
-
-		competence creation(skillName, skillDamage, skillManaCost);
-
-		return creation;
-	}
-
 	void aff_combat(vector<entite> vect_entite)
 	{
 		for (int i = 0; i < vect_entite.size(); i++)
@@ -451,121 +412,6 @@ namespace io
 			}
 		}
 	}
-
-	string choix_nom()
-	{
-		puts("- Choix nom -");
-
-		string input = long_input();
-		return input;
-	}
-
-	string choix_description()
-	{
-		puts("- Choix description -");
-
-		string input = long_input();
-		return input;
-	}
-
-	int choix_taille()
-	{
-		puts("- Choix taille -");
-
-		string s_input = long_input();                                            //Input utilisateur
-		int input = atoi(s_input.c_str());
-
-		while (input < 5 && input > 254)                				//Input incorrect
-		{
-			puts("Taille impossible, veuillez choisir une taille entre 5 et 254!");
-			s_input = long_input();
-			int input = atoi(s_input.c_str());
-		}
-		return input;
-	}
-
-	void creationCarte()
-	{
-		string name = choix_nom();
-		string desc = choix_description();
-		int tail = choix_taille();
-
-		Carte a_creer(tail, name, desc, 0);
-
-		a_creer.coordonneejoueur();
-		a_creer.coordonneeobstacle();
-		a_creer.coordonneemonstre();
-
-		a_creer.saisie();
-	}
-
-/*	competence createCompetenceMonstre() //Permet à l'utilisateur de créer une compétence pour monstre
-	{
-		string skillName;
-		int skillDamage;
-		int skillManaCost;
-
-		cout << "Entrez le nom de la compétence : ";
-		cin >> skillName;
-
-		cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-		cin >> skillDamage;
-		while(!checkInput(skillDamage))
-		{
-			cout << "Entrez le nombre de dommage de la compétence (chiffre négatif pour du soin) : ";
-			cin >> skillDamage;
-		}
-
-		competence creation(skillName, skillDamage);
-
-		return creation;
-	}
-
-
-	monstre createMonstre() //Permet à l'utilisateur de créer un monstre avec des caractéristiques choisies
-	{
-		string entiteName;
-		int entiteHpMax;
-		int entiteSpeed;
-
-		cout << "Entrez le nom du monstre : ";
-		cin >> entiteName;
-		cout << endl;
-
-		cout << "Entrez son nombre de points de vie : ";
-		cin >> entiteHpMax;
-		while(!checkInput(entiteHpMax))
-		{
-			cout << "Entrez son nombre de points de vie : ";
-			cin >> entiteHpMax;
-		}
-
-		cout << "Entrez sa vitesse : ";
-		cin >> entiteSpeed;
-		while(!checkInput(entiteSpeed))
-		{
-			cout << "Entrez sa vitesse : ";
-			cin >> entiteSpeed;
-		}
-
-		monstre creation = monstre(entiteName, entiteHpMax, entiteSpeed); //Crée le monstre
-
-		vector<competence> skills = creation.getSkillVect();
-
-		for (int i=0 ; i<3 ; i++) //Remplit le tableau de compétences avec de nouvelles compétences
-		{
-			// PREVOIR UN SWITCH POUR SAVOIR SI L'USER VEUT CONTINUER A RENTRER DES COMPETENCES
-			// PENSER A CHANGER LE 3 DANS LA BOUCLE EN 11
-		   skills.push_back(createCompetenceMonstre());
-		}
-
-		creation.printMonstre();
-
-		creation.saveInFile(); //Le sauvegarde dans le fichier texte
-
-		return creation;
-	}
-*/
 
 	bool checkSeparatorEntite(string uneLigne) //Retourne false si le nb de séparateurs dans une ligne n'est pas le nombre définit
 	{
@@ -794,7 +640,7 @@ namespace io
 	{
 		vector<Carte> selectionnable ;
 		// Carte par défaut
-		Carte defaut(5, "c0000|defaut", "carte par défaut", 5);
+		Carte defaut(5, "defaut", "carte par défaut", 5);
 		defaut.setCase(0,0,"joueur");
 		defaut.setCase(2,0,"m0");
 		defaut.setCase(2,1,"m0");
@@ -802,9 +648,12 @@ namespace io
 		defaut.setCase(2,3,"m0");
 		defaut.setCase(2,4,"m0");
 		defaut.setCase(1,3,"arbre");
+		defaut.setId("c0000");
 		defaut.setNbrMonstre(5);
 		defaut.setCaseDispo(18);
  		selectionnable.push_back(defaut);
+
+		Carte::nbElemProt = 1;
 
 		ifstream fichier(nomFichier, ios :: in) ;
 
@@ -856,9 +705,9 @@ namespace io
 				{
 					i++;	// Saute la première parenthèse
 					// Coordonnée 1 : depuis la position actuelle jusqu'à la première virgule
-					int coor1 = atoi( ( current_line.substr( i, current_line.find(",", i)-1 ).c_str() ) );
+					int coor1 = atoi((current_line.substr(i, current_line.find(",", i)-1).c_str()));
 					// Coordonnée 2 : depuis la première virgule jusqu'à la deuxième virgule
-					int coor2 = atoi( ( current_line.substr( current_line.find(",", i)+1, current_line.find(",", current_line.find(",", i)+1)-1 ).c_str() ) );
+					int coor2 = atoi((current_line.substr(current_line.find(",", i)+1, current_line.find(",", current_line.find(",", i)+1)-1).c_str() ) );
 					i = current_line.find(",", current_line.find(",", i)+1);i++;	// On met le 'i' après les deux coordonnées trouvées
 					// Prise nom obstacle
 					while (current_line[i] != ')')
@@ -873,100 +722,119 @@ namespace io
 		}
 		return selectionnable ;
 	}
+
+	int To_int(string input)
+	{
+		stringstream ss (input);
+		int output = 0;
+
+		while (ss >> output || !ss.eof())
+		{
+			if (ss.fail())
+			{
+				ss.clear();
+				string nether;
+				ss >> nether;
+				continue;
+			}
+		}
+
+		return output;
+	}
 }
 
 bool checkSeparatorCarte(string uneLigne) //Retourne false si le nb de séparateurs dans une ligne n'est pas le nombre définit
+{
+	int cptBarre=0;
+	char parcours;
+
+	for (int i=0; i<uneLigne.length(); i++)
 	{
-		int cptBarre=0;
-		char parcours;
+		parcours = uneLigne[i];
 
-		for (int i=0; i<uneLigne.length(); i++)
+		if(parcours=='|')
 		{
-			parcours = uneLigne[i];
-
-			if(parcours=='|')
-			{
-				cptBarre++;
-			}
+			cptBarre++;
 		}
-
-		if(cptBarre == 5)
-		{
-			return true;
-		}
-
-		return false;
 	}
 
-bool checkSeparatorCoordonnee(std::string nomFichier, int numLigne) //Retourne false si le nb de séparateurs dans un champ de compétence n'est pas le nombre définit
+	if(cptBarre == 5)
 	{
-		int nbSeparateur = 0;
+		return true;
+	}
 
-		string laLigne="";
+	return false;
+}
 
-		char parcoursCoordonnee;
-		int cptLigne=0;
-		int nbParentheseO=0;
-		int nbParentheseF=0;
-		int nbVirgules=0;
+bool checkSeparatorCoordonnee(std::string nomFichier, int numLigne) //Retourne false si le nb de séparateurs dans un champ de compétence n'est pas le nombre définit
+{
+	int nbSeparateur = 0;
 
-		ifstream fichierCarte(nomFichier.c_str(), ios::in); //Ouverture en mode lecture
+	string laLigne="";
 
-		if(fichierCarte)
+	char parcoursCoordonnee;
+	int cptLigne=0;
+	int nbParentheseO=0;
+	int nbParentheseF=0;
+	int nbVirgules=0;
+
+	ifstream fichierCarte(nomFichier.c_str(), ios::in); //Ouverture en mode lecture
+
+	if(fichierCarte)
+	{
+		while (getline(fichierCarte, laLigne)) //Parcours des lignes
 		{
-			while (getline(fichierCarte, laLigne)) //Parcours des lignes
+			cptLigne++;
+			if (cptLigne==numLigne) //Si on est sur la ligne recherchée
 			{
-				cptLigne++;
-				if (cptLigne==numLigne) //Si on est sur la ligne recherchée
+				for(int i=0; i<laLigne.length() ; i++) //Boucle de parcours de toute la ligne
 				{
-					for(int i=0; i<laLigne.length() ; i++) //Boucle de parcours de toute la ligne
+					parcoursCoordonnee = laLigne[i]; //Variable de parcours de la ligne
+
+					if(nbSeparateur < 5) //Recherche du champ compétence sur la ligne
 					{
-						parcoursCoordonnee = laLigne[i]; //Variable de parcours de la ligne
-
-						if(nbSeparateur < 5) //Recherche du champ compétence sur la ligne
+						if (parcoursCoordonnee == '|')
 						{
-							if (parcoursCoordonnee == '|')
-							{
-								nbSeparateur++;
-							}
-						}
-
-						if (nbSeparateur==5) //Si le curseur est sur le champ compétence.
-						{
-
-							if (parcoursCoordonnee == '(')
-							{
-								nbParentheseO++;
-							}
-							if (parcoursCoordonnee == ',')
-							{
-								nbVirgules++;
-							}
-							if (parcoursCoordonnee == ')')
-							{
-								nbParentheseF++;
-								if((nbParentheseO == 1) && (nbParentheseF == 1) && (nbVirgules == 2)) //Verification bon nb de séparateurs
-								{
-									nbParentheseO=0; //Reset des compteurs
-									nbParentheseF=0;
-									nbVirgules=0;
-									continue;
-								}
-								else
-								{
-									return false;
-								}
-
-							}
-							if (parcoursCoordonnee== '\0') //Fin du champ compétence
-							{
-								return true;
-							}
+							nbSeparateur++;
 						}
 					}
 
+					if (nbSeparateur==5) //Si le curseur est sur le champ compétence.
+					{
+
+						if (parcoursCoordonnee == '(')
+						{
+							nbParentheseO++;
+						}
+						if (parcoursCoordonnee == ',')
+						{
+							nbVirgules++;
+						}
+						if (parcoursCoordonnee == ')')
+						{
+							nbParentheseF++;
+							if((nbParentheseO == 1) && (nbParentheseF == 1) && (nbVirgules == 2)) //Verification bon nb de séparateurs
+							{
+								nbParentheseO=0; //Reset des compteurs
+								nbParentheseF=0;
+								nbVirgules=0;
+								continue;
+							}
+							else
+							{
+								return false;
+							}
+
+						}
+						if (parcoursCoordonnee== '\0') //Fin du champ compétence
+						{
+							return true;
+						}
+					}
 				}
+
 			}
 		}
-
 	}
+}
+

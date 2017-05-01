@@ -21,8 +21,9 @@ protected:
 	std::vector<competence> entiteSkillVect;
 
 public:
+
 	//! Constructeur vide
-	/*
+	/*!
 		Crée une entité vide.
 		\warning L'entité sera vide. Cela signifie qu'elle ne sera pas utilisable pour le jeu, sa vie étant égale à 0
 		\post L'entite crée aura les paramètres suivants:

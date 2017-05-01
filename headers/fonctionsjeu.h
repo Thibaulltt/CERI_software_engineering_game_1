@@ -67,7 +67,7 @@ public:
 	void afficherJeu();
 
 	std::string genererDeplacement(std::vector<bool>& v);
-	
+
 	std::string genererInputAccepte(std::vector<bool> b);
 
 	//! Module de combat

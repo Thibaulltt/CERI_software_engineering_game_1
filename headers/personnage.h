@@ -9,16 +9,16 @@ class personnage : public entite //Classe personnage héritant de la classe enti
 
 public:
 
+	static int nbElemProt;
+
 	//! Constructeur vide
 	/*!
 		Le personnage créé aura 0 de mana, et n'aura aucune description. Mais il sera créé.
 	*/
-	personnage():entite()
-	{
-	};
+	personnage();
 
 
-	personnage(std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax, std::string entiteDescription, std::vector<competence> allSkills) : entite(entiteId, entiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills )
+	personnage(std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax, std::string entiteDescription, std::vector<competence> allSkills) : entite(entiteId, entiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills)
 	{
 	};
 

@@ -265,7 +265,7 @@ void entite::afficher_combat()
 	{
 		cout << "MP: " << entiteManaCurrent << "/" << entiteManaMax << endl;
 
-        for (int i = 0; i < getSkillVect().size(); i++)
+		for (int i = 0; i < getSkillVect().size(); i++)
 		{
 			getSkillVect()[i].afficher_detail();
 		}
