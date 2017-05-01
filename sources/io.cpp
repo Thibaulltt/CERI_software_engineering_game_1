@@ -712,9 +712,9 @@ namespace io
 				{
 					i++;	// Saute la première parenthèse
 					// Coordonnée 1 : depuis la position actuelle jusqu'à la première virgule
-					int coor1 = atoi((current_line.substr(i, current_line.find(",", i)-1).c_str()));
+					int coor1 = atoi( ( current_line.substr( i, current_line.find(",", i)-1 ).c_str() ) );
 					// Coordonnée 2 : depuis la première virgule jusqu'à la deuxième virgule
-					int coor2 = atoi((current_line.substr(current_line.find(",", i)+1, current_line.find(",", current_line.find(",", i)+1)-1).c_str() ) );
+					int coor2 = atoi( ( current_line.substr( current_line.find(",", i)+1, current_line.find(",", current_line.find(",", i)+1)-1 ).c_str() ) );
 					i = current_line.find(",", current_line.find(",", i)+1);i++;	// On met le 'i' après les deux coordonnées trouvées
 					// Prise nom obstacle
 					while (current_line[i] != ')')
