@@ -3,8 +3,8 @@
 #ifndef PERSONNAGE_H
 #define PERSONNAGE_H
 #pragma once
-
-class personnage : public entite //Classe personnage héritant de la classe entité
+//! Classe personnage héritant de la classe entité
+class personnage : public entite
 {
 
 public:

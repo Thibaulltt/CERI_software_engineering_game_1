@@ -9,15 +9,25 @@
 class entite
 {
 protected:
+	//! Identifiant de l'entité. Est obtenu lors de la lecture du fichier des entités.
 	std::string entiteId;
+	//! Nom de l'entité.
 	std::string entiteName;
+	//! Description de l'entité.
 	std::string entiteDescription;
+	//! Nombre de points de vie maximale que l'entité peut avoir pendant le jeu.
 	int entiteHpMax;
+	//! Nombre de points de vie que l'entité a au moment "n".
 	int entiteHpCurrent;
+	//! Nombre de points de magie maximal que l'entité peut avoir pendant le jeu.
 	int entiteManaMax;
+	//! Nombre de points de magie que l'entité a au moment "n".
 	int entiteManaCurrent;
+	//! Vitesse d'attaque de l'entité.
 	int entiteSpeed;
+	//! Booléen permettant de savoir si l'entité est en vie ou non.
 	bool entiteAlive;
+	//! Vecteur (`std::vector`) permettant de stocker les compétences de l'entité.
 	std::vector<competence> entiteSkillVect;
 
 public:
