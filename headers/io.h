@@ -95,9 +95,13 @@ namespace io
 	*/
 	extern void removeLastChar(std::stringstream& i);
 
-	//! Long input
+	//! Entrée utilisateur contenant plus d'un caractère.
 	/*!
-		magic.gif
+		Utilise les mêmes fonction de changement du terminal que `de()` (avec la seule différence que l'echo des caractères rentrés est activé),
+		mais possède une boucle qui utilise `getchar()` tant que le caractère entré est différent de la touche `ENTREE`.
+		Enlève ensuite le dernier caractère (qui est un caractère RETOUR_CHARIOT+NEWLINE).
+		Si la longueur de la chaîne résultante est de 0, alors l'utilisateur n'a rien saisi, donc on lui redemande.
+		Sinon, on renvoie l'entrée utilisateur.
 	*/
 	extern std::string long_input();
 

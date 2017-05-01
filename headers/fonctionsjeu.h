@@ -62,12 +62,82 @@ public:
 	//! Setter de carte de jeu
 	void setJeuCarte(Carte jeu_map);
 
+	//! Fonction de déplacement du joueur sur la carte.
+	/*!
+		Cette fonction permet au joueur de se déplacer sur la carte, en tenant compte des obstacles présents sur ladite carte.
+
+		Mode opératoire :
+		- Génère les déplacements possibles grâce à la fonction `genererDeplacement()` ;
+		- Génère les entrées utilisateur possibles grâce à la fonction `genererInputAccepte()` ;
+		- Va chercher la position actuelle du joueur, puis la stocke dans deux entiers (`x` et `y`, oui je sais ces noms sont très originaux) ;
+		- Afficher les mouvements possibles au joueur grâce à la fonction `afficherMouvements()` ;
+		- Demande à l'utilisateur où il souhaiterais aller grâce à la fonction `de()`
+		- Si le joueur rentre un caractère non compris dans la liste des mouvements possibles :
+		  - On ré-affiche les mouvements possibles avec `afficherMouvements()`, cette fois-ci avec un message d'erreur en plus.
+		  - On re-demande son choix pour le mouvement grâce à la fonction `de()`
+		- On change les coordonnées des entiers `x` et `y` en accord avec la demande de l'utilisateur dans un `switch`.
+		- On met à jour l'affichage de la carte grâce à la fonction `updateMap()`
+		\post La position du joueur aura changé. La paire d'entiers `currentPlayerPosition` sera donc mise à jour (grâce à `updateMap()`).
+		\sa afficherMouvements(), genererDeplacement(), genererInputAccepte(), de() & io::updateMap()
+	*/
 	void deplacement();
 
+	//! Fonction permettant d'afficher la carte, puis de demander un déplacement au joueur.
+	/*!
+		\note Cette fonction est là uniquement pour des fins de tests. La fonctionnalité qu'elle remplit sera remplacée par d'autres méthodes dans la fichier `tests/main.cpp`.
+	*/
 	void afficherJeu();
 
+	//! Fonction permettant de générer les déplacements possibles à partir d'une case `i,j` du plateau de jeu.
+	/*!
+		Cette fonction permet de générer la chaîne de caractères qui affiche les déplacements disponibles au joueur à partir de la case où il se trouve.
+
+		Mode opératoire :
+		- On prends les coordonnées actuelles du joueur, que l'on met dans deux entiers créativement appelés `x` et `y`.
+		- On prends la taille de la carte du jeu grâce à la fonction `carte::getTaille()`. La taille du plateau nous sert à déterminer si une case existe, enlevant ainsi un peu de temps de calcul lors de l'analyse des cases voisines à celle où se trouve le joueur.
+		- On crée une chaîne de caractères. Cette chaîne servira à stocker les déplacements possibles à afficher par la suite au joueur.
+		- On vérifie les cases autour du joueur en vérifiant leurs indices et leur contenu (grâce à la fonction `carte::caseAccessible()`)
+		  - Si la case au dessus du joueur est libre, alors :
+		    - On ajoute `Z - Haut` à la chaîne de caractères
+		    - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+		  - Si la case à la gauche du joueur est libre, alors :
+  		    - On ajoute `Q - Gauche` à la chaîne de caractères
+  		    - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+		  - Si la case en dessous du joueur est libre, alors :
+  		    - On ajoute `S - Bas` à la chaîne de caractères
+  		    - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+		  - Si la case à la droite du joueur est libre, alors :
+  		    - On ajoute `D - Droite` à la chaîne de caractères
+  		    - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+		- On retourne la châine de caractères générée.
+		\param v Vecteur de booléens (`std::vector<bool>`) permettant de savoir quelles cases sont accessibles aux alentours de la case où se trouve le joueur.
+		\return Une châine de caractères à afficher au joueur pour qu'il puisse savoir où il peut aller. La chaine est définie par l'expression régulière suivante : `"|"+(" Z - Haut |")?+(" Q - Gauche |")?+(" S - Bas |")?+(" D - Droite |")?`
+		\post La fonction ***ne change absolument rien*** au plateau, ni au jeu. Toutes les données générées pour l'analyse des voisins de la case ont une portée locale.
+		\sa genererInputAccepte(), deplacement(), carte::caseAccessible() & carte::getTaille()
+	*/
 	std::string genererDeplacement(std::vector<bool>& v);
 
+	//! Fonction permettant de générer une chaine d'entrées utilisateur acceptables pour le déplacement.
+	/*!
+		Cette fonction permet de générer la chaîne de caractères qui sera analysée pour accepter ou non un déplacement demandé par le joueur à partir de la case où il se trouve.
+
+		Mode opératoire :
+		- Crée une chaîne de caractères (`std::string`) qui contiendra les caractères acceptés lors de l'entrée utilisateur dans la fonction `deplacement()`.
+		- Lit le vecteur de booléens rempli dans la fonction `genererDeplacement()` :
+		  - Si le premier booléen est à 1 :
+		    - On ajoute "Zz" à la chaîne (l'utilisateur pourra donc appuyer sur 'Z' ou 'z' et se déplacer)
+    		  - Si le second booléen est à 1 :
+    		    - On ajoute "Qq" à la chaîne (l'utilisateur pourra donc appuyer sur 'Q' ou 'q' et se déplacer)
+    		  - Si le troisième booléen est à 1 :
+    		    - On ajoute "Ss" à la chaîne (l'utilisateur pourra donc appuyer sur 'S' ou 's' et se déplacer)
+    		  - Si le quatrième booléen est à 1 :
+    		    - On ajoute "Dd" à la chaîne (l'utilisateur pourra donc appuyer sur 'D' ou 'd' et se déplacer)
+		- Retourne la chaîne de caractères.
+		\param b Vecteur de booléens (`std::vector<bool>`) rempli dans la fonction `genererDeplacement()`.
+		\return Une chaine de caractères permettant de déterminer si l'entrée utilisateur est acceptable ou pas. La chaîne est définie par l'expression régulière suivante : `"Zz"?+"Qq"?+"Ss"?+"Dd"?`.
+		\post La fonction ***ne change absolument rien*** au plateau, ni au jeu. Mais cette chaîne sera utilisée de la facon suivante : pour déterminer si l'utilisateur a rentré une demande de deplacement valide, on vérifie que le caractère rentré est présent dans la chaîne de caractères générée ici. Si le caractère n'est pas présent, on redemande l'entrée utilisateur au joueur.
+		\sa genererDeplacement() & deplacements()
+	*/
 	std::string genererInputAccepte(std::vector<bool> b);
 
 	//! Module de combat

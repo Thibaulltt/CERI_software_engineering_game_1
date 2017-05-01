@@ -6,18 +6,25 @@
 #define CARTE_H
 #pragma once
 
-// Décrire toute la classe ce qu'il y a dans chaque paramètre
-// Comment est construite la carte
-// Allocation dynamique tout ça tout ça
-
+//! Classe qui permet de modéliser une carte en mémoire
+/*!
+	< La description va ici >
+*/
 class Carte
 {
+	//! Identifiant de la carte. Sorti de la lecture du fichier texte contenant les cartes.
 	std::string id;
+	//! Nom donné à la carte. Est présenté au joueur lors de la sélection des cartes.
 	std::string nom ;
+	//! Description courte de la carte. Est présenté au joueur lors de la sélection des cartes.
 	std:: string description;
+	//! Taille de la carte. Permet de gérer l'affichage de la carte.
 	int taille ;
+	//! Plateau bidimensionnel de jeu, constitué de `std::string`. Permet de stocker les infos nécessaires pour chaque case de la carte (exemple : le fait que la case contient un monstre, et quel monstre elle contient).
 	std::string ** plateau ;
+	//! Nombre de monstres contenus sur la carte. Permet d'arrêter le jeu lorsque ce nombre est égal à 0.
 	int nbr_monstre;
+	//! Le nombre de cases disponibles sur la carte. On ne sait pas pourquoi elle est là, mais elle est là.
 	int case_dispo;
 
 	public:
@@ -26,7 +33,9 @@ class Carte
 		static int nbElemProt;
 
 		//! Carte
-		/*! Constructeur sans argument */
+		/*!
+			Constructeur sans argument
+		*/
 		Carte();
 
 		//! Carte
@@ -49,8 +58,10 @@ class Carte
 		/*!
 			Demande le nombre d'obstacles souhaités,
 			vérifie que ce nombre est possible en fonction du nombre de cases dispo sur la carte,
-			Demande et initialise les coordonnées de chaque obstacle.
+			demande et initialise les coordonnées de chaque obstacle.
+
 			On ne demande pas le genre d'obstacle voulu maintenant.
+
 			On réactualise le nombre de case dispo
 		*/
 		void coordonneeobstacle();

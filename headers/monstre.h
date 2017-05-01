@@ -4,6 +4,7 @@
 #define MONSTRE_H
 #pragma once
 
+//! Classe créant un monstre en mémoire. hérite des propriétés ainsi que des attributs de la classe entite
 class monstre : public entite
 {
 
