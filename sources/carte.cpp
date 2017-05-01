@@ -11,7 +11,7 @@ using namespace std;
 
 int Carte::nbElemProt = 0;
 
-Carte :: Carte()
+Carte::Carte()
 {
 	this->id = "";
 	this->nom = "";
@@ -23,7 +23,7 @@ Carte :: Carte()
 
 }
 
-Carte :: Carte (int taille, string name, string desc, int nb_monstre)
+Carte::Carte (int taille, string name, string desc, int nb_monstre)
 {
 	this->nom = name;
 	this->description = desc;
@@ -47,7 +47,7 @@ Carte :: Carte (int taille, string name, string desc, int nb_monstre)
 	this -> case_dispo = taille * taille;
 }
 
-void Carte :: coordonneejoueur()
+void Carte::coordonneejoueur()
 {
 	puts("- Choix placement joueur -");
 
@@ -180,7 +180,7 @@ void Carte::coordonneemonstre()
 	case_dispo = case_dispo - nbr_monstre;
 }
 
-void Carte :: affichage_normal()
+void Carte::affichage_normal()
 {
 	for (int i=0; i<taille; i++)
 	{
@@ -348,7 +348,7 @@ void Carte::saveInFile(string lettreCarte, string nomFichier) //Ecrit les carac 
 	}
 }
 
-string Carte :: getName()
+string Carte::getName()
 {
     return this->nom;
 }
@@ -370,17 +370,17 @@ void Carte::setId(std::string id)
     this -> id = id;
 }
 
-void Carte :: setName(string name)
+void Carte::setName(string name)
 {
 	nom = name;
 }
 
-void Carte :: setDescription(string desc)
+void Carte::setDescription(string desc)
 {
 	description = desc;
 }
 
-void Carte :: setPlateau(int taille)
+void Carte::setPlateau(int taille)
 {
 	plateau = new string * [taille];
 
@@ -390,19 +390,19 @@ void Carte :: setPlateau(int taille)
 	}
 }
 
-void Carte :: setCase(int i, int j, string value)
+void Carte::setCase(int i, int j, string value)
 {
 	plateau[i][j] = value;
 	if (value == "joueur")
 		io::setPlayerPosition(i,j);
 }
 
-void Carte :: setNbrMonstre(int nbr_monstre)
+void Carte::setNbrMonstre(int nbr_monstre)
 {
 	this -> nbr_monstre = nbr_monstre;
 }
 
-void Carte :: setCaseDispo(int case_dispo)
+void Carte::setCaseDispo(int case_dispo)
 {
 	this -> case_dispo = case_dispo;
 }
