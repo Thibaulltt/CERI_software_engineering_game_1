@@ -48,7 +48,7 @@ namespace io
 	extern int mapPositiony;
 
 	//! Stocke la position (x) de l'affichage de l'overlay des actions. Nous n'avons pas besoin du Y car l'overlay prends toute la largeur quoi qu'il arrive.
-	extern int interactionsOverlayX;
+	extern int interactionsOverlayY;
 
 	//! Paire de valeurs (std::pair) gardant la position actuelle du joueur dans
 	extern std::pair<int,int> currentPlayerPosition;

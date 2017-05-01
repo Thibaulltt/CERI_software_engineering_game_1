@@ -25,7 +25,7 @@ namespace io
 	int mapPositionX = 0;
 	int mapPositionY = 0;
 
-	int interactionsOverlayX = 0;
+	int interactionsOverlayY = 0;
 
 	std::pair<int,int> currentPlayerPosition(0,0);
 
@@ -187,7 +187,7 @@ namespace io
 		int TermPosX = 0;
 		int TermPosY = 0;
 
-		printf("\033[0;0H");	// Remet le curseur au debut
+		printf("\033[1;1H");	// Remet le curseur au debut
 
 		// On affiche les petites cases WUBBA LUBBA DUB DUB
 		while (TermPosY < TermHeight && displayY < t)
@@ -200,8 +200,10 @@ namespace io
 					std::cout << BLUE << 'X' << BLANK;
 				else if (map[displayX][displayY][0] == 'a')
 					std::cout << GREEN << 'X' << BLANK;
+				else if (map[displayX][displayY][0] == 'e')
+					std::cout << BLUE << 'O' << BLANK;
 				else
-					std::cout << 'o';
+					std::cout << ' ';
 				// std::cout << map[displayX][displayY];		// RESTE A AJOUTER LA COULEUR
 				TermPosX++;
 				displayX++;
@@ -217,26 +219,35 @@ namespace io
 
 	void updateMap(std::pair<int,int> newPlayerPos)
 	{
-		printf("\033[%c;%cH", currentPlayerPosition.second, currentPlayerPosition.first);
-		cout << BLANK << ' ' << BLANK;
-		printf("\033[%c;%cH", newPlayerPos.second, newPlayerPos.first);
-		cout << GREEN << 'X' << BLANK;
-		currentPlayerPosition.first = newPlayerPos.first;
-		currentPlayerPosition.second = newPlayerPos.second;
+		printf("\033[0;0H");
+		if (currentPlayerPosition.second != 0)
+			printf("\033[%iB", currentPlayerPosition.second - mapPositionY);
+		printf("\033[%iC", currentPlayerPosition.first - mapPositionX);
+		if (currentPlayerPosition.first == 0)
+			printf("\033[1D");
+		cout << BLANK << ' ' << BLANK << flush;
+		printf("\033[0;0H");
+		if (newPlayerPos.first != 0)
+			printf("\033[%iB", newPlayerPos.first - mapPositionY);
+		printf("\033[%iC", newPlayerPos.second + 1 - mapPositionX);
+		printf("\033[1D");
+		cout << RED << 'X' << BLANK << flush;
+		currentPlayerPosition.first = newPlayerPos.second;
+		currentPlayerPosition.second = newPlayerPos.first;
 	}
 
 	void afficherMouvements()
-	{													///////////////////////////////////
+	{
 		afficherMouvements("Z - Haut | Q - Gauche | S - Bas | D - Droite","");
 	}
 
 	void afficherMouvements(std::string s)
-	{													///////////////////////////////////
+	{
 		afficherMouvements("Z - Haut | Q - Gauche | S - Bas | D - Droite",s);
 	}
 
 	void afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
-	{													///////////////////////////////////
+	{
 		// Dans cette fonction, les sorties utilisées avec std::cout sont
 		// mises à la ligne après chaque élément pour pouvoir faciliter
 		// la lecture du code.
@@ -249,10 +260,14 @@ namespace io
 
 		// Si le joueur est dans le bas de la carte, on affiche les
 		// interactions possibles sur le haut de la fenêtre Terminal
-		if (currentPlayerPosition.first >= (mapPositionY+TermHeight-5))
-			interactionsOverlayX = 0;
+		if (currentPlayerPosition.second >= (mapPositionY+TermHeight-5))
+			printf("\033[1;1H");
 		else
-			interactionsOverlayX = (TermHeight - 5);
+		{
+			interactionsOverlayY = (TermHeight - 5);
+			std::string s = "printf \"\033["+std::to_string(interactionsOverlayY)+";0H\"";
+			system(s.c_str());
+		}
 
 		//
 		if (erreur_deplacement.size() > TermWidth-2)
@@ -264,8 +279,6 @@ namespace io
 
 		// Pour une raison X ou Y, cet appel printf(positionDansTerminal) ne marchait pas.
 		// ¯\_(ツ)_/¯ .Je pense que c'est plutôt pour la raison Y, mais ça n'engage que moi
-		std::string s = "printf \"\033["+std::to_string(interactionsOverlayX)+";0H\"";
-		system(s.c_str());
 
 		// Affiche une ligne entière de délimiteurs, à la couleur demandée.
 		cout << couleurDelimiteur;
@@ -305,7 +318,10 @@ namespace io
 		cout << couleurDelimiteur;
 		cout << delimiteur;
 		cout << BLANK;
-		cout << std::string(TermWidth-2, ' ');
+		cout << currentPlayerPosition.first;
+		cout << ";";
+		cout << currentPlayerPosition.second;
+		cout << std::string(TermWidth-7, ' ');
 		cout << couleurDelimiteur;
 		cout << delimiteur;
 		cout << BLANK;
@@ -335,7 +351,7 @@ namespace io
 
 		// Remet le curseur dans l'overlay
 		printf("\033[2A");			// Haut de deux lignes
-		printf("\033[%dC", TermWidth/2);	// Gauche de TermWidth-2 cases
+		printf("\033[%dC", TermWidth/2);	// Droite de TermWidth-2 cases
 	}
 
 	void checkTerminalSize()
