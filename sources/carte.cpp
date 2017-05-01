@@ -353,7 +353,7 @@ string Carte::getName()
     return this->nom;
 }
 
-string Carte :: getDescription()
+string Carte::getDescription()
 {
     return this->description;
 }
