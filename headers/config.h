@@ -18,7 +18,6 @@ public:
 	*/
 	void config_carte();
 
-		///***Template possible monstre + personnage***///
 	//! Configuration de monstre
 	/*!
 		Permet de créer ou de supprimer un monstre.
@@ -86,7 +85,8 @@ public:
 	//! Création de compétence
 	/*!
 		Permet de créer une compétence d'entité.
-		\param lettreEntite Pour choisir le type d'entité (m = monstre; p = personnage)
+		\param dummy Type spécifique de l'entité à utiliser
+		\param rang Identifiant du numéro de compétence à saisir (parmi le total choisi)
 		\return La compétence créée
 	*/
 	competence createCompetenceEntite(entite dummy, int rang);
@@ -94,6 +94,8 @@ public:
 	//! Création d'une entité
 	/*!
 		Permet de créer une entité et de la rajouter dans le fichier correspondant.
+		\param dummy Type spécifique de l'entité à utiliser
+		\param nom_fichier Nom du fichier dans lequel on veut insérer l'entité
 	*/
 	template<class T> void creationEntite(T dummy, std::string nom_fichier) //Permet à l'utilisateur de créer une entité avec des caractéristiques choisies
 	{

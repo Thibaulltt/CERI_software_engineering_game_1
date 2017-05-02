@@ -85,18 +85,20 @@ public:
 	//! Getter pour la mana actuelle de l'entite
 	int getManaCurrent();
 
+	//! Getter qui renvoie un vecteur (std::vector) de compétences.
+	std::vector<competence> getSkillVect();
+
 	//! Setter pour points de vie actuels
 	void setHpCurrent(int current);
 
 	//! Setter pour points de mana actuels
 	void setManaCurrent(int current);
 
-	//! Getter qui renvoie un vecteur (std::vector) de compétences.
-	std::vector<competence> getSkillVect();
-
-	//! Retour d'une string représentant un entite.
+	//! Retourne le nombre de lignes d'un fichier.
 	/*!
-		Convertit un objet entite en une ligne de string.
+		Compte le nb de lignes du fichier pour créer l'identifiant unique d'un entite. L'identifiant sera <code> nbLignes + 1 </code>
+		\param nomFichier Une string (std::string) qui sera le nom du fichier à ouvrir.
+		\return Un entier représentant le nombre de lignes.
 		\post La string contiendra les infos dans cet ordre :
 		- entiteIdentifiant (type <code>m\<entier></code>)
 		- nom de l'entite
@@ -104,21 +106,30 @@ public:
 		- vitesse d'attaque
 		- toutes les compétences , séparées par des <code>:</code>
 	*/
-
-	//! Retourne le nombre de lignes d'un fichier.
-	/*!
-		Compte le nb de lignes du fichier pour créer l'identifiant unique d'un entite. L'identifiant sera <code> nbLignes + 1 </code>
-		\return Un entier représentant le nombre de lignes.
-		\param nomFichier Une string (std::string) qui sera le nom du fichier à ouvrir.
-	*/
 	int nbLigneFichier(std::string nomFichier);
 
+	//! Convertit une entité en string
+	/*!
+		Permet de prendre une entité, et d'en retourner les informations sous forme de chaîne de caractères
+		\param lettreEntite Première lettre du futur identifiant de l'entité
+		\param nomFichier Nom du fichier dans lequel sauvegarder l'entité
+		\return Une chaîne de caractères décrivant l'entité
+	*/
 	std::string entiteString(std::string lettreEntite, std::string nomFichier);
 
-	//! Permet d'écrire l'entite dans un fichier de sauvegarde
+	//! Ecriture d'une entité dans un fichier
+	/*!
+		Permet de sauvegarder une entité dans un fichier
+		\param lettreEntite Première lettre du futur identifiant de l'entité
+		\param nomFichier Nom du fichier dans lequel sauvegarder l'entité
+	*/
 	void saveInFile(std::string lettreEntite, std::string nomFichier);
 
 	//! Identification personnage
+	/*!
+		Permet de déterminer la qualité de personnage d'une entité.
+		\return Booléen: vrai si l'entité est un personnage, faux sinon
+	*/
 	bool is_personnage();
 
 	//! Affichage en détail
@@ -139,8 +150,8 @@ public:
 
 	//! Enlève x points de mana a l'entite.
 	/*!
-		Cette fonction ne sert à rien, à part ne pas faire bugger les autres.
-		En fait, elle sert à dépenser la mana si c'est possible.
+		Permet de vérifier la possibilité de retirer la mana pour utiliser une compétence, et la retire à l'entité lanceuse si c'est possible.
+		\param skillManaCost Coût en mana de la compétence souhaitée
 		\return Un booléen vérifiant la capacité à dépenser la mana.
 	*/
 	bool enleverMana(int skillManaCost);
@@ -148,7 +159,7 @@ public:
 
 	//! Affichage brut
 	/*!
-		Permet d'afficher les information nécessaires à la gestion des entités (suppression)
+		Permet d'afficher les informations nécessaires à la gestion des entités (suppression)
 	*/
 	void afficher_brut();
 

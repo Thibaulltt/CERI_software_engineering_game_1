@@ -94,8 +94,19 @@ public:
 	*/
 	template<typename T> std::string toString(const T & valeur);
 
-	void afficher_detail(); //Test
+	//! Affichage d'une compétence
+	/*!
+		Affiche les éléments détaillés d'une compétence (nom, dégâts, coût).
+		Si les dégâts sont négatifs, affiche "soins".
+		Si le coût est négatif, affiche "gain".
+	*/
+	void afficher_detail();
 
+	//! Conversion en string
+	/*!
+        Permet de convertir les caractéristiques d'une compétence en chaîne de caractère en vue de son écriture dans un fichier
+		\return Un string correspondant à la compétence
+	*/
 	std::string competenceString(); //Convertit les carac. d'une compétence en une string formatée
 };
 
