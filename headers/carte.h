@@ -32,18 +32,19 @@ class Carte
 		//! Nombre de cartes protégées
 		static int nbElemProt;
 
-		//! Carte
+		//! Constructeur sans argument
 		/*!
-			Constructeur sans argument
+			Construit une carte en initialisant tous ses paramètres à 0 ou NULL.
 		*/
 		Carte();
 
-		//! Carte
+		//! Constructeur avec arguments
 		/*!
-			Constructeur avec arguments
+			Construit une carte en affectant ses nom, description, et taille, et construit le plateau de jeu à partir de ce dernier paramètre.
 			\param taille Taille d'un côté, la carte est carrée
 			\param nom Nom que l'on va donner à la carte
 			\param description Description brève de la carte
+			\param nb_monstre Nombre de monstres présents sur la carte
 		*/
 		Carte(int taille, std::string name, std::string description, int nb_monstre);
 

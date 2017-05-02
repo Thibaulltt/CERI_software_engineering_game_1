@@ -474,7 +474,7 @@ namespace io
 
 	//! Convertit un string en int
 	/*!
-		Renvoie 0 si l'input n'est pas convertible.
+		Renvoie 0 si l'input n'est pas convertible (peut prêter à confusion, mais utile pour les inputs devant être différents de 0)
 		\param input String à convertir
 		\return Entier obtenu suite à la conversion
 	*/

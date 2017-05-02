@@ -10,6 +10,10 @@ class monstre : public entite
 
 public:
 
+	//! Nombre de monstres protégés
+	/*!
+		Variable de classse permettant d'identifier le nombre de monstres par défaut ne pouvant pas être modifiés (sauf modification directe du code).
+	*/
 	static int nbElemProt;
 
 	//! Constructeur vide
@@ -38,10 +42,6 @@ public:
 		\param allSkills Un vecteur (std::vector) contenant toutes les compétences de ce monstre.
 	*/
 	monstre(std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax, std::string entiteDescription, std::vector<competence> allSkills) : entite(entiteId, entiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills){};
-
-
-	//! Pour tester
-	void printMonstre();
 
 };
 
