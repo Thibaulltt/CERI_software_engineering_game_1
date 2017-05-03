@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int monstre::nbElemProt = 3;
+int monstre::nbElemProt = 0;
 
 monstre::monstre()
 {

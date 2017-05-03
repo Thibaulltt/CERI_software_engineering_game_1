@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int personnage::nbElemProt = 3;
+int personnage::nbElemProt = 0;
 
 personnage::personnage()
 {

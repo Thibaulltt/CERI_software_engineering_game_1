@@ -132,6 +132,13 @@ public:
 	*/
 	bool is_personnage();
 
+	//! Identification monstre
+	/*!
+	Permet de déterminer la qualité de monstre d'une entité.
+	\return Booléen: vrai si l'entité est un monstre, faux sinon
+	*/
+	bool is_monstre();
+
 	//! Affichage en détail
 	void afficher_detail();
 

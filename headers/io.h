@@ -396,6 +396,94 @@ namespace io
 	template<typename T> std::vector<T> loadAllEntiteFromFile(T temp, std::string nomFichier)
 	{
 		std::vector<T> allEntite; //Vecteur de retour
+		
+		T test;
+
+		if (test.is_personnage()) //Création des personnages par défaut
+		{
+			std::vector<competence> lesCompetences;
+			
+			//Personnage Raph
+			competence une("Coup de clavier", 30, 20);
+			lesCompetences.push_back(une);
+			competence deux("C'est magique", 50, 50);
+			lesCompetences.push_back(deux);
+			competence trois("Trop vieux pour ces conneries", -15, 20);
+			lesCompetences.push_back(trois);
+			competence quatre("Coup de stylo", 5, -10);
+			lesCompetences.push_back(quatre);
+			T raph("p00", "Raph", 120, 20, 100, "Raph l'ancetre", lesCompetences);
+			allEntite.push_back(raph);
+			lesCompetences.clear(); //Vidage du vecteur de compétences
+
+			//Personnage Thibault
+			competence unee("Flip Keyboard", 20, 10);
+			lesCompetences.push_back(unee);
+			competence deuxx("Flip table", 60, 55);
+			lesCompetences.push_back(deuxx);
+			competence troixx("Recharge de sel", -10, 15);
+			lesCompetences.push_back(troixx);
+			competence quatree("Appel du Macbook", 7, -10);
+			lesCompetences.push_back(quatree);
+			T thibault("p01", "Thibault", 150, 15, 100, "Too salty", lesCompetences);
+			allEntite.push_back(thibault);
+			lesCompetences.clear(); //Vidage du vecteur de compétences
+
+			//Personnage Bobby
+			competence uneee("Attaque rapide", 15, 5);
+			lesCompetences.push_back(uneee);
+			competence deuxxx("Attaque chargée", 70, 65);
+			lesCompetences.push_back(deuxxx);
+			competence troixxx("Need healing", -15, 70);
+			lesCompetences.push_back(troixxx);
+			competence quatreee("Need more mana", 5, -20);
+			lesCompetences.push_back(quatreee);
+			T bobby("p02", "Bobby", 90, 30, 95, "Bobby ftw", lesCompetences);
+			allEntite.push_back(bobby);
+			lesCompetences.clear();
+
+			personnage::nbElemProt = 3;
+		}
+
+		if (test.is_monstre()) //Création des personnages par défaut
+		{
+			std::vector<competence> lesCompetences;
+
+			//Monstre Orc
+			competence une("Coup hache", 30, 0);
+			lesCompetences.push_back(une);
+			competence deux("Coup de marteau", 22, 0);
+			lesCompetences.push_back(deux);
+			competence trois("Coup de fouet", 15, 0);
+			lesCompetences.push_back(trois);
+			T orc("m00", "Orc", 95, 10, 0, "", lesCompetences);
+			allEntite.push_back(orc);
+			lesCompetences.clear(); //Vidage du vecteur de compétences
+
+			//Monstre Gobelin
+			competence unee("Vol d'argent", 15, 0);
+			lesCompetences.push_back(unee);
+			competence deuxx("Fabrication d'explosifs", 30, 0);
+			lesCompetences.push_back(deuxx);
+			competence troixx("Fourberie", 20, 0);
+			lesCompetences.push_back(troixx);
+			T gobelin("m01", "Gobelin", 90, 20, 0, "", lesCompetences);
+			allEntite.push_back(gobelin);
+			lesCompetences.clear(); //Vidage du vecteur de compétences
+
+			//Monstre elfe
+			competence uneee("Tir à l'arc", 25, 0);
+			lesCompetences.push_back(uneee);
+			competence deuxxx("Vision d'aigle", 15, 0);
+			lesCompetences.push_back(deuxxx);
+			competence troixxx("Magie elfique", 20, 0);
+			lesCompetences.push_back(troixxx);
+			T elfe("m02", "Elfe", 85, 18, 0, "", lesCompetences);
+			allEntite.push_back(elfe);
+			lesCompetences.clear();
+
+			monstre::nbElemProt = 3;
+		}
 
 		std::string uneLigne=""; //Variable stockant une ligne
 
