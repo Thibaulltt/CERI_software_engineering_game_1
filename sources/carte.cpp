@@ -360,9 +360,7 @@ string Carte::getDescription()
 
 void Carte::setTaille(int taille)
 {
-	cout << "TAILLE DEMANDEE : " << taille << endl;
 	this->taille = taille;
-	cout << "TAILLE ASSIGNéE : " << this->taille << endl;
 }
 
 void Carte::setId(std::string id)
@@ -393,7 +391,7 @@ void Carte::setPlateau(int taille)
 void Carte::setCase(int i, int j, string value)
 {
 	plateau[i][j] = value;
-	if (value == "joueur")
+	if (value.find("joueur") != std::string::npos)
 		io::setPlayerPosition(i,j);
 }
 
@@ -442,7 +440,7 @@ bool Carte::caseAccessible(int i, int j)
 		return false;
 	if (i >= taille || j >= taille)
 		return false;
-	if (plateau[i][j] == "joueur")
+	if (plateau[i][j].find("joueur") != std::string::npos)
 		return true;
 	return plateau[i][j] == "v";
 }
@@ -460,4 +458,19 @@ void Carte::afficher_detail()
 void Carte::afficher_brut()
 {
     cout << nom << ", " << taille * taille << " cases, " << nbr_monstre << " monstres" << endl;
+}
+
+void Carte::echangerContenuCase(int i1, int j1, int i2, int j2)
+{
+	std::string old_content = plateau[i1][j1];
+	std::string new_content = plateau[i2][j2];
+	if (new_content == "v")	// Si la case a atteindre est vide
+		plateau[i2][j2] = old_content;	// On met le joueur la
+	else	// Sinon (la case contient qqchose qui a été rendu accessible (monstre par exemple)).
+		plateau[i2][j2] += "/"+old_content;	// On rajoute "/joueur" a la fin de la chaîne
+	if (old_content == "joueur")	// Si la case d'origine ne contenait que le joueur
+		plateau[i1][j1] = "v";	// La case devient vide
+	else				// Si la case d'origine contenait qqchose d'autre que le joueur
+		plateau[i1][j1] = plateau[i1][j1].substr(0,plateau[i1][j1].find("/"));	// On enlève "/joueur" de la fin de la chaîne si il existe
+	return;
 }

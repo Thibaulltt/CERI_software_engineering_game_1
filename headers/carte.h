@@ -103,9 +103,9 @@ class Carte
 			Vérifie que ce nombre est possible en fonction de la taille et du nombre de cases dispo sur la carte.
 
 			Demande et initialise les coordonnées de chaque monstre.
-			
+
 			Vérifie que la case choisit est libre.
-		
+
 			On réactualise le nombre de case dispo.
 
 			\sa long_input()
@@ -136,7 +136,7 @@ class Carte
 			Permet de créer une carte : initialiser le type d'obstacle et de monstre.
 
 			On ouvre le fichier carte, on écrit le nom, la description, la taille et le nombre de monstre qui ont été assigné précédemment.
-			
+
 			On parcours ensuite le plateau afin de retrouver la case joueur, les obstacles et de quel type ils sont.
 
 			A chaque fois qu'on tombe sur un monstre on récupère le vecteur de monstres pour faire choisir le monstre au client.
@@ -146,7 +146,7 @@ class Carte
 			\sa atoi(string)
 			\sa loadAllEntiteFromFile
 			\sa afficher_brut()
-			
+
 		*/
 		void saisie() ;
 
@@ -168,7 +168,7 @@ class Carte
 		/*!
 
 			Convertit toutes les caractéristiques d'une carte en string.
-			
+
 			On génère l'ID, les obstacles et les entités sur la carte.
 
 			\param lettreCarte string
@@ -177,7 +177,7 @@ class Carte
 			\sa c_str()
 			\sa toString(int)
 			\return string ligneFichier
-			
+
 
 		*/
 		std::string carteString(std::string lettreCarte, std::string nomFichier);
@@ -206,7 +206,7 @@ class Carte
 		/*!
 
 			Configurer la taille souhaitée de la carte.
-			
+
 		*/
 		void setTaille(int taille);
 
@@ -214,7 +214,7 @@ class Carte
 		/*!
 
 				Configurer l'identifiant de la carte.
-				
+
 				Uniquement pour la carte par défaut, pas accessible pour la configuration générale.
 		*/
 		void setId(std::string id);
@@ -253,7 +253,7 @@ class Carte
 			\param i int ligne
 			\param j int colonne
 			\param value string valeur de la case
-			\sa setPlayerPosition(int, int) 
+			\sa setPlayerPosition(int, int)
 
 		*/
 		void setCase(int i, int j, std::string value);
@@ -262,7 +262,7 @@ class Carte
 		/*!
 
 			Configurer le nombre de monstres présent sur la carte.
-	
+
 			\param nbr_monstre int nombre de monstre souhaité
 
 		*/
@@ -272,7 +272,7 @@ class Carte
 		/*!
 
 			Configurer le nombre de case disponibles sur la carte.
-	
+
 			\param case_dispo int nombre de case dispo
 
 		*/
@@ -283,7 +283,7 @@ class Carte
 
 			On copie une Carte.
 
-			On récupère les informations de la carte a_copier pour retourner une nouvelle carte avec ces même caractéristiques. 
+			On récupère les informations de la carte a_copier pour retourner une nouvelle carte avec ces même caractéristiques.
 
 			\param a_copier Carte
 			\return adresse Carte
@@ -296,7 +296,7 @@ class Carte
 
 			Récupère la taille de la carte.
 
-			\return taille int 
+			\return taille int
 
 		*/
 		int getTaille(){return taille;}
@@ -343,7 +343,7 @@ class Carte
 			par la suite le nombre de monstre qu'il y a sur la carte,
 
 			et enfin affiche la description de la carte
-			
+
 		*/
 		void afficher_detail();
 
@@ -356,7 +356,7 @@ class Carte
 		void afficher_brut();
 
 		//! Case Accessible
-		/*! 
+		/*!
 
 			Vérifie si une case ij est accessible ou pas.
 
@@ -365,8 +365,11 @@ class Carte
 			\return true si la case ij accessible
 			\return false si la case ij n'est pas accessible
 
-		*/ 
+		*/
 		bool caseAccessible(int i, int j);
+
+		//! Echange le contenu de la case plateau[i1][j1] avec ceux du plateau[i2][j2]
+		void echangerContenuCase(int i1, int j1, int i2, int j2);
 };
 
 #endif

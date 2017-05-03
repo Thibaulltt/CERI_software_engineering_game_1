@@ -60,67 +60,8 @@ void jeu::setJeuCarte(Carte jeu_map)
 void jeu::afficherJeu()
 {
 	afficherCarte(jeu_carte, jeu_carte.getTaille());
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
-	deplacement();
+	while (true)
+		deplacement();
 	de();
 }
 std::string jeu::genererDeplacement(std::vector<bool>& v)
@@ -221,7 +162,7 @@ void jeu::deplacement()
 			x++;
 			break;
 	}
-	updateMap(std::make_pair(y,x));
+	updateMap(jeu_carte, std::make_pair(y,x));
 }
 
 
