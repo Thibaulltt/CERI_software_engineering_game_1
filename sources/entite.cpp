@@ -201,6 +201,15 @@ bool entite::is_personnage()
 	return false;
 }
 
+bool entite::is_monstre()
+{
+	if (getID().substr(0, 1) == "m")
+	{
+		return true;
+	}
+	return false;
+}
+
 entite entite::enleverVie(int degats)
 {
 	this->entiteHpCurrent-=degats;

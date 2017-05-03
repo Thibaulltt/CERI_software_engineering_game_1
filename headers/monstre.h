@@ -43,6 +43,8 @@ public:
 	*/
 	monstre(std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax, std::string entiteDescription, std::vector<competence> allSkills) : entite(entiteId, entiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills){};
 
+
+	void printMonstre();
 };
 
 #endif // MONSTRE_H

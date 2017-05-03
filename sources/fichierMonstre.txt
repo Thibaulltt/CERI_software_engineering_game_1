@@ -1,3 +1,1 @@
-m0/Orc/95/10/Coup de hache(30_0):Coup de marteau(22_0):Coup de fouet(15_0):|0||
-m1/Gobelin/90/20/Vol d'argent(15_0):Fabrication d'explosifs(30_0):Fourberie(20_0):|0||
-m2/Elfe/85/18/Tir à l'arc(25_0):Vision d'aigle(15_0):Magie elfique(20_0):|0||
+m0/Monstre/95/10/Competence 1(30_0):Competence 2(22_0):Competence 3(15_0):|0||
