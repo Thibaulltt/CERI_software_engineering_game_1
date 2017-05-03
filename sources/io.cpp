@@ -10,17 +10,17 @@ using namespace std;
 
 namespace io
 {
-	// Variable :
+	// Variables :
 
 	int TermWidth = 0;
 	int TermHeight = 0;
 
-	string BLANK = "\033[0m";
-	string RED = "\033[91m";
-	string GREEN = "\033[92m";
-	string YELLOW = "\033[93m";
-	string BLUE = "\033[94m";
-	string MAGENTA = "\033[95m";
+	string BLANK = "\033[0m";		// Séquences d'échappement
+	string RED = "\033[91m";		// pour afficher des
+	string GREEN = "\033[92m";		// couleurs sur un
+	string YELLOW = "\033[93m";		// terminal configuré avec
+	string BLUE = "\033[94m";		// xterm ou xterm-256 pour
+	string MAGENTA = "\033[95m";		// l'affichage.
 
 	int mapPositionX = 0;
 	int mapPositionY = 0;
@@ -159,7 +159,7 @@ namespace io
 
 	void clearScreen()
 	{
-		for (int i = 0; i < TermHeight; i++)
+		for (int i = 0; i <= TermHeight+1; i++)
 		cout << "\n";
 	}
 
@@ -171,69 +171,96 @@ namespace io
 		// On (re)vérifie la taille du terminal
 		checkTerminalSize();
 
-		// On efface l'écran
-		clearScreen();
+		getTerminalWidth();
+		getTerminalHeight();
 
 		// Si le joueur est plus bas que l'affichage de la carte
 		while (currentPlayerPosition.first >= mapPositionX+TermWidth)
 			mapPositionX += TermWidth;
+		while (currentPlayerPosition.first < mapPositionX)
+			mapPositionX -= TermWidth;
 
 		// Si le joueur est plus sur la droite que la carte
-		while (currentPlayerPosition.second >= mapPositionY+TermHeight)
-			mapPositionY += TermHeight;
+		while (currentPlayerPosition.second >= mapPositionY+TermHeight-6)
+			mapPositionY += TermHeight-6;
+		while (currentPlayerPosition.second < mapPositionY)
+			mapPositionY -= TermHeight-6;
 
 		int displayX = mapPositionX;
 		int displayY = mapPositionY;
 		int TermPosX = 0;
 		int TermPosY = 0;
 
+		// On efface l'écran
+		clearScreen();
+
 		printf("\033[1;1H");	// Remet le curseur au debut
 
 		// On affiche les petites cases WUBBA LUBBA DUB DUB
-		while (TermPosY < TermHeight && displayY < t)
+		while (TermPosY < TermHeight - 6 && displayY < t)
 		{
 			while (TermPosX < TermWidth && displayX < t)
 			{
 				if (map[displayX][displayY] == "joueur")
 					std::cout << RED << 'X' << BLANK;
 				else if (map[displayX][displayY][0] == 'm')
-					std::cout << BLUE << 'X' << BLANK;
+					std::cout << BLUE << 'M' << BLANK;
 				else if (map[displayX][displayY][0] == 'a')
-					std::cout << GREEN << 'X' << BLANK;
+					std::cout << GREEN << 'A' << BLANK;
 				else if (map[displayX][displayY][0] == 'e')
 					std::cout << BLUE << 'O' << BLANK;
 				else
 					std::cout << ' ';
-				// std::cout << map[displayX][displayY];		// RESTE A AJOUTER LA COULEUR
 				TermPosX++;
 				displayX++;
 			}
-			if (TermPosY != TermHeight-1)
+			if (displayX == t && TermPosX != TermWidth-1)
+				std::cout << RED << "$" << BLANK;
+			while (TermPosX < TermWidth - 1)
+			{
+				std::cout << ' ';
+				TermPosX++;
+			}
+			if (TermPosY != TermHeight-7)
 				std::cout << std::endl;
 			TermPosY++;
 			TermPosX=0;
 			displayY++;
-			displayX=0;
+			displayX=mapPositionX;
 		}
 	}
 
-	void updateMap(std::pair<int,int> newPlayerPos)
+	void updateMap(Carte& jeu_carte, std::pair<int,int> newPlayerPos)
 	{
+		if (    newPlayerPos.first >= mapPositionY + TermHeight - 6
+			|| newPlayerPos.first < mapPositionY
+			|| newPlayerPos.second >= mapPositionX + TermWidth
+			|| newPlayerPos.second < mapPositionX)
+		{
+			jeu_carte.echangerContenuCase(currentPlayerPosition.first, currentPlayerPosition.second, newPlayerPos.second, newPlayerPos.first);
+			currentPlayerPosition.first = newPlayerPos.second;
+			currentPlayerPosition.second = newPlayerPos.first;
+			afficherCarte(jeu_carte, jeu_carte.getTaille());
+			return;
+		}
 		printf("\033[0;0H");
-		if (currentPlayerPosition.second != 0)
+		if (currentPlayerPosition.second != mapPositionY)
 			printf("\033[%iB", currentPlayerPosition.second - mapPositionY);
 		printf("\033[%iC", currentPlayerPosition.first - mapPositionX);
-		if (currentPlayerPosition.first == 0)
+		if (currentPlayerPosition.first == mapPositionX)
 			printf("\033[1D");
 		cout << BLANK << ' ' << BLANK << flush;
 		printf("\033[0;0H");
-		if (newPlayerPos.first != 0)
+		if (newPlayerPos.first != mapPositionY)
 			printf("\033[%iB", newPlayerPos.first - mapPositionY);
-		printf("\033[%iC", newPlayerPos.second + 1 - mapPositionX);
-		printf("\033[1D");
+		printf("\033[%iC", newPlayerPos.second - mapPositionX);
+		if (newPlayerPos.second == mapPositionX)
+			printf("\033[1D");
 		cout << RED << 'X' << BLANK << flush;
+		jeu_carte.echangerContenuCase(currentPlayerPosition.first, currentPlayerPosition.second, newPlayerPos.second, newPlayerPos.first);
 		currentPlayerPosition.first = newPlayerPos.second;
 		currentPlayerPosition.second = newPlayerPos.first;
+		return;
 	}
 
 	void afficherMouvements()
@@ -260,14 +287,8 @@ namespace io
 
 		// Si le joueur est dans le bas de la carte, on affiche les
 		// interactions possibles sur le haut de la fenêtre Terminal
-		if (currentPlayerPosition.second >= (mapPositionY+TermHeight-5))
-			printf("\033[1;1H");
-		else
-		{
-			interactionsOverlayY = (TermHeight - 5);
-			std::string s = "printf \"\033["+std::to_string(interactionsOverlayY)+";0H\"";
-			system(s.c_str());
-		}
+		interactionsOverlayY = (TermHeight - 5);
+		printf("\033[%i;0H", interactionsOverlayY);
 
 		//
 		if (erreur_deplacement.size() > TermWidth-2)
@@ -390,17 +411,21 @@ namespace io
 
 	void bienvenue()
 	{
+		getTerminalWidth();
+		getTerminalHeight();
+		clearScreen();
+		printf("\033[1;1H");
 		std::puts("\n");
-		std::puts("                                         Welcome to");
-		std::puts(" __________   ___    ___   __________     __________   __________   __     ___   __________");
-		std::puts("/___   ___/  /  /   /  /  /  _______/    /  _______/  /  ____   /  /  \\__ /  /  /  _______/");
-		std::puts("   /  /     /  /__ /  /  /  /__         /  /  __     /  /___/  /  /         /  /  /__");
-		std::puts("  /  /     /   __    /  /   __/        /  /  /  \\   /  ____   /  /  / - /  /  /   __/");
-		std::puts(" /  /     /  /   /  /  /  /______     /  /___/  /  /  /   /  /  /  /   /  /  /  /______");
-		std::puts("/_ /     /_ /   /_ /  /_________/    /_________/  /_ /   /_ /  /_ /   /_ /  /_________/");
+		printf("\033[%dC", ((TermWidth-92)/2)-1); std::puts("                                         Welcome to");
+		printf("\033[%dC", ((TermWidth-92)/2)-1); std::puts(" __________   ___    ___   __________     __________   __________   __     ___   __________");
+		printf("\033[%dC", ((TermWidth-92)/2)-1); std::puts("/___   ___/  /  /   /  /  /  _______/    /  _______/  /  ____   /  /  \\__ /  /  /  _______/");
+		printf("\033[%dC", ((TermWidth-92)/2)-1); std::puts("   /  /     /  /__ /  /  /  /__         /  /  __     /  /___/  /  /         /  /  /__");
+		printf("\033[%dC", ((TermWidth-92)/2)-1); std::puts("  /  /     /   __    /  /   __/        /  /  /  \\   /  ____   /  /  / - /  /  /   __/");
+		printf("\033[%dC", ((TermWidth-92)/2)-1); std::puts(" /  /     /  /   /  /  /  /______     /  /___/  /  /  /   /  /  /  /   /  /  /  /______");
+		printf("\033[%dC", ((TermWidth-92)/2)-1); std::puts("/_ /     /_ /   /_ /  /_________/    /_________/  /_ /   /_ /  /_ /   /_ /  /_________/");
 		std::puts("\n");
 
-		std::puts("Dans The Game, vous devez débusquer et tuer tous les monstres présents sur la carte. Bonne chance!");
+		printf("\033[%dC", ((TermWidth-96)/2)-1); std::puts("Dans The Game,vous devez débusquer et tuer tous les monstres présents sur la carte.Bonne chance!");
 		std::puts("\n");
 	}
 
@@ -764,95 +789,95 @@ namespace io
 }
 
 bool checkSeparatorCarte(string uneLigne) //Retourne false si le nb de séparateurs dans une ligne n'est pas le nombre définit
+{
+	int cptBarre=0;
+	char parcours;
+
+	for (int i=0; i<uneLigne.length(); i++)
 	{
-		int cptBarre=0;
-		char parcours;
+		parcours = uneLigne[i];
 
-		for (int i=0; i<uneLigne.length(); i++)
+		if(parcours=='|')
 		{
-			parcours = uneLigne[i];
-
-			if(parcours=='|')
-			{
-				cptBarre++;
-			}
+			cptBarre++;
 		}
-
-		if(cptBarre == 5)
-		{
-			return true;
-		}
-
-		return false;
 	}
 
-bool checkSeparatorCoordonnee(std::string nomFichier, int numLigne) //Retourne false si le nb de séparateurs dans un champ de compétence n'est pas le nombre définit
+	if(cptBarre == 5)
 	{
-		int nbSeparateur = 0;
+		return true;
+	}
 
-		string laLigne="";
+	return false;
+}
 
-		char parcoursCoordonnee;
-		int cptLigne=0;
-		int nbParentheseO=0;
-		int nbParentheseF=0;
-		int nbVirgules=0;
+bool checkSeparatorCoordonnee(std::string nomFichier, int numLigne) //Retourne false si le nb de séparateurs dans un champ de compétence n'est pas le nombre définit
+{
+	int nbSeparateur = 0;
 
-		ifstream fichierCarte(nomFichier.c_str(), ios::in); //Ouverture en mode lecture
+	string laLigne="";
 
-		if(fichierCarte)
+	char parcoursCoordonnee;
+	int cptLigne=0;
+	int nbParentheseO=0;
+	int nbParentheseF=0;
+	int nbVirgules=0;
+
+	ifstream fichierCarte(nomFichier.c_str(), ios::in); //Ouverture en mode lecture
+
+	if(fichierCarte)
+	{
+		while (getline(fichierCarte, laLigne)) //Parcours des lignes
 		{
-			while (getline(fichierCarte, laLigne)) //Parcours des lignes
+			cptLigne++;
+			if (cptLigne==numLigne) //Si on est sur la ligne recherchée
 			{
-				cptLigne++;
-				if (cptLigne==numLigne) //Si on est sur la ligne recherchée
+				for(int i=0; i<laLigne.length() ; i++) //Boucle de parcours de toute la ligne
 				{
-					for(int i=0; i<laLigne.length() ; i++) //Boucle de parcours de toute la ligne
+					parcoursCoordonnee = laLigne[i]; //Variable de parcours de la ligne
+
+					if(nbSeparateur < 5) //Recherche du champ compétence sur la ligne
 					{
-						parcoursCoordonnee = laLigne[i]; //Variable de parcours de la ligne
-
-						if(nbSeparateur < 5) //Recherche du champ compétence sur la ligne
+						if (parcoursCoordonnee == '|')
 						{
-							if (parcoursCoordonnee == '|')
-							{
-								nbSeparateur++;
-							}
+							nbSeparateur++;
 						}
+					}
 
-						if (nbSeparateur==5) //Si le curseur est sur le champ compétence.
+					if (nbSeparateur==5) //Si le curseur est sur le champ compétence.
+					{
+
+						if (parcoursCoordonnee == '(')
 						{
+							nbParentheseO++;
+						}
+						if (parcoursCoordonnee == ',')
+						{
+							nbVirgules++;
+						}
+						if (parcoursCoordonnee == ')')
+						{
+							nbParentheseF++;
+							if((nbParentheseO == 1) && (nbParentheseF == 1) && (nbVirgules == 2)) //Verification bon nb de séparateurs
+							{
+								nbParentheseO=0; //Reset des compteurs
+								nbParentheseF=0;
+								nbVirgules=0;
+								continue;
+							}
+							else
+							{
+								return false;
+							}
 
-							if (parcoursCoordonnee == '(')
-							{
-								nbParentheseO++;
-							}
-							if (parcoursCoordonnee == ',')
-							{
-								nbVirgules++;
-							}
-							if (parcoursCoordonnee == ')')
-							{
-								nbParentheseF++;
-								if((nbParentheseO == 1) && (nbParentheseF == 1) && (nbVirgules == 2)) //Verification bon nb de séparateurs
-								{
-									nbParentheseO=0; //Reset des compteurs
-									nbParentheseF=0;
-									nbVirgules=0;
-									continue;
-								}
-								else
-								{
-									return false;
-								}
-
-							}
-							if (parcoursCoordonnee== '\0') //Fin du champ compétence
-							{
-								return true;
-							}
+						}
+						if (parcoursCoordonnee== '\0') //Fin du champ compétence
+						{
+							return true;
 						}
 					}
 				}
 			}
 		}
 	}
+}

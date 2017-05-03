@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <stdio.h>		// Needed for terminal input manipulation
+#include <stdio.h>	// Needed for terminal input manipulation
 #include <termios.h>	// Needed for terminal input manipulation
 #include <typeinfo>
 #include <vector>
@@ -20,6 +20,16 @@
 //! Cet espace sera un espace permettant de définir un buffer custom pour les input, ainsi que de pouvoir afficher tout ce que l'on souhaite.
 namespace io
 {
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////// Variables  nécessaires ////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 	//! Structures qui gardent les paramètres du terminal.
 	static struct termios before, after;
 
@@ -52,9 +62,18 @@ namespace io
 	//! Paire de valeurs (std::pair) gardant la position actuelle du joueur dans
 	extern std::pair<int,int> currentPlayerPosition;
 
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////// TERMINAL  MANIPULATION ////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
 	//! Changement des paramètres du terminal
 	/*!
 		Permet de changer le mode d'entrée de stdin du terminal. Les paramètres présents auparavant sont sauvegardés.
+
 		\param Ech Détermine si on veut que l'entrée utilisateur soit affichée ou pas.
 		\sa de(), long_input()
 	*/
@@ -66,18 +85,103 @@ namespace io
 	*/
 	extern void ResetTerminal();
 
+	//! Retourne la largeur du terminal
+	extern int getTerminalWidth();
+
+	//! Retourne la hauteur du terminal
+	extern int getTerminalHeight();
+
+	//! Efface l'écran.
+	extern void clearScreen();
+
+	//! Vérifie la taille du terminal
+	extern void checkTerminalSize();
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////// INPUT  FONCTIONS ///////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
 	//! Input
 	/*!
 		Gestion des entrées utilisateur, ne prends qu'un seul caractère à la fois.
+
 		Voici son mode opératoire :
 		-# On crée une variable (char)
 		-# On change la façon dont le terminal gère l'entrée utilisateur avec ChangeTerminal()
 		-# On utilise la fonction std::getchar() (qui ne prends maintenant qu'un seul caractère sans avoir besoin d'appuyer sur entrée, grâce à ChangeTerminal())
 		-# On remets les paramètres du terminal comme avant avec ResetTerminal()
 		-# On retourne l'entrée utilisateur
+
 		\sa ChangeTerminal(); ResetTerminal(); long_input()
 	*/
 	extern char de();
+
+	//! Entrée utilisateur contenant plus d'un caractère.
+	/*!
+		Mode opératoire :
+		- Utilise les mêmes fonction de changement du terminal que `de()` (avec la seule différence que l'echo des caractères rentrés est activé), mais possède une boucle qui utilise `getchar()` tant que le caractère entré est différent de la touche `ENTREE`.
+		- Enlève ensuite le dernier caractère (qui est un caractère `RETOUR_CHARIOT`+`NEWLINE`).
+		  - Si la longueur de la chaîne résultante est de 0, alors l'utilisateur n'a rien saisi, donc on lui redemande.
+		  - Sinon, on renvoie l'entrée utilisateur.
+	*/
+	extern std::string long_input();
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////// OUTPUT FONCTIONS ///////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//! Affichage de la carte
+	extern void afficherCarte(Carte&, int);
+
+	//! Met à jour l'affichage de la carte.
+	extern void updateMap(Carte& jeu_carte, std::pair<int,int> newPlayerPos);
+
+	//! Message d'accueil
+	/*!
+		Affiche un message de bienvenue.
+	*/
+	extern void bienvenue();
+
+	//! Fonction permettant d'afficher un overlay sur la carte
+	/*!
+		Fonction permettant d'afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller.
+		Ne fait qu'appeller afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
+
+		\sa afficherMouvements(std::string erreur_deplacement) & afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
+	*/
+	extern void afficherMouvements();
+	//! Fonction permettant d'afficher un overlay sur la carte
+	/*!
+		Fonction permettant d'afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller. Il affiche aussi un message d'erreur si demandé.
+		Ne fait qu'appeller afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
+
+		\sa afficherMouvements() & afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
+	*/
+	extern void afficherMouvements(std::string erreur_deplacement);
+	//! Fonction permettant d'afficher un overlay sur la carte
+	/*!
+		Fonction permettant d'afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller.
+		Ne fait qu'appeller afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
+
+		\sa afficherMouvements() & afficherMouvements(std::string erreur_deplacement)
+	*/
+	extern void afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement);
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////// MISCALENNOUS FONCTIONS ////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//! Enlève le dernier caractère d'un stringstream.
 	/*!
@@ -89,33 +193,12 @@ namespace io
 		    -# Alors on utilise la fonction std::string::erase(std::string::iterator) pour enlever le dernier caractère
 		    -# On remplace le contenu du flux de caractère par du vide
 		    -# On remet la chaîne de caractère coupée dans le flux.
+
 		\pre La fonction recevra un stringstream d'entrée utilisateur. Son but est d'enlever le dernier caractère entré (cette fonction est appelée dans long_input() dans une condition si le caractère rentré est 127, aussi connu sous le nom de DEL ASCII).
 		\post La fonction ne retourne rien, car le seul argument est passé **par argument** et est donc automatiquement modifié.
 		\param i C'est un flux de caractères (std::stringstream) à partir duquel il faudra enlever le dernier caractère.
 	*/
 	extern void removeLastChar(std::stringstream& i);
-
-	//! Entrée utilisateur contenant plus d'un caractère.
-	/*!
-		Utilise les mêmes fonction de changement du terminal que `de()` (avec la seule différence que l'echo des caractères rentrés est activé),
-		mais possède une boucle qui utilise `getchar()` tant que le caractère entré est différent de la touche `ENTREE`.
-		Enlève ensuite le dernier caractère (qui est un caractère RETOUR_CHARIOT+NEWLINE).
-		Si la longueur de la chaîne résultante est de 0, alors l'utilisateur n'a rien saisi, donc on lui redemande.
-		Sinon, on renvoie l'entrée utilisateur.
-	*/
-	extern std::string long_input();
-
-	//! Retourne la largeur du terminal
-	extern int getTerminalWidth();
-
-	//! Retourne la hauteur du terminal
-	extern int getTerminalHeight();
-
-	//! Message d'accueil
-	/*!
-		Affiche un message de bienvenue.
-	*/
-	extern void bienvenue();
 
 	//! Vérifie que l'user entre des entiers
 	/*!
@@ -127,9 +210,10 @@ namespace io
 			-# Affichage d'un message d'erreur d'entrée utilisateur.
 			-# Retourne faux
 		- Sinon retourne vrai
+
 		\param x on sait pas ce qu'il fait là, mais il est là.
 	*/
-	extern bool checkInput(int x); //Vérifie que l'user entre des entier
+	extern bool checkInput(int x);
 
 	//!Verifie qu'une ligne est correcte dans un fichier texte d'entités (bon nombre de séparateurs)		 +	//! Créer une competence
  	/*!
@@ -138,6 +222,7 @@ namespace io
  		- Parcours de toute la string passée en paramétre
  		- A chaque séparateur trouvé, on ajoute 1 aux compteurs
  		- Si le nombre de séparateurs correspond au nombre défini, on retourne true
+
  		\param uneLigne Ligne à vérifier
  	*/
  	extern bool checkSeparatorEntite(std::string uneLigne);
@@ -150,58 +235,42 @@ namespace io
 		- Parcours de toute la ligne
 		- A chaque séparateur trouvé, on ajoute 1 aux compteurs
 		- Si le nombre de séparateurs correspond au nombre défini, on retourne true
+
 		\param nomFichier Le nom du fichier .txt dans lequel on fait la vérification
 		\param numLigne Le numéro de la ligne à vérifier
 	*/
 	extern bool checkSeparatorSkill(std::string nomFichier, int numLigne);
 
-	//! Efface l'écran.
-	extern void clearScreen();
-
-	//! Affichage de la carte
-	extern void afficherCarte(Carte&, int);
-
-	//! Met à jour l'affichage de la carte.
-	extern void updateMap(std::pair<int,int> newPlayerPos);
-
-	//! Fonction permettant d'afficher un overlay sur la carte
-	/*!
-		Fonction permettant d'afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller.
-		Ne fait qu'appeller afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
-		\sa afficherMouvements(std::string erreur_deplacement) & afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
-	*/
-	extern void afficherMouvements();
-	//! Fonction permettant d'afficher un overlay sur la carte
-	/*!
-		Fonction permettant d'afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller. Il affiche aussi un message d'erreur si demandé.
-		Ne fait qu'appeller afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
-		\sa afficherMouvements() & afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
-	*/
-	extern void afficherMouvements(std::string erreur_deplacement);
-	//! Fonction permettant d'afficher un overlay sur la carte
-	/*!
-		Fonction permettant d'afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller.
-		Ne fait qu'appeller afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
-		\sa afficherMouvements() & afficherMouvements(std::string erreur_deplacement)
-	*/
-	extern void afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement);
-
 	//! Compte la taille d'une string mieux que la fonction std::string::size(), car elle ne compte pas les accents comme deux caractères.
 	extern int taille_str(std::string);
 
-	//! Vérifie la taille du terminal
-	extern void checkTerminalSize();
-
 	extern void setPlayerPosition(int, int);
+
+	//! Convertit un string en int
+	/*!
+		Renvoie 0 si l'input n'est pas convertible.
+		\param input String à convertir
+		\return Entier obtenu suite à la conversion
+	*/
+	int To_int(std::string input);
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////// TEMPLATES DE FONCTIONS ////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//! Affichage d'objet.
 	/*!
 		Affiche le nom et la description d'un objet.
+
 		\param object Objet à afficher.
 	*/
 	template<typename T> void afficher(T object)
 	{
-		std::cout << (object).getName();								//Affiche le nom
+		std::cout << (object).getName();					//Affiche le nom
 
 		if ((object).getDescription() != "")
 		{
@@ -212,6 +281,7 @@ namespace io
 	//! Affichage d'un ensemble d'objets
 	/*!
 		Parcourt le vecteur de stockage des objets chargés, et les affiche.
+
 		\param vect_element Vecteur d'éléments.
 		\sa afficher()
 	*/
@@ -232,6 +302,7 @@ namespace io
 	//! Choix d'un élément unique
 	/*!
 		Fonction qui prend un élément, un vecteur d'éléments ainsi qu'un booléen en entrée, et affiche les caractéristiques assignées à l'élément.
+
 		\param element Elément dont les caractéristiques doivent être établies.
 		\param vect_element Vecteur de l'élément à choisir.
 		\param combat Situation de combat ou non.
@@ -470,15 +541,6 @@ namespace io
 		flux << valeur;
 		return flux.str();
 	}
-
-
-	//! Convertit un string en int
-	/*!
-		Renvoie 0 si l'input n'est pas convertible (peut prêter à confusion, mais utile pour les inputs devant être différents de 0)
-		\param input String à convertir
-		\return Entier obtenu suite à la conversion
-	*/
-	int To_int(std::string input);
 }
 
 #endif
