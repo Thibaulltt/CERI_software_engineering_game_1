@@ -63,15 +63,25 @@ namespace io
 		ChangeTerminal(1);
 		do {
 			charInput = getchar();
-			if (charInput != 127)
+			if (charInput != 127 && charInput != 124)
 				input << charInput;
 			else
 			{
-				if (input.tellp() > 0)
+				if (input.tellp() > 0 && charInput == 127)
+				{
+					printf("\033[1D");
+					printf(" ");
 					printf("\033[2D");
+					removeLastChar(input);
+				}
+				else if (input.tellp() > 0 && charInput == 124)
+				{
+					printf("\033[1D");
+					printf(" ");
+					printf("\033[1D");
+				}
 				else
 					printf("\033[1D");
-				removeLastChar(input);
 			}
 		} while(charInput != 10);
 		ResetTerminal();
