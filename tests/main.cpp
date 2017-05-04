@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <ctime>
 #include <iostream>
 #include <stdlib.h>
 #include "../headers/carte.h"
@@ -10,6 +11,8 @@ using namespace std;
 
 int main()
 {
+	srand(time(0));	//Modification de la seed de rand()
+
 	jeu a;
 
 	int persos_vivants = 1;

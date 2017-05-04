@@ -124,9 +124,9 @@ public:
 		- Crée une chaîne de caractères (`std::string`) qui contiendra les caractères acceptés lors de l'entrée utilisateur dans la fonction `deplacement()`.
 		- Lit le vecteur de booléens rempli dans la fonction `genererDeplacement()` :
 		  - Si le premier booléen est à 1 : on ajoute "Zz" à la chaîne (l'utilisateur pourra donc appuyer sur 'Z' ou 'z' et se déplacer)
-    		  - Si le second booléen est à 1 : on ajoute "Qq" à la chaîne (l'utilisateur pourra donc appuyer sur 'Q' ou 'q' et se déplacer)
-    		  - Si le troisième booléen est à 1 : on ajoute "Ss" à la chaîne (l'utilisateur pourra donc appuyer sur 'S' ou 's' et se déplacer)
-    		  - Si le quatrième booléen est à 1 : on ajoute "Dd" à la chaîne (l'utilisateur pourra donc appuyer sur 'D' ou 'd' et se déplacer)
+		  - Si le second booléen est à 1 : on ajoute "Qq" à la chaîne (l'utilisateur pourra donc appuyer sur 'Q' ou 'q' et se déplacer)
+		  - Si le troisième booléen est à 1 : on ajoute "Ss" à la chaîne (l'utilisateur pourra donc appuyer sur 'S' ou 's' et se déplacer)
+		  - Si le quatrième booléen est à 1 : on ajoute "Dd" à la chaîne (l'utilisateur pourra donc appuyer sur 'D' ou 'd' et se déplacer)
 		- Retourne la chaîne de caractères.
 		\param b Vecteur de booléens (`std::vector<bool>`) rempli dans la fonction `genererDeplacement()`.
 		\return Une chaine de caractères permettant de déterminer si l'entrée utilisateur est acceptable ou pas. La chaîne est définie par l'expression régulière suivante : `"Zz"?+"Qq"?+"Ss"?+"Dd"?`.
@@ -213,7 +213,7 @@ public:
 		\return Un entier: 1 si tous les monstres sont morts, 0 si tous les joueurs sont morts, 2 sinon.
 		\sa enleverVie()
 	*/
-    int appliquer_comp(entite target, std::vector<entite> & vect_entite, competence comp_util, int & nb_players, int & nb_monsters);
+    int appliquer_comp(entite indiv, entite target, std::vector<entite> & vect_entite, competence comp_util, int & nb_players, int & nb_monsters);
 };
 
 //! Tri d'entités
