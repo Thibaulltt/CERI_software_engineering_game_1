@@ -325,7 +325,7 @@ void config::creationCarte()
 	}
 }
 
-competence config::createCompetenceEntite(entite dummy, int rang) //Permet à l'utilisateur de créer une compétence pour monstre
+competence config::createCompetenceEntite(entite dummy, int rang, int manaMax) //Permet à l'utilisateur de créer une compétence pour monstre
 {
 	cout << "- Configuration compétence " << rang + 1 << " -\n";
 	cout << "- Choisissez le nom de la compétence : ";
@@ -356,6 +356,12 @@ competence config::createCompetenceEntite(entite dummy, int rang) //Permet à l'
 		try
 		{
 			skillManaCost = To_int(long_input());
+			while (skillManaCost > manaMax)
+			{
+				cout << "Coût en mana supérieur à la mana disponible (" << manaMax << ")!\n";
+				std::cout << "- Choisissez le coût en mana compétence (négatif pour régénération) : ";
+				skillManaCost = To_int(long_input());
+			}
 		}
 		catch (int longInputError)
 		{

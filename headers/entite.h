@@ -163,6 +163,21 @@ public:
 	*/
 	bool enleverMana(int skillManaCost);
 
+	//! Modifie l'application normale des dégâts
+	/*!
+		Permet d'appliquer un modificateur de dégâts à une attaque (néfaste ou bénéfique).
+
+		3 cas distincts:
+		- La valeur aléatoire renvoyée est inférieure au pourcentage plafond de fumble -> les dégâts / soins sont divisés par 2.
+		- La valeur aléatoire renvoyée est supérieure au pourcentage plancher de critique -> les dégâts / soins sont multipliés par 2.
+		- La valeur aléatoire renvoyée est entre ces deux limites -> pas de changement.
+		\param damage La valeur de dégâts à modifier
+		\param fumbleChance Le pourcentage de chances d'effectuer un fumble (moins de 10% conseillés)
+		\param critChance Le pourcentage de chances d'effectuer un critique
+		\return La valeur modifiée
+	*/
+	int randomizeDegat(int damage, int fumbleChance, int critChance);
+
 
 	//! Affichage brut
 	/*!
