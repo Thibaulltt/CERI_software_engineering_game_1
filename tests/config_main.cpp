@@ -10,7 +10,7 @@ int main ()
 
 	while (1)
 	{
-		puts("Bienvenue dans le module de configuration de The Game \n Choisissez l'élément à configurer: ");
+		puts("\nBienvenue dans le module de configuration de The Game \n\n Choisissez l'élément à configurer: ");
 
 		puts("1- Configuration des cartes");
 		puts("2- Configuration des monstres");
