@@ -180,7 +180,7 @@ void Carte::coordonneemonstre()
 	puts("- Choix nombre de monstres -");
 	string s_input = long_input();
 
-	while (inputSepCheck(s_input) == false && nbr_monstre > taille && nbr_monstre > case_dispo)
+	while (inputSepCheck(s_input) == false && nbr_monstre < taille && nbr_monstre > case_dispo)
 	{
 		puts("\n Input incorrect! Réessayez!\n");
 		puts("- Choix nombre de monstres -");
