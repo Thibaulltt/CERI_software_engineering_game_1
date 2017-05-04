@@ -59,7 +59,7 @@ void jeu::setJeuCarte(Carte jeu_map)
 
 void jeu::afficherJeu(int & result)
 {
-	afficherCarte(jeu_carte, jeu_carte.getTaille());
+	afficherCarte(jeu_carte, jeu_carte.getTaille(), 1);
 	while (true)
 		deplacement(result);
 	de();
@@ -333,15 +333,23 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 	return target;
 }
 
-int jeu::appliquer_comp(entite target, vector<entite> & vect_entite, competence comp_util, int & nb_players, int & nb_monsters)
+int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entite, competence comp_util, int & nb_players, int & nb_monsters)
 {
 	vector<entite>::iterator ite;
+	int damage = 0;
 
 	for(ite = vect_entite.begin(); ite != vect_entite.end(); ite++)
 	{
 		if ((* ite).getID() == target.getID())
 		{
-			int damage = target.randomizeDegat(comp_util.getDamage(), 5, 90);
+			if (indiv.is_personnage())
+			{
+				damage = target.randomizeDegat(comp_util.getDamage(), 5, 10);
+			}
+			else
+			{
+				damage = comp_util.getDamage();
+			}
 
 			(* ite) = (* ite).enleverVie(damage);	//Application attaque
 
