@@ -451,7 +451,7 @@ namespace io
 			allEntite.push_back(bobby);
 			lesCompetences.clear();
 
-			personnage::nbElemProt = 3;
+			personnage::nbElemProt = allEntite.size();
 		}
 
 		if (test.is_monstre()) //Création des monstres par défaut
@@ -491,7 +491,7 @@ namespace io
 			allEntite.push_back(elfe);
 			lesCompetences.clear();
 
-			monstre::nbElemProt = 3;
+			monstre::nbElemProt = allEntite.size();
 		}
 
 		std::string uneLigne=""; //Variable stockant une ligne
