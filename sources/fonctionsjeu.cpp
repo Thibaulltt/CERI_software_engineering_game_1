@@ -59,7 +59,7 @@ void jeu::setJeuCarte(Carte jeu_map)
 
 void jeu::afficherJeu(int & result)
 {
-	afficherCarte(jeu_carte, jeu_carte.getTaille(), 1);
+	afficherCarte(jeu_carte, jeu_carte.getTaille());
 	while (true)
 		deplacement(result);
 	de();
@@ -206,13 +206,16 @@ int jeu::combat(string id_monstre)
 
 		for (ite = vect_entite.begin(); ite != vect_entite.end(); ite++)	//Pour chaque acteur
 		{
-			aff_combat(vect_entite);	//Affichage infos utiles acteurs
+			if ((* ite).getAlive() == true)
+			{
+				aff_combat(vect_entite);	//Affichage infos utiles acteurs
 
-			comp_util = choix_comp(* ite);	//Choix compétence
+				comp_util = choix_comp(* ite);	//Choix compétence
 
-			target = choix_target(comp_util, (* ite), vect_entite, vect_p);	//Choix cible
+				target = choix_target(comp_util, (* ite), vect_entite, vect_p);	//Choix cible
 
-			sortie = appliquer_comp(target, vect_entite, comp_util, nb_players, nb_monsters);	//Effet compétence
+				sortie = appliquer_comp((* ite), target, vect_entite, comp_util, nb_players, nb_monsters);	//Effet compétence
+			}
 		}
 	}
 
@@ -327,7 +330,7 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 
 		cout << endl << endl << indiv.getName() << " utilise la compétence ";
 		cout << comp_util.getName();
-		cout << " sur " << target.getName() << " (" << comp_util.getDamage() << " dégâts)." << endl;
+		cout << " sur " << target.getName() << endl;
 	}
 
 	return target;
@@ -343,15 +346,16 @@ int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entit
 		if ((* ite).getID() == target.getID())
 		{
 			if (indiv.is_personnage())
-			{
-				damage = target.randomizeDegat(comp_util.getDamage(), 5, 10);
-			}
-			else
-			{
-				damage = comp_util.getDamage();
-			}
+ 			{
+ 				damage = target.randomizeDegat(comp_util.getDamage(), 5, 10);
+ 			}
+ 			else
+ 			{
+ 				damage = comp_util.getDamage();
+ 			}
 
 			(* ite) = (* ite).enleverVie(damage);	//Application attaque
+			cout << "(" << damage << " dégâts)\n";
 
 			if ((* ite).getHpCurrent() > (* ite).getHpMax())
 			{
