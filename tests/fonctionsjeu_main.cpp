@@ -7,7 +7,8 @@ using namespace std;
 
 int main()
 {
+	int dummy = 2;
 	jeu a;
-	a.afficherJeu();
+	a.afficherJeu(dummy);
 	return 0;
 }
