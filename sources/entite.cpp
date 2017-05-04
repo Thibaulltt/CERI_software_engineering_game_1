@@ -166,7 +166,7 @@ string entite::entiteString(string lettreEntite, string nomFichier) //Convertit 
 		allSkill += entiteSkillVect[i].competenceString() + ":";
 	}
 
-	ligneFichier = entiteId + "/" + this->entiteName + "/" + sentiteHpMax + "/" + sentiteSpeed + "/" + allSkill + "|" + sentiteManaMax + "|" + this->entiteDescription + "|" + '\r'+'\n'; //Création de la ligne compléte
+	ligneFichier = entiteId + "/" + this->entiteName + "/" + sentiteHpMax + "/" + sentiteSpeed + "/" + allSkill + "|" + sentiteManaMax + "|" + this->entiteDescription + "|" + "\r\n"; //Création de la ligne compléte
 
 	return ligneFichier;
 }
@@ -245,15 +245,18 @@ void entite::afficher_detail()
 
 	if (this->entiteDescription != "")
 	{
-		cout << "Description: " << this->entiteDescription << endl;
+		cout << endl << "Description: " << this->entiteDescription << endl;
 	}
 
-	cout << endl << "Compétences: " << endl;
+	cout << endl << "Compétences: " << endl << endl;
 
 	for (int i = 0; i < entiteSkillVect.size(); i++)
+	{
 		this->entiteSkillVect[i].afficher_detail();
+		cout << endl;
+	}
 
-	cout << endl;
+	cout << endl << endl;
 }
 
 void entite::afficher_combat()

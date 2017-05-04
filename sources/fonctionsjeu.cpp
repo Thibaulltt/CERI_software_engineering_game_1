@@ -21,7 +21,7 @@ jeu::jeu()
 	nom_file = "fichierCarte.txt";							//Nom fichier source cartes
 	toutes_cartes = loadAllCarteFromFile(nom_file);			//Chargement carte depuis fichier
 	choix_unique_element(jeu_carte, toutes_cartes, 0);		//Choix + assignation carte partie
-	jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
+    jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
 
 		//Chargement monstres
 	monstre mons;											//Dummy identification type template
@@ -364,7 +364,6 @@ int jeu::appliquer_comp(entite target, vector<entite> & vect_entite, competence 
 			cout << "Le monstre " << (* ite).getName() << " est mort." << endl;
 			nb_monsters--;
 		}
-//		vect_entite.erase(ite);
 	}
 
 	//Check conséquences combat

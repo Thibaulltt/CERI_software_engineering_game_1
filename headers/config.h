@@ -110,7 +110,7 @@ public:
 			entiteManaMax = choix_carac_int("nombre de points de mana");
 		}
 
-		int nbComp = choix_carac_int("nombre de compétences");
+		int nbComp = choix_carac_int("nombre de compétences (de 0 à 4)");
 
 		std::vector<competence> skills;;
 
@@ -160,7 +160,9 @@ public:
 
 				int input = atoi(sInput.c_str());
 
-				while (input <= 0 || input > allElement.size() || checkInput(input) == false)                //Input incorrect
+
+
+				while (input <= 0 || input > (allElement.size() - nbElemProt) || checkInput(input) == false)                //Input incorrect
 				{
 					std::puts("Input incorrect. Réessayez!");
 					sInput = long_input();                                   //Input utilisateur
@@ -188,7 +190,7 @@ public:
 
 				if (fichierElement)
 				{
-					for (int i = 1; i < allElement.size(); i++)		//i = 1. Ignore carte par défaut
+					for (int i = nbElemProt; i < allElement.size(); i++)		//i = nombre d'éléments protégés
 					{
 						allElement[i].saveInFile(lettreElement, nomFichier); //Ecriture d'une ligne dans le fichier
 					}
