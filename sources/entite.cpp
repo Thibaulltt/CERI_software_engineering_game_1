@@ -245,18 +245,15 @@ void entite::afficher_detail()
 
 	if (this->entiteDescription != "")
 	{
-		cout << endl << "Description: " << this->entiteDescription << endl;
+		cout << "Description: " << this->entiteDescription << endl;
 	}
 
-	cout << endl << "Compétences: " << endl << endl;
+	cout << endl << "Compétences: " << endl;
 
 	for (int i = 0; i < entiteSkillVect.size(); i++)
-	{
 		this->entiteSkillVect[i].afficher_detail();
-		cout << endl;
-	}
 
-	cout << endl << endl;
+	cout << endl;
 }
 
 void entite::afficher_combat()

@@ -108,4 +108,4 @@ io_main.exe: objects/io_main.o objects/io.o
 	@g++ $^ $(OCARTE) $(OCOMPETENCE) $(ENTITE) $(MONSTRE) $(PERSONNAGE) -o $@ -std=c++11
 fonctionsjeu.exe: objects/fonctionsjeu.o objects/fonctionsjeu_main.o archives/io.a
 	@echo "Compiling $@ ..."
-	@g++ $^ $(OIO) $(OENTITE) $(OPERSONNAGE) $(OCARTE) $(OMONSTRE) $(OCOMPETENCE) -o $@ -std=c++11
+	@g++ $^ $(OENTITE) $(OPERSONNAGE) $(OCARTE) $(OMONSTRE) $(OCOMPETENCE) -o $@ -std=c++11

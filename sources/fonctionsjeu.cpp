@@ -21,7 +21,7 @@ jeu::jeu()
 	nom_file = "fichierCarte.txt";							//Nom fichier source cartes
 	toutes_cartes = loadAllCarteFromFile(nom_file);			//Chargement carte depuis fichier
 	choix_unique_element(jeu_carte, toutes_cartes, 0);		//Choix + assignation carte partie
-    jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
+	jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
 
 		//Chargement monstres
 	monstre mons;											//Dummy identification type template
@@ -59,7 +59,7 @@ void jeu::setJeuCarte(Carte jeu_map)
 
 void jeu::afficherJeu(int & result)
 {
-	afficherCarte(jeu_carte, jeu_carte.getTaille());
+	afficherCarte(jeu_carte, jeu_carte.getTaille(), 1);
 	while (true)
 		deplacement(result);
 	de();
