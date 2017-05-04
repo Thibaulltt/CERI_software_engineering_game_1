@@ -53,25 +53,33 @@ namespace io
 		ChangeTerminal();
 		ch = getchar();				// getchar() ne prends qu'un caractère
 		ResetTerminal();
+		if (ch == 27)
+			throw 27;
 		return ch;
 	}
 
 	std::string long_input()
 	{
+		std::string charRejette = "|/,:_()\177";		// Les caractères rejettés dans l'input.
 		std::stringstream input;
 		char charInput,deletedChar;
 		ChangeTerminal(1);
 		do {
 			charInput = getchar();
-			if (charInput != 127)
+			if (charInput == '\033')
+				throw 27;
+			if (charRejette.find(charInput) == std::string::npos)
 				input << charInput;
 			else
 			{
-				if (input.tellp() > 0)
-					printf("\033[2D");
-				else
+				printf("\033[1D");
+				std::cout << ' ';
+				printf("\033[1D");
+				if (input.tellp() > 0 && charInput == 127)
+				{
 					printf("\033[1D");
-				removeLastChar(input);
+					removeLastChar(input);
+				}
 			}
 		} while(charInput != 10);
 		ResetTerminal();
@@ -168,8 +176,15 @@ namespace io
 		// On prends le plateau en copie
 		std::string ** map = c.getPlateau();
 
-		// On (re)vérifie la taille du terminal
-		checkTerminalSize();
+		try
+		{
+			// On (re)vérifie la taille du terminal
+			checkTerminalSize();
+		}
+		catch (int checkTerminalError)
+		{
+			throw checkTerminalError;
+		}
 
 		getTerminalWidth();
 		getTerminalHeight();
@@ -245,7 +260,14 @@ namespace io
 			jeu_carte.echangerContenuCase(currentPlayerPosition.first, currentPlayerPosition.second, newPlayerPos.second, newPlayerPos.first);
 			currentPlayerPosition.first = newPlayerPos.second;
 			currentPlayerPosition.second = newPlayerPos.first;
-			afficherCarte(jeu_carte, jeu_carte.getTaille(),0);
+			try
+			{
+				afficherCarte(jeu_carte, jeu_carte.getTaille(),0);
+			}
+			catch (int afficherCarteError)
+			{
+				throw afficherCarteError;
+			}
 			return;
 		}
 		printf("\033[0;0H");
@@ -396,7 +418,14 @@ namespace io
 			std::cout << "une taille d'au moins 15 lignes par 91 colonnes." << std::endl;
 			getTerminalWidth();
 			getTerminalHeight();
-			de();
+			try
+			{
+				de();
+			}
+			catch (int deError)
+			{
+				throw deError;
+			}
 		}
 	}
 

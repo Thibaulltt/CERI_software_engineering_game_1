@@ -214,7 +214,10 @@ public:
 		\return Un entier: 1 si tous les monstres sont morts, 0 si tous les joueurs sont morts, 2 sinon.
 		\sa enleverVie()
 	*/
-    int appliquer_comp(entite target, std::vector<entite> & vect_entite, competence comp_util, int & nb_players, int & nb_monsters);
+	int appliquer_comp(entite target, std::vector<entite> & vect_entite, competence comp_util, int & nb_players, int & nb_monsters);
+
+	//! Quitte le jeu, sans que l'utilisateur n'ai gagné ni perdu.
+	void quitGame();
 };
 
 //! Tri d'entités

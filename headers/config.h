@@ -41,22 +41,6 @@ public:
 		return objet.getID().substr(0, 1);
 	}
 
-	//! Choix d'une caractéristique de type string
-	/*!
-		Permet de choisir le nom affiché de la caractéristique, et de la saisir.
-		\param carac Chaîne correspondant au nom que l'on veut afficher
-		\return Chaîne correspondant à l'information saisie
-	*/
-	std::string choix_carac_string(std::string carac);
-
-	//! Choix d'une caractéristique de type int
-	/*!
-		Permet de choisir le nom affiché de la caractéristique, et de la saisir.
-		\param carac Chaîne correspondant au nom que l'on veut afficher
-		\return Entier correspondant à l'information saisie
-	*/
-	int choix_carac_int(std::string carac);
-
 	//! Choix de la taille
 	/*!
 		Permet de choisir la taille de la carte.
@@ -100,17 +84,69 @@ public:
 	template<class T> void creationEntite(T dummy, std::string nom_fichier) //Permet à l'utilisateur de créer une entité avec des caractéristiques choisies
 	{
 		std::string lettreEntite = identif_objet(dummy);
-		std::string entiteName = choix_carac_string("nom");
-		int entiteHpMax = choix_carac_int("nombre de points de vie");
-		int entiteSpeed = choix_carac_int("vitesse");
+		std::cout << "- Choisissez un nom pour l'entite : ";
+		std::string entiteName;
+		try
+		{
+			entiteName = long_input();
+		}
+		catch (int longInputError)
+		{
+			std::cout << std::endl;
+			throw longInputError;
+		}
+		std::cout << "- Choisissez un nombre de points de vie : ";
+		int entiteHpMax;
+		try
+		{
+			entiteHpMax = To_int(long_input());
+		}
+		catch (int longInputError)
+		{
+			std::cout << std::endl;
+			throw longInputError;
+		}
+		int entiteSpeed;
+		std::cout << "- Choisissez la vitesse de l'entité : ";
+		try
+		{
+			entiteSpeed = To_int(long_input());
+		}
+		catch (int longInputError)
+		{
+			std::cout << std::endl;
+			throw longInputError;
+		}
+		std::cout << std::endl;
 		int entiteManaMax = 0;
 
 		if (dummy.is_personnage())
 		{
-			entiteManaMax = choix_carac_int("nombre de points de mana");
+			std::cout << "- Choisissez le nombre de points de mana de l'entité : ";
+			try
+			{
+				entiteManaMax = To_int(long_input());
+			}
+			catch (int longInputError)
+			{
+				std::cout << std::endl;
+				throw longInputError;
+			}
+			std::cout << std::endl;
 		}
 
-		int nbComp = choix_carac_int("nombre de compétences");
+		int nbComp;
+		std::cout << "- Choisissez le nombre de compétences de l'entité : ";
+		try
+		{
+			nbComp = To_int(long_input());
+		}
+		catch (int longInputError)
+		{
+			std::cout << std::endl;
+			throw longInputError;
+		}
+		std::cout << std::endl;
 
 		std::vector<competence> skills;;
 

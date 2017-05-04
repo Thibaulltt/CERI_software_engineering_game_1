@@ -30,13 +30,31 @@ void config::config_carte()
 		cout << "\nVoulez-vous supprimer une de ces cartes, ou en créer une nouvelle?" << endl;
 		cout << "1- Supprimer carte existante     2- Créer nouvelle carte     3- Quitter" << endl;
 
-		char c_input = de();                                            //Input utilisateur
+		char c_input;
+
+		try
+		{
+			c_input = de();                                            //Input utilisateur
+		}
+		catch (int deError)
+		{
+			std::cout << "Configuration carte quitée. Retour au menu principal." << std::endl;
+			return;
+		}
 		int input = c_input - '0';                                      //Transcription en chiffres
 
 		while (input <= 0 || input > 3)                //Input incorrect
 		{
 			std::puts("Input incorrect. Réessayez!");
-			c_input = de();                                             //Input utilisateur
+			try
+			{
+				c_input = de();                                            //Input utilisateur
+			}
+			catch (int deError)
+			{
+				std::cout << "Configuration carte quitée. Retour au menu principal." << std::endl;
+				return;
+			}
 			input = c_input - '0';                                      //Trancription en chiffres
 		}
 
@@ -46,7 +64,14 @@ void config::config_carte()
 		}
 		else if (input == 2)
 		{
-			creationCarte();
+			try
+			{
+				creationCarte();
+			}
+			catch (int creationCarteError)
+			{
+				return;
+			}
 		}
 		else
 		{
@@ -78,13 +103,31 @@ void config::config_monstre()
 		cout << "Voulez-vous supprimer un de ces monstres, ou en créer un nouveau?" << endl;
 		cout << "1- Supprimer monstre existant     2- Créer nouveau monstre     3- Quitter" << endl;
 
-		char c_input = de();                                            //Input utilisateur
+		char c_input;
+
+		try
+		{
+			c_input = de();                                            //Input utilisateur
+		}
+		catch (int deError)
+		{
+			std::cout << "Configuration monstre quitée. Retour au menu principal." << std::endl;
+			return;
+		}
 		int input = c_input - '0';                                      //Transcription en chiffres
 
 		while (input <= 0 || input > 3)                //Input incorrect
 		{
 			std::puts("Input incorrect. Réessayez!");
-			c_input = de();                                             //Input utilisateur
+			try
+			{
+				c_input = de();                                            //Input utilisateur
+			}
+			catch (int deError)
+			{
+				std::cout << "Configuration monstre quitée. Retour au menu principal." << std::endl;
+				return;
+			}
 			input = c_input - '0';                                      //Trancription en chiffres
 		}
 
@@ -94,7 +137,15 @@ void config::config_monstre()
 		}
 		else if (input == 2)
 		{
-			creationEntite(duh, nom_fichier);
+			try
+			{
+				creationEntite(duh, nom_fichier);
+			}
+			catch (int catchError)
+			{
+				std::cout << "Retour au menu principal." << std::endl;
+				return;
+			}
 		}
 		else
 		{
@@ -126,13 +177,31 @@ void config::config_perso()
 		cout << "Voulez-vous supprimer un de ces personnages, ou en créer un nouveau?" << endl;
 		cout << "1- Supprimer personnage existant     2- Créer nouveau personnage     3- Quitter" << endl;
 
-		char c_input = de();                                            //Input utilisateur
+		char c_input;
+
+		try
+		{
+			c_input = de();                                            //Input utilisateur
+		}
+		catch (int deError)
+		{
+			std::cout << "Configuration carte quitée. Retour au menu principal." << std::endl;
+			return;
+		}
 		int input = c_input - '0';                                      //Transcription en chiffres
 
 		while (input <= 0 || input > 3)                //Input incorrect
 		{
 			std::puts("Input incorrect. Réessayez!");
-			c_input = de();                                             //Input utilisateur
+			try
+			{
+				c_input = de();                                            //Input utilisateur
+			}
+			catch (int deError)
+			{
+				std::cout << "Configuration carte quitée. Retour au menu principal." << std::endl;
+				return;
+			}
 			input = c_input - '0';                                      //Trancription en chiffres
 		}
 
@@ -142,7 +211,15 @@ void config::config_perso()
 		}
 		else if (input == 2)
 		{
-			creationEntite(duh, nom_fichier);
+			try
+			{
+				creationEntite(duh, nom_fichier);
+			}
+			catch (int catchError)
+			{
+				std::cout << "Retour au menu principal." << std::endl;
+				return;
+			}
 		}
 		else
 		{
@@ -152,58 +229,35 @@ void config::config_perso()
 	return;
 }
 
-string config::choix_carac_string(string carac)
-{
-	cout << "\n- Choix " << carac << " -\n";
-
-	string input = long_input();
-
-	while (inputSepCheck(input) == false)
-	{
-		puts("\n Input incorrect! Réessayez!\n");
-		cout << "\n- Choix " << carac << " -\n";
-		input = long_input();
-	}
-
-	return input;
-}
-
-int config::choix_carac_int(string carac)
-{
-	cout << "\n- Choix " << carac << " -\n";
-
-	string s_input = long_input();                                            //Input utilisateur
-
-	while (inputSepCheck(s_input) == false)
-	{
-		puts("\n Input incorrect! Réessayez!\n");
-		cout << "\n- Choix " << carac << " -\n";
-		s_input = long_input();
-	}
-
-	int input = To_int(s_input);
-
-	while(input == 0)
-	{
-		cout << "Veuillez choisir un entier différent de 0! \n - Choix " << carac << " -\n";
-		s_input = long_input();                                            //Input utilisateur
-		input = To_int(s_input);
-	}
-
-	return input;
-}
-
 int config::choix_taille()
 {
 	puts("\n- Choix taille -");
 
-	string s_input = long_input();                                            //Input utilisateur
+	string s_input;
+
+	try
+	{
+		s_input = long_input();                                            //Input utilisateur
+	}
+	catch (int longInputError)
+	{
+		std::cout << "Choix de la taille quitté. Retour au menu principal" << std::endl;
+		return -1;
+	}
 
 	while (inputSepCheck(s_input) == false)
 	{
 		puts("\n Input incorrect! Réessayez!\n");
 		puts("\n- Choix taille -");
-		s_input = long_input();
+		try
+		{
+			s_input = long_input();                                            //Input utilisateur
+		}
+		catch (int longInputError)
+		{
+			std::cout << "Choix de la taille quitté. Retour au menu principal" << std::endl;
+			return -1;
+		}
 	}
 
 	int input = To_int(s_input);
@@ -211,7 +265,15 @@ int config::choix_taille()
 	while (input < 5 || input > 254)                				//Input incorrect
 	{
 		puts("Taille impossible, veuillez choisir une taille entre 5 et 254!");
-		s_input = long_input();
+		try
+		{
+			s_input = long_input();                                            //Input utilisateur
+		}
+		catch (int longInputError)
+		{
+			std::cout << "Choix de la taille quitté. Retour au menu principal" << std::endl;
+			return -1;
+		}
 		input = To_int(s_input);
 	}
 
@@ -220,29 +282,85 @@ int config::choix_taille()
 
 void config::creationCarte()
 {
-	string name = choix_carac_string("nom");
-	string desc = choix_carac_string("description");
+
+	std::cout << "- Choisissez une nom pour la carte : ";
+	string name;
+	try
+	{
+		name = long_input();
+	}
+	catch (int longInputError)
+	{
+		std::cout << "Configuration de carte quitée. Retour au menu principal." << std::endl;
+		throw longInputError;
+	}
+	std::cout << std::endl << "- Choisissez une description pour la carte : " ;
+	string desc;
+	try
+	{
+		desc = long_input();
+	}
+	catch (int longInputError)
+	{
+		std::cout << "Configuration de carte quitée. Retour au menu principal." << std::endl;
+		throw longInputError;
+	}
+	std::cout << endl;
 	int tail = choix_taille();
+	if (tail == -1)
+		return;
 
 	Carte a_creer(tail, name, desc, 0);
+	try
+	{
+		a_creer.coordonneejoueur();
+		a_creer.coordonneeobstacle();
+		a_creer.coordonneemonstre();
 
-	a_creer.coordonneejoueur();
-	a_creer.coordonneeobstacle();
-	a_creer.coordonneemonstre();
-
-	a_creer.saisie();
+		a_creer.saisie();
+	}
+	catch (int coodonneesError)
+	{
+		throw coodonneesError;
+	}
 }
 
 competence config::createCompetenceEntite(entite dummy, int rang) //Permet à l'utilisateur de créer une compétence pour monstre
 {
 	cout << "- Configuration compétence " << rang + 1 << " -\n";
-
-	string skillName = choix_carac_string("nom compétence");
-	int skillDamage = choix_carac_int("dégats compétence (négatif pour soin)");
+	cout << "- Choisissez le nom de la compétence : ";
+	string skillName;
+	try
+	{
+		skillName = long_input();
+	}
+	catch (int longInputError)
+	{
+		throw longInputError;
+	}
+	cout << endl << "- Choisissez le nombre de points de dégâts pour la compétence : ";
+	int skillDamage;
+	try
+	{
+		skillDamage = To_int(long_input());
+	}
+	catch (int longInputError)
+	{
+		throw longInputError;
+	}
 
 	if (dummy.is_personnage())
 	{
-		int skillManaCost = choix_carac_int("coût en mana compétence (négatif pour régénération)");
+		int skillManaCost;
+		std::cout << "- Choisissez le coût en mana compétence (négatif pour régénération) : ";
+		try
+		{
+			skillManaCost = To_int(long_input());
+		}
+		catch (int longInputError)
+		{
+			throw longInputError;
+		}
 		competence creation(skillName, skillDamage, skillManaCost);
 		return creation;
 	}
