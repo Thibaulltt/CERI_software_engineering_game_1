@@ -59,7 +59,7 @@ void jeu::setJeuCarte(Carte jeu_map)
 
 void jeu::afficherJeu(int & result)
 {
-	afficherCarte(jeu_carte, jeu_carte.getTaille());
+	afficherCarte(jeu_carte, jeu_carte.getTaille(), 1);
 	while (true)
 		deplacement(result);
 	de();
