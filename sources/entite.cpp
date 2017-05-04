@@ -212,6 +212,8 @@ bool entite::is_monstre()
 
 entite entite::enleverVie(int degats)
 {
+
+
 	this->entiteHpCurrent-=degats;
 
 	if(this->entiteHpCurrent <= 0)
@@ -233,6 +235,22 @@ bool entite::enleverMana(int skillManaCost)
 	return false;
 }
 
+
+int entite::randomizeDegat(int damage, int fumbleChance, int critChance)
+{
+	int dice = (rand() % 100) + 1;	//Valeur entre 1 et la range choisie
+
+	if (dice <= fumbleChance)	//On fait un fumble!
+	{
+		damage /= 2;
+	}
+	else if (dice >= 100 - critChance)	//On fait un critique!
+	{
+		damage *= 2;
+	}
+
+	return damage;
+}
 
 // TESTS
 

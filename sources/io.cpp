@@ -245,7 +245,7 @@ namespace io
 			jeu_carte.echangerContenuCase(currentPlayerPosition.first, currentPlayerPosition.second, newPlayerPos.second, newPlayerPos.first);
 			currentPlayerPosition.first = newPlayerPos.second;
 			currentPlayerPosition.second = newPlayerPos.first;
-			afficherCarte(jeu_carte, jeu_carte.getTaille(), 0);
+			afficherCarte(jeu_carte, jeu_carte.getTaille());
 			return;
 		}
 		printf("\033[0;0H");

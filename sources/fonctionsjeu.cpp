@@ -59,7 +59,7 @@ void jeu::setJeuCarte(Carte jeu_map)
 
 void jeu::afficherJeu(int & result)
 {
-	afficherCarte(jeu_carte, jeu_carte.getTaille(), 1);
+	afficherCarte(jeu_carte, jeu_carte.getTaille());
 	while (true)
 		deplacement(result);
 	de();
@@ -341,7 +341,9 @@ int jeu::appliquer_comp(entite target, vector<entite> & vect_entite, competence 
 	{
 		if ((* ite).getID() == target.getID())
 		{
-			(* ite) = (* ite).enleverVie(comp_util.getDamage());	//Application attaque
+			int damage = target.randomizeDegat(comp_util.getDamage(), 5, 90);
+
+			(* ite) = (* ite).enleverVie(damage);	//Application attaque
 
 			if ((* ite).getHpCurrent() > (* ite).getHpMax())
 			{
