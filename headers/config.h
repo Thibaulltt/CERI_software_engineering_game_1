@@ -89,7 +89,7 @@ public:
 		\param rang Identifiant du numéro de compétence à saisir (parmi le total choisi)
 		\return La compétence créée
 	*/
-	competence createCompetenceEntite(entite dummy, int rang);
+	competence createCompetenceEntite(entite dummy, int rang, int manaMax);
 
 	//! Création d'une entité
 	/*!
@@ -112,11 +112,11 @@ public:
 
 		int nbComp = choix_carac_int("nombre de compétences (de 0 à 4)");
 
-		std::vector<competence> skills;;
+		std::vector<competence> skills;
 
 		for (int i = 0; i < nbComp; i++) //Remplit le tableau de compétences avec de nouvelles compétences
 		{
-			skills.push_back(createCompetenceEntite(dummy, i));
+			skills.push_back(createCompetenceEntite(dummy, i, entiteManaMax));
 		}
 
 		T creation = T("", entiteName, entiteHpMax, entiteSpeed, entiteManaMax, "", skills); //Crée le monstre
