@@ -796,6 +796,21 @@ namespace io
 
 		return output;
 	}
+
+	bool inputSepCheck(string input)
+	{
+		if (input.find("/") != input.npos
+		|| input.find("_") != input.npos
+		|| input.find(":") != input.npos
+		|| input.find("(") != input.npos
+		|| input.find(")") != input.npos
+		|| input.find("|") != input.npos
+		|| input.find(",") != input.npos)
+		{
+			return false;
+		}
+		return true;
+	}
 }
 
 bool checkSeparatorCarte(string uneLigne) //Retourne false si le nb de séparateurs dans une ligne n'est pas le nombre définit

@@ -80,13 +80,13 @@ public:
 		\post La position du joueur aura changé. La paire d'entiers `currentPlayerPosition` sera donc mise à jour (grâce à `updateMap()`).
 		\sa afficherMouvements(), genererDeplacement(), genererInputAccepte(), de() & io::updateMap()
 	*/
-	void deplacement();
+	void deplacement(int & result);
 
 	//! Fonction permettant d'afficher la carte, puis de demander un déplacement au joueur.
 	/*!
 		\note Cette fonction est là uniquement pour des fins de tests. La fonctionnalité qu'elle remplit sera remplacée par d'autres méthodes dans la fichier `tests/main.cpp`.
 	*/
-	void afficherJeu();
+	void afficherJeu(int & result);
 
 	//! Fonction permettant de générer les déplacements possibles à partir d'une case `i,j` du plateau de jeu.
 	/*!
