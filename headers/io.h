@@ -139,7 +139,7 @@ namespace io
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//! Affichage de la carte
-	extern void afficherCarte(Carte&, int, bool reset = 1);
+	extern void afficherCarte(Carte&, int);
 
 	//! Met à jour l'affichage de la carte.
 	extern void updateMap(Carte& jeu_carte, std::pair<int,int> newPlayerPos);
@@ -175,19 +175,10 @@ namespace io
 	*/
 	extern void afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement);
 
-	//! Fonction permettant d'afficher un overlay sur la carte
-	/*!
-		Fonction permettant d'afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller.
-		Ne fait qu'appeller afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
-
-		\sa afficherMouvements() & afficherMouvements(std::string erreur_deplacement) & afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
-	*/
-	extern void afficherMouvements(std::string message, std::string deplacements_possibles, std::string erreur_deplacement);
-
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////// MISCELLANEOUS FONCTIONS ///////////////////////////////////
+	//////////////////////////////////// MISCELLANEOUS FONCTIONS ////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
@@ -454,7 +445,7 @@ namespace io
 			personnage::nbElemProt = 3;
 		}
 
-		if (test.is_monstre()) //Création des personnages par défaut
+		if (test.is_monstre()) //Création des monstres par défaut
 		{
 			std::vector<competence> lesCompetences;
 

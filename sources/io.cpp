@@ -163,7 +163,7 @@ namespace io
 		cout << "\n";
 	}
 
-	void afficherCarte(Carte& c, int t, bool reset)
+	void afficherCarte(Carte& c, int t)
 	{
 		// On prends le plateau en copie
 		std::string ** map = c.getPlateau();
@@ -191,13 +191,8 @@ namespace io
 		int TermPosX = 0;
 		int TermPosY = 0;
 
-		if (reset == 1)
-		{
-			// On efface l'écran
-			clearScreen();
-		}
-		else
-			printf("\033[1;1H");
+		// On efface l'écran
+		clearScreen();
 
 		printf("\033[1;1H");	// Remet le curseur au debut
 
@@ -213,7 +208,7 @@ namespace io
 				else if (map[displayX][displayY][0] == 'a')
 					std::cout << GREEN << 'A' << BLANK;
 				else if (map[displayX][displayY][0] == 'e')
-					std::cout << BLUE << '~' << BLANK;
+					std::cout << BLUE << 'O' << BLANK;
 				else
 					std::cout << ' ';
 				TermPosX++;
@@ -245,7 +240,7 @@ namespace io
 			jeu_carte.echangerContenuCase(currentPlayerPosition.first, currentPlayerPosition.second, newPlayerPos.second, newPlayerPos.first);
 			currentPlayerPosition.first = newPlayerPos.second;
 			currentPlayerPosition.second = newPlayerPos.first;
-			afficherCarte(jeu_carte, jeu_carte.getTaille(),0);
+			afficherCarte(jeu_carte, jeu_carte.getTaille());
 			return;
 		}
 		printf("\033[0;0H");
@@ -280,11 +275,6 @@ namespace io
 
 	void afficherMouvements(std::string deplacements_possibles, std::string erreur_deplacement)
 	{
-		afficherMouvements("Voici les déplacements possibles à ce point là :",deplacements_possibles,erreur_deplacement);
-	}
-
-	void afficherMouvements(std::string message, std::string deplacements_possibles, std::string erreur_deplacement)
-	{
 		// Dans cette fonction, les sorties utilisées avec std::cout sont
 		// mises à la ligne après chaque élément pour pouvoir faciliter
 		// la lecture du code.
@@ -300,13 +290,11 @@ namespace io
 		interactionsOverlayY = (TermHeight - 5);
 		printf("\033[%i;0H", interactionsOverlayY);
 
-		// Si le message d'accueil est trop grand, on le coupe
-		if (message.size() > TermWidth-2)
-			message = message.substr(0,TermWidth-2-3)+"...";
-
-		// Si le message d'erreur est trop grand, on le coupe
+		//
 		if (erreur_deplacement.size() > TermWidth-2)
 			erreur_deplacement = erreur_deplacement.substr(0,TermWidth-2-3)+"...";
+
+		std::string message_affiche = "Voici les déplacements possibles à ce point dans le jeu :";
 
 		int deplacementNecessaire;
 
@@ -319,14 +307,14 @@ namespace io
 		cout << BLANK;
 
 		// Calcule la place à allouer sur chaque côté
-		deplacementNecessaire = (TermWidth - 2 - taille_str(message));
+		deplacementNecessaire = (TermWidth - 2 - taille_str(message_affiche));
 
 		// Affiche la deuxième ligne de l'overlay, qui demande le mouvement au joueur.
 		cout << couleurDelimiteur;
 		cout << delimiteur;
 		cout << BLANK;
 		cout << std::string(deplacementNecessaire/2, ' ');
-		cout << message;
+		cout << message_affiche;
 		cout << std::string(deplacementNecessaire/2 + deplacementNecessaire%2, ' ');
 		cout << couleurDelimiteur;
 		cout << delimiteur;
