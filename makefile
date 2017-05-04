@@ -19,6 +19,10 @@ OALL=$(OIO) $(OCARTE) $(OENTITE) $(OMONSTRE) $(OFONCTIONS) $(OCOMPETENCE) $(OPER
 
 # Cibles que l'on peut compiler directement :
 all:
+	@if [ -d objects ]; then rm -rf objects/; fi
+	@if [ -d archives ]; then rm -rf archives/; fi
+	@mkdir objects/
+	@mkdir archives/
 	@make -s main.exe
 ca:
 	@make archives/carte.a

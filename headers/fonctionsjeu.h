@@ -97,18 +97,18 @@ public:
 		- On prends la taille de la carte du jeu grâce à la fonction `carte::getTaille()`. La taille du plateau nous sert à déterminer si une case existe, enlevant ainsi un peu de temps de calcul lors de l'analyse des cases voisines à celle où se trouve le joueur.
 		- On crée une chaîne de caractères. Cette chaîne servira à stocker les déplacements possibles à afficher par la suite au joueur.
 		- On vérifie les cases autour du joueur en vérifiant leurs indices et leur contenu (grâce à la fonction `carte::caseAccessible()`)
-		  - Si la case au dessus du joueur est libre, alors :
-		    - On ajoute `Z - Haut` à la chaîne de caractères
-		    - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
-		  - Si la case à la gauche du joueur est libre, alors :
-  		    - On ajoute `Q - Gauche` à la chaîne de caractères
-  		    - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
-		  - Si la case en dessous du joueur est libre, alors :
-  		    - On ajoute `S - Bas` à la chaîne de caractères
-  		    - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
-		  - Si la case à la droite du joueur est libre, alors :
-  		    - On ajoute `D - Droite` à la chaîne de caractères
-  		    - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+		- Si la case au dessus du joueur est libre, alors :
+		  - On ajoute `Z - Haut` à la chaîne de caractères
+		  - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+		- Si la case à la gauche du joueur est libre, alors :
+  		  - On ajoute `Q - Gauche` à la chaîne de caractères
+  		  - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+		- Si la case en dessous du joueur est libre, alors :
+  		  - On ajoute `S - Bas` à la chaîne de caractères
+  		  - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+		- Si la case à la droite du joueur est libre, alors :
+  		  - On ajoute `D - Droite` à la chaîne de caractères
+  		  - On met à 1 le booléen permettant de savoir si la case est accessible ou non.
 		- On retourne la châine de caractères générée.
 		\param v Vecteur de booléens (`std::vector<bool>`) permettant de savoir quelles cases sont accessibles aux alentours de la case où se trouve le joueur.
 		\return Une châine de caractères à afficher au joueur pour qu'il puisse savoir où il peut aller. La chaine est définie par l'expression régulière suivante : `"|"+(" Z - Haut |")?+(" Q - Gauche |")?+(" S - Bas |")?+(" D - Droite |")?`
@@ -124,14 +124,10 @@ public:
 		Mode opératoire :
 		- Crée une chaîne de caractères (`std::string`) qui contiendra les caractères acceptés lors de l'entrée utilisateur dans la fonction `deplacement()`.
 		- Lit le vecteur de booléens rempli dans la fonction `genererDeplacement()` :
-		  - Si le premier booléen est à 1 :
-		    - On ajoute "Zz" à la chaîne (l'utilisateur pourra donc appuyer sur 'Z' ou 'z' et se déplacer)
-    		  - Si le second booléen est à 1 :
-    		    - On ajoute "Qq" à la chaîne (l'utilisateur pourra donc appuyer sur 'Q' ou 'q' et se déplacer)
-    		  - Si le troisième booléen est à 1 :
-    		    - On ajoute "Ss" à la chaîne (l'utilisateur pourra donc appuyer sur 'S' ou 's' et se déplacer)
-    		  - Si le quatrième booléen est à 1 :
-    		    - On ajoute "Dd" à la chaîne (l'utilisateur pourra donc appuyer sur 'D' ou 'd' et se déplacer)
+		  - Si le premier booléen est à 1 : on ajoute "Zz" à la chaîne (l'utilisateur pourra donc appuyer sur 'Z' ou 'z' et se déplacer)
+    		  - Si le second booléen est à 1 : on ajoute "Qq" à la chaîne (l'utilisateur pourra donc appuyer sur 'Q' ou 'q' et se déplacer)
+    		  - Si le troisième booléen est à 1 : on ajoute "Ss" à la chaîne (l'utilisateur pourra donc appuyer sur 'S' ou 's' et se déplacer)
+    		  - Si le quatrième booléen est à 1 : on ajoute "Dd" à la chaîne (l'utilisateur pourra donc appuyer sur 'D' ou 'd' et se déplacer)
 		- Retourne la chaîne de caractères.
 		\param b Vecteur de booléens (`std::vector<bool>`) rempli dans la fonction `genererDeplacement()`.
 		\return Une chaine de caractères permettant de déterminer si l'entrée utilisateur est acceptable ou pas. La chaîne est définie par l'expression régulière suivante : `"Zz"?+"Qq"?+"Ss"?+"Dd"?`.
