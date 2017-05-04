@@ -187,7 +187,15 @@ public:
 			while(1)
 			{
 				std::cout << "Choisissez l'élément à supprimer (1-9) (q pour annuler): "; //Choix de l'utilisateur
-				std::string sInput = long_input();
+				std::string sInput;
+				try
+				{
+					sInput = long_input();
+				}
+				catch (int longInputError)
+				{
+					throw longInputError;
+				}
 
 				if (sInput == "q" || sInput == "Q")
 				{
@@ -201,7 +209,14 @@ public:
 				while (input <= 0 || input > (allElement.size() - nbElemProt) || checkInput(input) == false)                //Input incorrect
 				{
 					std::puts("Input incorrect. Réessayez!");
-					sInput = long_input();                                   //Input utilisateur
+					try
+					{
+						sInput = long_input();                                   //Input utilisateur
+					}
+					catch (int longInputError)
+					{
+						throw longInputError;
+					}
 					input = atoi(sInput.c_str());
 
 					if (sInput == "q" || sInput == "Q")

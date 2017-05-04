@@ -389,7 +389,14 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 		if (indiv.is_personnage())	//Personnage
 		{
 			cout << "- Choix de la cible pour la compétence " << comp_util.getName() << " -" << endl;
-			choix_unique_element(target, vect_entite, 1);
+			try
+			{
+				choix_unique_element(target, vect_entite, 1);
+			}
+			catch (int cUEError)
+			{
+				quitGame();
+			}
 		}
 		else	//Monstre
 		{
