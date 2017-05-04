@@ -178,7 +178,7 @@ namespace io
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////// MISCALENNOUS FONCTIONS ////////////////////////////////////
+	//////////////////////////////////// MISCELLANEOUS FONCTIONS ////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
@@ -396,13 +396,13 @@ namespace io
 	template<typename T> std::vector<T> loadAllEntiteFromFile(T temp, std::string nomFichier)
 	{
 		std::vector<T> allEntite; //Vecteur de retour
-		
+
 		T test;
 
 		if (test.is_personnage()) //Création des personnages par défaut
 		{
 			std::vector<competence> lesCompetences;
-			
+
 			//Personnage Raph
 			competence une("Coup de clavier", 30, 20);
 			lesCompetences.push_back(une);
@@ -509,28 +509,28 @@ namespace io
 		{
 			while (getline(fichierEntite, uneLigne)) //Parcours de tout le fichier et stockage d'une ligne
 			{
-				if (checkSeparatorEntite(uneLigne) == true) //Vérification que la ligne est correcte
+				if(checkSeparatorEntite(uneLigne) == true) //Vérification que la ligne est correcte
 				{
 					cptLigne++; //Reset de toutes les variables afin de stocker une nouvelle ligne
-					sentiteName = "";
-					sentiteId = "";
-					sentiteHpMax = "";
-					entiteHpMax = 0;
-					sentiteSpeed = "";
-					entiteSpeed = 0;
-					sentiteManaMax = "";
-					entiteManaMax = 0;
-					nbSeparateur = 0;
-					nbBarre = 0;
-					entiteDescription = "";
+					sentiteName="";
+					sentiteId="";
+					sentiteHpMax="";
+					entiteHpMax=0;
+					sentiteSpeed="";
+					entiteSpeed=0;
+					sentiteManaMax="";
+					entiteManaMax=0;
+					nbSeparateur=0;
+					nbBarre=0;
+					entiteDescription="";
 					allSkills.clear();
 
 
-					for (int i = 0; i < uneLigne.length(); i++) //Analyse de la ligne
+					for(int i=0; i<uneLigne.length(); i++) //Analyse de la ligne
 					{
 						parcoursCarac = uneLigne[i];
-						//   if(nbSeparateur <4) // Récupération des carac. d'un monstre
-						  // {
+					 //   if(nbSeparateur <4) // Récupération des carac. d'un monstre
+					   // {
 						if ((parcoursCarac == '/') || (parcoursCarac == '|'))
 						{
 							nbSeparateur++;
@@ -538,7 +538,7 @@ namespace io
 
 						if (nbSeparateur == 0) // Champ entiteId
 						{
-							sentiteId += parcoursCarac;
+							sentiteId+=parcoursCarac;
 						}
 
 						if (nbSeparateur == 1) //Champ Nom
@@ -547,74 +547,71 @@ namespace io
 							{
 								continue;
 							}
-							sentiteName += parcoursCarac;
+							sentiteName+=parcoursCarac;
 						}
 
 						if (nbSeparateur == 2) //Champ entiteHpMax
 						{
 							if (parcoursCarac == '/')  continue;
-							sentiteHpMax += parcoursCarac;
+							sentiteHpMax+=parcoursCarac;
 						}
 
 						if (nbSeparateur == 3) //Champ vitesse
 						{
 							if (parcoursCarac == '/')  continue;
-							sentiteSpeed += parcoursCarac;
+							sentiteSpeed+=parcoursCarac;
 						}
 
-						if (nbSeparateur == 4)
+						if(nbSeparateur == 4)
 						{
 							continue;
 						}
 
-						if (nbSeparateur >= 5) //Champ compétence + entiteManaMax + entiteDescription
+						if(nbSeparateur >= 5) //Champ compétence + entiteManaMax + entiteDescription
 						{
-							if (parcoursCarac == '|')
+							if(parcoursCarac == '|')
 							{
 								nbBarre++;
 							}
 
-							if (nbBarre == 0) continue;
+							if(nbBarre == 0) continue;
 
 							if (nbBarre == 1) //Champ entiteManaMax
 							{
-								if (parcoursCarac == '|') continue;
-								sentiteManaMax += parcoursCarac;
+								if(parcoursCarac=='|') continue;
+								sentiteManaMax+=parcoursCarac;
 							}
 
 							if (nbBarre == 2) //Champ entiteDescription
 							{
-								if (parcoursCarac == '|') continue;
-								entiteDescription += parcoursCarac;
+								if(parcoursCarac=='|') continue;
+								entiteDescription+=parcoursCarac;
 							}
 
-							if (nbBarre == 3)
+							if (nbBarre==3)
 							{
 								break;
 							}
 						}
 					}
-
-					
-
-					std::istringstream(sentiteHpMax) >> entiteHpMax; //Conversion string to int
-					std::istringstream(sentiteSpeed) >> entiteSpeed; //Conversion string to int
-					std::istringstream(sentiteManaMax) >> entiteManaMax; //Conversion string to int
-					std::istringstream(sentiteManaMax) >> entiteManaMax; //Conversion string to int
-					if (checkSeparatorSkill(nomFichier, cptLigne) == true) //Verification que le champ compétence est correct
-					{
-						allSkills = loadCompetenceFromFile(nomFichier, cptLigne); //Récupération des compétences
-						T creation(sentiteId, sentiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills); //Création de l'entite
-						allEntite.push_back(creation); //Stockage du perso dans le vecteur de retour
-					}
-
-				
 				}
+
+
+				std::istringstream (sentiteHpMax) >> entiteHpMax; //Conversion string to int
+				std::istringstream (sentiteSpeed) >> entiteSpeed; //Conversion string to int
+				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
+				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
+				if (checkSeparatorSkill(nomFichier, cptLigne) == true) //Verification que le champ compétence est correct
+				{
+					allSkills = loadCompetenceFromFile(nomFichier, cptLigne); //Récupération des compétences
+					T creation(sentiteId, sentiteName, entiteHpMax, entiteSpeed, entiteManaMax, entiteDescription, allSkills); //Création de l'entite
+					allEntite.push_back(creation); //Stockage du perso dans le vecteur de retour
+				}
+
 				else
 					continue;
-			
+
 			}
-			return allEntite;
 			fichierEntite.close();
 		}
 
@@ -623,7 +620,7 @@ namespace io
 			std::cerr << "Impossible d'ouvrir le fichier." << std::endl;
 		}
 
-
+		return allEntite;
 	}
 
 	template<typename T> std::string toString( const T & valeur ) //Conversion de n'importe quoi en string
@@ -632,6 +629,8 @@ namespace io
 		flux << valeur;
 		return flux.str();
 	}
+
+	bool inputSepCheck(std::string input);
 }
 
 #endif

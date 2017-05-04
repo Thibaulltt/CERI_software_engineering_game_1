@@ -27,7 +27,7 @@ void config::config_carte()
 		}
 
 		//Choix action
-		cout << "Voulez-vous supprimer une de ces cartes, ou en créer une nouvelle?" << endl;
+		cout << "\nVoulez-vous supprimer une de ces cartes, ou en créer une nouvelle?" << endl;
 		cout << "1- Supprimer carte existante     2- Créer nouvelle carte     3- Quitter" << endl;
 
 		char c_input = de();                                            //Input utilisateur
@@ -154,17 +154,33 @@ void config::config_perso()
 
 string config::choix_carac_string(string carac)
 {
-	cout << "- Choix " << carac << " -\n";
+	cout << "\n- Choix " << carac << " -\n";
 
 	string input = long_input();
+
+	while (inputSepCheck(input) == false)
+	{
+		puts("\n Input incorrect! Réessayez!\n");
+		cout << "\n- Choix " << carac << " -\n";
+		input = long_input();
+	}
+
 	return input;
 }
 
 int config::choix_carac_int(string carac)
 {
-	cout << "- Choix " << carac << " -\n";
+	cout << "\n- Choix " << carac << " -\n";
 
 	string s_input = long_input();                                            //Input utilisateur
+
+	while (inputSepCheck(s_input) == false)
+	{
+		puts("\n Input incorrect! Réessayez!\n");
+		cout << "\n- Choix " << carac << " -\n";
+		s_input = long_input();
+	}
+
 	int input = To_int(s_input);
 
 	while(input == 0)
@@ -179,16 +195,24 @@ int config::choix_carac_int(string carac)
 
 int config::choix_taille()
 {
-	puts("- Choix taille -");
+	puts("\n- Choix taille -");
 
 	string s_input = long_input();                                            //Input utilisateur
+
+	while (inputSepCheck(s_input) == false)
+	{
+		puts("\n Input incorrect! Réessayez!\n");
+		puts("\n- Choix taille -");
+		s_input = long_input();
+	}
+
 	int input = To_int(s_input);
 
 	while (input < 5 || input > 254)                				//Input incorrect
 	{
 		puts("Taille impossible, veuillez choisir une taille entre 5 et 254!");
 		s_input = long_input();
-		int input = To_int(s_input);
+		input = To_int(s_input);
 	}
 
 	return input;

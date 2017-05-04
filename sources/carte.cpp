@@ -59,10 +59,26 @@ void Carte::coordonneejoueur()
 	{
 		puts("- Choix première coordonnée du joueur -");
 		string s_input = long_input();
+
+		while (inputSepCheck(s_input) == false)
+		{
+			puts("\n Input incorrect! Réessayez!\n");
+			puts("- Choix première coordonnée du joueur -");
+			s_input = long_input();
+		}
+
 		coordonneejoueur1 = atoi(s_input.c_str());
 
 		puts("- Choix seconde coordonnée du joueur -");
 		s_input = long_input();
+
+		while (inputSepCheck(s_input) == false)
+		{
+			puts("\n Input incorrect! Réessayez!\n");
+			puts("- Choix seconde coordonnée du joueur -");
+			s_input = long_input();
+		}
+
 		coordonneejoueur2 = atoi(s_input.c_str());
 
 		if (coordonneejoueur1 < taille && coordonneejoueur2 < taille && coordonneejoueur1 >= 0 && coordonneejoueur2 >= 0)
@@ -89,9 +105,17 @@ void Carte::coordonneeobstacle()
 
 	puts("- Choix nombre d'obstacles -");
 	string s_input = long_input();
+
+	while (inputSepCheck(s_input) == false)
+	{
+		puts("\n Input incorrect! Réessayez!\n");
+		puts("- Choix nombre d'obstacles -");
+		s_input = long_input();
+	}
+
 	nbr_obstacle = atoi(s_input.c_str());
 
-	while (nbr_obstacle >= case_dispo)
+	while (nbr_obstacle >= case_dispo && nbr_obstacle < 0)
 	{
 		cout << "Vous avez choisi trop d'obstacles.\n- Choix nombre d'obstacles -\n";
 		s_input = long_input();
@@ -102,10 +126,26 @@ void Carte::coordonneeobstacle()
 	{
 		cout << "- Choix première coordonnée de l'obstacle " << i << " -\n";
 		s_input = long_input();
+
+		while (inputSepCheck(s_input) == false)
+		{
+			puts("\n Input incorrect! Réessayez!\n");
+			puts("- Choix première coordonnée de l'obstacle -");
+			s_input = long_input();
+		}
+
 		coordonneeobstacle1 = atoi(s_input.c_str());
 
 		cout << "- Choix seconde coordonnée de l'obstacle " << i << " -\n";
 		s_input = long_input();
+
+		while (inputSepCheck(s_input) == false)
+		{
+			puts("\n Input incorrect! Réessayez!\n");
+			puts("- Choix seconde coordonnée de l'obstacle -");
+			s_input = long_input();
+		}
+
 		coordonneeobstacle2 = atoi(s_input.c_str());
 
 		if (coordonneeobstacle1 < taille && coordonneeobstacle2 < taille && coordonneeobstacle1 >= 0 && coordonneeobstacle2 >= 0)
@@ -139,25 +179,41 @@ void Carte::coordonneemonstre()
 
 	puts("- Choix nombre de monstres -");
 	string s_input = long_input();
-	nbr_monstre = atoi(s_input.c_str());
 
-	while ((nbr_monstre > taille) && (nbr_monstre > case_dispo))
+	while (inputSepCheck(s_input) == false && nbr_monstre > taille && nbr_monstre > case_dispo)
 	{
+		puts("\n Input incorrect! Réessayez!\n");
 		puts("- Choix nombre de monstres -");
 		s_input = long_input();
-		nbr_monstre = atoi(s_input.c_str());
 	}
 
+	nbr_monstre = atoi(s_input.c_str());
 	setNbrMonstre(nbr_monstre);
 
 	while (i <= nbr_monstre)
 	{
 		cout << "- Choix première coordonnée du monstre " << i << " -\n";
 		s_input = long_input();
+
+		while (inputSepCheck(s_input) == false)
+		{
+			puts("\n Input incorrect! Réessayez!\n");
+			puts("- Choix première coordonnée du monstre -");
+			s_input = long_input();
+		}
+
 		coordonneemonstre1 = atoi(s_input.c_str());
 
 		cout << "- Choix seconde coordonnée du monstre " << i << " -\n";
 		s_input = long_input();
+
+		while (inputSepCheck(s_input) == false)
+		{
+			puts("\n Input incorrect! Réessayez!\n");
+			puts("- Choix seconde coordonnée du monstre -");
+			s_input = long_input();
+		}
+
 		coordonneemonstre2 = atoi(s_input.c_str());
 
 		if (coordonneemonstre1 < taille && coordonneemonstre2 < taille && coordonneemonstre1 >= 0 && coordonneemonstre2 >= 0)
@@ -252,38 +308,57 @@ void Carte::saisie()
 					parc++;
 					type_obstacle = long_input();
 
+					while (inputSepCheck(type_obstacle) == false)
+					{
+						puts("\n Input incorrect! Réessayez!\n");
+						cout << "- Choix obstacle " << parc << "[case ("<< i << ","<< j << ")] -\n";
+						type_obstacle = long_input();
+					}
+
 					fichier << "(" << i << "," << j << ","<< type_obstacle << ")";
 				}
 			}
 		}
 
-		puts("- Monstres disponibles -");
 
-		monstre duh;
-		vector<monstre> vect_monstre;
-
-		vect_monstre = loadAllEntiteFromFile(duh, "fichierMonstre.txt");
-
-		for (int i = 0; i < vect_monstre.size(); i++)
+		if (nbr_monstre > 0)
 		{
-			cout << i << "- ";
-			vect_monstre[i].afficher_brut();
-			cout << "\n";
-		}
+			puts("- Monstres disponibles -");
 
-		for (int i = 0 ; i < taille; i++)
-		{
-			for (int j = 0 ; j < taille ; j++)
+			monstre duh;
+			vector<monstre> vect_monstre;
+
+			vect_monstre = loadAllEntiteFromFile(duh, "fichierMonstre.txt");
+
+			for (int i = 0; i < vect_monstre.size(); i++)
 			{
-				if (plateau[i][j]=="m")
+				cout << i << "- ";
+				vect_monstre[i].afficher_brut();
+				cout << "\n";
+			}
+
+			for (int i = 0 ; i < taille; i++)
+			{
+				for (int j = 0 ; j < taille ; j++)
 				{
-					cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << ") -\n";
-					s_monst = long_input();
-					int monst = atoi(s_monst.c_str());
+					if (plateau[i][j]=="m")
+					{
+						cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << ") -\n";
+						s_monst = long_input();
+						int monst = atoi(s_monst.c_str());
 
-					fichier << "(" << i << "," << j << ",m"<< monst << ")";
+						while (inputSepCheck(s_monst) == false && monst > vect_monstre.size())
+						{
+							puts("\n Input incorrect! Réessayez!\n");
+							cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << ") -\n";
+							s_monst = long_input();
+							monst = atoi(s_monst.c_str());
+						}
+
+						fichier << "(" << i << "," << j << ",m"<< monst << ")";
+					}
+
 				}
-
 			}
 		}
 
@@ -442,6 +517,8 @@ bool Carte::caseAccessible(int i, int j)
 		return false;
 	if (plateau[i][j].find("joueur") != std::string::npos)
 		return true;
+	if (plateau[i][j][0] == 'm')
+		return true;
 	return plateau[i][j] == "v";
 }
 
@@ -464,10 +541,10 @@ void Carte::echangerContenuCase(int i1, int j1, int i2, int j2)
 {
 	std::string old_content = plateau[i1][j1];
 	std::string new_content = plateau[i2][j2];
-	if (new_content == "v")	// Si la case a atteindre est vide
+	if (plateau[i2][j2] == "v")	// Si la case a atteindre est vide
 		plateau[i2][j2] = old_content;	// On met le joueur la
 	else	// Sinon (la case contient qqchose qui a été rendu accessible (monstre par exemple)).
-		plateau[i2][j2] += "/"+old_content;	// On rajoute "/joueur" a la fin de la chaîne
+		plateau[i2][j2] = std::string(plateau[i2][j2]+"/"+old_content);	// On rajoute "/joueur" a la fin de la chaîne
 	if (old_content == "joueur")	// Si la case d'origine ne contenait que le joueur
 		plateau[i1][j1] = "v";	// La case devient vide
 	else				// Si la case d'origine contenait qqchose d'autre que le joueur
