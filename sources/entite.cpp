@@ -238,7 +238,7 @@ bool entite::enleverMana(int skillManaCost)
 
 int entite::randomizeDegat(int damage, int fumbleChance, int critChance)
 {
-	int dice = (rand() % 100) + 1;	//Valeur entre 1 et la range choisie
+	int dice = (rand() % 100) + 1;	//Valeur entre 1 et 100
 
 	if (dice <= fumbleChance)	//On fait un fumble!
 	{
