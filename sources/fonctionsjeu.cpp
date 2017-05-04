@@ -433,7 +433,6 @@ int jeu::appliquer_comp(entite target, vector<entite> & vect_entite, competence 
 			cout << "Le monstre " << (* ite).getName() << " est mort." << endl;
 			nb_monsters--;
 		}
-//		vect_entite.erase(ite);
 	}
 
 	//Check conséquences combat

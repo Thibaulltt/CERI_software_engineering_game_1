@@ -91,7 +91,6 @@ public:
 	//! Fonction permettant de générer les déplacements possibles à partir d'une case `i,j` du plateau de jeu.
 	/*!
 		Cette fonction permet de générer la chaîne de caractères qui affiche les déplacements disponibles au joueur à partir de la case où il se trouve.
-
 		Mode opératoire :
 		- On prends les coordonnées actuelles du joueur, que l'on met dans deux entiers créativement appelés `x` et `y`.
 		- On prends la taille de la carte du jeu grâce à la fonction `carte::getTaille()`. La taille du plateau nous sert à déterminer si une case existe, enlevant ainsi un peu de temps de calcul lors de l'analyse des cases voisines à celle où se trouve le joueur.

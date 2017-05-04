@@ -167,7 +167,7 @@ void Carte::coordonneeobstacle()
 
 	nbr_obstacle = atoi(s_input.c_str());
 
-	while (nbr_obstacle >= case_dispo && nbr_obstacle < 0)
+	while (nbr_obstacle >= case_dispo || nbr_obstacle < 0)
 	{
 		cout << "Vous avez choisi trop d'obstacles.\n- Choix nombre d'obstacles -\n";
 		try
@@ -282,7 +282,7 @@ void Carte::coordonneemonstre()
 		return;
 	}
 
-	while (inputSepCheck(s_input) == false && nbr_monstre < taille && nbr_monstre > case_dispo)
+	while (inputSepCheck(s_input) == false && nbr_monstre > taille && nbr_monstre > case_dispo)
 	{
 		puts("\n Input incorrect! Réessayez!\n");
 		puts("- Choix nombre de monstres -");
@@ -536,8 +536,7 @@ void Carte::saisie()
 			}
 		}
 
-		fichier << '\r';
-		fichier << '\n';
+		fichier << "\r\n";
 		// On referme le fichier
 		fichier.close() ;
 		cout << "Carte sauvegardée" << endl ;

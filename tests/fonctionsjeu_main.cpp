@@ -13,7 +13,7 @@ int main()
 		jeu a;
 		a.afficherJeu(dummy);
 	}
-	catch (int constructError)
+	catch (...)
 	{
 		return 0;
 	}
