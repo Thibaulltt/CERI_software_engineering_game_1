@@ -81,7 +81,7 @@ objects/carte.o: sources/carte.cpp
 	@g++ -c $< -o $@ -std=c++11
 objects/config.o: sources/config.cpp headers/config.h
 	@echo "Compiling $@ ..."
-	@g++ -c $< $(OALL) -o $@ -std=c++11 -pedantic -g # $(IO) $(COMPETENCE) $(CARTE) $(ENTITE)
+	@g++ -c $< $(OALL) -o $@ -std=c++11 -pedantic -g
 objects/entite.o: sources/entite.cpp
 	@echo "Compiling $@ ..."
 	@g++ -c $< -o $@ -std=c++11

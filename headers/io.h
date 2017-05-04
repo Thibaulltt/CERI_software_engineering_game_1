@@ -334,13 +334,28 @@ namespace io
 
 			liste_elements(vect_element);                        			//Affichage des éléments parmi lesquels choisir
 
-			char c_input = de();                                            //Input utilisateur
+			char c_input;
+			try
+			{
+				 c_input = de();                                            //Input utilisateur
+			}
+			catch (int deError)
+			{
+				throw deError;
+			}
 			int input = c_input - '0';                                      //Transcription en chiffres
 
 			while (input <= 0 || input > vect_element.size())                //Input incorrect
 			{
 				std::puts("Input incorrect. Réessayez!");
-				c_input = de();                                             //Input utilisateur
+				try
+				{
+					c_input = de();                                             //Input utilisateur
+				}
+				catch (int deError)
+				{
+					throw deError;
+				}
 				input = c_input - '0';                                      //Trancription en chiffres
 			}
 
@@ -350,7 +365,14 @@ namespace io
 			{
 				element.afficher_detail();
 				puts("Appuyez sur \"v\" pour valider votre choix, ou sur une autre touche pour revenir au menu de sélection");
-				c_input = de();
+				try
+				{
+					c_input = de();
+				}
+				catch (int deError)
+				{
+					throw deError;
+				}
 
 				if (c_input == 'v' || c_input == 'V')
 				{

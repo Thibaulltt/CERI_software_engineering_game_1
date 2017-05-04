@@ -14,13 +14,29 @@ jeu::jeu()
 	personnage pers;										//Dummy identification type template
 	string nom_file = "fichierPersonnage.txt";				//Nom fichier source personnages
 	tous_persos = loadAllEntiteFromFile(pers, nom_file);	//Remplissage vecteur personnages depuis fichier
-	choix_unique_element(jeu_perso, tous_persos, 0);		//Choix + assignation personnage partie
+	try
+	{
+		choix_unique_element(jeu_perso, tous_persos, 0);		//Choix + assignation personnage partie
+	}
+	catch (int cUEError)
+	{
+		quitGame();
+		throw cUEError;
+	}
 
 		//Choix carte
 	vector<Carte> toutes_cartes;							//Vecteur cartes
 	nom_file = "fichierCarte.txt";							//Nom fichier source cartes
 	toutes_cartes = loadAllCarteFromFile(nom_file);			//Chargement carte depuis fichier
-	choix_unique_element(jeu_carte, toutes_cartes, 0);		//Choix + assignation carte partie
+	try
+	{
+		choix_unique_element(jeu_carte, toutes_cartes, 0);		//Choix + assignation carte partie
+	}
+	catch (int cUEError)
+	{
+		quitGame();
+		throw cUEError;
+	}
 	jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
 
 		//Chargement monstres
@@ -322,13 +338,27 @@ competence jeu::choix_comp(entite & indiv)
 	if (indiv.is_personnage())	//Personnage
 	{
 		puts("\n- Choix de compétence -");
-		choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+		try
+		{
+			choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+		}
+		catch (int cUEError)
+		{
+			quitGame();
+		}
 
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
 			puts("Vous n'avez pas assez de mana pour utiliser cette compétence!");
 			puts("- Choix de compétence -");
-			choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+			try
+			{
+				choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+			}
+			catch (int cUEError)
+			{
+				quitGame();
+			}
 		}
 
 		if (indiv.getManaCurrent() > indiv.getManaMax())

@@ -8,7 +8,14 @@ using namespace std;
 int main()
 {
 	int dummy = 2;
-	jeu a;
-	a.afficherJeu(dummy);
+	try
+	{
+		jeu a;
+		a.afficherJeu(dummy);
+	}
+	catch (int constructError)
+	{
+		return 0;
+	}
 	return 0;
 }
