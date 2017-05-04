@@ -57,11 +57,11 @@ void jeu::setJeuCarte(Carte jeu_map)
 	jeu_carte = jeu_map;
 }
 
-void jeu::afficherJeu()
+void jeu::afficherJeu(int & result)
 {
 	afficherCarte(jeu_carte, jeu_carte.getTaille());
 	while (true)
-		deplacement();
+		deplacement(result);
 	de();
 }
 std::string jeu::genererDeplacement(std::vector<bool>& v)
@@ -122,7 +122,7 @@ std::string jeu::genererInputAccepte(vector<bool> b)
 	return s;
 }
 
-void jeu::deplacement()
+void jeu::deplacement(int & result)
 {
 	std::vector<bool> b(4,false);
 	std::string deplacement_possibles = genererDeplacement(b);
@@ -163,6 +163,17 @@ void jeu::deplacement()
 			break;
 	}
 	updateMap(jeu_carte, std::make_pair(y,x));
+
+	///Combat, à tester
+//	string content = jeu_carte.getPlateau()[x][y];
+//
+//	cout << "contenu case: " << content << "\n";
+//
+//	if (content.substr(0, 1) == "m")
+//	{
+//		cout << "On rentre en mode combat\n";
+//		result = combat(content);
+//	}
 }
 
 

@@ -14,17 +14,18 @@ int main()
 
 	int persos_vivants = 1;
 	int nbMonstres = a.getNbMonstres();
+	int result = 0;
 
 	while (persos_vivants != 0 && nbMonstres > 0)
 	{
-		//	a.deplacement();
+		a.afficherJeu(result);
 
-		string monster = "m1";	//test
-
-		//Si case monstre
-		int result = a.combat(monster);	//Combat
-		persos_vivants = result;
-		nbMonstres -= result;
+		if (a.getCarte().getPlateau()[currentPlayerPosition.first][currentPlayerPosition.second].substr(0, 1) == "m")
+		{
+			result = a.combat(a.getCarte().getPlateau()[currentPlayerPosition.first][currentPlayerPosition.second]);
+			persos_vivants = result;
+			nbMonstres -= result;
+		}
 	}
 
 	if (persos_vivants == 0)

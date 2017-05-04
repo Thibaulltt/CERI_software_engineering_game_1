@@ -15,6 +15,8 @@ int main()
 	cout << "Test " << BLUE << "io::" << MAGENTA << "long_input()" << BLANK << " : ";
 	string s = long_input();
 	cout << "Resultat : " << s << endl;
+	for (int i = 0; i < s.size(); i++)
+		cout << "i : " << i << " : " << s[i] << " /// " << int(s[i]) << endl;
 
 	cout << "Test " << BLUE << "io::" << MAGENTA << "getTerminalWidth()" << BLANK << " : " << getTerminalWidth() << endl;
 	cout << "Test " << BLUE << "io::" << MAGENTA << "getTerminalHeight()" << BLANK << " : " << getTerminalHeight() << endl;
