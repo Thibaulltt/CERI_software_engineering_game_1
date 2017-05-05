@@ -1,13 +1,9 @@
 #include <iostream>	// à remplacer avec notre librairie I/O plus tard
 #include <vector>
-#include <chrono>
-#include <thread>
 #include "../headers/carte.h"
 #include "../headers/fonctionsjeu.h"
 
 using namespace std;
-using namespace std::this_thread; // sleep_for, sleep_until
-using namespace std::chrono; // nanoseconds, system_clock, seconds
 
 jeu::jeu()
 {
@@ -88,7 +84,7 @@ void jeu::afficherJeu(int & result)
 		quitGame();
 		return;
 	}
-	while (jeu_nombre_monstres != 0)
+	while (true)
 	{
 		try
 		{
@@ -96,16 +92,10 @@ void jeu::afficherJeu(int & result)
 		}
 		catch (int deplacementError)
 		{
-			if (deplacementError == 0)
-				failedGame();
-			else
-				quitGame();
+			quitGame();
 			return;
 		}
-		jeu_nombre_monstres = jeu_carte.getNbrMonstres();
 	}
-	victoireGame();
-	quitGame();
 }
 std::string jeu::genererDeplacement(std::vector<bool>& v)
 {
@@ -230,31 +220,21 @@ void jeu::deplacement(int & result)
 	}
 
 	///Combat, à tester
-	string content = jeu_carte.getPlateau()[x][y];
-
-	if (content[0] == 'm')
-	{
-		try
-		{
-			result = combat(content.substr(0,content.find("/")));
-		}
-		catch (int combatError)
-		{
-			throw combatError;
-		}
-	}
-	if (result == 1)
-		jeu_carte.monstreMort(x,y);
+//	string content = jeu_carte.getPlateau()[x][y];
+//
+//	cout << "contenu case: " << content << "\n";
+//
+//	if (content.substr(0, 1) == "m")
+//	{
+//		cout << "On rentre en mode combat\n";
+//		result = combat(content);
+//	}
 }
 
 
 int jeu::combat(string id_monstre)
 {
-	updateMessage("** Combat **",1);
-	updateMessage("",2);
-	updateMessage("",3);
-	updateMessage("Appuyez sur une touche pour continuer.",4);
-	de();
+	puts("** Combat **");
 
 	vector<entite> vect_entite;
 	vector<entite>::iterator ite;
@@ -263,8 +243,8 @@ int jeu::combat(string id_monstre)
 
 	if (loading == false)
 	{
-        	updateMessage("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...",1);
-        	return 1;
+        puts("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...");
+        return 1;
 	}
 
 	vector<int> vect_p;
@@ -284,16 +264,12 @@ int jeu::combat(string id_monstre)
 			if ((* ite).getAlive() == true)
 			{
 				aff_combat(vect_entite);	//Affichage infos utiles acteurs
-				try
-				{
-					comp_util = choix_comp(* ite);	//Choix compétence
-					target = choix_target(comp_util, (* ite), vect_entite, vect_p);	//Choix cible
-					sortie = appliquer_comp((* ite), target, vect_entite, comp_util, nb_players, nb_monsters);	//Effet compétence
-				}
-				catch (int erreurCiblage)
-				{
-					throw erreurCiblage;
-				}
+
+				comp_util = choix_comp(* ite);	//Choix compétence
+
+				target = choix_target(comp_util, (* ite), vect_entite, vect_p);	//Choix cible
+
+				sortie = appliquer_comp((* ite), target, vect_entite, comp_util, nb_players, nb_monsters);	//Effet compétence
 			}
 		}
 	}
@@ -364,25 +340,27 @@ competence jeu::choix_comp(entite & indiv)
 
 	if (indiv.is_personnage())	//Personnage
 	{
+		puts("\n- Choix de compétence -");
 		try
 		{
-			choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);	//Choix manuel
+			choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
 		}
 		catch (int cUEError)
 		{
-			throw cUEError;
+			quitGame();
 		}
 
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
-			updateMessage("Vous n'avez pas assez de mana pour utiliser cette compétence!",4);
+			puts("Vous n'avez pas assez de mana pour utiliser cette compétence!");
+			puts("- Choix de compétence -");
 			try
 			{
-				choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);	//Choix manuel
+				choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
 			}
 			catch (int cUEError)
 			{
-				throw cUEError;
+				quitGame();
 			}
 		}
 
@@ -410,19 +388,14 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 	{
 		if (indiv.is_personnage())	//Personnage
 		{
-			updateMessage(std::string("- Choix de la cible pour la compétence " + comp_util.getName() + " -"),1);
-			std::string targetPossible;
-			for (int i = 0; i < vect_entite.size(); i++) {
-				targetPossible += std::string(to_string(i+1)+"- "+vect_entite[i].getName()+" ");
-			}
-			updateMessage(targetPossible,2);
+			cout << "- Choix de la cible pour la compétence " << comp_util.getName() << " -" << endl;
 			try
 			{
-				choix_unique_element(target, vect_entite, 1, 0);
+				choix_unique_element(target, vect_entite, 1);
 			}
 			catch (int cUEError)
 			{
-				throw cUEError;
+				quitGame();
 			}
 		}
 		else	//Monstre
@@ -431,18 +404,9 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 			target = vect_entite[cible];
 		}
 
-		std::string actionFinale = indiv.getName()+" utilise la compétence "+comp_util.getName()+" sur "+target.getName();
-		updateMessage(actionFinale,3);
-		updateMessage("(Appuyez sur une touche)",4);
-		try
-		{
-			de();
-		}
-		catch (int deError)
-		{
-			throw deError;
-		}
-		actionFinale = "";
+		cout << endl << endl << indiv.getName() << " utilise la compétence ";
+		cout << comp_util.getName();
+		cout << " sur " << target.getName() << endl;
 	}
 
 	return target;
@@ -467,7 +431,7 @@ int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entit
  			}
 
 			(* ite) = (* ite).enleverVie(damage);	//Application attaque
-			//cout << "(" << damage << " dégâts)\n";
+			cout << "(" << damage << " dégâts)\n";
 
 			if ((* ite).getHpCurrent() > (* ite).getHpMax())
 			{
@@ -482,30 +446,12 @@ int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entit
 	{
 		if ((* ite).is_personnage())	//Si personnage
 		{
-			updateMessage(std::string("Le personnage "+(* ite).getName()+" est mort."),3);
-			updateMessage("(Appuyez sur une touche)",4);
-			try
-			{
-				de();
-			}
-			catch (int deError)
-			{
-				throw deError;
-			}
+			cout << "Le personnage " << (* ite).getName() << " est mort." << endl;
 			nb_players--;
 		}
 		else	//Si monstre
 		{
-			updateMessage(std::string("Le monstre "+(* ite).getName()+" est mort."),3);
-			updateMessage("(Appuyez sur une touche)",4);
-			try
-			{
-				de();
-			}
-			catch (int deError)
-			{
-				throw deError;
-			}
+			cout << "Le monstre " << (* ite).getName() << " est mort." << endl;
 			nb_monsters--;
 		}
 	}
@@ -513,7 +459,7 @@ int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entit
 	//Check conséquences combat
 	if (nb_players == 0)
 	{
-		throw 0;	//Tous personnages morts, fin partie
+		return 0;	//Tous personnages morts, fin partie
 	}
 	else if (nb_monsters == 0)
 	{
@@ -532,46 +478,4 @@ void jeu::quitGame()
 	printf("\033[2J");	// Efface ecran
 	printf("\033[1;1H");	// Remet le curseur au debut de l'ecran
 	std::cout << "Merci d'avoir joué à The Game ! \nEn espérant vous revoir bientôt !" << std::endl;
-}
-
-void jeu::victoireGame()
-{
-	updateMessage("",1);
-	updateMessage("",2);
-	updateMessage("",3);
-	updateMessage("",4);
-	updateMessage("Bravo ! Vous avez réussi à finir le jeu ! Mais bien d'autres ",2);
-	updateMessage("monstres attendent dans les ténèbres, alors n'hésitez pas à revenir !",3);
-	try
-	{
-		de();
-	}
-	catch (...)
-	{
-		quitGame();
-		return;
-	}
-	quitGame();
-	return;
-}
-
-void jeu::failedGame()
-{
-	updateMessage("",1);
-	updateMessage("",2);
-	updateMessage("",3);
-	updateMessage("",4);
-	updateMessage("Vous avez fait face à votre destinée dans ce dongeon. Bien d'autres",2);
-	updateMessage("monstres attendent dans les ténèbres, alors n'hésitez pas à revenir !",3);
-	try
-	{
-		de();
-	}
-	catch (...)
-	{
-		quitGame();
-		return;
-	}
-	quitGame();
-	return;
 }

@@ -277,30 +277,27 @@ void entite::afficher_detail()
 	cout << endl << endl;
 }
 
-std::pair<std::string,std::string> entite::afficher_combat()
+void entite::afficher_combat()
 {
 	string vie;
-	vie.append(entiteName);
-	vie.append(" HP:");
+	vie.append("HP: ");
 	vie.append(toString(entiteHpCurrent));
 	vie.append("/");
 	vie.append(toString(entiteHpMax));
-	vie.append("; ");
 
-	std::string s = "";
+	cout << endl << " " << entiteName << endl;
+	cout << "" << vie << endl;
 
 	if (this -> getID().substr(0, 1) != "m")
 	{
-		vie.append(std::string("MP:"+to_string(entiteManaCurrent)+"/"+to_string(entiteManaMax)));
+		cout << "MP: " << entiteManaCurrent << "/" << entiteManaMax << endl;
 
 		for (int i = 0; i < getSkillVect().size(); i++)
 		{
-			s += std::string(to_string(i+1)+":"+getSkillVect()[i].afficher_detail_combat());
-			if (i != getSkillVect().size()-1)
-				s+= " ";
+			getSkillVect()[i].afficher_detail();
 		}
 	}
-	return std::make_pair(vie,s);
+	cout << endl;
 }
 
 

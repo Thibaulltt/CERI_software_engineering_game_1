@@ -30,7 +30,7 @@ class jeu
 	std::vector<monstre> jeu_monstres;
 
 	//! Compte le nombre de monstres restant sur la carte.
-	int jeu_nombre_monstres;							///Temporaire!!
+	int jeu_nombre_monstres = 1;							///Temporaire!!
 
 public:
 	//! Constructeur par défaut sans argument.
@@ -217,12 +217,6 @@ public:
 
 	//! Quitte le jeu, sans que l'utilisateur n'ai gagné ni perdu.
 	void quitGame();
-
-	//! Affiche un message de victoire à l'utilisateur
-	void victoireGame();
-
-	//! Affiche un message de défait au joueur.
-	void failedGame();
 };
 
 //! Tri d'entités
@@ -235,13 +229,3 @@ public:
 bool sort_speed(entite a, entite b);
 
 #endif
-
-/*!
-	\mainpage
-
-	Bienvenue sur la documentation de The Game, le projet de L2 Informatique (2016/2017).
-
-	Vous trouverez ici le documentation (presque) complète du projet.
-
-	\author Raphael Montet, Loïc Menguy, Malvina Gontard, Ludivine Nouveau & Thibault de Villèle.
-*/

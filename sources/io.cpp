@@ -234,6 +234,8 @@ namespace io
 				TermPosX++;
 				displayX++;
 			}
+			if (displayX == t && TermPosX != TermWidth-1)
+				std::cout << RED << "$" << BLANK;
 			while (TermPosX < TermWidth - 1)
 			{
 				std::cout << ' ';
@@ -250,9 +252,6 @@ namespace io
 
 	void updateMap(Carte& jeu_carte, std::pair<int,int> newPlayerPos)
 	{
-		int x = currentPlayerPosition.first;
-		int y = currentPlayerPosition.second;
-		// Si le joueur sort des "barrières" de la map affichée
 		if (    newPlayerPos.first >= mapPositionY + TermHeight - 6
 			|| newPlayerPos.first < mapPositionY
 			|| newPlayerPos.second >= mapPositionX + TermWidth
@@ -271,22 +270,13 @@ namespace io
 			}
 			return;
 		}
-		jeu_carte.echangerContenuCase(currentPlayerPosition.first, currentPlayerPosition.second, newPlayerPos.second, newPlayerPos.first);
 		printf("\033[0;0H");
 		if (currentPlayerPosition.second != mapPositionY)
 			printf("\033[%iB", currentPlayerPosition.second - mapPositionY);
 		printf("\033[%iC", currentPlayerPosition.first - mapPositionX);
 		if (currentPlayerPosition.first == mapPositionX)
 			printf("\033[1D");
-		switch (jeu_carte.getPlateau()[x][y][0])
-		{
-			case 'x':
-				cout << RED << 'x' << BLANK << flush;
-				break;
-			default:
-				cout << BLANK << ' ' << BLANK << flush;
-				break;
-		}
+		cout << BLANK << ' ' << BLANK << flush;
 		printf("\033[0;0H");
 		if (newPlayerPos.first != mapPositionY)
 			printf("\033[%iB", newPlayerPos.first - mapPositionY);
@@ -294,6 +284,7 @@ namespace io
 		if (newPlayerPos.second == mapPositionX)
 			printf("\033[1D");
 		cout << RED << 'X' << BLANK << flush;
+		jeu_carte.echangerContenuCase(currentPlayerPosition.first, currentPlayerPosition.second, newPlayerPos.second, newPlayerPos.first);
 		currentPlayerPosition.first = newPlayerPos.second;
 		currentPlayerPosition.second = newPlayerPos.first;
 		return;
@@ -415,43 +406,6 @@ namespace io
 		printf("\033[%dC", TermWidth/2);	// Droite de TermWidth-2 cases
 	}
 
-	void updateMessage(std::string nouveauMessage, int pos)
-	{
-		if (pos <= 0 || pos > 4)
-			pos = 3;
-		// Variables utilisées ici
-		int messagePositionY = TermHeight-5+pos;
-		char delimiteur = '%';
-		std::string couleurDelimiteur = BLUE;
-
-		if (nouveauMessage.size() > TermWidth-2)
-			nouveauMessage = nouveauMessage.substr(0,TermWidth - 5)+"...";
-
-		int deplacementNecessaire = TermWidth - 2 - nouveauMessage.size();
-
-		// On remet le curseur au debut du terminal
-		// printf("\033[1;1H");
-		// On descend jusqu'à la ligne demandée
-		printf("\033[%i;1H", messagePositionY);
-
-		// On affiche
-		cout << couleurDelimiteur;
-		cout << delimiteur;
-		cout << BLANK;
-		cout << std::string(deplacementNecessaire/2, ' ');
-		cout << nouveauMessage;
-		cout << std::string(deplacementNecessaire/2 + deplacementNecessaire%2, ' ');
-		cout << couleurDelimiteur;
-		cout << delimiteur;
-		cout << BLANK;
-		cout << '\r';
-
-		// On remet le curseur au milieu du message
-		printf("\033[%d;1H", TermHeight);
-		printf("\033[2A");
-		printf("\033[%dC", TermWidth/2);
-	}
-
 	void checkTerminalSize()
 	{
 		// Met à jour la taille du terminal
@@ -534,9 +488,7 @@ namespace io
 		{
 			if (vect_entite[i].is_personnage())
 			{
-				std::pair<std::string,std::string> res = vect_entite[i].afficher_combat();
-				updateMessage(res.first,1);
-				updateMessage(res.second,2);
+				vect_entite[i].afficher_combat();
 			}
 		}
 
@@ -544,9 +496,7 @@ namespace io
 		{
 			if (!vect_entite[i].is_personnage())
 			{
-				std::pair<std::string,std::string> res = vect_entite[i].afficher_combat();
-				updateMessage(res.first,3);
-				updateMessage("Choisissez une action avec [1-4]",4);
+				vect_entite[i].afficher_combat();
 			}
 		}
 	}
@@ -878,20 +828,23 @@ namespace io
 		return output;
 	}
 
-	bool inputSepCheck(string input)
+	bool isNumber(string s_input)
 	{
-		if (input.find("/") != input.npos
-		|| input.find("_") != input.npos
-		|| input.find(":") != input.npos
-		|| input.find("(") != input.npos
-		|| input.find(")") != input.npos
-		|| input.find("|") != input.npos
-		|| input.find(",") != input.npos)
+		for (int i = 0; i < s_input.size(); i++)
 		{
-			return false;
+			if (s_input[i] == '-')
+			{
+				continue;
+			}
+			else if (!isdigit(s_input[i]))
+			{
+				return false;
+			}
 		}
+
 		return true;
 	}
+
 }
 
 bool checkSeparatorCarte(string uneLigne) //Retourne false si le nb de séparateurs dans une ligne n'est pas le nombre définit

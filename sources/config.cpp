@@ -38,7 +38,7 @@ void config::config_carte()
 		}
 		catch (int deError)
 		{
-			std::cout << "Configuration carte quitée. Retour au menu principal." << std::endl;
+			std::cout << "Configuration carte quittée. Retour au menu principal." << std::endl;
 			return;
 		}
 		int input = c_input - '0';                                      //Transcription en chiffres
@@ -52,7 +52,7 @@ void config::config_carte()
 			}
 			catch (int deError)
 			{
-				std::cout << "Configuration carte quitée. Retour au menu principal." << std::endl;
+				std::cout << "Configuration carte quittée. Retour au menu principal." << std::endl;
 				return;
 			}
 			input = c_input - '0';                                      //Trancription en chiffres
@@ -111,7 +111,7 @@ void config::config_monstre()
 		}
 		catch (int deError)
 		{
-			std::cout << "Configuration monstre quitée. Retour au menu principal." << std::endl;
+			std::cout << "Configuration monstre quittée. Retour au menu principal." << std::endl;
 			return;
 		}
 		int input = c_input - '0';                                      //Transcription en chiffres
@@ -125,7 +125,7 @@ void config::config_monstre()
 			}
 			catch (int deError)
 			{
-				std::cout << "Configuration monstre quitée. Retour au menu principal." << std::endl;
+				std::cout << "Configuration monstre quittée. Retour au menu principal." << std::endl;
 				return;
 			}
 			input = c_input - '0';                                      //Trancription en chiffres
@@ -185,7 +185,7 @@ void config::config_perso()
 		}
 		catch (int deError)
 		{
-			std::cout << "Configuration carte quitée. Retour au menu principal." << std::endl;
+			std::cout << "Configuration carte quittée. Retour au menu principal." << std::endl;
 			return;
 		}
 		int input = c_input - '0';                                      //Transcription en chiffres
@@ -199,7 +199,7 @@ void config::config_perso()
 			}
 			catch (int deError)
 			{
-				std::cout << "Configuration carte quitée. Retour au menu principal." << std::endl;
+				std::cout << "Configuration carte quittée. Retour au menu principal." << std::endl;
 				return;
 			}
 			input = c_input - '0';                                      //Trancription en chiffres
@@ -233,48 +233,26 @@ int config::choix_taille()
 {
 	puts("\n- Choix taille -");
 
-	string s_input;
+	string s_input = "";
+	int input = 0;
 
 	try
 	{
-		s_input = long_input();                                            //Input utilisateur
+		s_input = long_input();
+		input = atoi(s_input.c_str());
+
+		while (isNumber(s_input) == false || (input < 5 || input > 254))
+		{
+			puts("\n Input incorrect! Réessayez!\n");
+			puts("- Choix taille -");
+			s_input = long_input();
+			input = atoi(s_input.c_str());
+		}
 	}
 	catch (int longInputError)
 	{
-		std::cout << "Choix de la taille quitté. Retour au menu principal" << std::endl;
+		std::cout << "Choix taille de la carte quitté. Retour au menu principal." << std::endl;
 		return -1;
-	}
-
-	while (inputSepCheck(s_input) == false)
-	{
-		puts("\n Input incorrect! Réessayez!\n");
-		puts("\n- Choix taille -");
-		try
-		{
-			s_input = long_input();                                            //Input utilisateur
-		}
-		catch (int longInputError)
-		{
-			std::cout << "Choix de la taille quitté. Retour au menu principal" << std::endl;
-			return -1;
-		}
-	}
-
-	int input = To_int(s_input);
-
-	while (input < 5 || input > 254)                				//Input incorrect
-	{
-		puts("Taille impossible, veuillez choisir une taille entre 5 et 254!");
-		try
-		{
-			s_input = long_input();                                            //Input utilisateur
-		}
-		catch (int longInputError)
-		{
-			std::cout << "Choix de la taille quitté. Retour au menu principal" << std::endl;
-			return -1;
-		}
-		input = To_int(s_input);
 	}
 
 	return input;
@@ -283,32 +261,32 @@ int config::choix_taille()
 void config::creationCarte()
 {
 
-	std::cout << "- Choisissez une nom pour la carte : ";
-	string name;
+	std::cout << "- Choisissez un nom pour la carte : ";
+	string name = "";
 	try
 	{
 		name = long_input();
 	}
 	catch (int longInputError)
 	{
-		std::cout << "Configuration de carte quitée. Retour au menu principal." << std::endl;
+		std::cout << "Configuration de carte quittée. Retour au menu principal." << std::endl;
 		throw longInputError;
 	}
 	std::cout << std::endl << "- Choisissez une description pour la carte : " ;
-	string desc;
+
+	string desc = "";
 	try
 	{
 		desc = long_input();
 	}
 	catch (int longInputError)
 	{
-		std::cout << "Configuration de carte quitée. Retour au menu principal." << std::endl;
+		std::cout << "Configuration de carte quittée. Retour au menu principal." << std::endl;
 		throw longInputError;
 	}
 	std::cout << endl;
+
 	int tail = choix_taille();
-	if (tail == -1)
-		return;
 
 	Carte a_creer(tail, name, desc, 0);
 	try
@@ -329,7 +307,10 @@ competence config::createCompetenceEntite(entite dummy, int rang, int manaMax) /
 {
 	cout << "- Configuration compétence " << rang + 1 << " -\n";
 	cout << "- Choisissez le nom de la compétence : ";
-	string skillName;
+	string s_input = "";
+	int input = 0;
+
+	string skillName = "";
 	try
 	{
 		skillName = long_input();
@@ -338,16 +319,28 @@ competence config::createCompetenceEntite(entite dummy, int rang, int manaMax) /
 	{
 		throw longInputError;
 	}
-	cout << endl << "- Choisissez le nombre de points de dégâts pour la compétence : ";
-	int skillDamage;
+	cout << endl << "- Choisissez les dégâts de la compétence (négatif pour soin): ";
+
+	int skillDamage = 0;
 	try
-	{
-		skillDamage = To_int(long_input());
-	}
-	catch (int longInputError)
-	{
-		throw longInputError;
-	}
+		{
+			s_input = long_input();
+			input = atoi(s_input.c_str());
+
+			while (isNumber(s_input) == false)
+			{
+				puts("\n Input incorrect! Réessayez!\n");
+				cout << endl << "- Choisissez les dégâts de la compétence (négatif pour soin): ";
+				s_input = long_input();
+				input = atoi(s_input.c_str());
+			}
+			skillDamage = input;
+		}
+		catch (int longInputError)
+		{
+			std::cout << std::endl;
+			throw longInputError;
+		}
 
 	if (dummy.is_personnage())
 	{
@@ -355,18 +348,24 @@ competence config::createCompetenceEntite(entite dummy, int rang, int manaMax) /
 		std::cout << "- Choisissez le coût en mana compétence (négatif pour régénération) : ";
 		try
 		{
-			skillManaCost = To_int(long_input());
-			while (skillManaCost > manaMax)
+			s_input = long_input();
+			input = atoi(s_input.c_str());
+
+			while (isNumber(s_input) == false || input > manaMax)
 			{
-				cout << "Coût en mana supérieur à la mana disponible (" << manaMax << ")!\n";
+				puts("\n Input incorrect! Réessayez!\n");
 				std::cout << "- Choisissez le coût en mana compétence (négatif pour régénération) : ";
-				skillManaCost = To_int(long_input());
+				s_input = long_input();
+				input = atoi(s_input.c_str());
 			}
+			skillManaCost = input;
 		}
 		catch (int longInputError)
 		{
+			std::cout << std::endl;
 			throw longInputError;
 		}
+
 		competence creation(skillName, skillDamage, skillManaCost);
 		return creation;
 	}

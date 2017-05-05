@@ -19,17 +19,11 @@ int main()
 	int nbMonstres = a.getNbMonstres();
 	int result = 0;
 
-	while (persos_vivants != 0 && nbMonstres > 0)
-	{
-		a.afficherJeu(result);
+	string monstre = "m00";
 
-		if (a.getCarte().getPlateau()[currentPlayerPosition.first][currentPlayerPosition.second].substr(0, 1) == "m")
-		{
-			result = a.combat(a.getCarte().getPlateau()[currentPlayerPosition.first][currentPlayerPosition.second]);
-			persos_vivants = result;
-			nbMonstres -= result;
-		}
-	}
+	result = a.combat(monstre);
+	persos_vivants = result;
+	nbMonstres -= result;
 
 	if (persos_vivants == 0)
 	{
@@ -44,3 +38,15 @@ int main()
 		return 1;
 	}
 }
+
+
+//	while (persos_vivants != 0 && nbMonstres > 0)
+//	{
+//		a.afficherJeu(result);
+
+//		if (a.getCarte().getPlateau()[currentPlayerPosition.first][currentPlayerPosition.second].substr(0, 1) == "m")
+//		{
+//			result = a.combat(a.getCarte().getPlateau()[currentPlayerPosition.first][currentPlayerPosition.second]);
+//			persos_vivants = result;
+//			nbMonstres -= result;
+//		}

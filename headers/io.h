@@ -184,12 +184,10 @@ namespace io
  	*/
  	extern void afficherMouvements(std::string message, std::string deplacements_possibles, std::string erreur_deplacement);
 
-	extern void updateMessage(std::string s, int pos);
-
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////// MISCELLANEOUS FONCTIONS ///////////////////////////////////
+	//////////////////////////////////// MISCELLANEOUS FONCTIONS ////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
@@ -320,7 +318,7 @@ namespace io
 		\return L'élement choisi.
 		\sa liste_elements(), afficher(), afficher_detail()
 	*/
-	template<typename T> void choix_unique_element(T & element, std::vector<T> vect_element, bool combat, bool aff = 1)
+	template<typename T> void choix_unique_element(T & element, std::vector<T> vect_element, bool combat)
 	{
 		std::string type_name = typeid(T).name();						//String à partir du type appelant
 
@@ -331,11 +329,10 @@ namespace io
 
 		while (1)
 		{
-			std::transform(type_name.begin(), type_name.end(), type_name.begin(), ::tolower);
-			if (aff)
-				std::cout << "Veuillez choisir votre " << type_name << " (1-9): ";
-			if (aff)
-				liste_elements(vect_element);                        			//Affichage des éléments parmi lesquels choisir
+			std::transform(type_name.begin(), type_name.end(), type_name.begin(), ::tolower);	//Passage en minuscule
+			std::cout << "Veuillez choisir votre " << type_name << " (1-9): ";
+
+			liste_elements(vect_element);                        			//Affichage des éléments parmi lesquels choisir
 
 			char c_input;
 			try
@@ -350,10 +347,7 @@ namespace io
 
 			while (input <= 0 || input > vect_element.size())                //Input incorrect
 			{
-				if (aff)
-					std::puts("Input incorrect. Réessayez!");
-				else
-					updateMessage("Input incorrect. Réessayez!",4);
+				std::puts("Input incorrect. Réessayez!");
 				try
 				{
 					c_input = de();                                             //Input utilisateur
@@ -637,7 +631,7 @@ namespace io
 				std::istringstream (sentiteHpMax) >> entiteHpMax; //Conversion string to int
 				std::istringstream (sentiteSpeed) >> entiteSpeed; //Conversion string to int
 				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
-				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
+
 				if (checkSeparatorSkill(nomFichier, cptLigne) == true) //Verification que le champ compétence est correct
 				{
 					allSkills = loadCompetenceFromFile(nomFichier, cptLigne); //Récupération des compétences
@@ -667,7 +661,8 @@ namespace io
 		return flux.str();
 	}
 
-	bool inputSepCheck(std::string input);
+	bool isNumber(std::string s_input);
+
 }
 
 #endif

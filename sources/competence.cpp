@@ -98,19 +98,3 @@ void competence::afficher_detail()
 		cout << ", coût en mana: " << this->skillManaCost << endl;
 	}
 }
-
-std::string competence::afficher_detail_combat()
-{
-	std::string vect;
-	vect.append(this->skillName);
-	if (this->skillDamage < 0)
-		vect.append( std::string( "(S:"+to_string( -1 * (this->skillDamage) ) ) );
-	else
-		vect.append(std::string("(D:"+to_string(this->skillDamage)));
-	if (this->skillManaCost < 0)
-		vect.append(std::string(",GMP:"+to_string(-1 * (this->skillManaCost))));
-	else
-		vect.append(std::string(",CMP:"+to_string(this->skillManaCost)));
-	vect.append(")");
-	return vect;
-}
