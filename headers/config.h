@@ -41,22 +41,6 @@ public:
 		return objet.getID().substr(0, 1);
 	}
 
-	//! Choix d'une caractéristique de type string
-	/*!
-		Permet de choisir le nom affiché de la caractéristique, et de la saisir.
-		\param carac Chaîne correspondant au nom que l'on veut afficher
-		\return Chaîne correspondant à l'information saisie
-	*/
-	std::string choix_carac_string(std::string carac);
-
-	//! Choix d'une caractéristique de type int
-	/*!
-		Permet de choisir le nom affiché de la caractéristique, et de la saisir.
-		\param carac Chaîne correspondant au nom que l'on veut afficher
-		\return Entier correspondant à l'information saisie
-	*/
-	int choix_carac_int(std::string carac);
-
 	//! Choix de la taille
 	/*!
 		Permet de choisir la taille de la carte.
@@ -100,17 +84,117 @@ public:
 	template<class T> void creationEntite(T dummy, std::string nom_fichier) //Permet à l'utilisateur de créer une entité avec des caractéristiques choisies
 	{
 		std::string lettreEntite = identif_objet(dummy);
-		std::string entiteName = choix_carac_string("nom");
-		int entiteHpMax = choix_carac_int("nombre de points de vie");
-		int entiteSpeed = choix_carac_int("vitesse");
+		std::string s_input = "";
+		int input = 0;
+
+		std::cout << "- Choisissez un nom pour l'entite : ";
+		std::string entiteName;
+		try
+		{
+			entiteName = long_input();
+		}
+		catch (int longInputError)
+		{
+			std::cout << std::endl;
+			throw longInputError;
+		}
+
+		std::cout << "- Choisissez le nombre de points de vie : ";
+		int entiteHpMax = 0;
+		try
+		{
+			s_input = long_input();
+			input = atoi(s_input.c_str());
+
+			std::cout << "valeur du test: " << isNumber(s_input);
+
+			while (isNumber(s_input) == false || input < 0)
+			{
+				puts("\n Input incorrect! Réessayez!\n");
+				std::cout << "- Choisissez le nombre de points de vie : ";
+				s_input = long_input();
+				input = atoi(s_input.c_str());
+			}
+			entiteHpMax = input;
+		}
+		catch (int longInputError)
+		{
+			std::cout << std::endl;
+			throw longInputError;
+		}
+
+		std::cout << "- Choisissez la vitesse de l'entité : ";
+		int entiteSpeed = 0;
+		try
+		{
+			s_input = long_input();
+			input = atoi(s_input.c_str());
+
+			while (isNumber(s_input) == false || input < 0)
+			{
+				puts("\n Input incorrect! Réessayez!\n");
+				std::cout << "- Choisissez la vitesse de l'entité : ";
+				s_input = long_input();
+				input = atoi(s_input.c_str());
+			}
+			entiteSpeed = input;
+		}
+		catch (int longInputError)
+		{
+			std::cout << std::endl;
+			throw longInputError;
+		}
+		std::cout << std::endl;
+
 		int entiteManaMax = 0;
 
 		if (dummy.is_personnage())
 		{
-			entiteManaMax = choix_carac_int("nombre de points de mana");
+			std::cout << "- Choisissez le nombre de points de mana du personnage : ";
+			try
+			{
+				s_input = long_input();
+				input = atoi(s_input.c_str());
+
+				while (isNumber(s_input) == false || input < 0)
+				{
+					puts("\n Input incorrect! Réessayez!\n");
+					std::cout << "- Choisissez le nombre de points de mana : ";
+					s_input = long_input();
+					input = atoi(s_input.c_str());
+				}
+				entiteManaMax = input;
+			}
+			catch (int longInputError)
+			{
+				std::cout << std::endl;
+				throw longInputError;
+			}
+			std::cout << std::endl;
 		}
 
-		int nbComp = choix_carac_int("nombre de compétences (de 0 à 4)");
+		int nbComp = 0;
+		std::cout << "- Choisissez le nombre de compétences de l'entité : ";
+		try
+		{
+			s_input = long_input();
+			input = atoi(s_input.c_str());
+
+			while (isNumber(s_input) == false || input < 1 && input > 4)
+			{
+				puts("\n Input incorrect! Réessayez!\n");
+				std::cout << "- Choisissez le nombre de compétences de l'entité : ";
+				s_input = long_input();
+				input = atoi(s_input.c_str());
+			}
+			nbComp = input;
+		}
+		catch (int longInputError)
+		{
+			std::cout << std::endl;
+			throw longInputError;
+		}
+		std::cout << std::endl;
 
 		std::vector<competence> skills;
 
@@ -151,27 +235,31 @@ public:
 			while(1)
 			{
 				std::cout << "Choisissez l'élément à supprimer (1-9) (q pour annuler): "; //Choix de l'utilisateur
-				std::string sInput = long_input();
+				std::string s_input = "";
+				int input = 0;
 
-				if (sInput == "q" || sInput == "Q")
+				try
 				{
-					return;
+					s_input = long_input();
+					input = atoi(s_input.c_str());
+
+					while (isNumber(s_input) == false || input <= 0 || input > (allElement.size() - nbElemProt))
+					{
+						puts("\n Input incorrect! Réessayez!\n");
+						std::cout << "Choisissez l'élément à supprimer (1-9) (q pour annuler): "; //Choix de l'utilisateur
+						s_input = long_input();
+						input = atoi(s_input.c_str());
+					}
+				}
+				catch (int longInputError)
+				{
+					std::cout << std::endl;
+					throw longInputError;
 				}
 
-				int input = atoi(sInput.c_str());
-
-
-
-				while (input <= 0 || input > (allElement.size() - nbElemProt) || checkInput(input) == false)                //Input incorrect
+				if (s_input == "q" || s_input == "Q")
 				{
-					std::puts("Input incorrect. Réessayez!");
-					sInput = long_input();                                   //Input utilisateur
-					input = atoi(sInput.c_str());
-
-					if (sInput == "q" || sInput == "Q")
-					{
-						return;
-					}
+					return;
 				}
 
 				allElement.erase(allElement.begin() + nbElemProt + (input - 1)); //Suppression de la case dans le vecteur

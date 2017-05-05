@@ -53,44 +53,52 @@ void Carte::coordonneejoueur()
 
 	int coordonneejoueur1 = 0;
 	int coordonneejoueur2 = 0;
-	bool placement_fait = false;
+	string s_input = "";
+	int input = 0;
 
-	while (placement_fait == false)
+	puts("- Choix première coordonnée du joueur -");
+	try
 	{
-		puts("- Choix première coordonnée du joueur -");
-		string s_input = long_input();
+		s_input = long_input();
+		input = atoi(s_input.c_str());
 
-		while (inputSepCheck(s_input) == false)
+		while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
 		{
 			puts("\n Input incorrect! Réessayez!\n");
 			puts("- Choix première coordonnée du joueur -");
 			s_input = long_input();
+			input = atoi(s_input.c_str());
 		}
+		coordonneejoueur1 = input;
+	}
+	catch (int longInputError)
+	{
+		std::cout << "Placement joueur quitté. Retour au menu principal." << std::endl;
+		return;
+	}
 
-		coordonneejoueur1 = atoi(s_input.c_str());
-
-		puts("- Choix seconde coordonnée du joueur -");
+	puts("- Choix seconde coordonnée du joueur -");
+	try
+	{
 		s_input = long_input();
+		input = atoi(s_input.c_str());
 
-		while (inputSepCheck(s_input) == false)
+		while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
 		{
 			puts("\n Input incorrect! Réessayez!\n");
 			puts("- Choix seconde coordonnée du joueur -");
 			s_input = long_input();
+			input = atoi(s_input.c_str());
 		}
-
-		coordonneejoueur2 = atoi(s_input.c_str());
-
-		if (coordonneejoueur1 < taille && coordonneejoueur2 < taille && coordonneejoueur1 >= 0 && coordonneejoueur2 >= 0)
-		{
-			plateau[coordonneejoueur1][coordonneejoueur2] = "j";
-			placement_fait = true;
-		}
-		else
-		{
-			puts("Vos coordonnées sont hors de la carte! Réessayez!");
-		}
+		coordonneejoueur2 = input;
 	}
+	catch (int longInputError)
+	{
+		std::cout << "Placement joueur quitté. Retour au menu principal." << std::endl;
+		return;
+	}
+
+	plateau[coordonneejoueur1][coordonneejoueur2] = "j";
 	case_dispo = case_dispo - 1;
 }
 
@@ -102,67 +110,82 @@ void Carte::coordonneeobstacle()
 	int coordonneeobstacle1 = 0;
 	int coordonneeobstacle2 = 0;
 	int i = 1;
+	string s_input = "";
+	int input = 0;
 
 	puts("- Choix nombre d'obstacles -");
-	string s_input = long_input();
-
-	while (inputSepCheck(s_input) == false)
+	try
 	{
-		puts("\n Input incorrect! Réessayez!\n");
-		puts("- Choix nombre d'obstacles -");
 		s_input = long_input();
+		int input = atoi(s_input.c_str());
+
+		while (isNumber(s_input) == false || (input < 0 || input >= case_dispo))
+		{
+			puts("\n Input incorrect! Réessayez!\n");
+			puts("- Choix nombre d'obstacles -");
+			s_input = long_input();
+			input = atoi(s_input.c_str());
+		}
+		nbr_obstacle = input;
 	}
-
-	nbr_obstacle = atoi(s_input.c_str());
-
-	while (nbr_obstacle >= case_dispo || nbr_obstacle < 0)
+	catch (int longInputError)
 	{
-		cout << "Vous avez choisi trop d'obstacles.\n- Choix nombre d'obstacles -\n";
-		s_input = long_input();
-		nbr_obstacle = atoi(s_input.c_str());
+		std::cout << "Placement obstacle quitté. Retour au menu principal." << std::endl;
+		return;
 	}
 
 	while (i <= nbr_obstacle)
 	{
 		cout << "- Choix première coordonnée de l'obstacle " << i << " -\n";
-		s_input = long_input();
-
-		while (inputSepCheck(s_input) == false)
+		try
 		{
-			puts("\n Input incorrect! Réessayez!\n");
-			puts("- Choix première coordonnée de l'obstacle -");
 			s_input = long_input();
-		}
+			input = atoi(s_input.c_str());
 
-		coordonneeobstacle1 = atoi(s_input.c_str());
+			while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
+			{
+				puts("\n Input incorrect! Réessayez!\n");
+				puts("- Choix première coordonnée de l'obstacle -");
+				s_input = long_input();
+				input = atoi(s_input.c_str());
+			}
+			coordonneeobstacle1 = input;
+		}
+		catch (int longInputError)
+		{
+			std::cout << "Placement obstacle quitté. Retour au menu principal." << std::endl;
+			return;
+		}
 
 		cout << "- Choix seconde coordonnée de l'obstacle " << i << " -\n";
-		s_input = long_input();
-
-		while (inputSepCheck(s_input) == false)
+		try
 		{
-			puts("\n Input incorrect! Réessayez!\n");
-			puts("- Choix seconde coordonnée de l'obstacle -");
 			s_input = long_input();
+			input = atoi(s_input.c_str());
+
+			while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
+			{
+				puts("\n Input incorrect! Réessayez!\n");
+				puts("- Choix seconde coordonnée de l'obstacle -");
+				s_input = long_input();
+				input = atoi(s_input.c_str());
+			}
+			coordonneeobstacle2 = input;
+		}
+		catch (int longInputError)
+		{
+			std::cout << "Placement obstacle quitté. Retour au menu principal." << std::endl;
+			return;
 		}
 
-		coordonneeobstacle2 = atoi(s_input.c_str());
-
-		if (coordonneeobstacle1 < taille && coordonneeobstacle2 < taille && coordonneeobstacle1 >= 0 && coordonneeobstacle2 >= 0)
+		if (plateau[coordonneeobstacle1][coordonneeobstacle2] == "v")
 		{
-			if (plateau[coordonneeobstacle1][coordonneeobstacle2] == "v")
-			{
-				plateau[coordonneeobstacle1][coordonneeobstacle2] = "o";
-				i++;
-			}
-			else
-			{
-				puts("Cette case est deja occupée, veuillez en choisir une autre!");
-			}
+			plateau[coordonneeobstacle1][coordonneeobstacle2] = "o";
+			i++;
 		}
 		else
 		{
-			puts("Vos coordonnées sont hors de la carte! Réessayez!");
+			puts("Cette case est deja occupée, veuillez en choisir une autre!");
 		}
 	}
 	case_dispo = case_dispo - nbr_obstacle;
@@ -176,61 +199,83 @@ void Carte::coordonneemonstre()
 	int coordonneemonstre1 = 0;
 	int coordonneemonstre2 = 0;
 	int i = 1;
+	std::string s_input = "";
+	int input = 0;
 
 	puts("- Choix nombre de monstres -");
-	string s_input = long_input();
-
-	while (inputSepCheck(s_input) == false && nbr_monstre > taille && nbr_monstre > case_dispo)
+	try
 	{
-		puts("\n Input incorrect! Réessayez!\n");
-		puts("- Choix nombre de monstres -");
 		s_input = long_input();
-	}
+		int input = atoi(s_input.c_str());
 
-	nbr_monstre = atoi(s_input.c_str());
+		while (isNumber(s_input) == false || (input < 0 || input >= case_dispo))
+		{
+			puts("\n Input incorrect! Réessayez!\n");
+			puts("- Choix nombre de monstres -");
+			s_input = long_input();
+			input = atoi(s_input.c_str());
+		}
+		nbr_monstre = input;
+	}
+	catch (int longInputError)
+	{
+		std::cout << "Placement monstre quitté. Retour au menu principal." << std::endl;
+		return;
+	}
 	setNbrMonstre(nbr_monstre);
 
 	while (i <= nbr_monstre)
 	{
 		cout << "- Choix première coordonnée du monstre " << i << " -\n";
-		s_input = long_input();
-
-		while (inputSepCheck(s_input) == false)
+		try
 		{
-			puts("\n Input incorrect! Réessayez!\n");
-			puts("- Choix première coordonnée du monstre -");
 			s_input = long_input();
-		}
+			input = atoi(s_input.c_str());
 
-		coordonneemonstre1 = atoi(s_input.c_str());
+			while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
+			{
+				puts("\n Input incorrect! Réessayez!\n");
+				puts("- Choix première coordonnée de l'obstacle -");
+				s_input = long_input();
+				input = atoi(s_input.c_str());
+			}
+			coordonneemonstre1 = input;
+		}
+		catch (int longInputError)
+		{
+			std::cout << "Placement monstre quitté. Retour au menu principal." << std::endl;
+			return;
+		}
 
 		cout << "- Choix seconde coordonnée du monstre " << i << " -\n";
-		s_input = long_input();
-
-		while (inputSepCheck(s_input) == false)
+		try
 		{
-			puts("\n Input incorrect! Réessayez!\n");
-			puts("- Choix seconde coordonnée du monstre -");
 			s_input = long_input();
+			input = atoi(s_input.c_str());
+
+			while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
+			{
+				puts("\n Input incorrect! Réessayez!\n");
+				puts("- Choix seconde coordonnée du monstre -");
+				s_input = long_input();
+				input = atoi(s_input.c_str());
+			}
+			coordonneemonstre2 = input;
+		}
+		catch (int longInputError)
+		{
+			std::cout << "Placement monstre quitté. Retour au menu principal." << std::endl;
+			return;
 		}
 
-		coordonneemonstre2 = atoi(s_input.c_str());
-
-		if (coordonneemonstre1 < taille && coordonneemonstre2 < taille && coordonneemonstre1 >= 0 && coordonneemonstre2 >= 0)
+		if (plateau[coordonneemonstre1][coordonneemonstre2] == "v")
 		{
-			if (plateau[coordonneemonstre1][coordonneemonstre2] == "v")
-			{
-				plateau[coordonneemonstre1][coordonneemonstre2] = "m";
-				i++;
-			}
-			else
-			{
-				puts("Cette case est déjà occupée, veuillez en choisir une autre!");
-			}
+			plateau[coordonneemonstre1][coordonneemonstre2] = "m";
+			i++;
 		}
 		else
 		{
-			puts("Vos coordonnées sont hors de la carte! Réessayez!");
+			puts("Cette case est déjà occupée, veuillez en choisir une autre!");
 		}
 	}
 	case_dispo = case_dispo - nbr_monstre;
@@ -276,9 +321,10 @@ void Carte::saisie()
 	// Nom de la carte
 	string carte = "fichierCarte.txt" ;
 	string type_obstacle = "";
-	string s_monst = "";
-	int nbligne=nbLigneFichier(carte);
+	int nbligne = nbLigneFichier(carte);
 	int parc = 1;
+	string s_input = "";
+	int input = 0;
 
 	//ouverture du fichier en écriture
 	ofstream fichier(carte, ios :: app) ;
@@ -306,13 +352,14 @@ void Carte::saisie()
 				{
 					cout << "- Choix obstacle " << parc << "[case ("<< i << ","<< j << ")] -\n";
 					parc++;
-					type_obstacle = long_input();
-
-					while (inputSepCheck(type_obstacle) == false)
+					try
 					{
-						puts("\n Input incorrect! Réessayez!\n");
-						cout << "- Choix obstacle " << parc << "[case ("<< i << ","<< j << ")] -\n";
 						type_obstacle = long_input();
+					}
+					catch (int longInputError)
+					{
+						std::cout << "Saisie obstacle quittée. Retour au menu principal." << std::endl;
+						return;
 					}
 
 					fichier << "(" << i << "," << j << ","<< type_obstacle << ")";
@@ -344,20 +391,27 @@ void Carte::saisie()
 					if (plateau[i][j]=="m")
 					{
 						cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << ") -\n";
-						s_monst = long_input();
-						int monst = atoi(s_monst.c_str());
-
-						while (inputSepCheck(s_monst) == false && monst > vect_monstre.size())
+						try
 						{
-							puts("\n Input incorrect! Réessayez!\n");
-							cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << ") -\n";
-							s_monst = long_input();
-							monst = atoi(s_monst.c_str());
+							s_input = long_input();
+							int input = atoi(s_input.c_str());
+
+							while (isNumber(s_input) == false || (input > vect_monstre.size()))
+							{
+								puts("\n Input incorrect! Réessayez!\n");
+								cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << ") -\n";
+								s_input = long_input();
+								input = atoi(s_input.c_str());
+							}
+						}
+						catch (int longInputError)
+						{
+							std::cout << "Placement monstre quitté. Retour au menu principal." << std::endl;
+							return;
 						}
 
-						fichier << "(" << i << "," << j << ",m"<< monst << ")";
+						fichier << "(" << i << "," << j << "," << vect_monstre[input].getID() << ")";
 					}
-
 				}
 			}
 		}

@@ -3,12 +3,17 @@
 #ifndef PERSONNAGE_H
 #define PERSONNAGE_H
 #pragma once
+
 //! Classe personnage héritant de la classe entité
 class personnage : public entite
 {
 
 public:
 
+	//! Nombre de monstres protégés
+	/*!
+		Variable de classse permettant d'identifier le nombre de monstres par défaut ne pouvant pas être modifiés (sauf modification directe du code).
+	*/
 	static int nbElemProt;
 
 	//! Constructeur vide
@@ -32,7 +37,7 @@ public:
 	{
 	};
 
-	//! Fonction de test
+	//! Affiche un personnage
 	void printPersonnage();
 };
 
