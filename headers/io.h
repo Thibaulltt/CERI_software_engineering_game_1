@@ -493,7 +493,7 @@ namespace io
 			lesCompetences.push_back(deux);
 			competence trois("Coup de fouet", 15, 0);
 			lesCompetences.push_back(trois);
-			T orc("m00", "Orc", 95, 10, 0, "", lesCompetences);
+			T orc("m00", "Orc", 95, 1, 0, "", lesCompetences);
 			allEntite.push_back(orc);
 			lesCompetences.clear(); //Vidage du vecteur de compétences
 
@@ -504,7 +504,7 @@ namespace io
 			lesCompetences.push_back(deuxx);
 			competence troixx("Fourberie", 20, 0);
 			lesCompetences.push_back(troixx);
-			T gobelin("m01", "Gobelin", 90, 20, 0, "", lesCompetences);
+			T gobelin("m01", "Gobelin", 90, 2, 0, "", lesCompetences);
 			allEntite.push_back(gobelin);
 			lesCompetences.clear(); //Vidage du vecteur de compétences
 
@@ -515,7 +515,7 @@ namespace io
 			lesCompetences.push_back(deuxxx);
 			competence troixxx("Magie elfique", 20, 0);
 			lesCompetences.push_back(troixxx);
-			T elfe("m02", "Elfe", 85, 18, 0, "", lesCompetences);
+			T elfe("m02", "Elfe", 85, 1, 0, "", lesCompetences);
 			allEntite.push_back(elfe);
 			lesCompetences.clear();
 

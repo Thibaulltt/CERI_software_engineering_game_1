@@ -1,3 +1,4 @@
 c0|bzbz|petite|12|1|(11,2,joueur)(0,1,eau)(0,2,pierre)
 c1|foret|les arbres|50|3|(10,10,eau)(15,15,joueur)(0,0,m1)
 c2|labyrinthe|immense|150|2|(149,0,joueur)(0,0,m1)(10,10,eau)(20,10,eau)(30,10,eau)(40,10,eau)(50,10,eau)(60,10,eau)(70,10,eau)(80,10,eau)(90,10,eau)(100,10,eau)(110,10,eau)(130,10,eau)(120,0,m1)
+c3|nouvelle carte|normale|10|1|(0,0,joueur)(1,0,eau)

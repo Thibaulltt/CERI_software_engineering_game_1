@@ -224,7 +224,7 @@ namespace io
 				if (map[displayX][displayY] == "joueur")
 					std::cout << RED << 'X' << BLANK;
 				else if (map[displayX][displayY][0] == 'm')
-					std::cout << BLUE << 'M' << BLANK;
+					std::cout << BLUE << ' ' << BLANK;
 				else if (map[displayX][displayY][0] == 'a')
 					std::cout << GREEN << 'A' << BLANK;
 				else if (map[displayX][displayY][0] == 'e')
@@ -776,17 +776,10 @@ namespace io
 	{
 		vector<Carte> selectionnable ;
 		// Carte par défaut
-		Carte defaut(5, "defaut", "carte par défaut", 5);
-		defaut.setCase(0,0,"joueur");
+		Carte defaut(5, "defaut", "carte par défaut", 1);
+		defaut.setCase(4,4,"joueur");
 		defaut.setCase(2,0,"m0");
-		defaut.setCase(2,1,"m0");
-		defaut.setCase(2,2,"m0");
-		defaut.setCase(2,3,"m0");
-		defaut.setCase(2,4,"m0");
 		defaut.setCase(1,3,"arbre");
-		defaut.setId("c0000");
-		defaut.setNbrMonstre(5);
-		defaut.setCaseDispo(18);
  		selectionnable.push_back(defaut);
 
 		Carte::nbElemProt = 1;

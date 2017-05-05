@@ -222,6 +222,23 @@ void Carte::coordonneemonstre()
 		std::cout << "Placement monstre quitté. Retour au menu principal." << std::endl;
 		return;
 	}
+
+	while (inputSepCheck(s_input) == false || nbr_monstre < taille || nbr_monstre > case_dispo)
+	{
+		puts("\n Input incorrect! Réessayez!\n");
+		puts("- Choix nombre de monstres -");
+		try
+		{
+			s_input = long_input();
+		}
+		catch (int longInputError)
+		{
+			std::cout << "Placement monstre quitté. Retour au menu principal." << std::endl;
+			return;
+		}
+	}
+
+	nbr_monstre = atoi(s_input.c_str());
 	setNbrMonstre(nbr_monstre);
 
 	while (i <= nbr_monstre)

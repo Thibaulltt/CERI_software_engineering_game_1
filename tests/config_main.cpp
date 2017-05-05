@@ -24,15 +24,28 @@ int main ()
 		switch (choix)
 		{
 		case 1:
-			test.config_carte();
+			try
+			{
+				test.config_carte();
+			}
+			catch (...)
+			{return 0;}
 			break;
 
 		case 2:
-			test.config_monstre();
+			try{
+				test.config_monstre();
+			}
+			catch(...)
+			{return 0;}
 			break;
 
 		case 3:
-			test.config_perso();
+			try{
+				test.config_perso();
+			}
+			catch (...)
+			{return 0;}
 			break;
 
 		default:
