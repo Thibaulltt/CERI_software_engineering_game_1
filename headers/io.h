@@ -329,18 +329,33 @@ namespace io
 
 		while (1)
 		{
-			std::transform(type_name.begin(), type_name.end(), type_name.begin(), ::tolower);
+			std::transform(type_name.begin(), type_name.end(), type_name.begin(), ::tolower);	//Passage en minuscule
 			std::cout << "Veuillez choisir votre " << type_name << " (1-9): ";
 
 			liste_elements(vect_element);                        			//Affichage des éléments parmi lesquels choisir
 
-			char c_input = de();                                            //Input utilisateur
+			char c_input;
+			try
+			{
+				 c_input = de();                                            //Input utilisateur
+			}
+			catch (int deError)
+			{
+				throw deError;
+			}
 			int input = c_input - '0';                                      //Transcription en chiffres
 
 			while (input <= 0 || input > vect_element.size())                //Input incorrect
 			{
 				std::puts("Input incorrect. Réessayez!");
-				c_input = de();                                             //Input utilisateur
+				try
+				{
+					c_input = de();                                             //Input utilisateur
+				}
+				catch (int deError)
+				{
+					throw deError;
+				}
 				input = c_input - '0';                                      //Trancription en chiffres
 			}
 
@@ -350,7 +365,14 @@ namespace io
 			{
 				element.afficher_detail();
 				puts("Appuyez sur \"v\" pour valider votre choix, ou sur une autre touche pour revenir au menu de sélection");
-				c_input = de();
+				try
+				{
+					c_input = de();
+				}
+				catch (int deError)
+				{
+					throw deError;
+				}
 
 				if (c_input == 'v' || c_input == 'V')
 				{
@@ -609,7 +631,7 @@ namespace io
 				std::istringstream (sentiteHpMax) >> entiteHpMax; //Conversion string to int
 				std::istringstream (sentiteSpeed) >> entiteSpeed; //Conversion string to int
 				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
-				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
+
 				if (checkSeparatorSkill(nomFichier, cptLigne) == true) //Verification que le champ compétence est correct
 				{
 					allSkills = loadCompetenceFromFile(nomFichier, cptLigne); //Récupération des compétences
@@ -639,7 +661,8 @@ namespace io
 		return flux.str();
 	}
 
-	bool inputSepCheck(std::string input);
+	bool isNumber(std::string s_input);
+
 }
 
 #endif

@@ -14,14 +14,30 @@ jeu::jeu()
 	personnage pers;										//Dummy identification type template
 	string nom_file = "fichierPersonnage.txt";				//Nom fichier source personnages
 	tous_persos = loadAllEntiteFromFile(pers, nom_file);	//Remplissage vecteur personnages depuis fichier
-	choix_unique_element(jeu_perso, tous_persos, 0);		//Choix + assignation personnage partie
+	try
+	{
+		choix_unique_element(jeu_perso, tous_persos, 0);		//Choix + assignation personnage partie
+	}
+	catch (int cUEError)
+	{
+		quitGame();
+		throw cUEError;
+	}
 
 		//Choix carte
 	vector<Carte> toutes_cartes;							//Vecteur cartes
 	nom_file = "fichierCarte.txt";							//Nom fichier source cartes
 	toutes_cartes = loadAllCarteFromFile(nom_file);			//Chargement carte depuis fichier
-	choix_unique_element(jeu_carte, toutes_cartes, 0);		//Choix + assignation carte partie
-    jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
+	try
+	{
+		choix_unique_element(jeu_carte, toutes_cartes, 0);		//Choix + assignation carte partie
+	}
+	catch (int cUEError)
+	{
+		quitGame();
+		throw cUEError;
+	}
+	jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
 
 		//Chargement monstres
 	monstre mons;											//Dummy identification type template
@@ -59,10 +75,27 @@ void jeu::setJeuCarte(Carte jeu_map)
 
 void jeu::afficherJeu(int & result)
 {
-	afficherCarte(jeu_carte, jeu_carte.getTaille(), 1);
+	try
+	{
+		afficherCarte(jeu_carte, jeu_carte.getTaille(), 1);
+	}
+	catch (int afficherError)
+	{
+		quitGame();
+		return;
+	}
 	while (true)
-		deplacement(result);
-	de();
+	{
+		try
+		{
+			deplacement(result);
+		}
+		catch (int deplacementError)
+		{
+			quitGame();
+			return;
+		}
+	}
 }
 std::string jeu::genererDeplacement(std::vector<bool>& v)
 {
@@ -130,11 +163,26 @@ void jeu::deplacement(int & result)
 	int x = currentPlayerPosition.first;
 	int y = currentPlayerPosition.second;
 	afficherMouvements(deplacement_possibles,"Dans quelle direction voulez-vous vous déplacer ?");
-	char deplacement_demande = de();
+	char deplacement_demande;
+	try
+	{
+		deplacement_demande = de();
+	}
+	catch (int deError)
+	{
+		throw deError;
+	}
 	while (inputAccepte.find(deplacement_demande) == string::npos)
 	{
 		afficherMouvements(deplacement_possibles,"Cette case est innaccessible !");
-		deplacement_demande = de();
+		try
+		{
+			deplacement_demande = de();
+		}
+		catch (int deError)
+		{
+			throw deError;
+		}
 	}
 	switch (deplacement_demande) {
 		case 'z':
@@ -162,7 +210,14 @@ void jeu::deplacement(int & result)
 			x++;
 			break;
 	}
-	updateMap(jeu_carte, std::make_pair(y,x));
+	try
+	{
+		updateMap(jeu_carte, std::make_pair(y,x));
+	}
+	catch (int updateMapError)
+	{
+		throw updateMapError;
+	}
 
 	///Combat, à tester
 //	string content = jeu_carte.getPlateau()[x][y];
@@ -286,13 +341,27 @@ competence jeu::choix_comp(entite & indiv)
 	if (indiv.is_personnage())	//Personnage
 	{
 		puts("\n- Choix de compétence -");
-		choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+		try
+		{
+			choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+		}
+		catch (int cUEError)
+		{
+			quitGame();
+		}
 
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
 			puts("Vous n'avez pas assez de mana pour utiliser cette compétence!");
 			puts("- Choix de compétence -");
-			choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+			try
+			{
+				choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+			}
+			catch (int cUEError)
+			{
+				quitGame();
+			}
 		}
 
 		if (indiv.getManaCurrent() > indiv.getManaMax())
@@ -320,7 +389,14 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 		if (indiv.is_personnage())	//Personnage
 		{
 			cout << "- Choix de la cible pour la compétence " << comp_util.getName() << " -" << endl;
-			choix_unique_element(target, vect_entite, 1);
+			try
+			{
+				choix_unique_element(target, vect_entite, 1);
+			}
+			catch (int cUEError)
+			{
+				quitGame();
+			}
 		}
 		else	//Monstre
 		{
@@ -395,4 +471,11 @@ int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entit
 bool sort_speed(entite a, entite b)
 {
 	return a.getSpeed() > b.getSpeed();
+}
+
+void jeu::quitGame()
+{
+	printf("\033[2J");	// Efface ecran
+	printf("\033[1;1H");	// Remet le curseur au debut de l'ecran
+	std::cout << "Merci d'avoir joué à The Game ! \nEn espérant vous revoir bientôt !" << std::endl;
 }
