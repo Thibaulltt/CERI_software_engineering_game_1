@@ -350,10 +350,10 @@ namespace io
 
 			while (input <= 0 || input > vect_element.size())                //Input incorrect
 			{
-				std::puts("Input incorrect. Réessayez!");
-				try
-				{
-					c_input = de();                                             //Input utilisateur
+				if (aff)
+					std::puts("Input incorrect. Réessayez!");
+				else
+					updateMessage("Input incorrect. Réessayez!",4);
 				}
 				catch (int deError)
 				{
