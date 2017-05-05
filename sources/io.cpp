@@ -250,6 +250,8 @@ namespace io
 
 	void updateMap(Carte& jeu_carte, std::pair<int,int> newPlayerPos)
 	{
+		int x = currentPlayerPosition.first;
+		int y = currentPlayerPosition.second;
 		// Si le joueur sort des "barrières" de la map affichée
 		if (    newPlayerPos.first >= mapPositionY + TermHeight - 6
 			|| newPlayerPos.first < mapPositionY
@@ -276,7 +278,15 @@ namespace io
 		printf("\033[%iC", currentPlayerPosition.first - mapPositionX);
 		if (currentPlayerPosition.first == mapPositionX)
 			printf("\033[1D");
-		cout << BLANK << ' ' << BLANK << flush;
+		switch (jeu_carte.getPlateau()[x][y][0])
+		{
+			case 'x':
+				cout << RED << 'x' << BLANK << flush;
+				break;
+			default:
+				cout << BLANK << ' ' << BLANK << flush;
+				break;
+		}
 		printf("\033[0;0H");
 		if (newPlayerPos.first != mapPositionY)
 			printf("\033[%iB", newPlayerPos.first - mapPositionY);

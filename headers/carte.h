@@ -370,6 +370,9 @@ class Carte
 
 		//! Echange le contenu de la case plateau[i1][j1] avec ceux du plateau[i2][j2]
 		void echangerContenuCase(int i1, int j1, int i2, int j2);
+
+		//! Fait mourir un monstre à la case x,y et enlève 1 à nbr_monstre
+		void monstreMort(int x, int y);
 };
 
 #endif

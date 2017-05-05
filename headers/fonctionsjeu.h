@@ -30,7 +30,7 @@ class jeu
 	std::vector<monstre> jeu_monstres;
 
 	//! Compte le nombre de monstres restant sur la carte.
-	int jeu_nombre_monstres = 1;							///Temporaire!!
+	int jeu_nombre_monstres;							///Temporaire!!
 
 public:
 	//! Constructeur par défaut sans argument.
@@ -217,6 +217,12 @@ public:
 
 	//! Quitte le jeu, sans que l'utilisateur n'ai gagné ni perdu.
 	void quitGame();
+
+	//! Affiche un message de victoire à l'utilisateur
+	void victoireGame();
+
+	//! Affiche un message de défait au joueur.
+	void failedGame();
 };
 
 //! Tri d'entités

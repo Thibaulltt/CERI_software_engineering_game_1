@@ -724,3 +724,13 @@ void Carte::echangerContenuCase(int i1, int j1, int i2, int j2)
 		plateau[i1][j1] = plateau[i1][j1].substr(0,plateau[i1][j1].find("/"));	// On enlève "/joueur" de la fin de la chaîne si il existe
 	return;
 }
+
+void Carte::monstreMort(int x, int y)
+{
+	if (plateau[x][y][0] == 'm')
+	{
+		plateau[x][y] = 'x'+plateau[x][y];
+		nbr_monstre--;
+	}
+	return;
+}
