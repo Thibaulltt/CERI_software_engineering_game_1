@@ -360,10 +360,9 @@ competence jeu::choix_comp(entite & indiv)
 
 	if (indiv.is_personnage())	//Personnage
 	{
-		puts("\n- Choix de compétence -");
 		try
 		{
-			choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);
+			choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);	//Choix manuel
 		}
 		catch (int cUEError)
 		{
