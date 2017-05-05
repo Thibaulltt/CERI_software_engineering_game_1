@@ -1,3 +1,1 @@
-p0/Raph/100/20/Coup de clavier(30_20):C'est magique(50_50):Trop vieux pour ces conneries(-15_20):Coup de stylo(5_-10):|100|Raph l'ancetre|
-p1/Thibault/130/15/Flip keyboard(20_10):Flip table(60_55):Recharge de sel(-10_15):Appel du Macbook(7_-10):|100|Too much salt|
-p2/Bobby/90/30/Attaque rapide(15_5):Attaque chargée(70_65):Need Healing(-15_70):Need more mana(5_-20):|95|Bobby ftw|
+p0/Test/100/20/Competence 1(30_20):Competence 2(50_50):Competence 3(-15_20):Competence 4(5_-10):|100|Perso de test|
