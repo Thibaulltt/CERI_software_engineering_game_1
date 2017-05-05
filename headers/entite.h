@@ -146,7 +146,7 @@ public:
 	/*!
 		Permet de limiter l'affichage d'une entité à ses caractéristiques utiles en combat
 	*/
-	void afficher_combat();
+	std::pair<std::string,std::string> afficher_combat();
 
 	//! Enlève x points de vie a l'entite.
 	/*!
