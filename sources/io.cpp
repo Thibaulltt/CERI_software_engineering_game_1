@@ -279,14 +279,14 @@ namespace io
 		if (currentPlayerPosition.first == mapPositionX)
 			printf("\033[1D");
 		switch (jeu_carte.getPlateau()[x][y][0])
-		{		
- -			case 'x':		
- -				cout << RED << 'x' << BLANK << flush;		
- -				break;		
- -			default:		
- -				cout << BLANK << ' ' << BLANK << flush;		
- -				break;		
- -		}
+		{
+			case 'x':
+				cout << RED << 'x' << BLANK << flush;
+				break;
+			default:
+				cout << BLANK << ' ' << BLANK << flush;
+				break;
+		}
 		printf("\033[0;0H");
 		if (newPlayerPos.first != mapPositionY)
 			printf("\033[%iB", newPlayerPos.first - mapPositionY);
