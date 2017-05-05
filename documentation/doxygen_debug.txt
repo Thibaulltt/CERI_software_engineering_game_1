@@ -1,0 +1,23 @@
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/carte.h:61: warning: argument 'nom' of command @param is not found in the argument list of Carte::Carte(int taille, std::string name, std::string description, int nb_monstre)
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/carte.h:67: warning: The following parameters of Carte::Carte(int taille, std::string name, std::string description, int nb_monstre) are not documented:
+  parameter 'name'
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/carte.h:200: warning: Found unknown command `\returnt'
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/carte.h:156: warning: argument 'nomfichier' of command @param is not found in the argument list of Carte::saveInFile(std::string lettreCarte, std::string nomFichier)
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/carte.h:165: warning: The following parameters of Carte::saveInFile(std::string lettreCarte, std::string nomFichier) are not documented:
+  parameter 'nomFichier'
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/config.h:76: warning: The following parameters of config::createCompetenceEntite(entite dummy, int rang, int manaMax) are not documented:
+  parameter 'manaMax'
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/config.h:165: warning: argument 'allEntite' of command @param is not found in the argument list of config::deleteLineElement(std::string nomFichier, std::vector< T > &allElement, std::string lettreElement, int nbElemProt)
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/config.h:165: warning: argument 'lettreEntite' of command @param is not found in the argument list of config::deleteLineElement(std::string nomFichier, std::vector< T > &allElement, std::string lettreElement, int nbElemProt)
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/config.h:177: warning: The following parameters of config::deleteLineElement(std::string nomFichier, std::vector< T > &allElement, std::string lettreElement, int nbElemProt) are not documented:
+  parameter 'allElement'
+  parameter 'lettreElement'
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/entite.h:45: warning: Unsupported xml/html tag <vecteur> found
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/fonctionsjeu.h:216: warning: The following parameters of jeu::appliquer_comp(entite indiv, entite target, std::vector< entite > &vect_entite, competence comp_util, int &nb_players, int &nb_monsters) are not documented:
+  parameter 'indiv'
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/monstre.h:29: warning: Unsupported xml/html tag <vecteur> found
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/io.h:401: warning: argument 'vect_entité' of command @param is not found in the argument list of io::aff_combat(std::vector< entite > vect_entite)
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/io.h:406: warning: The following parameters of io::aff_combat(std::vector< entite > vect_entite) are not documented:
+  parameter 'vect_entite'
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/io.h:323: warning: The following parameters of io::choix_unique_element(T &element, std::vector< T > vect_element, bool combat, bool aff=1) are not documented:
+  parameter 'aff'

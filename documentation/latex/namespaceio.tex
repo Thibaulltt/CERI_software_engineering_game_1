@@ -1,0 +1,740 @@
+\hypertarget{namespaceio}{}\section{io Namespace Reference}
+\label{namespaceio}\index{io@{io}}
+
+
+Cet espace sera un espace permettant de définir un buffer custom pour les input, ainsi que de pouvoir afficher tout ce que l\textquotesingle{}on souhaite.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespaceio_ac0223d0ecfee82d8cc86543604173b73}{Change\+Terminal} (bool Ech=0)
+\begin{DoxyCompactList}\small\item\em Changement des paramètres du terminal. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_a44a79937063c75bdcd8f042d5f55d501}{Reset\+Terminal} ()
+\begin{DoxyCompactList}\small\item\em Remet le terminal à zero. \end{DoxyCompactList}\item 
+int \hyperlink{namespaceio_a71636a15a219ee1dcc177e9749cf20bc}{get\+Terminal\+Width} ()
+\begin{DoxyCompactList}\small\item\em Retourne la largeur du terminal. \end{DoxyCompactList}\item 
+int \hyperlink{namespaceio_ab7da8a98a7b636d1d5f0f6eb820f1f81}{get\+Terminal\+Height} ()
+\begin{DoxyCompactList}\small\item\em Retourne la hauteur du terminal. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_abefd9b2fada48d5e8e260e56e868e952}{clear\+Screen} ()
+\begin{DoxyCompactList}\small\item\em Efface l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_a5a0d785914a680440e4986a02b50a28e}{check\+Terminal\+Size} ()
+\begin{DoxyCompactList}\small\item\em Vérifie la taille du terminal. \end{DoxyCompactList}\item 
+char \hyperlink{namespaceio_ae9908b55f26f07e78043d7cfad003d22}{de} ()
+\begin{DoxyCompactList}\small\item\em Input. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{namespaceio_ab044be3afd7ac04eeb1a496af0f1d5c6}{long\+\_\+input} ()
+\begin{DoxyCompactList}\small\item\em Entrée utilisateur contenant plus d\textquotesingle{}un caractère. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_ad1c0f5f45e4ec19ee5dbc108314eacbc}{afficher\+Carte} (\hyperlink{class_carte}{Carte} \&, int, bool reset=1)
+\begin{DoxyCompactList}\small\item\em Affichage de la carte. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_ae9438bfe8b2631be82b0f4d644358545}{update\+Map} (\hyperlink{class_carte}{Carte} \&jeu\+\_\+carte, std\+::pair$<$ int, int $>$ new\+Player\+Pos)
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}affichage de la carte. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_a7fdf85a0d766d2dcdb9870ae0458826a}{bienvenue} ()
+\begin{DoxyCompactList}\small\item\em Message d\textquotesingle{}accueil. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_ac60b7c3503eb53e69a2adc86368ab633}{afficher\+Mouvements} ()
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}afficher un overlay sur la carte. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_a45e9ac702aa6ea62eeca96e921b8eaa1}{afficher\+Mouvements} (std\+::string erreur\+\_\+deplacement)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}afficher un overlay sur la carte. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_ac0728fb89b032a7b33641e0d2c34cc28}{afficher\+Mouvements} (std\+::string deplacements\+\_\+possibles, std\+::string erreur\+\_\+deplacement)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}afficher un overlay sur la carte. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_a312765b285c5f20dfe113609c86b8fdd}{afficher\+Mouvements} (std\+::string message, std\+::string deplacements\+\_\+possibles, std\+::string erreur\+\_\+deplacement)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}afficher un overlay sur la carte. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_a61739b6fe40275cdb72215fd08f41d87}{update\+Message} (std\+::string s, int pos)
+\item 
+void \hyperlink{namespaceio_a0ed486192687092d372440a79c3a65a3}{remove\+Last\+Char} (std\+::stringstream \&i)
+\begin{DoxyCompactList}\small\item\em Enlève le dernier caractère d\textquotesingle{}un stringstream. \end{DoxyCompactList}\item 
+bool \hyperlink{namespaceio_ac79ddb3191a9d00d007eb48deb315942}{check\+Input} (int x)
+\begin{DoxyCompactList}\small\item\em Vérifie que l\textquotesingle{}user entre des entiers. \end{DoxyCompactList}\item 
+bool \hyperlink{namespaceio_a993e82931eec7bf1db5110871c03c2d1}{check\+Separator\+Entite} (std\+::string une\+Ligne)
+\begin{DoxyCompactList}\small\item\em Verifie qu\textquotesingle{}une ligne est correcte dans un fichier texte d\textquotesingle{}entités (bon nombre de séparateurs) + //! Créer une competence. \end{DoxyCompactList}\item 
+bool \hyperlink{namespaceio_ae543bba7ec112a88734317ca61bbb88a}{check\+Separator\+Skill} (std\+::string nom\+Fichier, int num\+Ligne)
+\begin{DoxyCompactList}\small\item\em Verifie qu\textquotesingle{}un champ compétences est correct dans un fichier texte d\textquotesingle{}entités (bon nombre de séparateurs) \end{DoxyCompactList}\item 
+int \hyperlink{namespaceio_a0161a5c00ad8e7222f3a052e7c9fa67b}{taille\+\_\+str} (std\+::string)
+\begin{DoxyCompactList}\small\item\em Compte la taille d\textquotesingle{}une string mieux que la fonction std\+::string\+::size(), car elle ne compte pas les accents comme deux caractères. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_ac1340cd13ac838a1d1cfaa0d25a4bbfb}{set\+Player\+Position} (int, int)
+\item 
+int \hyperlink{namespaceio_a495fffe3be2fea58511cedcfcea5dbbd}{To\+\_\+int} (std\+::string input)
+\begin{DoxyCompactList}\small\item\em Convertit un string en int. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceio_ac5222293c3d12f7982a8df7ead04ba0b}{afficher} (T object)
+\begin{DoxyCompactList}\small\item\em Affichage d\textquotesingle{}objet. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceio_acf5693654c155fd094993bf20ac39343}{liste\+\_\+elements} (std\+::vector$<$ T $>$ vect\+\_\+element)
+\begin{DoxyCompactList}\small\item\em Affichage d\textquotesingle{}un ensemble d\textquotesingle{}objets. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceio_ad045ca63d3481c2da3253a3944df18e4}{choix\+\_\+unique\+\_\+element} (T \&element, std\+::vector$<$ T $>$ vect\+\_\+element, bool combat, bool aff=1)
+\begin{DoxyCompactList}\small\item\em Choix d\textquotesingle{}un élément unique. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceio_aea8dfd5fea1f29722c77b31ef7b0b940}{aff\+\_\+combat} (std\+::vector$<$ \hyperlink{classentite}{entite} $>$ vect\+\_\+entite)
+\begin{DoxyCompactList}\small\item\em Affichage des entités du combat. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classcompetence}{competence} $>$ \hyperlink{namespaceio_a9297653474b9ce9930d6a3862401e751}{load\+Competence\+From\+File} (std\+::string nom\+Fichier, int num\+Ligne)
+\begin{DoxyCompactList}\small\item\em Chargement des compétences. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{class_carte}{Carte} $>$ \hyperlink{namespaceio_abb49308ca24862cc2b64c8c15949af44}{load\+All\+Carte\+From\+File} (std\+::string nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em Chargement des cartes. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ T $>$ \hyperlink{namespaceio_a97ddce5128c7df7d67966208e2c37c4c}{load\+All\+Entite\+From\+File} (T temp, std\+::string nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em Chargement des entités. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{namespaceio_adfc4ec23f63d0f743773a584f0a5826f}{to\+String} (const T \&valeur)
+\item 
+bool \hyperlink{namespaceio_ad825d53d81ddd635e3875dfb9d54f627}{input\+Sep\+Check} (std\+::string input)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{namespaceio_a09b19ec88fb58a6086ca54be52b7bc08}{Term\+Width}
+\begin{DoxyCompactList}\small\item\em Variable retennant la valeur de la largeur de la fenêtre du terminal. Elle permet de réduire le nombre de calculs à faire (étant donné que cette valeur est obtenue avec l\textquotesingle{}ouverture d\textquotesingle{}un fichier, son calcul prends donc quelques temps). \end{DoxyCompactList}\item 
+int \hyperlink{namespaceio_afaeef00a45e14dc7227025fa7fd27240}{Term\+Height}
+\begin{DoxyCompactList}\small\item\em Variable retennant la valeur de la hauteur de la fenêtre du terminal. Elle permet de réduire le nombre de calculs à faire (étant donné que cette valeur est obtenue avec l\textquotesingle{}ouverture d\textquotesingle{}un fichier, son calcul prends donc quelques temps). \end{DoxyCompactList}\item 
+std\+::string \hyperlink{namespaceio_a24918bdd47093eb3f11b694ad6f832d4}{B\+L\+A\+NK}
+\begin{DoxyCompactList}\small\item\em Chaîne de caractères permettant de remettre à zéro la couleur du texte. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{namespaceio_ac9181eea4e6d57e5481bc7e5822de4cb}{R\+ED}
+\begin{DoxyCompactList}\small\item\em Chaîne de caractères permettant de rendre le texte affiché de couleur rouge. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{namespaceio_a38fffa22831731f5fc0b72700dc75c87}{G\+R\+E\+EN}
+\begin{DoxyCompactList}\small\item\em Chaîne de caractères permettant de rendre le texte affiché de couleur verte. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{namespaceio_a0bb7c89e9e48840601811e4e35421767}{Y\+E\+L\+L\+OW}
+\begin{DoxyCompactList}\small\item\em Chaîne de caractères permettant de rendre le texte affiché de couleur jaune. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{namespaceio_aad76ed62886e76ca53a755d1c917e387}{B\+L\+UE}
+\begin{DoxyCompactList}\small\item\em Chaîne de caractères permettant de rendre le texte affiché de couleur bleue. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{namespaceio_a1e4a43cea85f576e62aebce6aabc60b5}{M\+A\+G\+E\+N\+TA}
+\begin{DoxyCompactList}\small\item\em Chaîne de caractères permettant de rendre le texte affiché de couleur magenta. \end{DoxyCompactList}\item 
+int \hyperlink{namespaceio_a7f2af984af03881a45da957db2c48be2}{map\+PositionX}
+\begin{DoxyCompactList}\small\item\em Variable permettant de retenir à partir de quelle coordonnée \char`\"{}x\char`\"{} la carte est affichée (si la carte est plus grande que la fenêtre de terminal, cette valeur ne sera pas toujours à 0 ...) \end{DoxyCompactList}\item 
+int \hyperlink{namespaceio_aa0322ffa705df7bd3c4fa5eaefde5d6d}{map\+Positiony}
+\begin{DoxyCompactList}\small\item\em Variable permettant de retenir à partir de quelle coordonnée \char`\"{}y\char`\"{} la carte est affichée (si la carte est plus grande que la fenêtre de terminal, cette valeur ne sera pas toujours à 0 ...) \end{DoxyCompactList}\item 
+int \hyperlink{namespaceio_af6147c2896f77caaa4c7d26daee44ac5}{interactions\+OverlayY}
+\begin{DoxyCompactList}\small\item\em Stocke la position (x) de l\textquotesingle{}affichage de l\textquotesingle{}overlay des actions. Nous n\textquotesingle{}avons pas besoin du Y car l\textquotesingle{}overlay prends toute la largeur quoi qu\textquotesingle{}il arrive. \end{DoxyCompactList}\item 
+std\+::pair$<$ int, int $>$ \hyperlink{namespaceio_a2a0c75ff7760b96fcf6e696efe3d1c51}{current\+Player\+Position}
+\begin{DoxyCompactList}\small\item\em Paire de valeurs (std\+::pair) gardant la position actuelle du joueur dans. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Cet espace sera un espace permettant de définir un buffer custom pour les input, ainsi que de pouvoir afficher tout ce que l\textquotesingle{}on souhaite. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceio_aea8dfd5fea1f29722c77b31ef7b0b940}\label{namespaceio_aea8dfd5fea1f29722c77b31ef7b0b940}} 
+\index{io@{io}!aff\+\_\+combat@{aff\+\_\+combat}}
+\index{aff\+\_\+combat@{aff\+\_\+combat}!io@{io}}
+\subsubsection{\texorpdfstring{aff\+\_\+combat()}{aff\_combat()}}
+{\footnotesize\ttfamily void io\+::aff\+\_\+combat (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classentite}{entite} $>$}]{vect\+\_\+entite }\end{DoxyParamCaption})}
+
+
+
+Affichage des entités du combat. 
+
+Parcourt le vecteur d\textquotesingle{}entités, affiche les personnages. Parcourt de nouveau le vecteur, affiche les monstres. 
+\begin{DoxyParams}{Parameters}
+{\em vect\+\_\+entité} & Le vecteur d\textquotesingle{}entités à afficher. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+afficher\+\_\+combat() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{namespaceio_ac5222293c3d12f7982a8df7ead04ba0b}\label{namespaceio_ac5222293c3d12f7982a8df7ead04ba0b}} 
+\index{io@{io}!afficher@{afficher}}
+\index{afficher@{afficher}!io@{io}}
+\subsubsection{\texorpdfstring{afficher()}{afficher()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void io\+::afficher (\begin{DoxyParamCaption}\item[{T}]{object }\end{DoxyParamCaption})}
+
+
+
+Affichage d\textquotesingle{}objet. 
+
+Affiche le nom et la description d\textquotesingle{}un objet.
+
+
+\begin{DoxyParams}{Parameters}
+{\em object} & Objet à afficher. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceio_ad1c0f5f45e4ec19ee5dbc108314eacbc}\label{namespaceio_ad1c0f5f45e4ec19ee5dbc108314eacbc}} 
+\index{io@{io}!afficher\+Carte@{afficher\+Carte}}
+\index{afficher\+Carte@{afficher\+Carte}!io@{io}}
+\subsubsection{\texorpdfstring{afficher\+Carte()}{afficherCarte()}}
+{\footnotesize\ttfamily void io\+::afficher\+Carte (\begin{DoxyParamCaption}\item[{\hyperlink{class_carte}{Carte} \&}]{,  }\item[{int}]{,  }\item[{bool}]{reset = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Affichage de la carte. 
+
+\mbox{\Hypertarget{namespaceio_ac60b7c3503eb53e69a2adc86368ab633}\label{namespaceio_ac60b7c3503eb53e69a2adc86368ab633}} 
+\index{io@{io}!afficher\+Mouvements@{afficher\+Mouvements}}
+\index{afficher\+Mouvements@{afficher\+Mouvements}!io@{io}}
+\subsubsection{\texorpdfstring{afficher\+Mouvements()}{afficherMouvements()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void io\+::afficher\+Mouvements (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}afficher un overlay sur la carte. 
+
+Fonction permettant d\textquotesingle{}afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller. Ne fait qu\textquotesingle{}appeller \hyperlink{namespaceio_ac0728fb89b032a7b33641e0d2c34cc28}{afficher\+Mouvements(std\+::string deplacements\+\_\+possibles, std\+::string erreur\+\_\+deplacement)}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_a45e9ac702aa6ea62eeca96e921b8eaa1}{afficher\+Mouvements(std\+::string erreur\+\_\+deplacement)} \& \hyperlink{namespaceio_ac0728fb89b032a7b33641e0d2c34cc28}{afficher\+Mouvements(std\+::string deplacements\+\_\+possibles, std\+::string erreur\+\_\+deplacement)} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{namespaceio_a45e9ac702aa6ea62eeca96e921b8eaa1}\label{namespaceio_a45e9ac702aa6ea62eeca96e921b8eaa1}} 
+\index{io@{io}!afficher\+Mouvements@{afficher\+Mouvements}}
+\index{afficher\+Mouvements@{afficher\+Mouvements}!io@{io}}
+\subsubsection{\texorpdfstring{afficher\+Mouvements()}{afficherMouvements()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void io\+::afficher\+Mouvements (\begin{DoxyParamCaption}\item[{std\+::string}]{erreur\+\_\+deplacement }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}afficher un overlay sur la carte. 
+
+Fonction permettant d\textquotesingle{}afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller. Il affiche aussi un message d\textquotesingle{}erreur si demandé. Ne fait qu\textquotesingle{}appeller \hyperlink{namespaceio_ac0728fb89b032a7b33641e0d2c34cc28}{afficher\+Mouvements(std\+::string deplacements\+\_\+possibles, std\+::string erreur\+\_\+deplacement)}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ac60b7c3503eb53e69a2adc86368ab633}{afficher\+Mouvements()} \& \hyperlink{namespaceio_ac0728fb89b032a7b33641e0d2c34cc28}{afficher\+Mouvements(std\+::string deplacements\+\_\+possibles, std\+::string erreur\+\_\+deplacement)} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{namespaceio_ac0728fb89b032a7b33641e0d2c34cc28}\label{namespaceio_ac0728fb89b032a7b33641e0d2c34cc28}} 
+\index{io@{io}!afficher\+Mouvements@{afficher\+Mouvements}}
+\index{afficher\+Mouvements@{afficher\+Mouvements}!io@{io}}
+\subsubsection{\texorpdfstring{afficher\+Mouvements()}{afficherMouvements()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void io\+::afficher\+Mouvements (\begin{DoxyParamCaption}\item[{std\+::string}]{deplacements\+\_\+possibles,  }\item[{std\+::string}]{erreur\+\_\+deplacement }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}afficher un overlay sur la carte. 
+
+Fonction permettant d\textquotesingle{}afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller. Ne fait qu\textquotesingle{}appeller \hyperlink{namespaceio_ac0728fb89b032a7b33641e0d2c34cc28}{afficher\+Mouvements(std\+::string deplacements\+\_\+possibles, std\+::string erreur\+\_\+deplacement)}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ac60b7c3503eb53e69a2adc86368ab633}{afficher\+Mouvements()} \& \hyperlink{namespaceio_a45e9ac702aa6ea62eeca96e921b8eaa1}{afficher\+Mouvements(std\+::string erreur\+\_\+deplacement)} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{namespaceio_a312765b285c5f20dfe113609c86b8fdd}\label{namespaceio_a312765b285c5f20dfe113609c86b8fdd}} 
+\index{io@{io}!afficher\+Mouvements@{afficher\+Mouvements}}
+\index{afficher\+Mouvements@{afficher\+Mouvements}!io@{io}}
+\subsubsection{\texorpdfstring{afficher\+Mouvements()}{afficherMouvements()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void io\+::afficher\+Mouvements (\begin{DoxyParamCaption}\item[{std\+::string}]{message,  }\item[{std\+::string}]{deplacements\+\_\+possibles,  }\item[{std\+::string}]{erreur\+\_\+deplacement }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}afficher un overlay sur la carte. 
+
+Fonction permettant d\textquotesingle{}afficher un overlay sur la carte, montrant au joueur dans quelles directions il peut aller. Ne fait qu\textquotesingle{}appeller \hyperlink{namespaceio_ac0728fb89b032a7b33641e0d2c34cc28}{afficher\+Mouvements(std\+::string deplacements\+\_\+possibles, std\+::string erreur\+\_\+deplacement)}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ac60b7c3503eb53e69a2adc86368ab633}{afficher\+Mouvements()} \& \hyperlink{namespaceio_a45e9ac702aa6ea62eeca96e921b8eaa1}{afficher\+Mouvements(std\+::string erreur\+\_\+deplacement)} \& \hyperlink{namespaceio_ac0728fb89b032a7b33641e0d2c34cc28}{afficher\+Mouvements(std\+::string deplacements\+\_\+possibles, std\+::string erreur\+\_\+deplacement)} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{namespaceio_a7fdf85a0d766d2dcdb9870ae0458826a}\label{namespaceio_a7fdf85a0d766d2dcdb9870ae0458826a}} 
+\index{io@{io}!bienvenue@{bienvenue}}
+\index{bienvenue@{bienvenue}!io@{io}}
+\subsubsection{\texorpdfstring{bienvenue()}{bienvenue()}}
+{\footnotesize\ttfamily void io\+::bienvenue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Message d\textquotesingle{}accueil. 
+
+Affiche un message de bienvenue. \mbox{\Hypertarget{namespaceio_ac0223d0ecfee82d8cc86543604173b73}\label{namespaceio_ac0223d0ecfee82d8cc86543604173b73}} 
+\index{io@{io}!Change\+Terminal@{Change\+Terminal}}
+\index{Change\+Terminal@{Change\+Terminal}!io@{io}}
+\subsubsection{\texorpdfstring{Change\+Terminal()}{ChangeTerminal()}}
+{\footnotesize\ttfamily void io\+::\+Change\+Terminal (\begin{DoxyParamCaption}\item[{bool}]{Ech = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Changement des paramètres du terminal. 
+
+Permet de changer le mode d\textquotesingle{}entrée de stdin du terminal. Les paramètres présents auparavant sont sauvegardés.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Ech} & Détermine si on veut que l\textquotesingle{}entrée utilisateur soit affichée ou pas. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ae9908b55f26f07e78043d7cfad003d22}{de()}, \hyperlink{namespaceio_ab044be3afd7ac04eeb1a496af0f1d5c6}{long\+\_\+input()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{namespaceio_ac79ddb3191a9d00d007eb48deb315942}\label{namespaceio_ac79ddb3191a9d00d007eb48deb315942}} 
+\index{io@{io}!check\+Input@{check\+Input}}
+\index{check\+Input@{check\+Input}!io@{io}}
+\subsubsection{\texorpdfstring{check\+Input()}{checkInput()}}
+{\footnotesize\ttfamily bool io\+::check\+Input (\begin{DoxyParamCaption}\item[{int}]{x }\end{DoxyParamCaption})}
+
+
+
+Vérifie que l\textquotesingle{}user entre des entiers. 
+
+Cette fonction vérifie que l\textquotesingle{}entrée utilisateur est bien un entier. Mode opératoire \+:
+\begin{DoxyItemize}
+\item Vérification du failbit de l\textquotesingle{}entrée utilisateur (std\+::cin\+::failbit)
+\begin{DoxyEnumerate}
+\item Vidage du buffer
+\item Ignore 256 caractères ou jusqu\textquotesingle{}a {\ttfamily ~\newline
+}
+\item Affichage d\textquotesingle{}un message d\textquotesingle{}erreur d\textquotesingle{}entrée utilisateur.
+\item Retourne faux
+\end{DoxyEnumerate}
+\item Sinon retourne vrai
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & on sait pas ce qu\textquotesingle{}il fait là, mais il est là. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceio_a993e82931eec7bf1db5110871c03c2d1}\label{namespaceio_a993e82931eec7bf1db5110871c03c2d1}} 
+\index{io@{io}!check\+Separator\+Entite@{check\+Separator\+Entite}}
+\index{check\+Separator\+Entite@{check\+Separator\+Entite}!io@{io}}
+\subsubsection{\texorpdfstring{check\+Separator\+Entite()}{checkSeparatorEntite()}}
+{\footnotesize\ttfamily bool io\+::check\+Separator\+Entite (\begin{DoxyParamCaption}\item[{std\+::string}]{une\+Ligne }\end{DoxyParamCaption})}
+
+
+
+Verifie qu\textquotesingle{}une ligne est correcte dans un fichier texte d\textquotesingle{}entités (bon nombre de séparateurs) + //! Créer une competence. 
+
+Cette fonction permet de vérifier qu\textquotesingle{}une ligne contient bien le bon nombre de séparateurs pour éviter les erreurs dans le chargement d\textquotesingle{}une entité Mode opératoire\+:
+\begin{DoxyItemize}
+\item Parcours de toute la string passée en paramétre
+\item A chaque séparateur trouvé, on ajoute 1 aux compteurs
+\item Si le nombre de séparateurs correspond au nombre défini, on retourne true
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em une\+Ligne} & Ligne à vérifier \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceio_ae543bba7ec112a88734317ca61bbb88a}\label{namespaceio_ae543bba7ec112a88734317ca61bbb88a}} 
+\index{io@{io}!check\+Separator\+Skill@{check\+Separator\+Skill}}
+\index{check\+Separator\+Skill@{check\+Separator\+Skill}!io@{io}}
+\subsubsection{\texorpdfstring{check\+Separator\+Skill()}{checkSeparatorSkill()}}
+{\footnotesize\ttfamily bool io\+::check\+Separator\+Skill (\begin{DoxyParamCaption}\item[{std\+::string}]{nom\+Fichier,  }\item[{int}]{num\+Ligne }\end{DoxyParamCaption})}
+
+
+
+Verifie qu\textquotesingle{}un champ compétences est correct dans un fichier texte d\textquotesingle{}entités (bon nombre de séparateurs) 
+
+Cette fonction permet de vérifier qu\textquotesingle{}un champ compétences d\textquotesingle{}une ligne contient bien le bon nombre de séparateurs pour éviter les erreurs dans le chargement d\textquotesingle{}une entité Mode opératoire\+:
+\begin{DoxyItemize}
+\item Recherche de la ligne dans le fichier
+\item Parcours de toute la ligne
+\item A chaque séparateur trouvé, on ajoute 1 aux compteurs
+\item Si le nombre de séparateurs correspond au nombre défini, on retourne true
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom\+Fichier} & Le nom du fichier .txt dans lequel on fait la vérification \\
+\hline
+{\em num\+Ligne} & Le numéro de la ligne à vérifier \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceio_a5a0d785914a680440e4986a02b50a28e}\label{namespaceio_a5a0d785914a680440e4986a02b50a28e}} 
+\index{io@{io}!check\+Terminal\+Size@{check\+Terminal\+Size}}
+\index{check\+Terminal\+Size@{check\+Terminal\+Size}!io@{io}}
+\subsubsection{\texorpdfstring{check\+Terminal\+Size()}{checkTerminalSize()}}
+{\footnotesize\ttfamily void io\+::check\+Terminal\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Vérifie la taille du terminal. 
+
+\mbox{\Hypertarget{namespaceio_ad045ca63d3481c2da3253a3944df18e4}\label{namespaceio_ad045ca63d3481c2da3253a3944df18e4}} 
+\index{io@{io}!choix\+\_\+unique\+\_\+element@{choix\+\_\+unique\+\_\+element}}
+\index{choix\+\_\+unique\+\_\+element@{choix\+\_\+unique\+\_\+element}!io@{io}}
+\subsubsection{\texorpdfstring{choix\+\_\+unique\+\_\+element()}{choix\_unique\_element()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void io\+::choix\+\_\+unique\+\_\+element (\begin{DoxyParamCaption}\item[{T \&}]{element,  }\item[{std\+::vector$<$ T $>$}]{vect\+\_\+element,  }\item[{bool}]{combat,  }\item[{bool}]{aff = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Choix d\textquotesingle{}un élément unique. 
+
+Fonction qui prend un élément, un vecteur d\textquotesingle{}éléments ainsi qu\textquotesingle{}un booléen en entrée, et affiche les caractéristiques assignées à l\textquotesingle{}élément.
+
+
+\begin{DoxyParams}{Parameters}
+{\em element} & Elément dont les caractéristiques doivent être établies. \\
+\hline
+{\em vect\+\_\+element} & Vecteur de l\textquotesingle{}élément à choisir. \\
+\hline
+{\em combat} & Situation de combat ou non. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+L\textquotesingle{}élement choisi. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_acf5693654c155fd094993bf20ac39343}{liste\+\_\+elements()}, \hyperlink{namespaceio_ac5222293c3d12f7982a8df7ead04ba0b}{afficher()}, afficher\+\_\+detail() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{namespaceio_abefd9b2fada48d5e8e260e56e868e952}\label{namespaceio_abefd9b2fada48d5e8e260e56e868e952}} 
+\index{io@{io}!clear\+Screen@{clear\+Screen}}
+\index{clear\+Screen@{clear\+Screen}!io@{io}}
+\subsubsection{\texorpdfstring{clear\+Screen()}{clearScreen()}}
+{\footnotesize\ttfamily void io\+::clear\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Efface l\textquotesingle{}écran. 
+
+\mbox{\Hypertarget{namespaceio_ae9908b55f26f07e78043d7cfad003d22}\label{namespaceio_ae9908b55f26f07e78043d7cfad003d22}} 
+\index{io@{io}!de@{de}}
+\index{de@{de}!io@{io}}
+\subsubsection{\texorpdfstring{de()}{de()}}
+{\footnotesize\ttfamily char io\+::de (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Input. 
+
+Gestion des entrées utilisateur, ne prends qu\textquotesingle{}un seul caractère à la fois.
+
+Voici son mode opératoire \+:
+\begin{DoxyEnumerate}
+\item On crée une variable (char)
+\item On change la façon dont le terminal gère l\textquotesingle{}entrée utilisateur avec \hyperlink{namespaceio_ac0223d0ecfee82d8cc86543604173b73}{Change\+Terminal()}
+\item On utilise la fonction std\+::getchar() (qui ne prends maintenant qu\textquotesingle{}un seul caractère sans avoir besoin d\textquotesingle{}appuyer sur entrée, grâce à \hyperlink{namespaceio_ac0223d0ecfee82d8cc86543604173b73}{Change\+Terminal()})
+\item On remets les paramètres du terminal comme avant avec \hyperlink{namespaceio_a44a79937063c75bdcd8f042d5f55d501}{Reset\+Terminal()}
+\item On retourne l\textquotesingle{}entrée utilisateur
+\end{DoxyEnumerate}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ac0223d0ecfee82d8cc86543604173b73}{Change\+Terminal()}; \hyperlink{namespaceio_a44a79937063c75bdcd8f042d5f55d501}{Reset\+Terminal()}; \hyperlink{namespaceio_ab044be3afd7ac04eeb1a496af0f1d5c6}{long\+\_\+input()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{namespaceio_ab7da8a98a7b636d1d5f0f6eb820f1f81}\label{namespaceio_ab7da8a98a7b636d1d5f0f6eb820f1f81}} 
+\index{io@{io}!get\+Terminal\+Height@{get\+Terminal\+Height}}
+\index{get\+Terminal\+Height@{get\+Terminal\+Height}!io@{io}}
+\subsubsection{\texorpdfstring{get\+Terminal\+Height()}{getTerminalHeight()}}
+{\footnotesize\ttfamily int io\+::get\+Terminal\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retourne la hauteur du terminal. 
+
+\mbox{\Hypertarget{namespaceio_a71636a15a219ee1dcc177e9749cf20bc}\label{namespaceio_a71636a15a219ee1dcc177e9749cf20bc}} 
+\index{io@{io}!get\+Terminal\+Width@{get\+Terminal\+Width}}
+\index{get\+Terminal\+Width@{get\+Terminal\+Width}!io@{io}}
+\subsubsection{\texorpdfstring{get\+Terminal\+Width()}{getTerminalWidth()}}
+{\footnotesize\ttfamily int io\+::get\+Terminal\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retourne la largeur du terminal. 
+
+\mbox{\Hypertarget{namespaceio_ad825d53d81ddd635e3875dfb9d54f627}\label{namespaceio_ad825d53d81ddd635e3875dfb9d54f627}} 
+\index{io@{io}!input\+Sep\+Check@{input\+Sep\+Check}}
+\index{input\+Sep\+Check@{input\+Sep\+Check}!io@{io}}
+\subsubsection{\texorpdfstring{input\+Sep\+Check()}{inputSepCheck()}}
+{\footnotesize\ttfamily bool io\+::input\+Sep\+Check (\begin{DoxyParamCaption}\item[{std\+::string}]{input }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceio_acf5693654c155fd094993bf20ac39343}\label{namespaceio_acf5693654c155fd094993bf20ac39343}} 
+\index{io@{io}!liste\+\_\+elements@{liste\+\_\+elements}}
+\index{liste\+\_\+elements@{liste\+\_\+elements}!io@{io}}
+\subsubsection{\texorpdfstring{liste\+\_\+elements()}{liste\_elements()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void io\+::liste\+\_\+elements (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T $>$}]{vect\+\_\+element }\end{DoxyParamCaption})}
+
+
+
+Affichage d\textquotesingle{}un ensemble d\textquotesingle{}objets. 
+
+Parcourt le vecteur de stockage des objets chargés, et les affiche.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vect\+\_\+element} & Vecteur d\textquotesingle{}éléments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ac5222293c3d12f7982a8df7ead04ba0b}{afficher()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{namespaceio_abb49308ca24862cc2b64c8c15949af44}\label{namespaceio_abb49308ca24862cc2b64c8c15949af44}} 
+\index{io@{io}!load\+All\+Carte\+From\+File@{load\+All\+Carte\+From\+File}}
+\index{load\+All\+Carte\+From\+File@{load\+All\+Carte\+From\+File}!io@{io}}
+\subsubsection{\texorpdfstring{load\+All\+Carte\+From\+File()}{loadAllCarteFromFile()}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{class_carte}{Carte}$>$ io\+::load\+All\+Carte\+From\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{nom\+Fichier }\end{DoxyParamCaption})}
+
+
+
+Chargement des cartes. 
+
+Lit toutes les lignes d\textquotesingle{}un fichier, et remplit un vecteur avec des objets construits à partir des informations récupérées. 
+\begin{DoxyParams}{Parameters}
+{\em nom\+Fichier} & Le nom du fichier à partir duquel on lit les informations. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un vecteur contenant les cartes créées. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceio_a97ddce5128c7df7d67966208e2c37c4c}\label{namespaceio_a97ddce5128c7df7d67966208e2c37c4c}} 
+\index{io@{io}!load\+All\+Entite\+From\+File@{load\+All\+Entite\+From\+File}}
+\index{load\+All\+Entite\+From\+File@{load\+All\+Entite\+From\+File}!io@{io}}
+\subsubsection{\texorpdfstring{load\+All\+Entite\+From\+File()}{loadAllEntiteFromFile()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$T$>$ io\+::load\+All\+Entite\+From\+File (\begin{DoxyParamCaption}\item[{T}]{temp,  }\item[{std\+::string}]{nom\+Fichier }\end{DoxyParamCaption})}
+
+
+
+Chargement des entités. 
+
+Lit toutes les lignes d\textquotesingle{}un fichier, et remplit un vecteur avec des objets construits à partir des informations récupérées. 
+\begin{DoxyParams}{Parameters}
+{\em temp} & Objet dummy permettant au compilateur de comprendre de quel type d\textquotesingle{}objet il s\textquotesingle{}agit. \\
+\hline
+{\em nom\+Fichier} & Le nom du fichier à partir duquel on lit les informations. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un vecteur contenant les entités créées. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_a9297653474b9ce9930d6a3862401e751}{load\+Competence\+From\+File()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{namespaceio_a9297653474b9ce9930d6a3862401e751}\label{namespaceio_a9297653474b9ce9930d6a3862401e751}} 
+\index{io@{io}!load\+Competence\+From\+File@{load\+Competence\+From\+File}}
+\index{load\+Competence\+From\+File@{load\+Competence\+From\+File}!io@{io}}
+\subsubsection{\texorpdfstring{load\+Competence\+From\+File()}{loadCompetenceFromFile()}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{classcompetence}{competence}$>$ io\+::load\+Competence\+From\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{nom\+Fichier,  }\item[{int}]{num\+Ligne }\end{DoxyParamCaption})}
+
+
+
+Chargement des compétences. 
+
+Lit une ligne d\textquotesingle{}un fichier, et remplit un vecteur avec des objets construits à partir des informations récupérées. 
+\begin{DoxyParams}{Parameters}
+{\em nom\+Fichier} & Le nom du fichier à partir duquel on lit les informations. \\
+\hline
+{\em num\+Ligne} & La ligne sur laquelle on recherche les informations. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un vecteur contenant les compétences créées. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceio_ab044be3afd7ac04eeb1a496af0f1d5c6}\label{namespaceio_ab044be3afd7ac04eeb1a496af0f1d5c6}} 
+\index{io@{io}!long\+\_\+input@{long\+\_\+input}}
+\index{long\+\_\+input@{long\+\_\+input}!io@{io}}
+\subsubsection{\texorpdfstring{long\+\_\+input()}{long\_input()}}
+{\footnotesize\ttfamily std\+::string io\+::long\+\_\+input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Entrée utilisateur contenant plus d\textquotesingle{}un caractère. 
+
+Mode opératoire \+:
+\begin{DoxyItemize}
+\item Utilise les mêmes fonction de changement du terminal que {\ttfamily \hyperlink{namespaceio_ae9908b55f26f07e78043d7cfad003d22}{de()}} (avec la seule différence que l\textquotesingle{}echo des caractères rentrés est activé), mais possède une boucle qui utilise {\ttfamily getchar()} tant que le caractère entré est différent de la touche {\ttfamily E\+N\+T\+R\+EE}.
+\item Enlève ensuite le dernier caractère (qui est un caractère {\ttfamily R\+E\+T\+O\+U\+R\+\_\+\+C\+H\+A\+R\+I\+OT}+{\ttfamily N\+E\+W\+L\+I\+NE}).
+\begin{DoxyItemize}
+\item Si la longueur de la chaîne résultante est de 0, alors l\textquotesingle{}utilisateur n\textquotesingle{}a rien saisi, donc on lui redemande.
+\item Sinon, on renvoie l\textquotesingle{}entrée utilisateur. 
+\end{DoxyItemize}
+\end{DoxyItemize}\mbox{\Hypertarget{namespaceio_a0ed486192687092d372440a79c3a65a3}\label{namespaceio_a0ed486192687092d372440a79c3a65a3}} 
+\index{io@{io}!remove\+Last\+Char@{remove\+Last\+Char}}
+\index{remove\+Last\+Char@{remove\+Last\+Char}!io@{io}}
+\subsubsection{\texorpdfstring{remove\+Last\+Char()}{removeLastChar()}}
+{\footnotesize\ttfamily void io\+::remove\+Last\+Char (\begin{DoxyParamCaption}\item[{std\+::stringstream \&}]{i }\end{DoxyParamCaption})}
+
+
+
+Enlève le dernier caractère d\textquotesingle{}un stringstream. 
+
+Le but de cette fonction est d\textquotesingle{}enlever le dernier caractère d\textquotesingle{}un flux de caractères (std\+::stringstream) étant donné que le C++ ne propose pas de fonction par défaut pour cette fonctionnalité. Voici son mode opératoire \+:
+\begin{DoxyEnumerate}
+\item On prends tout le contenu du stringstream et on le met dans une chaîne de caractères (std\+::string)
+\item Si la chaîne de caractère contient au moins 1 caractère \+:
+\begin{DoxyEnumerate}
+\item On enlève le dernier caractère affiché sur stdout (en déplacant le curseur vers la droite après avoir affiché un espace)
+\item Alors on utilise la fonction std\+::string\+::erase(std\+::string\+::iterator) pour enlever le dernier caractère
+\item On remplace le contenu du flux de caractère par du vide
+\item On remet la chaîne de caractère coupée dans le flux.
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+
+\begin{DoxyPrecond}{Precondition}
+La fonction recevra un stringstream d\textquotesingle{}entrée utilisateur. Son but est d\textquotesingle{}enlever le dernier caractère entré (cette fonction est appelée dans \hyperlink{namespaceio_ab044be3afd7ac04eeb1a496af0f1d5c6}{long\+\_\+input()} dans une condition si le caractère rentré est 127, aussi connu sous le nom de D\+EL A\+S\+C\+II). 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+La fonction ne retourne rien, car le seul argument est passé {\bfseries par argument} et est donc automatiquement modifié. 
+\end{DoxyPostcond}
+
+\begin{DoxyParams}{Parameters}
+{\em i} & C\textquotesingle{}est un flux de caractères (std\+::stringstream) à partir duquel il faudra enlever le dernier caractère. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceio_a44a79937063c75bdcd8f042d5f55d501}\label{namespaceio_a44a79937063c75bdcd8f042d5f55d501}} 
+\index{io@{io}!Reset\+Terminal@{Reset\+Terminal}}
+\index{Reset\+Terminal@{Reset\+Terminal}!io@{io}}
+\subsubsection{\texorpdfstring{Reset\+Terminal()}{ResetTerminal()}}
+{\footnotesize\ttfamily void io\+::\+Reset\+Terminal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Remet le terminal à zero. 
+
+\mbox{\Hypertarget{namespaceio_ac1340cd13ac838a1d1cfaa0d25a4bbfb}\label{namespaceio_ac1340cd13ac838a1d1cfaa0d25a4bbfb}} 
+\index{io@{io}!set\+Player\+Position@{set\+Player\+Position}}
+\index{set\+Player\+Position@{set\+Player\+Position}!io@{io}}
+\subsubsection{\texorpdfstring{set\+Player\+Position()}{setPlayerPosition()}}
+{\footnotesize\ttfamily void io\+::set\+Player\+Position (\begin{DoxyParamCaption}\item[{int}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceio_a0161a5c00ad8e7222f3a052e7c9fa67b}\label{namespaceio_a0161a5c00ad8e7222f3a052e7c9fa67b}} 
+\index{io@{io}!taille\+\_\+str@{taille\+\_\+str}}
+\index{taille\+\_\+str@{taille\+\_\+str}!io@{io}}
+\subsubsection{\texorpdfstring{taille\+\_\+str()}{taille\_str()}}
+{\footnotesize\ttfamily int io\+::taille\+\_\+str (\begin{DoxyParamCaption}\item[{std\+::string}]{ }\end{DoxyParamCaption})}
+
+
+
+Compte la taille d\textquotesingle{}une string mieux que la fonction std\+::string\+::size(), car elle ne compte pas les accents comme deux caractères. 
+
+\mbox{\Hypertarget{namespaceio_a495fffe3be2fea58511cedcfcea5dbbd}\label{namespaceio_a495fffe3be2fea58511cedcfcea5dbbd}} 
+\index{io@{io}!To\+\_\+int@{To\+\_\+int}}
+\index{To\+\_\+int@{To\+\_\+int}!io@{io}}
+\subsubsection{\texorpdfstring{To\+\_\+int()}{To\_int()}}
+{\footnotesize\ttfamily int io\+::\+To\+\_\+int (\begin{DoxyParamCaption}\item[{std\+::string}]{input }\end{DoxyParamCaption})}
+
+
+
+Convertit un string en int. 
+
+Renvoie 0 si l\textquotesingle{}input n\textquotesingle{}est pas convertible. 
+\begin{DoxyParams}{Parameters}
+{\em input} & String à convertir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Entier obtenu suite à la conversion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceio_adfc4ec23f63d0f743773a584f0a5826f}\label{namespaceio_adfc4ec23f63d0f743773a584f0a5826f}} 
+\index{io@{io}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!io@{io}}
+\subsubsection{\texorpdfstring{to\+String()}{toString()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string io\+::to\+String (\begin{DoxyParamCaption}\item[{const T \&}]{valeur }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceio_ae9438bfe8b2631be82b0f4d644358545}\label{namespaceio_ae9438bfe8b2631be82b0f4d644358545}} 
+\index{io@{io}!update\+Map@{update\+Map}}
+\index{update\+Map@{update\+Map}!io@{io}}
+\subsubsection{\texorpdfstring{update\+Map()}{updateMap()}}
+{\footnotesize\ttfamily void io\+::update\+Map (\begin{DoxyParamCaption}\item[{\hyperlink{class_carte}{Carte} \&}]{jeu\+\_\+carte,  }\item[{std\+::pair$<$ int, int $>$}]{new\+Player\+Pos }\end{DoxyParamCaption})}
+
+
+
+Met à jour l\textquotesingle{}affichage de la carte. 
+
+\mbox{\Hypertarget{namespaceio_a61739b6fe40275cdb72215fd08f41d87}\label{namespaceio_a61739b6fe40275cdb72215fd08f41d87}} 
+\index{io@{io}!update\+Message@{update\+Message}}
+\index{update\+Message@{update\+Message}!io@{io}}
+\subsubsection{\texorpdfstring{update\+Message()}{updateMessage()}}
+{\footnotesize\ttfamily void io\+::update\+Message (\begin{DoxyParamCaption}\item[{std\+::string}]{s,  }\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceio_a24918bdd47093eb3f11b694ad6f832d4}\label{namespaceio_a24918bdd47093eb3f11b694ad6f832d4}} 
+\index{io@{io}!B\+L\+A\+NK@{B\+L\+A\+NK}}
+\index{B\+L\+A\+NK@{B\+L\+A\+NK}!io@{io}}
+\subsubsection{\texorpdfstring{B\+L\+A\+NK}{BLANK}}
+{\footnotesize\ttfamily std\+::string io\+::\+B\+L\+A\+NK}
+
+
+
+Chaîne de caractères permettant de remettre à zéro la couleur du texte. 
+
+\mbox{\Hypertarget{namespaceio_aad76ed62886e76ca53a755d1c917e387}\label{namespaceio_aad76ed62886e76ca53a755d1c917e387}} 
+\index{io@{io}!B\+L\+UE@{B\+L\+UE}}
+\index{B\+L\+UE@{B\+L\+UE}!io@{io}}
+\subsubsection{\texorpdfstring{B\+L\+UE}{BLUE}}
+{\footnotesize\ttfamily std\+::string io\+::\+B\+L\+UE}
+
+
+
+Chaîne de caractères permettant de rendre le texte affiché de couleur bleue. 
+
+\mbox{\Hypertarget{namespaceio_a2a0c75ff7760b96fcf6e696efe3d1c51}\label{namespaceio_a2a0c75ff7760b96fcf6e696efe3d1c51}} 
+\index{io@{io}!current\+Player\+Position@{current\+Player\+Position}}
+\index{current\+Player\+Position@{current\+Player\+Position}!io@{io}}
+\subsubsection{\texorpdfstring{current\+Player\+Position}{currentPlayerPosition}}
+{\footnotesize\ttfamily std\+::pair$<$int,int$>$ io\+::current\+Player\+Position}
+
+
+
+Paire de valeurs (std\+::pair) gardant la position actuelle du joueur dans. 
+
+\mbox{\Hypertarget{namespaceio_a38fffa22831731f5fc0b72700dc75c87}\label{namespaceio_a38fffa22831731f5fc0b72700dc75c87}} 
+\index{io@{io}!G\+R\+E\+EN@{G\+R\+E\+EN}}
+\index{G\+R\+E\+EN@{G\+R\+E\+EN}!io@{io}}
+\subsubsection{\texorpdfstring{G\+R\+E\+EN}{GREEN}}
+{\footnotesize\ttfamily std\+::string io\+::\+G\+R\+E\+EN}
+
+
+
+Chaîne de caractères permettant de rendre le texte affiché de couleur verte. 
+
+\mbox{\Hypertarget{namespaceio_af6147c2896f77caaa4c7d26daee44ac5}\label{namespaceio_af6147c2896f77caaa4c7d26daee44ac5}} 
+\index{io@{io}!interactions\+OverlayY@{interactions\+OverlayY}}
+\index{interactions\+OverlayY@{interactions\+OverlayY}!io@{io}}
+\subsubsection{\texorpdfstring{interactions\+OverlayY}{interactionsOverlayY}}
+{\footnotesize\ttfamily int io\+::interactions\+OverlayY}
+
+
+
+Stocke la position (x) de l\textquotesingle{}affichage de l\textquotesingle{}overlay des actions. Nous n\textquotesingle{}avons pas besoin du Y car l\textquotesingle{}overlay prends toute la largeur quoi qu\textquotesingle{}il arrive. 
+
+\mbox{\Hypertarget{namespaceio_a1e4a43cea85f576e62aebce6aabc60b5}\label{namespaceio_a1e4a43cea85f576e62aebce6aabc60b5}} 
+\index{io@{io}!M\+A\+G\+E\+N\+TA@{M\+A\+G\+E\+N\+TA}}
+\index{M\+A\+G\+E\+N\+TA@{M\+A\+G\+E\+N\+TA}!io@{io}}
+\subsubsection{\texorpdfstring{M\+A\+G\+E\+N\+TA}{MAGENTA}}
+{\footnotesize\ttfamily std\+::string io\+::\+M\+A\+G\+E\+N\+TA}
+
+
+
+Chaîne de caractères permettant de rendre le texte affiché de couleur magenta. 
+
+\mbox{\Hypertarget{namespaceio_a7f2af984af03881a45da957db2c48be2}\label{namespaceio_a7f2af984af03881a45da957db2c48be2}} 
+\index{io@{io}!map\+PositionX@{map\+PositionX}}
+\index{map\+PositionX@{map\+PositionX}!io@{io}}
+\subsubsection{\texorpdfstring{map\+PositionX}{mapPositionX}}
+{\footnotesize\ttfamily int io\+::map\+PositionX}
+
+
+
+Variable permettant de retenir à partir de quelle coordonnée \char`\"{}x\char`\"{} la carte est affichée (si la carte est plus grande que la fenêtre de terminal, cette valeur ne sera pas toujours à 0 ...) 
+
+\mbox{\Hypertarget{namespaceio_aa0322ffa705df7bd3c4fa5eaefde5d6d}\label{namespaceio_aa0322ffa705df7bd3c4fa5eaefde5d6d}} 
+\index{io@{io}!map\+Positiony@{map\+Positiony}}
+\index{map\+Positiony@{map\+Positiony}!io@{io}}
+\subsubsection{\texorpdfstring{map\+Positiony}{mapPositiony}}
+{\footnotesize\ttfamily int io\+::map\+Positiony}
+
+
+
+Variable permettant de retenir à partir de quelle coordonnée \char`\"{}y\char`\"{} la carte est affichée (si la carte est plus grande que la fenêtre de terminal, cette valeur ne sera pas toujours à 0 ...) 
+
+\mbox{\Hypertarget{namespaceio_ac9181eea4e6d57e5481bc7e5822de4cb}\label{namespaceio_ac9181eea4e6d57e5481bc7e5822de4cb}} 
+\index{io@{io}!R\+ED@{R\+ED}}
+\index{R\+ED@{R\+ED}!io@{io}}
+\subsubsection{\texorpdfstring{R\+ED}{RED}}
+{\footnotesize\ttfamily std\+::string io\+::\+R\+ED}
+
+
+
+Chaîne de caractères permettant de rendre le texte affiché de couleur rouge. 
+
+\mbox{\Hypertarget{namespaceio_afaeef00a45e14dc7227025fa7fd27240}\label{namespaceio_afaeef00a45e14dc7227025fa7fd27240}} 
+\index{io@{io}!Term\+Height@{Term\+Height}}
+\index{Term\+Height@{Term\+Height}!io@{io}}
+\subsubsection{\texorpdfstring{Term\+Height}{TermHeight}}
+{\footnotesize\ttfamily int io\+::\+Term\+Height}
+
+
+
+Variable retennant la valeur de la hauteur de la fenêtre du terminal. Elle permet de réduire le nombre de calculs à faire (étant donné que cette valeur est obtenue avec l\textquotesingle{}ouverture d\textquotesingle{}un fichier, son calcul prends donc quelques temps). 
+
+\mbox{\Hypertarget{namespaceio_a09b19ec88fb58a6086ca54be52b7bc08}\label{namespaceio_a09b19ec88fb58a6086ca54be52b7bc08}} 
+\index{io@{io}!Term\+Width@{Term\+Width}}
+\index{Term\+Width@{Term\+Width}!io@{io}}
+\subsubsection{\texorpdfstring{Term\+Width}{TermWidth}}
+{\footnotesize\ttfamily int io\+::\+Term\+Width}
+
+
+
+Variable retennant la valeur de la largeur de la fenêtre du terminal. Elle permet de réduire le nombre de calculs à faire (étant donné que cette valeur est obtenue avec l\textquotesingle{}ouverture d\textquotesingle{}un fichier, son calcul prends donc quelques temps). 
+
+\mbox{\Hypertarget{namespaceio_a0bb7c89e9e48840601811e4e35421767}\label{namespaceio_a0bb7c89e9e48840601811e4e35421767}} 
+\index{io@{io}!Y\+E\+L\+L\+OW@{Y\+E\+L\+L\+OW}}
+\index{Y\+E\+L\+L\+OW@{Y\+E\+L\+L\+OW}!io@{io}}
+\subsubsection{\texorpdfstring{Y\+E\+L\+L\+OW}{YELLOW}}
+{\footnotesize\ttfamily std\+::string io\+::\+Y\+E\+L\+L\+OW}
+
+
+
+Chaîne de caractères permettant de rendre le texte affiché de couleur jaune. 
+

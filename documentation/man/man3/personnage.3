@@ -1,0 +1,83 @@
+.TH "personnage" 3 "Fri May 5 2017" "The Game" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+personnage \- Classe personnage héritant de la classe entité  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <personnage\&.h>\fP
+.PP
+Inherits \fBentite\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBpersonnage\fP ()"
+.br
+.RI "Constructeur vide\&. "
+.ti -1c
+.RI "\fBpersonnage\fP (std::string \fBentiteId\fP, std::string \fBentiteName\fP, int \fBentiteHpMax\fP, int \fBentiteSpeed\fP, int \fBentiteManaMax\fP, std::string \fBentiteDescription\fP, std::vector< \fBcompetence\fP > allSkills)"
+.br
+.RI "Constructeur avec arguments\&. "
+.ti -1c
+.RI "void \fBprintPersonnage\fP ()"
+.br
+.RI "Fonction de test\&. "
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static int \fBnbElemProt\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+Classe personnage héritant de la classe entité 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "personnage::personnage ()"
+
+.PP
+Constructeur vide\&. Le personnage créé aura 0 de mana, et n'aura aucune description\&. Mais il sera créé\&. 
+.SS "personnage::personnage (std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax, std::string entiteDescription, std::vector< \fBcompetence\fP > allSkills)\fC [inline]\fP"
+
+.PP
+Constructeur avec arguments\&. Permet de créer un personnage en affectant toutes ses caractéristiques\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIentiteId\fP L'identifiant du personnage 
+.br
+\fIentiteName\fP Le nom du personnage 
+.br
+\fIentiteHpMax\fP Les points de vie max du personnage 
+.br
+\fIentiteSpeed\fP La vitesse du personnage 
+.br
+\fIentiteManaMax\fP Les points de mana max du personnage 
+.br
+\fIentiteDescription\fP La description du personnage 
+.br
+\fIallSkills\fP Un vecteur (std::vector) contenant toutes les compétences de ce personnage\&. 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void personnage::printPersonnage ()"
+
+.PP
+Fonction de test\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "int personnage::nbElemProt\fC [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Game from the source code\&.

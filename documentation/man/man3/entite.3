@@ -1,0 +1,464 @@
+.TH "entite" 3 "Fri May 5 2017" "The Game" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+entite
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <entite\&.h>\fP
+.PP
+Inherited by \fBmonstre\fP, and \fBpersonnage\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBentite\fP ()"
+.br
+.RI "Constructeur vide\&. "
+.ti -1c
+.RI "\fBentite\fP (std::string \fBentiteId\fP, std::string \fBentiteName\fP, int \fBentiteHpMax\fP, int \fBentiteSpeed\fP, int \fBentiteManaMax\fP, std::string \fBentiteDescription\fP, std::vector< \fBcompetence\fP > allSkills)"
+.br
+.RI "Constructeur avec tout\&. "
+.ti -1c
+.RI "std::string \fBgetID\fP ()"
+.br
+.RI "Getter pour l'id\&. "
+.ti -1c
+.RI "std::string \fBgetName\fP ()"
+.br
+.RI "Getter pour le nom\&. "
+.ti -1c
+.RI "std::string \fBgetDescription\fP ()"
+.br
+.RI "Getter pour la description\&. "
+.ti -1c
+.RI "int \fBgetHpMax\fP ()"
+.br
+.RI "Getter pour le nombre de points de vie max\&. "
+.ti -1c
+.RI "int \fBgetHpCurrent\fP ()"
+.br
+.RI "Getter pour le nombre de points de vie actuels\&. "
+.ti -1c
+.RI "int \fBgetSpeed\fP ()"
+.br
+.RI "Getter pour la vitesse d'attaque de l'entite\&. "
+.ti -1c
+.RI "bool \fBgetAlive\fP ()"
+.br
+.RI "Getter qui permet de savoir si l'entite est en vie\&. "
+.ti -1c
+.RI "int \fBgetManaMax\fP ()"
+.br
+.RI "Getter pour la mana maximum de l'entite\&. "
+.ti -1c
+.RI "int \fBgetManaCurrent\fP ()"
+.br
+.RI "Getter pour la mana actuelle de l'entite\&. "
+.ti -1c
+.RI "std::vector< \fBcompetence\fP > \fBgetSkillVect\fP ()"
+.br
+.RI "Getter qui renvoie un vecteur (std::vector) de compétences\&. "
+.ti -1c
+.RI "void \fBsetHpCurrent\fP (int current)"
+.br
+.RI "Setter pour points de vie actuels\&. "
+.ti -1c
+.RI "void \fBsetManaCurrent\fP (int current)"
+.br
+.RI "Setter pour points de mana actuels\&. "
+.ti -1c
+.RI "int \fBnbLigneFichier\fP (std::string nomFichier)"
+.br
+.RI "Retourne le nombre de lignes d'un fichier\&. "
+.ti -1c
+.RI "std::string \fBentiteString\fP (std::string lettreEntite, std::string nomFichier)"
+.br
+.RI "Convertit une entité en string\&. "
+.ti -1c
+.RI "void \fBsaveInFile\fP (std::string lettreEntite, std::string nomFichier)"
+.br
+.RI "Ecriture d'une entité dans un fichier\&. "
+.ti -1c
+.RI "bool \fBis_personnage\fP ()"
+.br
+.RI "Identification personnage\&. "
+.ti -1c
+.RI "bool \fBis_monstre\fP ()"
+.br
+.RI "Identification monstre\&. "
+.ti -1c
+.RI "void \fBafficher_detail\fP ()"
+.br
+.RI "Affichage en détail\&. "
+.ti -1c
+.RI "std::pair< std::string, std::string > \fBafficher_combat\fP ()"
+.br
+.RI "Affichage en combat\&. "
+.ti -1c
+.RI "\fBentite\fP \fBenleverVie\fP (int degats)"
+.br
+.RI "Enlève x points de vie a l'entite\&. "
+.ti -1c
+.RI "bool \fBenleverMana\fP (int skillManaCost)"
+.br
+.RI "Enlève x points de mana a l'entite\&. "
+.ti -1c
+.RI "int \fBrandomizeDegat\fP (int damage, int fumbleChance, int critChance)"
+.br
+.RI "Modifie l'application normale des dégâts\&. "
+.ti -1c
+.RI "void \fBafficher_brut\fP ()"
+.br
+.RI "Affichage brut\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBentiteId\fP"
+.br
+.RI "Identifiant de l'entité\&. Est obtenu lors de la lecture du fichier des entités\&. "
+.ti -1c
+.RI "std::string \fBentiteName\fP"
+.br
+.RI "Nom de l'entité\&. "
+.ti -1c
+.RI "std::string \fBentiteDescription\fP"
+.br
+.RI "Description de l'entité\&. "
+.ti -1c
+.RI "int \fBentiteHpMax\fP"
+.br
+.RI "Nombre de points de vie maximale que l'entité peut avoir pendant le jeu\&. "
+.ti -1c
+.RI "int \fBentiteHpCurrent\fP"
+.br
+.RI "Nombre de points de vie que l'entité a au moment 'n'\&. "
+.ti -1c
+.RI "int \fBentiteManaMax\fP"
+.br
+.RI "Nombre de points de magie maximal que l'entité peut avoir pendant le jeu\&. "
+.ti -1c
+.RI "int \fBentiteManaCurrent\fP"
+.br
+.RI "Nombre de points de magie que l'entité a au moment 'n'\&. "
+.ti -1c
+.RI "int \fBentiteSpeed\fP"
+.br
+.RI "Vitesse d'attaque de l'entité\&. "
+.ti -1c
+.RI "bool \fBentiteAlive\fP"
+.br
+.RI "Booléen permettant de savoir si l'entité est en vie ou non\&. "
+.ti -1c
+.RI "std::vector< \fBcompetence\fP > \fBentiteSkillVect\fP"
+.br
+.RI "Vecteur (\fCstd::vector\fP) permettant de stocker les compétences de l'entité\&. "
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "entite::entite ()"
+
+.PP
+Constructeur vide\&. Crée une entité vide\&. 
+.PP
+\fBWarning:\fP
+.RS 4
+L'entité sera vide\&. Cela signifie qu'elle ne sera pas utilisable pour le jeu, sa vie étant égale à 0 
+.RE
+.PP
+\fBPostcondition:\fP
+.RS 4
+L'entite crée aura les paramètres suivants:
+.IP "\(bu" 2
+entiteName = 'Inconnu'
+.IP "\(bu" 2
+entiteHpMax = 0
+.IP "\(bu" 2
+entiteHpCurrent = 0
+.IP "\(bu" 2
+entiteSpeed = 0
+.IP "\(bu" 2
+entiteAlive = true (sera changé immédiatement en false)
+.IP "\(bu" 2
+entiteSkillVect = <vecteur vide>=''> 
+.PP
+.RE
+.PP
+
+.SS "entite::entite (std::string entiteId, std::string entiteName, int entiteHpMax, int entiteSpeed, int entiteManaMax, std::string entiteDescription, std::vector< \fBcompetence\fP > allSkills)"
+
+.PP
+Constructeur avec tout\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIentiteId\fP L'identifiant de l'entite 
+.br
+\fIentiteName\fP Le nom de l'entite 
+.br
+\fIentiteHpMax\fP Les points de vie max de l'entite 
+.br
+\fIentiteSpeed\fP La vitesse de l'entite 
+.br
+\fIentiteManaMax\fP Les points de mana max de l'entite 
+.br
+\fIentiteDescription\fP La description de l'entite 
+.br
+\fIallSkills\fP Un vecteur (std::vector) contenant toutes les compétences de cette entite\&. 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void entite::afficher_brut ()"
+
+.PP
+Affichage brut\&. Permet d'afficher les informations nécessaires à la gestion des entités (suppression) 
+.SS "std::pair<std::string,std::string> entite::afficher_combat ()"
+
+.PP
+Affichage en combat\&. Permet de limiter l'affichage d'une entité à ses caractéristiques utiles en combat 
+.SS "void entite::afficher_detail ()"
+
+.PP
+Affichage en détail\&. 
+.SS "bool entite::enleverMana (int skillManaCost)"
+
+.PP
+Enlève x points de mana a l'entite\&. Permet de vérifier la possibilité de retirer la mana pour utiliser une compétence, et la retire à l'entité lanceuse si c'est possible\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIskillManaCost\fP Coût en mana de la compétence souhaitée 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Un booléen vérifiant la capacité à dépenser la mana\&. 
+.RE
+.PP
+
+.SS "\fBentite\fP entite::enleverVie (int degats)"
+
+.PP
+Enlève x points de vie a l'entite\&. Cette fonction permet d'enlever des points de vie\&. Elle permet aussi de savoir si une entite est en vie (ptsVie < 0) ou si elle est morte\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Un booléen qui est égal à \fCtrue\fP si le entite est mort, \fCfalse\fP sinon\&. 
+.RE
+.PP
+
+.SS "std::string entite::entiteString (std::string lettreEntite, std::string nomFichier)"
+
+.PP
+Convertit une entité en string\&. Permet de prendre une entité, et d'en retourner les informations sous forme de chaîne de caractères 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlettreEntite\fP Première lettre du futur identifiant de l'entité 
+.br
+\fInomFichier\fP Nom du fichier dans lequel sauvegarder l'entité 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Une chaîne de caractères décrivant l'entité 
+.RE
+.PP
+
+.SS "bool entite::getAlive ()"
+
+.PP
+Getter qui permet de savoir si l'entite est en vie\&. 
+.SS "std::string entite::getDescription ()"
+
+.PP
+Getter pour la description\&. 
+.SS "int entite::getHpCurrent ()"
+
+.PP
+Getter pour le nombre de points de vie actuels\&. 
+.SS "int entite::getHpMax ()"
+
+.PP
+Getter pour le nombre de points de vie max\&. 
+.SS "std::string entite::getID ()"
+
+.PP
+Getter pour l'id\&. 
+.SS "int entite::getManaCurrent ()"
+
+.PP
+Getter pour la mana actuelle de l'entite\&. 
+.SS "int entite::getManaMax ()"
+
+.PP
+Getter pour la mana maximum de l'entite\&. 
+.SS "std::string entite::getName ()"
+
+.PP
+Getter pour le nom\&. 
+.SS "std::vector<\fBcompetence\fP> entite::getSkillVect ()"
+
+.PP
+Getter qui renvoie un vecteur (std::vector) de compétences\&. 
+.SS "int entite::getSpeed ()"
+
+.PP
+Getter pour la vitesse d'attaque de l'entite\&. 
+.SS "bool entite::is_monstre ()"
+
+.PP
+Identification monstre\&. Permet de déterminer la qualité de monstre d'une entité\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Booléen: vrai si l'entité est un monstre, faux sinon 
+.RE
+.PP
+
+.SS "bool entite::is_personnage ()"
+
+.PP
+Identification personnage\&. Permet de déterminer la qualité de personnage d'une entité\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Booléen: vrai si l'entité est un personnage, faux sinon 
+.RE
+.PP
+
+.SS "int entite::nbLigneFichier (std::string nomFichier)"
+
+.PP
+Retourne le nombre de lignes d'un fichier\&. Compte le nb de lignes du fichier pour créer l'identifiant unique d'un entite\&. L'identifiant sera \fC nbLignes + 1 \fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInomFichier\fP Une string (std::string) qui sera le nom du fichier à ouvrir\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Un entier représentant le nombre de lignes\&. 
+.RE
+.PP
+\fBPostcondition:\fP
+.RS 4
+La string contiendra les infos dans cet ordre :
+.IP "\(bu" 2
+entiteIdentifiant (type \fCm<entier>\fP)
+.IP "\(bu" 2
+nom de l'entite
+.IP "\(bu" 2
+nombre de points de vie
+.IP "\(bu" 2
+vitesse d'attaque
+.IP "\(bu" 2
+toutes les compétences , séparées par des \fC:\fP 
+.PP
+.RE
+.PP
+
+.SS "int entite::randomizeDegat (int damage, int fumbleChance, int critChance)"
+
+.PP
+Modifie l'application normale des dégâts\&. Permet d'appliquer un modificateur de dégâts à une attaque (néfaste ou bénéfique)\&.
+.PP
+3 cas distincts:
+.IP "\(bu" 2
+La valeur aléatoire renvoyée est inférieure au pourcentage plafond de fumble -> les dégâts / soins sont divisés par 2\&.
+.IP "\(bu" 2
+La valeur aléatoire renvoyée est supérieure au pourcentage plancher de critique -> les dégâts / soins sont multipliés par 2\&.
+.IP "\(bu" 2
+La valeur aléatoire renvoyée est entre ces deux limites -> pas de changement\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdamage\fP La valeur de dégâts à modifier 
+.br
+\fIfumbleChance\fP Le pourcentage de chances d'effectuer un fumble (moins de 10% conseillés) 
+.br
+\fIcritChance\fP Le pourcentage de chances d'effectuer un critique 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+La valeur modifiée 
+.RE
+.PP
+
+.PP
+
+.SS "void entite::saveInFile (std::string lettreEntite, std::string nomFichier)"
+
+.PP
+Ecriture d'une entité dans un fichier\&. Permet de sauvegarder une entité dans un fichier 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlettreEntite\fP Première lettre du futur identifiant de l'entité 
+.br
+\fInomFichier\fP Nom du fichier dans lequel sauvegarder l'entité 
+.RE
+.PP
+
+.SS "void entite::setHpCurrent (int current)"
+
+.PP
+Setter pour points de vie actuels\&. 
+.SS "void entite::setManaCurrent (int current)"
+
+.PP
+Setter pour points de mana actuels\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "bool entite::entiteAlive\fC [protected]\fP"
+
+.PP
+Booléen permettant de savoir si l'entité est en vie ou non\&. 
+.SS "std::string entite::entiteDescription\fC [protected]\fP"
+
+.PP
+Description de l'entité\&. 
+.SS "int entite::entiteHpCurrent\fC [protected]\fP"
+
+.PP
+Nombre de points de vie que l'entité a au moment 'n'\&. 
+.SS "int entite::entiteHpMax\fC [protected]\fP"
+
+.PP
+Nombre de points de vie maximale que l'entité peut avoir pendant le jeu\&. 
+.SS "std::string entite::entiteId\fC [protected]\fP"
+
+.PP
+Identifiant de l'entité\&. Est obtenu lors de la lecture du fichier des entités\&. 
+.SS "int entite::entiteManaCurrent\fC [protected]\fP"
+
+.PP
+Nombre de points de magie que l'entité a au moment 'n'\&. 
+.SS "int entite::entiteManaMax\fC [protected]\fP"
+
+.PP
+Nombre de points de magie maximal que l'entité peut avoir pendant le jeu\&. 
+.SS "std::string entite::entiteName\fC [protected]\fP"
+
+.PP
+Nom de l'entité\&. 
+.SS "std::vector<\fBcompetence\fP> entite::entiteSkillVect\fC [protected]\fP"
+
+.PP
+Vecteur (\fCstd::vector\fP) permettant de stocker les compétences de l'entité\&. 
+.SS "int entite::entiteSpeed\fC [protected]\fP"
+
+.PP
+Vitesse d'attaque de l'entité\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Game from the source code\&.

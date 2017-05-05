@@ -235,3 +235,13 @@ public:
 bool sort_speed(entite a, entite b);
 
 #endif
+
+/*!
+	\mainpage
+
+	Bienvenue sur la documentation de The Game, le projet de L2 Informatique (2016/2017).
+
+	Vous trouverez ici le documentation (presque) complète du projet.
+
+	\author Raphael Montet, Loïc Menguy, Malvina Gontard, Ludivine Nouveau & Thibault de Villèle.
+*/

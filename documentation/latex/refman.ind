@@ -1,0 +1,529 @@
+\begin{theindex}
+
+  \item {/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/carte.\+h}, 
+		\hyperpage{71}
+  \item {/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/competence.\+h}, 
+		\hyperpage{71}
+  \item {/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/config.\+h}, 
+		\hyperpage{71}
+  \item {/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/entite.\+h}, 
+		\hyperpage{72}
+  \item {/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/fonctionsjeu.\+h}, 
+		\hyperpage{72}
+  \item {/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/io.\+h}, 
+		\hyperpage{73}
+  \item {/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/monstre.\+h}, 
+		\hyperpage{76}
+  \item {/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/personnage.\+h}, 
+		\hyperpage{76}
+  \item {$\sim$competence}
+    \subitem {competence}, \hyperpage{40}
+  \item {$\sim$jeu}
+    \subitem {jeu}, \hyperpage{58}
+
+  \indexspace
+
+  \item {aff\+\_\+combat}
+    \subitem {io}, \hyperpage{13}
+  \item {affichage\+\_\+normal}
+    \subitem {Carte}, \hyperpage{29}
+  \item {afficher}
+    \subitem {io}, \hyperpage{13}
+  \item {afficher\+\_\+brut}
+    \subitem {Carte}, \hyperpage{29}
+    \subitem {entite}, \hyperpage{49}
+  \item {afficher\+\_\+combat}
+    \subitem {entite}, \hyperpage{49}
+  \item {afficher\+\_\+detail}
+    \subitem {Carte}, \hyperpage{30}
+    \subitem {competence}, \hyperpage{40}
+    \subitem {entite}, \hyperpage{49}
+  \item {afficher\+\_\+detail\+\_\+combat}
+    \subitem {competence}, \hyperpage{40}
+  \item {afficher\+Carte}
+    \subitem {io}, \hyperpage{14}
+  \item {afficher\+Jeu}
+    \subitem {jeu}, \hyperpage{58}
+  \item {afficher\+Mouvements}
+    \subitem {io}, \hyperpage{14, 15}
+  \item {appliquer\+\_\+comp}
+    \subitem {jeu}, \hyperpage{58}
+
+  \indexspace
+
+  \item {B\+L\+A\+NK}
+    \subitem {io}, \hyperpage{23}
+  \item {B\+L\+UE}
+    \subitem {io}, \hyperpage{23}
+  \item {bienvenue}
+    \subitem {io}, \hyperpage{15}
+
+  \indexspace
+
+  \item {C\+O\+N\+F\+I\+G\+\_\+H}
+    \subitem {config.\+h}, \hyperpage{72}
+  \item {Carte}, \hyperpage{27}
+    \subitem {affichage\+\_\+normal}, \hyperpage{29}
+    \subitem {afficher\+\_\+brut}, \hyperpage{29}
+    \subitem {afficher\+\_\+detail}, \hyperpage{30}
+    \subitem {Carte}, \hyperpage{29}
+    \subitem {carte\+String}, \hyperpage{30}
+    \subitem {case\+Accessible}, \hyperpage{30}
+    \subitem {coordonneejoueur}, \hyperpage{31}
+    \subitem {coordonneemonstre}, \hyperpage{31}
+    \subitem {coordonneeobstacle}, \hyperpage{31}
+    \subitem {echanger\+Contenu\+Case}, \hyperpage{32}
+    \subitem {get\+Description}, \hyperpage{32}
+    \subitem {get\+Name}, \hyperpage{32}
+    \subitem {get\+Nbr\+Monstres}, \hyperpage{32}
+    \subitem {get\+Plateau}, \hyperpage{33}
+    \subitem {get\+Taille}, \hyperpage{33}
+    \subitem {monstre\+Mort}, \hyperpage{33}
+    \subitem {nb\+Elem\+Prot}, \hyperpage{37}
+    \subitem {nb\+Ligne\+Fichier}, \hyperpage{33}
+    \subitem {operator=}, \hyperpage{34}
+    \subitem {saisie}, \hyperpage{34}
+    \subitem {save\+In\+File}, \hyperpage{35}
+    \subitem {set\+Case}, \hyperpage{35}
+    \subitem {set\+Case\+Dispo}, \hyperpage{36}
+    \subitem {set\+Description}, \hyperpage{36}
+    \subitem {set\+Id}, \hyperpage{36}
+    \subitem {set\+Name}, \hyperpage{36}
+    \subitem {set\+Nbr\+Monstre}, \hyperpage{36}
+    \subitem {set\+Plateau}, \hyperpage{37}
+    \subitem {set\+Taille}, \hyperpage{37}
+  \item {carte\+String}
+    \subitem {Carte}, \hyperpage{30}
+  \item {case\+Accessible}
+    \subitem {Carte}, \hyperpage{30}
+  \item {Change\+Terminal}
+    \subitem {io}, \hyperpage{15}
+  \item {chargement\+\_\+entite}
+    \subitem {jeu}, \hyperpage{59}
+  \item {check\+Input}
+    \subitem {io}, \hyperpage{16}
+  \item {check\+Separator\+Entite}
+    \subitem {io}, \hyperpage{16}
+  \item {check\+Separator\+Skill}
+    \subitem {io}, \hyperpage{17}
+  \item {check\+Terminal\+Size}
+    \subitem {io}, \hyperpage{17}
+  \item {cherche\+\_\+monstre}
+    \subitem {jeu}, \hyperpage{60}
+  \item {choix\+\_\+comp}
+    \subitem {jeu}, \hyperpage{60}
+  \item {choix\+\_\+taille}
+    \subitem {config}, \hyperpage{43}
+  \item {choix\+\_\+target}
+    \subitem {jeu}, \hyperpage{61}
+  \item {choix\+\_\+unique\+\_\+element}
+    \subitem {io}, \hyperpage{17}
+  \item {clear\+Screen}
+    \subitem {io}, \hyperpage{18}
+  \item {combat}
+    \subitem {jeu}, \hyperpage{61}
+  \item {competence}, \hyperpage{37}
+    \subitem {$\sim$competence}, \hyperpage{40}
+    \subitem {afficher\+\_\+detail}, \hyperpage{40}
+    \subitem {afficher\+\_\+detail\+\_\+combat}, \hyperpage{40}
+    \subitem {competence}, \hyperpage{38, 39}
+    \subitem {competence\+String}, \hyperpage{40}
+    \subitem {get\+Damage}, \hyperpage{41}
+    \subitem {get\+Description}, \hyperpage{41}
+    \subitem {get\+Mana\+Cost}, \hyperpage{41}
+    \subitem {get\+Name}, \hyperpage{41}
+    \subitem {to\+String}, \hyperpage{42}
+  \item {competence\+String}
+    \subitem {competence}, \hyperpage{40}
+  \item {config}, \hyperpage{42}
+    \subitem {choix\+\_\+taille}, \hyperpage{43}
+    \subitem {config\+\_\+carte}, \hyperpage{43}
+    \subitem {config\+\_\+monstre}, \hyperpage{43}
+    \subitem {config\+\_\+perso}, \hyperpage{44}
+    \subitem {create\+Competence\+Entite}, \hyperpage{44}
+    \subitem {creation\+Carte}, \hyperpage{44}
+    \subitem {creation\+Entite}, \hyperpage{45}
+    \subitem {delete\+Line\+Element}, \hyperpage{45}
+    \subitem {identif\+\_\+objet}, \hyperpage{46}
+  \item {config.\+h}
+    \subitem {C\+O\+N\+F\+I\+G\+\_\+H}, \hyperpage{72}
+  \item {config\+\_\+carte}
+    \subitem {config}, \hyperpage{43}
+  \item {config\+\_\+monstre}
+    \subitem {config}, \hyperpage{43}
+  \item {config\+\_\+perso}
+    \subitem {config}, \hyperpage{44}
+  \item {coordonneejoueur}
+    \subitem {Carte}, \hyperpage{31}
+  \item {coordonneemonstre}
+    \subitem {Carte}, \hyperpage{31}
+  \item {coordonneeobstacle}
+    \subitem {Carte}, \hyperpage{31}
+  \item {create\+Competence\+Entite}
+    \subitem {config}, \hyperpage{44}
+  \item {creation\+Carte}
+    \subitem {config}, \hyperpage{44}
+  \item {creation\+Entite}
+    \subitem {config}, \hyperpage{45}
+  \item {current\+Player\+Position}
+    \subitem {io}, \hyperpage{23}
+
+  \indexspace
+
+  \item {de}
+    \subitem {io}, \hyperpage{18}
+  \item {delete\+Line\+Element}
+    \subitem {config}, \hyperpage{45}
+  \item {deplacement}
+    \subitem {jeu}, \hyperpage{62}
+
+  \indexspace
+
+  \item {echanger\+Contenu\+Case}
+    \subitem {Carte}, \hyperpage{32}
+  \item {enlever\+Mana}
+    \subitem {entite}, \hyperpage{49}
+  \item {enlever\+Vie}
+    \subitem {entite}, \hyperpage{50}
+  \item {entite}, \hyperpage{46}
+    \subitem {afficher\+\_\+brut}, \hyperpage{49}
+    \subitem {afficher\+\_\+combat}, \hyperpage{49}
+    \subitem {afficher\+\_\+detail}, \hyperpage{49}
+    \subitem {enlever\+Mana}, \hyperpage{49}
+    \subitem {enlever\+Vie}, \hyperpage{50}
+    \subitem {entite}, \hyperpage{48}
+    \subitem {entite\+Alive}, \hyperpage{55}
+    \subitem {entite\+Description}, \hyperpage{55}
+    \subitem {entite\+Hp\+Current}, \hyperpage{55}
+    \subitem {entite\+Hp\+Max}, \hyperpage{55}
+    \subitem {entite\+Id}, \hyperpage{55}
+    \subitem {entite\+Mana\+Current}, \hyperpage{55}
+    \subitem {entite\+Mana\+Max}, \hyperpage{56}
+    \subitem {entite\+Name}, \hyperpage{56}
+    \subitem {entite\+Skill\+Vect}, \hyperpage{56}
+    \subitem {entite\+Speed}, \hyperpage{56}
+    \subitem {entite\+String}, \hyperpage{50}
+    \subitem {get\+Alive}, \hyperpage{51}
+    \subitem {get\+Description}, \hyperpage{51}
+    \subitem {get\+Hp\+Current}, \hyperpage{51}
+    \subitem {get\+Hp\+Max}, \hyperpage{51}
+    \subitem {get\+ID}, \hyperpage{51}
+    \subitem {get\+Mana\+Current}, \hyperpage{51}
+    \subitem {get\+Mana\+Max}, \hyperpage{52}
+    \subitem {get\+Name}, \hyperpage{52}
+    \subitem {get\+Skill\+Vect}, \hyperpage{52}
+    \subitem {get\+Speed}, \hyperpage{52}
+    \subitem {is\+\_\+monstre}, \hyperpage{52}
+    \subitem {is\+\_\+personnage}, \hyperpage{52}
+    \subitem {nb\+Ligne\+Fichier}, \hyperpage{53}
+    \subitem {randomize\+Degat}, \hyperpage{53}
+    \subitem {save\+In\+File}, \hyperpage{54}
+    \subitem {set\+Hp\+Current}, \hyperpage{54}
+    \subitem {set\+Mana\+Current}, \hyperpage{54}
+  \item {entite\+Alive}
+    \subitem {entite}, \hyperpage{55}
+  \item {entite\+Description}
+    \subitem {entite}, \hyperpage{55}
+  \item {entite\+Hp\+Current}
+    \subitem {entite}, \hyperpage{55}
+  \item {entite\+Hp\+Max}
+    \subitem {entite}, \hyperpage{55}
+  \item {entite\+Id}
+    \subitem {entite}, \hyperpage{55}
+  \item {entite\+Mana\+Current}
+    \subitem {entite}, \hyperpage{55}
+  \item {entite\+Mana\+Max}
+    \subitem {entite}, \hyperpage{56}
+  \item {entite\+Name}
+    \subitem {entite}, \hyperpage{56}
+  \item {entite\+Skill\+Vect}
+    \subitem {entite}, \hyperpage{56}
+  \item {entite\+Speed}
+    \subitem {entite}, \hyperpage{56}
+  \item {entite\+String}
+    \subitem {entite}, \hyperpage{50}
+
+  \indexspace
+
+  \item {failed\+Game}
+    \subitem {jeu}, \hyperpage{62}
+  \item {fonctionsjeu.\+h}
+    \subitem {sort\+\_\+speed}, \hyperpage{73}
+
+  \indexspace
+
+  \item {G\+R\+E\+EN}
+    \subitem {io}, \hyperpage{24}
+  \item {generer\+Deplacement}
+    \subitem {jeu}, \hyperpage{63}
+  \item {generer\+Input\+Accepte}
+    \subitem {jeu}, \hyperpage{64}
+  \item {get\+Alive}
+    \subitem {entite}, \hyperpage{51}
+  \item {get\+Carte}
+    \subitem {jeu}, \hyperpage{65}
+  \item {get\+Damage}
+    \subitem {competence}, \hyperpage{41}
+  \item {get\+Description}
+    \subitem {Carte}, \hyperpage{32}
+    \subitem {competence}, \hyperpage{41}
+    \subitem {entite}, \hyperpage{51}
+  \item {get\+Hp\+Current}
+    \subitem {entite}, \hyperpage{51}
+  \item {get\+Hp\+Max}
+    \subitem {entite}, \hyperpage{51}
+  \item {get\+ID}
+    \subitem {entite}, \hyperpage{51}
+  \item {get\+Mana\+Cost}
+    \subitem {competence}, \hyperpage{41}
+  \item {get\+Mana\+Current}
+    \subitem {entite}, \hyperpage{51}
+  \item {get\+Mana\+Max}
+    \subitem {entite}, \hyperpage{52}
+  \item {get\+Monstres}
+    \subitem {jeu}, \hyperpage{65}
+  \item {get\+Name}
+    \subitem {Carte}, \hyperpage{32}
+    \subitem {competence}, \hyperpage{41}
+    \subitem {entite}, \hyperpage{52}
+  \item {get\+Nb\+Monstres}
+    \subitem {jeu}, \hyperpage{65}
+  \item {get\+Nbr\+Monstres}
+    \subitem {Carte}, \hyperpage{32}
+  \item {get\+Perso}
+    \subitem {jeu}, \hyperpage{65}
+  \item {get\+Plateau}
+    \subitem {Carte}, \hyperpage{33}
+  \item {get\+Skill\+Vect}
+    \subitem {entite}, \hyperpage{52}
+  \item {get\+Speed}
+    \subitem {entite}, \hyperpage{52}
+  \item {get\+Taille}
+    \subitem {Carte}, \hyperpage{33}
+  \item {get\+Terminal\+Height}
+    \subitem {io}, \hyperpage{18}
+  \item {get\+Terminal\+Width}
+    \subitem {io}, \hyperpage{19}
+
+  \indexspace
+
+  \item {I\+O\+\_\+H}
+    \subitem {io.\+h}, \hyperpage{76}
+  \item {identif\+\_\+objet}
+    \subitem {config}, \hyperpage{46}
+  \item {input\+Sep\+Check}
+    \subitem {io}, \hyperpage{19}
+  \item {interactions\+OverlayY}
+    \subitem {io}, \hyperpage{24}
+  \item {io}, \hyperpage{11}
+    \subitem {aff\+\_\+combat}, \hyperpage{13}
+    \subitem {afficher}, \hyperpage{13}
+    \subitem {afficher\+Carte}, \hyperpage{14}
+    \subitem {afficher\+Mouvements}, \hyperpage{14, 15}
+    \subitem {B\+L\+A\+NK}, \hyperpage{23}
+    \subitem {B\+L\+UE}, \hyperpage{23}
+    \subitem {bienvenue}, \hyperpage{15}
+    \subitem {Change\+Terminal}, \hyperpage{15}
+    \subitem {check\+Input}, \hyperpage{16}
+    \subitem {check\+Separator\+Entite}, \hyperpage{16}
+    \subitem {check\+Separator\+Skill}, \hyperpage{17}
+    \subitem {check\+Terminal\+Size}, \hyperpage{17}
+    \subitem {choix\+\_\+unique\+\_\+element}, \hyperpage{17}
+    \subitem {clear\+Screen}, \hyperpage{18}
+    \subitem {current\+Player\+Position}, \hyperpage{23}
+    \subitem {de}, \hyperpage{18}
+    \subitem {G\+R\+E\+EN}, \hyperpage{24}
+    \subitem {get\+Terminal\+Height}, \hyperpage{18}
+    \subitem {get\+Terminal\+Width}, \hyperpage{19}
+    \subitem {input\+Sep\+Check}, \hyperpage{19}
+    \subitem {interactions\+OverlayY}, \hyperpage{24}
+    \subitem {liste\+\_\+elements}, \hyperpage{19}
+    \subitem {load\+All\+Carte\+From\+File}, \hyperpage{19}
+    \subitem {load\+All\+Entite\+From\+File}, \hyperpage{20}
+    \subitem {load\+Competence\+From\+File}, \hyperpage{20}
+    \subitem {long\+\_\+input}, \hyperpage{21}
+    \subitem {M\+A\+G\+E\+N\+TA}, \hyperpage{24}
+    \subitem {map\+PositionX}, \hyperpage{24}
+    \subitem {map\+Positiony}, \hyperpage{24}
+    \subitem {R\+ED}, \hyperpage{24}
+    \subitem {remove\+Last\+Char}, \hyperpage{21}
+    \subitem {Reset\+Terminal}, \hyperpage{22}
+    \subitem {set\+Player\+Position}, \hyperpage{22}
+    \subitem {taille\+\_\+str}, \hyperpage{22}
+    \subitem {Term\+Height}, \hyperpage{25}
+    \subitem {Term\+Width}, \hyperpage{25}
+    \subitem {To\+\_\+int}, \hyperpage{22}
+    \subitem {to\+String}, \hyperpage{23}
+    \subitem {update\+Map}, \hyperpage{23}
+    \subitem {update\+Message}, \hyperpage{23}
+    \subitem {Y\+E\+L\+L\+OW}, \hyperpage{25}
+  \item {io.\+h}
+    \subitem {I\+O\+\_\+H}, \hyperpage{76}
+  \item {is\+\_\+monstre}
+    \subitem {entite}, \hyperpage{52}
+  \item {is\+\_\+personnage}
+    \subitem {entite}, \hyperpage{52}
+
+  \indexspace
+
+  \item {jeu}, \hyperpage{56}
+    \subitem {$\sim$jeu}, \hyperpage{58}
+    \subitem {afficher\+Jeu}, \hyperpage{58}
+    \subitem {appliquer\+\_\+comp}, \hyperpage{58}
+    \subitem {chargement\+\_\+entite}, \hyperpage{59}
+    \subitem {cherche\+\_\+monstre}, \hyperpage{60}
+    \subitem {choix\+\_\+comp}, \hyperpage{60}
+    \subitem {choix\+\_\+target}, \hyperpage{61}
+    \subitem {combat}, \hyperpage{61}
+    \subitem {deplacement}, \hyperpage{62}
+    \subitem {failed\+Game}, \hyperpage{62}
+    \subitem {generer\+Deplacement}, \hyperpage{63}
+    \subitem {generer\+Input\+Accepte}, \hyperpage{64}
+    \subitem {get\+Carte}, \hyperpage{65}
+    \subitem {get\+Monstres}, \hyperpage{65}
+    \subitem {get\+Nb\+Monstres}, \hyperpage{65}
+    \subitem {get\+Perso}, \hyperpage{65}
+    \subitem {jeu}, \hyperpage{58}
+    \subitem {orga\+\_\+entites}, \hyperpage{65}
+    \subitem {quit\+Game}, \hyperpage{66}
+    \subitem {set\+Jeu\+Carte}, \hyperpage{66}
+    \subitem {victoire\+Game}, \hyperpage{66}
+
+  \indexspace
+
+  \item {liste\+\_\+elements}
+    \subitem {io}, \hyperpage{19}
+  \item {load\+All\+Carte\+From\+File}
+    \subitem {io}, \hyperpage{19}
+  \item {load\+All\+Entite\+From\+File}
+    \subitem {io}, \hyperpage{20}
+  \item {load\+Competence\+From\+File}
+    \subitem {io}, \hyperpage{20}
+  \item {long\+\_\+input}
+    \subitem {io}, \hyperpage{21}
+
+  \indexspace
+
+  \item {M\+A\+G\+E\+N\+TA}
+    \subitem {io}, \hyperpage{24}
+  \item {map\+PositionX}
+    \subitem {io}, \hyperpage{24}
+  \item {map\+Positiony}
+    \subitem {io}, \hyperpage{24}
+  \item {monstre}, \hyperpage{66}
+    \subitem {monstre}, \hyperpage{67}
+    \subitem {nb\+Elem\+Prot}, \hyperpage{68}
+    \subitem {print\+Monstre}, \hyperpage{68}
+  \item {monstre\+Mort}
+    \subitem {Carte}, \hyperpage{33}
+
+  \indexspace
+
+  \item {nb\+Elem\+Prot}
+    \subitem {Carte}, \hyperpage{37}
+    \subitem {monstre}, \hyperpage{68}
+    \subitem {personnage}, \hyperpage{70}
+  \item {nb\+Ligne\+Fichier}
+    \subitem {Carte}, \hyperpage{33}
+    \subitem {entite}, \hyperpage{53}
+
+  \indexspace
+
+  \item {operator=}
+    \subitem {Carte}, \hyperpage{34}
+  \item {orga\+\_\+entites}
+    \subitem {jeu}, \hyperpage{65}
+
+  \indexspace
+
+  \item {personnage}, \hyperpage{69}
+    \subitem {nb\+Elem\+Prot}, \hyperpage{70}
+    \subitem {personnage}, \hyperpage{69}
+    \subitem {print\+Personnage}, \hyperpage{70}
+  \item {print\+Monstre}
+    \subitem {monstre}, \hyperpage{68}
+  \item {print\+Personnage}
+    \subitem {personnage}, \hyperpage{70}
+
+  \indexspace
+
+  \item {quit\+Game}
+    \subitem {jeu}, \hyperpage{66}
+
+  \indexspace
+
+  \item {R\+ED}
+    \subitem {io}, \hyperpage{24}
+  \item {randomize\+Degat}
+    \subitem {entite}, \hyperpage{53}
+  \item {remove\+Last\+Char}
+    \subitem {io}, \hyperpage{21}
+  \item {Reset\+Terminal}
+    \subitem {io}, \hyperpage{22}
+
+  \indexspace
+
+  \item {saisie}
+    \subitem {Carte}, \hyperpage{34}
+  \item {save\+In\+File}
+    \subitem {Carte}, \hyperpage{35}
+    \subitem {entite}, \hyperpage{54}
+  \item {set\+Case}
+    \subitem {Carte}, \hyperpage{35}
+  \item {set\+Case\+Dispo}
+    \subitem {Carte}, \hyperpage{36}
+  \item {set\+Description}
+    \subitem {Carte}, \hyperpage{36}
+  \item {set\+Hp\+Current}
+    \subitem {entite}, \hyperpage{54}
+  \item {set\+Id}
+    \subitem {Carte}, \hyperpage{36}
+  \item {set\+Jeu\+Carte}
+    \subitem {jeu}, \hyperpage{66}
+  \item {set\+Mana\+Current}
+    \subitem {entite}, \hyperpage{54}
+  \item {set\+Name}
+    \subitem {Carte}, \hyperpage{36}
+  \item {set\+Nbr\+Monstre}
+    \subitem {Carte}, \hyperpage{36}
+  \item {set\+Plateau}
+    \subitem {Carte}, \hyperpage{37}
+  \item {set\+Player\+Position}
+    \subitem {io}, \hyperpage{22}
+  \item {set\+Taille}
+    \subitem {Carte}, \hyperpage{37}
+  \item {sort\+\_\+speed}
+    \subitem {fonctionsjeu.\+h}, \hyperpage{73}
+
+  \indexspace
+
+  \item {taille\+\_\+str}
+    \subitem {io}, \hyperpage{22}
+  \item {Term\+Height}
+    \subitem {io}, \hyperpage{25}
+  \item {Term\+Width}
+    \subitem {io}, \hyperpage{25}
+  \item {To\+\_\+int}
+    \subitem {io}, \hyperpage{22}
+  \item {to\+String}
+    \subitem {competence}, \hyperpage{42}
+    \subitem {io}, \hyperpage{23}
+
+  \indexspace
+
+  \item {update\+Map}
+    \subitem {io}, \hyperpage{23}
+  \item {update\+Message}
+    \subitem {io}, \hyperpage{23}
+
+  \indexspace
+
+  \item {victoire\+Game}
+    \subitem {jeu}, \hyperpage{66}
+
+  \indexspace
+
+  \item {Y\+E\+L\+L\+OW}
+    \subitem {io}, \hyperpage{25}
+
+\end{theindex}

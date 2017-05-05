@@ -1,0 +1,190 @@
+\hypertarget{classconfig}{}\section{config Class Reference}
+\label{classconfig}\index{config@{config}}
+
+
+{\ttfamily \#include $<$config.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classconfig_a346b395fb2b184ce5df6e016373573cf}{config\+\_\+carte} ()
+\begin{DoxyCompactList}\small\item\em Configuration de carte. \end{DoxyCompactList}\item 
+void \hyperlink{classconfig_ac7075cb352a6843ae07b907a40d2a8eb}{config\+\_\+monstre} ()
+\begin{DoxyCompactList}\small\item\em Configuration de monstre. \end{DoxyCompactList}\item 
+void \hyperlink{classconfig_a4b425e40339f3e57e41b38677ec4cc5a}{config\+\_\+perso} ()
+\begin{DoxyCompactList}\small\item\em Configuration de personnage. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{classconfig_acf29a316025d6a8f05219a1f95f6d272}{identif\+\_\+objet} (T objet)
+\begin{DoxyCompactList}\small\item\em Caractère d\textquotesingle{}identification d\textquotesingle{}un objet. \end{DoxyCompactList}\item 
+int \hyperlink{classconfig_a4125b70dd7204927a1abf06342a934a9}{choix\+\_\+taille} ()
+\begin{DoxyCompactList}\small\item\em Choix de la taille. \end{DoxyCompactList}\item 
+void \hyperlink{classconfig_a74e51912220c662f35a45146e8ea4d41}{creation\+Carte} ()
+\begin{DoxyCompactList}\small\item\em Création d\textquotesingle{}une carte. \end{DoxyCompactList}\item 
+\hyperlink{classcompetence}{competence} \hyperlink{classconfig_a9311924c3fc7e8cef221c1fec32c832e}{create\+Competence\+Entite} (\hyperlink{classentite}{entite} dummy, int rang, int mana\+Max)
+\begin{DoxyCompactList}\small\item\em Création de compétence. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{classconfig_a2df74fdb5ab353576bb8758259d8bc22}{creation\+Entite} (T dummy, std\+::string nom\+\_\+fichier)
+\begin{DoxyCompactList}\small\item\em Création d\textquotesingle{}une entité \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{classconfig_af343d1915cc536ae272c9fa3e321f4fc}{delete\+Line\+Element} (std\+::string nom\+Fichier, std\+::vector$<$ T $>$ \&all\+Element, std\+::string lettre\+Element, int nb\+Elem\+Prot)
+\begin{DoxyCompactList}\small\item\em Supprimer un élément. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classconfig_a4125b70dd7204927a1abf06342a934a9}\label{classconfig_a4125b70dd7204927a1abf06342a934a9}} 
+\index{config@{config}!choix\+\_\+taille@{choix\+\_\+taille}}
+\index{choix\+\_\+taille@{choix\+\_\+taille}!config@{config}}
+\subsubsection{\texorpdfstring{choix\+\_\+taille()}{choix\_taille()}}
+{\footnotesize\ttfamily int config\+::choix\+\_\+taille (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Choix de la taille. 
+
+Permet de choisir la taille de la carte.
+
+La taille doit être supérieure à 4 et inférieure à 255. \begin{DoxyReturn}{Returns}
+Taille de la carte 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classconfig_a346b395fb2b184ce5df6e016373573cf}\label{classconfig_a346b395fb2b184ce5df6e016373573cf}} 
+\index{config@{config}!config\+\_\+carte@{config\+\_\+carte}}
+\index{config\+\_\+carte@{config\+\_\+carte}!config@{config}}
+\subsubsection{\texorpdfstring{config\+\_\+carte()}{config\_carte()}}
+{\footnotesize\ttfamily void config\+::config\+\_\+carte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Configuration de carte. 
+
+Permet de créer ou de supprimer une carte. \mbox{\Hypertarget{classconfig_ac7075cb352a6843ae07b907a40d2a8eb}\label{classconfig_ac7075cb352a6843ae07b907a40d2a8eb}} 
+\index{config@{config}!config\+\_\+monstre@{config\+\_\+monstre}}
+\index{config\+\_\+monstre@{config\+\_\+monstre}!config@{config}}
+\subsubsection{\texorpdfstring{config\+\_\+monstre()}{config\_monstre()}}
+{\footnotesize\ttfamily void config\+::config\+\_\+monstre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Configuration de monstre. 
+
+Permet de créer ou de supprimer un monstre. \mbox{\Hypertarget{classconfig_a4b425e40339f3e57e41b38677ec4cc5a}\label{classconfig_a4b425e40339f3e57e41b38677ec4cc5a}} 
+\index{config@{config}!config\+\_\+perso@{config\+\_\+perso}}
+\index{config\+\_\+perso@{config\+\_\+perso}!config@{config}}
+\subsubsection{\texorpdfstring{config\+\_\+perso()}{config\_perso()}}
+{\footnotesize\ttfamily void config\+::config\+\_\+perso (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Configuration de personnage. 
+
+Permet de créer ou de supprimer un personnage. \mbox{\Hypertarget{classconfig_a9311924c3fc7e8cef221c1fec32c832e}\label{classconfig_a9311924c3fc7e8cef221c1fec32c832e}} 
+\index{config@{config}!create\+Competence\+Entite@{create\+Competence\+Entite}}
+\index{create\+Competence\+Entite@{create\+Competence\+Entite}!config@{config}}
+\subsubsection{\texorpdfstring{create\+Competence\+Entite()}{createCompetenceEntite()}}
+{\footnotesize\ttfamily \hyperlink{classcompetence}{competence} config\+::create\+Competence\+Entite (\begin{DoxyParamCaption}\item[{\hyperlink{classentite}{entite}}]{dummy,  }\item[{int}]{rang,  }\item[{int}]{mana\+Max }\end{DoxyParamCaption})}
+
+
+
+Création de compétence. 
+
+Permet de créer une compétence d\textquotesingle{}entité. 
+\begin{DoxyParams}{Parameters}
+{\em dummy} & Type spécifique de l\textquotesingle{}entité à utiliser \\
+\hline
+{\em rang} & Identifiant du numéro de compétence à saisir (parmi le total choisi) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La compétence créée 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classconfig_a74e51912220c662f35a45146e8ea4d41}\label{classconfig_a74e51912220c662f35a45146e8ea4d41}} 
+\index{config@{config}!creation\+Carte@{creation\+Carte}}
+\index{creation\+Carte@{creation\+Carte}!config@{config}}
+\subsubsection{\texorpdfstring{creation\+Carte()}{creationCarte()}}
+{\footnotesize\ttfamily void config\+::creation\+Carte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Création d\textquotesingle{}une carte. 
+
+Permet de créer une carte et de la rajouter dans le fichier des cartes.
+
+
+\begin{DoxyItemize}
+\item Demande un nom pour la carte.
+\item Demande une description pour la carte.
+\item Demande une taille pour la carte.
+\item Construit la carte.
+\item Demande le placement du joueur.
+\item Demande le placement des obstacles.
+\item Demande le placement des monstres.
+\item Assigne des monstres aux emplacements choisis.
+\item Ecrit la carte dans le fichier. 
+\end{DoxyItemize}\mbox{\Hypertarget{classconfig_a2df74fdb5ab353576bb8758259d8bc22}\label{classconfig_a2df74fdb5ab353576bb8758259d8bc22}} 
+\index{config@{config}!creation\+Entite@{creation\+Entite}}
+\index{creation\+Entite@{creation\+Entite}!config@{config}}
+\subsubsection{\texorpdfstring{creation\+Entite()}{creationEntite()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void config\+::creation\+Entite (\begin{DoxyParamCaption}\item[{T}]{dummy,  }\item[{std\+::string}]{nom\+\_\+fichier }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Création d\textquotesingle{}une entité 
+
+Permet de créer une entité et de la rajouter dans le fichier correspondant. 
+\begin{DoxyParams}{Parameters}
+{\em dummy} & Type spécifique de l\textquotesingle{}entité à utiliser \\
+\hline
+{\em nom\+\_\+fichier} & Nom du fichier dans lequel on veut insérer l\textquotesingle{}entité \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classconfig_af343d1915cc536ae272c9fa3e321f4fc}\label{classconfig_af343d1915cc536ae272c9fa3e321f4fc}} 
+\index{config@{config}!delete\+Line\+Element@{delete\+Line\+Element}}
+\index{delete\+Line\+Element@{delete\+Line\+Element}!config@{config}}
+\subsubsection{\texorpdfstring{delete\+Line\+Element()}{deleteLineElement()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void config\+::delete\+Line\+Element (\begin{DoxyParamCaption}\item[{std\+::string}]{nom\+Fichier,  }\item[{std\+::vector$<$ T $>$ \&}]{all\+Element,  }\item[{std\+::string}]{lettre\+Element,  }\item[{int}]{nb\+Elem\+Prot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Supprimer un élément. 
+
+Cette fonction permet de supprimer un élément choisi par l\textquotesingle{}utilisateur.
+
+Mode opératoire \+:
+\begin{DoxyItemize}
+\item L\textquotesingle{}utilisateur choisit l\textquotesingle{}élément à supprimer dans le vecteur
+\item On efface du vecteur l\textquotesingle{}élément choisi
+\item Effacement de tout le fichier
+\item Réecriture du fichier via le vecteur d\textquotesingle{}élément actualisé 
+\begin{DoxyParams}{Parameters}
+{\em nom\+Fichier} & Le nom du fichier .txt dans lequel on veut supprimer une entité \\
+\hline
+{\em all\+Entite} & Vecteur contenant tous les éléments disponibles \\
+\hline
+{\em lettre\+Entite} & String permettant de savoir quel type d\textquotesingle{}élément on traite \\
+\hline
+{\em nb\+Elem\+Prot} & Entier déterminant le nombre d\textquotesingle{}éléments par défaut à protéger de la modification \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classconfig_acf29a316025d6a8f05219a1f95f6d272}\label{classconfig_acf29a316025d6a8f05219a1f95f6d272}} 
+\index{config@{config}!identif\+\_\+objet@{identif\+\_\+objet}}
+\index{identif\+\_\+objet@{identif\+\_\+objet}!config@{config}}
+\subsubsection{\texorpdfstring{identif\+\_\+objet()}{identif\_objet()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string config\+::identif\+\_\+objet (\begin{DoxyParamCaption}\item[{T}]{objet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Caractère d\textquotesingle{}identification d\textquotesingle{}un objet. 
+
+Permet de récupérer un caractère identifiant un objet. 
+\begin{DoxyParams}{Parameters}
+{\em objet} & Objet à identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Caractère string identifiant l\textquotesingle{}objet 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/\hyperlink{config_8h}{config.\+h}\end{DoxyCompactItemize}

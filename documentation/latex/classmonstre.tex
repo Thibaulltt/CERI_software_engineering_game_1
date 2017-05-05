@@ -1,0 +1,116 @@
+\hypertarget{classmonstre}{}\section{monstre Class Reference}
+\label{classmonstre}\index{monstre@{monstre}}
+
+
+Classe créant un monstre en mémoire. hérite des propriétés ainsi que des attributs de la classe entite.  
+
+
+
+
+{\ttfamily \#include $<$monstre.\+h$>$}
+
+Inheritance diagram for monstre\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classmonstre}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmonstre_a718cb1c5f9297f00e42e6b884ca85d6d}{monstre} ()
+\begin{DoxyCompactList}\small\item\em Constructeur vide. \end{DoxyCompactList}\item 
+\hyperlink{classmonstre_a863d9f9a553a2e3a49d16182dd004da8}{monstre} (std\+::string \hyperlink{classentite_a904e8783de9fe2fc4306bf6b7822d025}{entite\+Id}, std\+::string \hyperlink{classentite_abe631a515b1cd0866dcfb078c4ceb07a}{entite\+Name}, int \hyperlink{classentite_a754557f56c1c1fcbcbd40eec68b60f65}{entite\+Hp\+Max}, int \hyperlink{classentite_ad9df70a9bb07f07b3ebf520941c3a35f}{entite\+Speed}, int \hyperlink{classentite_a696167d32c27b3b2a2fa6b473a888b18}{entite\+Mana\+Max}, std\+::string \hyperlink{classentite_a6fab1d9a04ade2cb97ec0904b12c82c9}{entite\+Description}, std\+::vector$<$ \hyperlink{classcompetence}{competence} $>$ all\+Skills)
+\begin{DoxyCompactList}\small\item\em Constructeur avec tout. \end{DoxyCompactList}\item 
+void \hyperlink{classmonstre_aeb60395664bbca7846e037b058b5c716}{print\+Monstre} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classmonstre_a9de7f320e15973eca48ff44d7e94ae04}{nb\+Elem\+Prot}
+\begin{DoxyCompactList}\small\item\em Nombre de monstres protégés. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Classe créant un monstre en mémoire. hérite des propriétés ainsi que des attributs de la classe entite. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmonstre_a718cb1c5f9297f00e42e6b884ca85d6d}\label{classmonstre_a718cb1c5f9297f00e42e6b884ca85d6d}} 
+\index{monstre@{monstre}!monstre@{monstre}}
+\index{monstre@{monstre}!monstre@{monstre}}
+\subsubsection{\texorpdfstring{monstre()}{monstre()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily monstre\+::monstre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur vide. 
+
+Crée un monstre vide. \begin{DoxyWarning}{Warning}
+Le monstre sera vide. Cela signifie qu\textquotesingle{}il ne sera pas utilisable pour le jeu, sa vie étant égale à 0 
+\end{DoxyWarning}
+\begin{DoxyPostcond}{Postcondition}
+Le monstre crée aura les paramètres suivants\+:
+\begin{DoxyItemize}
+\item entite\+Name = \char`\"{}\+Inconnu\char`\"{}
+\item entite\+Hp\+Max = 0
+\item entite\+Hp\+Current = 0
+\item entite\+Speed = 0
+\item entite\+Alive = true (sera changé immédiatement en false)
+\item entite\+Skill\+Vect = $<$vecteur vide$>$=\char`\"{}\char`\"{}$>$ 
+\end{DoxyItemize}
+\end{DoxyPostcond}
+\mbox{\Hypertarget{classmonstre_a863d9f9a553a2e3a49d16182dd004da8}\label{classmonstre_a863d9f9a553a2e3a49d16182dd004da8}} 
+\index{monstre@{monstre}!monstre@{monstre}}
+\index{monstre@{monstre}!monstre@{monstre}}
+\subsubsection{\texorpdfstring{monstre()}{monstre()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily monstre\+::monstre (\begin{DoxyParamCaption}\item[{std\+::string}]{entite\+Id,  }\item[{std\+::string}]{entite\+Name,  }\item[{int}]{entite\+Hp\+Max,  }\item[{int}]{entite\+Speed,  }\item[{int}]{entite\+Mana\+Max,  }\item[{std\+::string}]{entite\+Description,  }\item[{std\+::vector$<$ \hyperlink{classcompetence}{competence} $>$}]{all\+Skills }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructeur avec tout. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entite\+Id} & L\textquotesingle{}identifiant du monstre \\
+\hline
+{\em entite\+Name} & Le nom du monstre \\
+\hline
+{\em entite\+Hp\+Max} & Les points de vie max du monstre \\
+\hline
+{\em entite\+Speed} & La vitesse du monstre \\
+\hline
+{\em entite\+Mana\+Max} & Les points de mana max du monstre \\
+\hline
+{\em entite\+Description} & La description du monstre \\
+\hline
+{\em all\+Skills} & Un vecteur (std\+::vector) contenant toutes les compétences de ce monstre. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classmonstre_aeb60395664bbca7846e037b058b5c716}\label{classmonstre_aeb60395664bbca7846e037b058b5c716}} 
+\index{monstre@{monstre}!print\+Monstre@{print\+Monstre}}
+\index{print\+Monstre@{print\+Monstre}!monstre@{monstre}}
+\subsubsection{\texorpdfstring{print\+Monstre()}{printMonstre()}}
+{\footnotesize\ttfamily void monstre\+::print\+Monstre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classmonstre_a9de7f320e15973eca48ff44d7e94ae04}\label{classmonstre_a9de7f320e15973eca48ff44d7e94ae04}} 
+\index{monstre@{monstre}!nb\+Elem\+Prot@{nb\+Elem\+Prot}}
+\index{nb\+Elem\+Prot@{nb\+Elem\+Prot}!monstre@{monstre}}
+\subsubsection{\texorpdfstring{nb\+Elem\+Prot}{nbElemProt}}
+{\footnotesize\ttfamily int monstre\+::nb\+Elem\+Prot\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Nombre de monstres protégés. 
+
+Variable de classse permettant d\textquotesingle{}identifier le nombre de monstres par défaut ne pouvant pas être modifiés (sauf modification directe du code). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/\hyperlink{monstre_8h}{monstre.\+h}\end{DoxyCompactItemize}

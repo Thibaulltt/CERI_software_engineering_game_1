@@ -1,0 +1,477 @@
+\hypertarget{classjeu}{}\section{jeu Class Reference}
+\label{classjeu}\index{jeu@{jeu}}
+
+
+Ceci sera la classe du jeu. Elle contient toutes les entités, la carte, ainsi que les fonctions nécessaires à la partie.  
+
+
+
+
+{\ttfamily \#include $<$fonctionsjeu.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classjeu_a38513a7bfd0a7ea4e3a5612da2856016}{jeu} ()
+\begin{DoxyCompactList}\small\item\em Temporaire!! \end{DoxyCompactList}\item 
+\hyperlink{classjeu_a55385a33ef40e0579eb3a3634566c4a8}{$\sim$jeu} ()
+\begin{DoxyCompactList}\small\item\em Destructeur par défaut. \end{DoxyCompactList}\item 
+\hyperlink{class_carte}{Carte} \hyperlink{classjeu_ae2e46e1fdeb23fc643ed506b0df7f21f}{get\+Carte} ()
+\begin{DoxyCompactList}\small\item\em Getter de carte de jeu. \end{DoxyCompactList}\item 
+\hyperlink{classpersonnage}{personnage} \hyperlink{classjeu_a8bd58d1469db0d7595bb732403036823}{get\+Perso} ()
+\begin{DoxyCompactList}\small\item\em Getter de personnage. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classmonstre}{monstre} $>$ \hyperlink{classjeu_a22e7a7e7b932b935fa73658820038176}{get\+Monstres} ()
+\begin{DoxyCompactList}\small\item\em Getter de vecteur de monstres. \end{DoxyCompactList}\item 
+int \hyperlink{classjeu_ae172cfaf3e5c97e1576dc4069d48ec94}{get\+Nb\+Monstres} ()
+\begin{DoxyCompactList}\small\item\em Getter de nombre de monstres. \end{DoxyCompactList}\item 
+void \hyperlink{classjeu_a53cb5e2a1c7e0925aca09885ff959efc}{set\+Jeu\+Carte} (\hyperlink{class_carte}{Carte} jeu\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Setter de carte de jeu. \end{DoxyCompactList}\item 
+void \hyperlink{classjeu_a852b0a8b2d17f0af120c6798861ef806}{deplacement} (int \&result)
+\begin{DoxyCompactList}\small\item\em Fonction de déplacement du joueur sur la carte. \end{DoxyCompactList}\item 
+void \hyperlink{classjeu_a834e8a14bd0324c88b2de777a6bdf30f}{afficher\+Jeu} (int \&result)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}afficher la carte, puis de demander un déplacement au joueur. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classjeu_a58d74300f8d64b3d3cd151e0838ef232}{generer\+Deplacement} (std\+::vector$<$ bool $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de générer les déplacements possibles à partir d\textquotesingle{}une case {\ttfamily i,j} du plateau de jeu. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classjeu_ae186e98661e72378c9e659ffcf7a7deb}{generer\+Input\+Accepte} (std\+::vector$<$ bool $>$ b)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de générer une chaine d\textquotesingle{}entrées utilisateur acceptables pour le déplacement. \end{DoxyCompactList}\item 
+int \hyperlink{classjeu_aa96615463266652e0bdc685c9afe5cfe}{combat} (std\+::string id\+\_\+monstre)
+\begin{DoxyCompactList}\small\item\em Module de combat. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classmonstre}{monstre} $>$\+::iterator \hyperlink{classjeu_af3a81d9b899b204b4b304821c5bee43b}{cherche\+\_\+monstre} (std\+::string id\+\_\+monstre)
+\begin{DoxyCompactList}\small\item\em Recherche de monstre. \end{DoxyCompactList}\item 
+bool \hyperlink{classjeu_a77728b27a5a1f4194ac77c414b983f01}{chargement\+\_\+entite} (std\+::vector$<$ \hyperlink{classentite}{entite} $>$ \&vect\+\_\+entite, std\+::string id\+\_\+monstre)
+\begin{DoxyCompactList}\small\item\em Chargement acteurs combat. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \hyperlink{classjeu_afd7a155c8adcee663d6aeb98b2dae010}{orga\+\_\+entites} (std\+::vector$<$ \hyperlink{classentite}{entite} $>$ \&vect\+\_\+entite)
+\begin{DoxyCompactList}\small\item\em Organisation entités. \end{DoxyCompactList}\item 
+\hyperlink{classcompetence}{competence} \hyperlink{classjeu_a91981b755a6b0895703d9adf537f0ae6}{choix\+\_\+comp} (\hyperlink{classentite}{entite} \&indiv)
+\begin{DoxyCompactList}\small\item\em Choix compétence. \end{DoxyCompactList}\item 
+\hyperlink{classentite}{entite} \hyperlink{classjeu_ad9ea0cb9e74e6d9b0385720528450f61}{choix\+\_\+target} (\hyperlink{classcompetence}{competence} comp\+\_\+util, \hyperlink{classentite}{entite} \&indiv, std\+::vector$<$ \hyperlink{classentite}{entite} $>$ \&vect\+\_\+entite, std\+::vector$<$ int $>$ vect\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Choix cible. \end{DoxyCompactList}\item 
+int \hyperlink{classjeu_a6bc1f7cfd93bdc33fc9f841ec3f5f80f}{appliquer\+\_\+comp} (\hyperlink{classentite}{entite} indiv, \hyperlink{classentite}{entite} target, std\+::vector$<$ \hyperlink{classentite}{entite} $>$ \&vect\+\_\+entite, \hyperlink{classcompetence}{competence} comp\+\_\+util, int \&nb\+\_\+players, int \&nb\+\_\+monsters)
+\begin{DoxyCompactList}\small\item\em Appliquer compétence. \end{DoxyCompactList}\item 
+void \hyperlink{classjeu_a110399c4103d3d4391f2007856c3e009}{quit\+Game} ()
+\begin{DoxyCompactList}\small\item\em Quitte le jeu, sans que l\textquotesingle{}utilisateur n\textquotesingle{}ai gagné ni perdu. \end{DoxyCompactList}\item 
+void \hyperlink{classjeu_a7c769fff9b23935aef40d6633d774a96}{victoire\+Game} ()
+\begin{DoxyCompactList}\small\item\em Affiche un message de victoire à l\textquotesingle{}utilisateur. \end{DoxyCompactList}\item 
+void \hyperlink{classjeu_aa6163ba51f80fa944374fc1b85021268}{failed\+Game} ()
+\begin{DoxyCompactList}\small\item\em Affiche un message de défait au joueur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ceci sera la classe du jeu. Elle contient toutes les entités, la carte, ainsi que les fonctions nécessaires à la partie. 
+
+Cette classe contient les fonctions nécessaires au démarrage de la partie, au combat, ainsi que toutes les fonctions intermédiaires nécessaires au bon fonctionnement de celles-\/ci.
+
+Inclut la librairie io. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classjeu_a38513a7bfd0a7ea4e3a5612da2856016}\label{classjeu_a38513a7bfd0a7ea4e3a5612da2856016}} 
+\index{jeu@{jeu}!jeu@{jeu}}
+\index{jeu@{jeu}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{jeu()}{jeu()}}
+{\footnotesize\ttfamily jeu\+::jeu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Temporaire!! 
+
+Constructeur par défaut sans argument.
+
+Affichage d\textquotesingle{}un message de bienvenue. Choix du personnage. Choix de la carte. Chargement des monstres.
+
+\begin{DoxySeeAlso}{See also}
+perso(), carte(), \hyperlink{classmonstre}{monstre()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classjeu_a55385a33ef40e0579eb3a3634566c4a8}\label{classjeu_a55385a33ef40e0579eb3a3634566c4a8}} 
+\index{jeu@{jeu}!````~jeu@{$\sim$jeu}}
+\index{````~jeu@{$\sim$jeu}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{$\sim$jeu()}{~jeu()}}
+{\footnotesize\ttfamily jeu\+::$\sim$jeu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur par défaut. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classjeu_a834e8a14bd0324c88b2de777a6bdf30f}\label{classjeu_a834e8a14bd0324c88b2de777a6bdf30f}} 
+\index{jeu@{jeu}!afficher\+Jeu@{afficher\+Jeu}}
+\index{afficher\+Jeu@{afficher\+Jeu}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{afficher\+Jeu()}{afficherJeu()}}
+{\footnotesize\ttfamily void jeu\+::afficher\+Jeu (\begin{DoxyParamCaption}\item[{int \&}]{result }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}afficher la carte, puis de demander un déplacement au joueur. 
+
+\begin{DoxyNote}{Note}
+Cette fonction est là uniquement pour des fins de tests. La fonctionnalité qu\textquotesingle{}elle remplit sera remplacée par d\textquotesingle{}autres méthodes dans la fichier {\ttfamily tests/main.\+cpp}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{classjeu_a6bc1f7cfd93bdc33fc9f841ec3f5f80f}\label{classjeu_a6bc1f7cfd93bdc33fc9f841ec3f5f80f}} 
+\index{jeu@{jeu}!appliquer\+\_\+comp@{appliquer\+\_\+comp}}
+\index{appliquer\+\_\+comp@{appliquer\+\_\+comp}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{appliquer\+\_\+comp()}{appliquer\_comp()}}
+{\footnotesize\ttfamily int jeu\+::appliquer\+\_\+comp (\begin{DoxyParamCaption}\item[{\hyperlink{classentite}{entite}}]{indiv,  }\item[{\hyperlink{classentite}{entite}}]{target,  }\item[{std\+::vector$<$ \hyperlink{classentite}{entite} $>$ \&}]{vect\+\_\+entite,  }\item[{\hyperlink{classcompetence}{competence}}]{comp\+\_\+util,  }\item[{int \&}]{nb\+\_\+players,  }\item[{int \&}]{nb\+\_\+monsters }\end{DoxyParamCaption})}
+
+
+
+Appliquer compétence. 
+
+Permet d\textquotesingle{}appliquer les effets de la compétence choisie sur la cible choisie. Si la cible meurt, décrémente le compteur de personnages/monstres vivants. Supprime les cibles mortes du vecteur d\textquotesingle{}entités. 
+\begin{DoxyParams}{Parameters}
+{\em target} & Cible de la compétence. \\
+\hline
+{\em vect\+\_\+entite} & Le vecteur duquel on tire la cible de la compétence. \\
+\hline
+{\em comp\+\_\+util} & La compétence à utiliser. \\
+\hline
+{\em nb\+\_\+players} & Le nombre total de joueurs de la partie. \\
+\hline
+{\em nb\+\_\+monsters} & Le nombre de monstres du combat en cours. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un entier\+: 1 si tous les monstres sont morts, 0 si tous les joueurs sont morts, 2 sinon. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+enlever\+Vie() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classjeu_a77728b27a5a1f4194ac77c414b983f01}\label{classjeu_a77728b27a5a1f4194ac77c414b983f01}} 
+\index{jeu@{jeu}!chargement\+\_\+entite@{chargement\+\_\+entite}}
+\index{chargement\+\_\+entite@{chargement\+\_\+entite}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{chargement\+\_\+entite()}{chargement\_entite()}}
+{\footnotesize\ttfamily bool jeu\+::chargement\+\_\+entite (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classentite}{entite} $>$ \&}]{vect\+\_\+entite,  }\item[{std\+::string}]{id\+\_\+monstre }\end{DoxyParamCaption})}
+
+
+
+Chargement acteurs combat. 
+
+Permet de charger tous les acteurs du combat dans un vecteur d\textquotesingle{}entités. 
+\begin{DoxyParams}{Parameters}
+{\em vect\+\_\+entite} & Vecteur où chercher le monstre. \\
+\hline
+{\em id\+\_\+monstre} & Identifiant du monstre à charger. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Chargement réussi ou non. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classjeu_af3a81d9b899b204b4b304821c5bee43b}{cherche\+\_\+monstre()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classjeu_af3a81d9b899b204b4b304821c5bee43b}\label{classjeu_af3a81d9b899b204b4b304821c5bee43b}} 
+\index{jeu@{jeu}!cherche\+\_\+monstre@{cherche\+\_\+monstre}}
+\index{cherche\+\_\+monstre@{cherche\+\_\+monstre}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{cherche\+\_\+monstre()}{cherche\_monstre()}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{classmonstre}{monstre}$>$\+::iterator jeu\+::cherche\+\_\+monstre (\begin{DoxyParamCaption}\item[{std\+::string}]{id\+\_\+monstre }\end{DoxyParamCaption})}
+
+
+
+Recherche de monstre. 
+
+Permet de trouver l\textquotesingle{}objet monstre correspondant à la string id trouvée sur une case. Si la valeur renvoyée correspond à la fin du vecteur, le monstre n\textquotesingle{}a pas été trouvé. 
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+monstre} & Identifiant du monstre à trouver. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un itérateur correspondant à l\textquotesingle{}élément du vecteur de monstres concerné. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjeu_a91981b755a6b0895703d9adf537f0ae6}\label{classjeu_a91981b755a6b0895703d9adf537f0ae6}} 
+\index{jeu@{jeu}!choix\+\_\+comp@{choix\+\_\+comp}}
+\index{choix\+\_\+comp@{choix\+\_\+comp}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{choix\+\_\+comp()}{choix\_comp()}}
+{\footnotesize\ttfamily \hyperlink{classcompetence}{competence} jeu\+::choix\+\_\+comp (\begin{DoxyParamCaption}\item[{\hyperlink{classentite}{entite} \&}]{indiv }\end{DoxyParamCaption})}
+
+
+
+Choix compétence. 
+
+Permet de sélectionner une compétence par input parmi une liste tirée d\textquotesingle{}un vecteur (spécifique à chaque entité) Vérifie la possibilité du lancer (niveau de mana). Si l\textquotesingle{}entité est un monstre, le choix est aléatoire. 
+\begin{DoxyParams}{Parameters}
+{\em indiv} & L\textquotesingle{}entité qui joue actuellement. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Une compétence parmi les compétences utilisables. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ad045ca63d3481c2da3253a3944df18e4}{choix\+\_\+unique\+\_\+element()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classjeu_ad9ea0cb9e74e6d9b0385720528450f61}\label{classjeu_ad9ea0cb9e74e6d9b0385720528450f61}} 
+\index{jeu@{jeu}!choix\+\_\+target@{choix\+\_\+target}}
+\index{choix\+\_\+target@{choix\+\_\+target}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{choix\+\_\+target()}{choix\_target()}}
+{\footnotesize\ttfamily \hyperlink{classentite}{entite} jeu\+::choix\+\_\+target (\begin{DoxyParamCaption}\item[{\hyperlink{classcompetence}{competence}}]{comp\+\_\+util,  }\item[{\hyperlink{classentite}{entite} \&}]{indiv,  }\item[{std\+::vector$<$ \hyperlink{classentite}{entite} $>$ \&}]{vect\+\_\+entite,  }\item[{std\+::vector$<$ int $>$}]{vect\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Choix cible. 
+
+Permet de choisir une cible parmi une liste tirée d\textquotesingle{}un vecteur de cibles disponibles. Si l\textquotesingle{}entité est un monstre, le choix est aléatoire (uniquement parmi les cibles personnages). 
+\begin{DoxyParams}{Parameters}
+{\em comp\+\_\+util} & La compétence à utiliser. \\
+\hline
+{\em indiv} & L\textquotesingle{}entité qui joue actuellement. \\
+\hline
+{\em vect\+\_\+entite} & Le vecteur duquel on tire la cible de la compétence. \\
+\hline
+{\em vect\+\_\+p} & Vecteur permettant d\textquotesingle{}identifier les personnages parmi toutes les entités. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Une entité, cible de la compétence. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ad045ca63d3481c2da3253a3944df18e4}{choix\+\_\+unique\+\_\+element()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classjeu_aa96615463266652e0bdc685c9afe5cfe}\label{classjeu_aa96615463266652e0bdc685c9afe5cfe}} 
+\index{jeu@{jeu}!combat@{combat}}
+\index{combat@{combat}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{combat()}{combat()}}
+{\footnotesize\ttfamily int jeu\+::combat (\begin{DoxyParamCaption}\item[{std\+::string}]{id\+\_\+monstre }\end{DoxyParamCaption})}
+
+
+
+Module de combat. 
+
+Permet de gérer le combat.
+\begin{DoxyItemize}
+\item Charge les entités (personnages et monstres) contenus dans la case.
+\item Identifie les personnages et leur nombre.
+\item Identifie les monstres et leur nombre.
+\item Pour chaque acteur, choix d\textquotesingle{}une compétence, puis d\textquotesingle{}une cible, puis application des effets. 
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+monstre} & Identifiant du monstre à combattre. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un entier\+: 1 si la partie continue, 0 si elle se termine. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classjeu_a77728b27a5a1f4194ac77c414b983f01}{chargement\+\_\+entite()}, \hyperlink{classjeu_afd7a155c8adcee663d6aeb98b2dae010}{orga\+\_\+entites()}, \hyperlink{namespaceio_aea8dfd5fea1f29722c77b31ef7b0b940}{aff\+\_\+combat()}, \hyperlink{classjeu_a91981b755a6b0895703d9adf537f0ae6}{choix\+\_\+comp()}, \hyperlink{classjeu_ad9ea0cb9e74e6d9b0385720528450f61}{choix\+\_\+target()}, \hyperlink{classjeu_a6bc1f7cfd93bdc33fc9f841ec3f5f80f}{appliquer\+\_\+comp()} 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classjeu_a852b0a8b2d17f0af120c6798861ef806}\label{classjeu_a852b0a8b2d17f0af120c6798861ef806}} 
+\index{jeu@{jeu}!deplacement@{deplacement}}
+\index{deplacement@{deplacement}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{deplacement()}{deplacement()}}
+{\footnotesize\ttfamily void jeu\+::deplacement (\begin{DoxyParamCaption}\item[{int \&}]{result }\end{DoxyParamCaption})}
+
+
+
+Fonction de déplacement du joueur sur la carte. 
+
+Cette fonction permet au joueur de se déplacer sur la carte, en tenant compte des obstacles présents sur ladite carte.
+
+Mode opératoire \+:
+\begin{DoxyItemize}
+\item Génère les déplacements possibles grâce à la fonction {\ttfamily \hyperlink{classjeu_a58d74300f8d64b3d3cd151e0838ef232}{generer\+Deplacement()}} ;
+\item Génère les entrées utilisateur possibles grâce à la fonction {\ttfamily \hyperlink{classjeu_ae186e98661e72378c9e659ffcf7a7deb}{generer\+Input\+Accepte()}} ;
+\item Va chercher la position actuelle du joueur, puis la stocke dans deux entiers ({\ttfamily x} et {\ttfamily y}, oui je sais ces noms sont très originaux) ;
+\item Afficher les mouvements possibles au joueur grâce à la fonction {\ttfamily \hyperlink{namespaceio_ac60b7c3503eb53e69a2adc86368ab633}{afficher\+Mouvements()}} ;
+\item Demande à l\textquotesingle{}utilisateur où il souhaiterais aller grâce à la fonction {\ttfamily \hyperlink{namespaceio_ae9908b55f26f07e78043d7cfad003d22}{de()}}
+\item Si le joueur rentre un caractère non compris dans la liste des mouvements possibles \+:
+\begin{DoxyItemize}
+\item On ré-\/affiche les mouvements possibles avec {\ttfamily \hyperlink{namespaceio_ac60b7c3503eb53e69a2adc86368ab633}{afficher\+Mouvements()}}, cette fois-\/ci avec un message d\textquotesingle{}erreur en plus.
+\item On re-\/demande son choix pour le mouvement grâce à la fonction {\ttfamily \hyperlink{namespaceio_ae9908b55f26f07e78043d7cfad003d22}{de()}}
+\end{DoxyItemize}
+\item On change les coordonnées des entiers {\ttfamily x} et {\ttfamily y} en accord avec la demande de l\textquotesingle{}utilisateur dans un {\ttfamily switch}.
+\item On met à jour l\textquotesingle{}affichage de la carte grâce à la fonction {\ttfamily \hyperlink{namespaceio_ae9438bfe8b2631be82b0f4d644358545}{update\+Map()}} \begin{DoxyPostcond}{Postcondition}
+La position du joueur aura changé. La paire d\textquotesingle{}entiers {\ttfamily current\+Player\+Position} sera donc mise à jour (grâce à {\ttfamily \hyperlink{namespaceio_ae9438bfe8b2631be82b0f4d644358545}{update\+Map()}}). 
+\end{DoxyPostcond}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ac60b7c3503eb53e69a2adc86368ab633}{afficher\+Mouvements()}, \hyperlink{classjeu_a58d74300f8d64b3d3cd151e0838ef232}{generer\+Deplacement()}, \hyperlink{classjeu_ae186e98661e72378c9e659ffcf7a7deb}{generer\+Input\+Accepte()}, \hyperlink{namespaceio_ae9908b55f26f07e78043d7cfad003d22}{de()} \& \hyperlink{namespaceio_ae9438bfe8b2631be82b0f4d644358545}{io\+::update\+Map()} 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classjeu_aa6163ba51f80fa944374fc1b85021268}\label{classjeu_aa6163ba51f80fa944374fc1b85021268}} 
+\index{jeu@{jeu}!failed\+Game@{failed\+Game}}
+\index{failed\+Game@{failed\+Game}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{failed\+Game()}{failedGame()}}
+{\footnotesize\ttfamily void jeu\+::failed\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affiche un message de défait au joueur. 
+
+\mbox{\Hypertarget{classjeu_a58d74300f8d64b3d3cd151e0838ef232}\label{classjeu_a58d74300f8d64b3d3cd151e0838ef232}} 
+\index{jeu@{jeu}!generer\+Deplacement@{generer\+Deplacement}}
+\index{generer\+Deplacement@{generer\+Deplacement}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{generer\+Deplacement()}{genererDeplacement()}}
+{\footnotesize\ttfamily std\+::string jeu\+::generer\+Deplacement (\begin{DoxyParamCaption}\item[{std\+::vector$<$ bool $>$ \&}]{v }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de générer les déplacements possibles à partir d\textquotesingle{}une case {\ttfamily i,j} du plateau de jeu. 
+
+Cette fonction permet de générer la chaîne de caractères qui affiche les déplacements disponibles au joueur à partir de la case où il se trouve. Mode opératoire \+:
+\begin{DoxyItemize}
+\item On prends les coordonnées actuelles du joueur, que l\textquotesingle{}on met dans deux entiers créativement appelés {\ttfamily x} et {\ttfamily y}.
+\item On prends la taille de la carte du jeu grâce à la fonction {\ttfamily carte\+::get\+Taille()}. La taille du plateau nous sert à déterminer si une case existe, enlevant ainsi un peu de temps de calcul lors de l\textquotesingle{}analyse des cases voisines à celle où se trouve le joueur.
+\item On crée une chaîne de caractères. Cette chaîne servira à stocker les déplacements possibles à afficher par la suite au joueur.
+\item On vérifie les cases autour du joueur en vérifiant leurs indices et leur contenu (grâce à la fonction {\ttfamily carte\+::case\+Accessible()})
+\item Si la case au dessus du joueur est libre, alors \+:
+\begin{DoxyItemize}
+\item On ajoute {\ttfamily Z -\/ Haut} à la chaîne de caractères
+\item On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+\end{DoxyItemize}
+\item Si la case à la gauche du joueur est libre, alors \+:
+\begin{DoxyItemize}
+\item On ajoute {\ttfamily Q -\/ Gauche} à la chaîne de caractères
+\item On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+\end{DoxyItemize}
+\item Si la case en dessous du joueur est libre, alors \+:
+\begin{DoxyItemize}
+\item On ajoute {\ttfamily S -\/ Bas} à la chaîne de caractères
+\item On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+\end{DoxyItemize}
+\item Si la case à la droite du joueur est libre, alors \+:
+\begin{DoxyItemize}
+\item On ajoute {\ttfamily D -\/ Droite} à la chaîne de caractères
+\item On met à 1 le booléen permettant de savoir si la case est accessible ou non.
+\end{DoxyItemize}
+\item On retourne la châine de caractères générée. 
+\begin{DoxyParams}{Parameters}
+{\em v} & Vecteur de booléens ({\ttfamily std\+::vector$<$bool$>$}) permettant de savoir quelles cases sont accessibles aux alentours de la case où se trouve le joueur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Une châine de caractères à afficher au joueur pour qu\textquotesingle{}il puisse savoir où il peut aller. La chaine est définie par l\textquotesingle{}expression régulière suivante \+: {\ttfamily \char`\"{}$\vert$\char`\"{}+(\char`\"{} Z -\/ Haut $\vert$\char`\"{})?+(\char`\"{} Q -\/ Gauche $\vert$\char`\"{})?+(\char`\"{} S -\/ Bas $\vert$\char`\"{})?+(\char`\"{} D -\/ Droite $\vert$\char`\"{})?} 
+\end{DoxyReturn}
+\begin{DoxyPostcond}{Postcondition}
+La fonction {\itshape {\bfseries ne change absolument rien}} au plateau, ni au jeu. Toutes les données générées pour l\textquotesingle{}analyse des voisins de la case ont une portée locale. 
+\end{DoxyPostcond}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classjeu_ae186e98661e72378c9e659ffcf7a7deb}{generer\+Input\+Accepte()}, \hyperlink{classjeu_a852b0a8b2d17f0af120c6798861ef806}{deplacement()}, carte\+::case\+Accessible() \& carte\+::get\+Taille() 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classjeu_ae186e98661e72378c9e659ffcf7a7deb}\label{classjeu_ae186e98661e72378c9e659ffcf7a7deb}} 
+\index{jeu@{jeu}!generer\+Input\+Accepte@{generer\+Input\+Accepte}}
+\index{generer\+Input\+Accepte@{generer\+Input\+Accepte}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{generer\+Input\+Accepte()}{genererInputAccepte()}}
+{\footnotesize\ttfamily std\+::string jeu\+::generer\+Input\+Accepte (\begin{DoxyParamCaption}\item[{std\+::vector$<$ bool $>$}]{b }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de générer une chaine d\textquotesingle{}entrées utilisateur acceptables pour le déplacement. 
+
+Cette fonction permet de générer la chaîne de caractères qui sera analysée pour accepter ou non un déplacement demandé par le joueur à partir de la case où il se trouve.
+
+Mode opératoire \+:
+\begin{DoxyItemize}
+\item Crée une chaîne de caractères ({\ttfamily std\+::string}) qui contiendra les caractères acceptés lors de l\textquotesingle{}entrée utilisateur dans la fonction {\ttfamily \hyperlink{classjeu_a852b0a8b2d17f0af120c6798861ef806}{deplacement()}}.
+\item Lit le vecteur de booléens rempli dans la fonction {\ttfamily \hyperlink{classjeu_a58d74300f8d64b3d3cd151e0838ef232}{generer\+Deplacement()}} \+:
+\begin{DoxyItemize}
+\item Si le premier booléen est à 1 \+: on ajoute \char`\"{}\+Zz\char`\"{} à la chaîne (l\textquotesingle{}utilisateur pourra donc appuyer sur \textquotesingle{}Z\textquotesingle{} ou \textquotesingle{}z\textquotesingle{} et se déplacer)
+\item Si le second booléen est à 1 \+: on ajoute \char`\"{}\+Qq\char`\"{} à la chaîne (l\textquotesingle{}utilisateur pourra donc appuyer sur \textquotesingle{}Q\textquotesingle{} ou \textquotesingle{}q\textquotesingle{} et se déplacer)
+\item Si le troisième booléen est à 1 \+: on ajoute \char`\"{}\+Ss\char`\"{} à la chaîne (l\textquotesingle{}utilisateur pourra donc appuyer sur \textquotesingle{}S\textquotesingle{} ou \textquotesingle{}s\textquotesingle{} et se déplacer)
+\item Si le quatrième booléen est à 1 \+: on ajoute \char`\"{}\+Dd\char`\"{} à la chaîne (l\textquotesingle{}utilisateur pourra donc appuyer sur \textquotesingle{}D\textquotesingle{} ou \textquotesingle{}d\textquotesingle{} et se déplacer)
+\end{DoxyItemize}
+\item Retourne la chaîne de caractères. 
+\begin{DoxyParams}{Parameters}
+{\em b} & Vecteur de booléens ({\ttfamily std\+::vector$<$bool$>$}) rempli dans la fonction {\ttfamily \hyperlink{classjeu_a58d74300f8d64b3d3cd151e0838ef232}{generer\+Deplacement()}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Une chaine de caractères permettant de déterminer si l\textquotesingle{}entrée utilisateur est acceptable ou pas. La chaîne est définie par l\textquotesingle{}expression régulière suivante \+: {\ttfamily \char`\"{}\+Zz\char`\"{}?+\char`\"{}\+Qq\char`\"{}?+\char`\"{}\+Ss\char`\"{}?+\char`\"{}\+Dd\char`\"{}?}. 
+\end{DoxyReturn}
+\begin{DoxyPostcond}{Postcondition}
+La fonction {\itshape {\bfseries ne change absolument rien}} au plateau, ni au jeu. Mais cette chaîne sera utilisée de la facon suivante \+: pour déterminer si l\textquotesingle{}utilisateur a rentré une demande de deplacement valide, on vérifie que le caractère rentré est présent dans la chaîne de caractères générée ici. Si le caractère n\textquotesingle{}est pas présent, on redemande l\textquotesingle{}entrée utilisateur au joueur. 
+\end{DoxyPostcond}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classjeu_a58d74300f8d64b3d3cd151e0838ef232}{generer\+Deplacement()} \& deplacements() 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classjeu_ae2e46e1fdeb23fc643ed506b0df7f21f}\label{classjeu_ae2e46e1fdeb23fc643ed506b0df7f21f}} 
+\index{jeu@{jeu}!get\+Carte@{get\+Carte}}
+\index{get\+Carte@{get\+Carte}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{get\+Carte()}{getCarte()}}
+{\footnotesize\ttfamily \hyperlink{class_carte}{Carte} jeu\+::get\+Carte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter de carte de jeu. 
+
+\mbox{\Hypertarget{classjeu_a22e7a7e7b932b935fa73658820038176}\label{classjeu_a22e7a7e7b932b935fa73658820038176}} 
+\index{jeu@{jeu}!get\+Monstres@{get\+Monstres}}
+\index{get\+Monstres@{get\+Monstres}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{get\+Monstres()}{getMonstres()}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{classmonstre}{monstre}$>$ jeu\+::get\+Monstres (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter de vecteur de monstres. 
+
+\mbox{\Hypertarget{classjeu_ae172cfaf3e5c97e1576dc4069d48ec94}\label{classjeu_ae172cfaf3e5c97e1576dc4069d48ec94}} 
+\index{jeu@{jeu}!get\+Nb\+Monstres@{get\+Nb\+Monstres}}
+\index{get\+Nb\+Monstres@{get\+Nb\+Monstres}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{get\+Nb\+Monstres()}{getNbMonstres()}}
+{\footnotesize\ttfamily int jeu\+::get\+Nb\+Monstres (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter de nombre de monstres. 
+
+\mbox{\Hypertarget{classjeu_a8bd58d1469db0d7595bb732403036823}\label{classjeu_a8bd58d1469db0d7595bb732403036823}} 
+\index{jeu@{jeu}!get\+Perso@{get\+Perso}}
+\index{get\+Perso@{get\+Perso}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{get\+Perso()}{getPerso()}}
+{\footnotesize\ttfamily \hyperlink{classpersonnage}{personnage} jeu\+::get\+Perso (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter de personnage. 
+
+\mbox{\Hypertarget{classjeu_afd7a155c8adcee663d6aeb98b2dae010}\label{classjeu_afd7a155c8adcee663d6aeb98b2dae010}} 
+\index{jeu@{jeu}!orga\+\_\+entites@{orga\+\_\+entites}}
+\index{orga\+\_\+entites@{orga\+\_\+entites}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{orga\+\_\+entites()}{orga\_entites()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ jeu\+::orga\+\_\+entites (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classentite}{entite} $>$ \&}]{vect\+\_\+entite }\end{DoxyParamCaption})}
+
+
+
+Organisation entités. 
+
+Permet de trier les entités (selon leur vitesse). Identifie également les indices de vecteur correspondant à des personnages et les stocke dans un vecteur (pour ciblage par monstres). 
+\begin{DoxyParams}{Parameters}
+{\em vect\+\_\+entite} & Vecteur de personnages à trier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un vecteur d\textquotesingle{}entités utilisées pour le combat. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjeu_a110399c4103d3d4391f2007856c3e009}\label{classjeu_a110399c4103d3d4391f2007856c3e009}} 
+\index{jeu@{jeu}!quit\+Game@{quit\+Game}}
+\index{quit\+Game@{quit\+Game}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{quit\+Game()}{quitGame()}}
+{\footnotesize\ttfamily void jeu\+::quit\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Quitte le jeu, sans que l\textquotesingle{}utilisateur n\textquotesingle{}ai gagné ni perdu. 
+
+\mbox{\Hypertarget{classjeu_a53cb5e2a1c7e0925aca09885ff959efc}\label{classjeu_a53cb5e2a1c7e0925aca09885ff959efc}} 
+\index{jeu@{jeu}!set\+Jeu\+Carte@{set\+Jeu\+Carte}}
+\index{set\+Jeu\+Carte@{set\+Jeu\+Carte}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{set\+Jeu\+Carte()}{setJeuCarte()}}
+{\footnotesize\ttfamily void jeu\+::set\+Jeu\+Carte (\begin{DoxyParamCaption}\item[{\hyperlink{class_carte}{Carte}}]{jeu\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Setter de carte de jeu. 
+
+\mbox{\Hypertarget{classjeu_a7c769fff9b23935aef40d6633d774a96}\label{classjeu_a7c769fff9b23935aef40d6633d774a96}} 
+\index{jeu@{jeu}!victoire\+Game@{victoire\+Game}}
+\index{victoire\+Game@{victoire\+Game}!jeu@{jeu}}
+\subsubsection{\texorpdfstring{victoire\+Game()}{victoireGame()}}
+{\footnotesize\ttfamily void jeu\+::victoire\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affiche un message de victoire à l\textquotesingle{}utilisateur. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/\hyperlink{fonctionsjeu_8h}{fonctionsjeu.\+h}\end{DoxyCompactItemize}

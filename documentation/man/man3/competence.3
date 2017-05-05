@@ -1,0 +1,218 @@
+.TH "competence" 3 "Fri May 5 2017" "The Game" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+competence
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <competence\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcompetence\fP ()"
+.br
+.RI "Constructeur sans arguments\&. "
+.ti -1c
+.RI "\fBcompetence\fP (std::string skillName, int skillDamage, int skillManaCost)"
+.br
+.RI "Constructeur permettant de créer une compétence pour un personnage\&. "
+.ti -1c
+.RI "\fBcompetence\fP (std::string skillName, int skillDamage)"
+.br
+.RI "Constructeur permettant de créer une compétence pour un monstre\&. "
+.ti -1c
+.RI "\fB~competence\fP ()"
+.br
+.RI "Destructeur de compétence\&. "
+.ti -1c
+.RI "std::string \fBgetName\fP ()"
+.br
+.RI "Fonction retournant le nom d'une compétence\&. "
+.ti -1c
+.RI "std::string \fBgetDescription\fP ()"
+.br
+.RI "Fonction retournant la description d'une compétence\&. "
+.ti -1c
+.RI "int \fBgetDamage\fP ()"
+.br
+.RI "Fonction retournant le nombre de points de dégâts à appliquer à une cible\&. "
+.ti -1c
+.RI "int \fBgetManaCost\fP ()"
+.br
+.RI "Fonction retournant le nombre de points de magie à utiliser\&. "
+.ti -1c
+.RI "template<typename T > std::string \fBtoString\fP (const T &valeur)"
+.br
+.RI "Template permettant de retourner une string contenant un élément\&. "
+.ti -1c
+.RI "void \fBafficher_detail\fP ()"
+.br
+.RI "Affichage d'une compétence\&. "
+.ti -1c
+.RI "std::string \fBafficher_detail_combat\fP ()"
+.br
+.ti -1c
+.RI "std::string \fBcompetenceString\fP ()"
+.br
+.RI "Conversion en string\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Permet de contenir une compétence en mémoire\&.
+.PP
+Une compétence est formée grâce à :
+.IP "\(bu" 2
+un nom (\fCskillName\fP)
+.IP "\(bu" 2
+un nombre de points de dégâts à appliquer (si ce nombre est négatif, la compétence permet de soigner une cible)
+.IP "\(bu" 2
+un coût en points de magie (si ce nombre est négatif, la compétence permet de régénerer des points de magie)
+.PP
+.PP
+NOTE : Par convention, une compétence qui contient un nombre de points de mana sera utilisée sur un joueur\&. Un monstre n'a pas de magie à gérer\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "competence::competence ()"
+
+.PP
+Constructeur sans arguments\&. En sortant de ce constructeur, la compétence aura :
+.IP "\(bu" 2
+skillName = 'Inconnu'
+.IP "\(bu" 2
+skillDamage = 0
+.IP "\(bu" 2
+skillManaCost = 0 
+.PP
+
+.SS "competence::competence (std::string skillName, int skillDamage, int skillManaCost)"
+
+.PP
+Constructeur permettant de créer une compétence pour un personnage\&. Les compétences créées avec ce constructeur seront utilisées pour un personnage\&. La compétence aura donc comme données :
+.IP "\(bu" 2
+competence::skillName = skillName
+.IP "\(bu" 2
+competence::skillDamage = skillDamage
+.IP "\(bu" 2
+competence::skillManaCost = skillManaCost 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIskillName\fP Nom à assigner à la compétence 
+.br
+\fIskillDamage\fP Nombre de points de vie à assigner à la compétence (si ce nombre est négatif, la compétence permet de soigner une cible) 
+.br
+\fIskillManaCost\fP Nombre de points de magie à assigner à la compétence (si ce nombre est négatif, la compétence permet de régénerer des points de magie) 
+.RE
+.PP
+
+.PP
+
+.SS "competence::competence (std::string skillName, int skillDamage)"
+
+.PP
+Constructeur permettant de créer une compétence pour un monstre\&. Les compétences créées avec ce constructeur seront utilisées pour un monstre\&. La compétence aura donc comme données :
+.IP "\(bu" 2
+competence::skillName = skillName
+.IP "\(bu" 2
+competence::skillDamage = skillDamage 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIskillName\fP Nom à assigner à la compétence 
+.br
+\fIskillDamage\fP Nombre de points de vie à assigner à la compétence (si ce nombre est négatif, la compétence permet de soigner une cible) 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+Les compétences créées utilisant ce constructeur seront assignées à des monstres\&. Par convention, un monstre n'a pas à gérer de magie\&. 
+.RE
+.PP
+
+.PP
+
+.SS "competence::~competence ()"
+
+.PP
+Destructeur de compétence\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void competence::afficher_detail ()"
+
+.PP
+Affichage d'une compétence\&. Affiche les éléments détaillés d'une compétence (nom, dégâts, coût)\&. Si les dégâts sont négatifs, affiche 'soins'\&. Si le coût est négatif, affiche 'gain'\&. 
+.SS "std::string competence::afficher_detail_combat ()"
+
+.SS "std::string competence::competenceString ()"
+
+.PP
+Conversion en string\&. Permet de convertir les caractéristiques d'une compétence en chaîne de caractère en vue de son écriture dans un fichier 
+.PP
+\fBReturns:\fP
+.RS 4
+Un string correspondant à la compétence 
+.RE
+.PP
+
+.SS "int competence::getDamage ()"
+
+.PP
+Fonction retournant le nombre de points de dégâts à appliquer à une cible\&. Est utilisée notemment pour l'affichage des possibilités du joueur pendant le combat contre un (des) \fBmonstre(s)\fP\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Un entier (\fCint\fP) contenant le nombre de points de dégâts à appliquer à une cible\&. 
+.RE
+.PP
+
+.SS "std::string competence::getDescription ()"
+
+.PP
+Fonction retournant la description d'une compétence\&. Est utilisée notemment pour l'affichage des possibilités du joueur pendant le combat contre un (des) \fBmonstre(s)\fP\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Une string (\fCstd::string\fP) contenant la description\&. 
+.RE
+.PP
+
+.SS "int competence::getManaCost ()"
+
+.PP
+Fonction retournant le nombre de points de magie à utiliser\&. Est utilisée notemment pour l'affichage des possibilités du joueur pendant le combat contre un (des) \fBmonstre(s)\fP\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Un entier (\fCint\fP) contenant le nombre de points de magie à utiliser\&. 
+.RE
+.PP
+
+.SS "std::string competence::getName ()"
+
+.PP
+Fonction retournant le nom d'une compétence\&. Est utilisée notemment pour l'affichage des possibilités du joueur pendant le combat contre un (des) \fBmonstre(s)\fP\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Une string (\fCstd::string\fP) contenant le nom\&. 
+.RE
+.PP
+
+.SS "template<typename T > std::string competence::toString (const T & valeur)"
+
+.PP
+Template permettant de retourner une string contenant un élément\&. Template permettant de retourner une string (\fCstd::string\fP) contenant un élément de la classe \fCT\fP en forme de string\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Une string (\fCstd::string\fP) rerésentant l'élément \fCT\fP\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Game from the source code\&.

@@ -1,0 +1,548 @@
+.TH "Carte" 3 "Fri May 5 2017" "The Game" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Carte \- Classe qui permet de modéliser une carte en mémoire\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <carte\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCarte\fP ()"
+.br
+.RI "Constructeur sans argument\&. "
+.ti -1c
+.RI "\fBCarte\fP (int taille, std::string name, std::string description, int nb_monstre)"
+.br
+.RI "Constructeur avec arguments\&. "
+.ti -1c
+.RI "void \fBcoordonneejoueur\fP ()"
+.br
+.RI "Coordonnée Joueur\&. "
+.ti -1c
+.RI "void \fBcoordonneeobstacle\fP ()"
+.br
+.RI "Coordonnée obstacle\&. "
+.ti -1c
+.RI "void \fBcoordonneemonstre\fP ()"
+.br
+.RI "Coordonnée monstre\&. "
+.ti -1c
+.RI "int \fBnbLigneFichier\fP (std::string nomFichier)"
+.br
+.RI "Nombre de ligne du fichier\&. "
+.ti -1c
+.RI "void \fBsaisie\fP ()"
+.br
+.RI "Saisie\&. "
+.ti -1c
+.RI "void \fBsaveInFile\fP (std::string lettreCarte, std::string nomFichier)"
+.br
+.RI "Sauvegarde de carte\&. "
+.ti -1c
+.RI "std::string \fBcarteString\fP (std::string lettreCarte, std::string nomFichier)"
+.br
+.RI "\fBCarte\fP en ligne\&. "
+.ti -1c
+.RI "std::string \fBgetName\fP ()"
+.br
+.RI "Nom\&. "
+.ti -1c
+.RI "std::string \fBgetDescription\fP ()"
+.br
+.RI "Description\&. "
+.ti -1c
+.RI "void \fBsetTaille\fP (int taille)"
+.br
+.RI "Taille\&. "
+.ti -1c
+.RI "void \fBsetId\fP (std::string id)"
+.br
+.RI "Id\&. "
+.ti -1c
+.RI "void \fBsetName\fP (std::string name)"
+.br
+.RI "Nom\&. "
+.ti -1c
+.RI "void \fBsetDescription\fP (std::string desc)"
+.br
+.RI "Description\&. "
+.ti -1c
+.RI "void \fBsetPlateau\fP (int taille)"
+.br
+.RI "Plateau\&. "
+.ti -1c
+.RI "void \fBsetCase\fP (int i, int j, std::string value)"
+.br
+.RI "Case\&. "
+.ti -1c
+.RI "void \fBsetNbrMonstre\fP (int nbr_monstre)"
+.br
+.RI "Nombre de monstre\&. "
+.ti -1c
+.RI "void \fBsetCaseDispo\fP (int case_dispo)"
+.br
+.RI "Case disponible\&. "
+.ti -1c
+.RI "\fBCarte\fP \fBoperator=\fP (const \fBCarte\fP a_copier)"
+.br
+.RI "Copie de \fBCarte\fP\&. "
+.ti -1c
+.RI "int \fBgetTaille\fP ()"
+.br
+.RI "Taille\&. "
+.ti -1c
+.RI "std::string ** \fBgetPlateau\fP ()"
+.br
+.RI "Plateau\&. "
+.ti -1c
+.RI "int \fBgetNbrMonstres\fP ()"
+.br
+.RI "Nombre de monstre\&. "
+.ti -1c
+.RI "void \fBaffichage_normal\fP ()"
+.br
+.RI "Affichage normal\&. "
+.ti -1c
+.RI "void \fBafficher_detail\fP ()"
+.br
+.RI "Affichage détaillé "
+.ti -1c
+.RI "void \fBafficher_brut\fP ()"
+.br
+.RI "Affichage brut\&. "
+.ti -1c
+.RI "bool \fBcaseAccessible\fP (int i, int j)"
+.br
+.RI "Case Accessible\&. "
+.ti -1c
+.RI "void \fBechangerContenuCase\fP (int i1, int j1, int i2, int j2)"
+.br
+.RI "Echange le contenu de la case plateau[i1][j1] avec ceux du plateau[i2][j2]\&. "
+.ti -1c
+.RI "void \fBmonstreMort\fP (int x, int y)"
+.br
+.RI "Fait mourir un monstre à la case x,y et enlève 1 à nbr_monstre\&. "
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static int \fBnbElemProt\fP"
+.br
+.RI "Nombre de cartes protégées\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Classe qui permet de modéliser une carte en mémoire\&. 
+
+La classe \fBCarte\fP regroupe le plateau de jeu ainsi que le contenu de chaque case et créer une \fBCarte\fP en allocation dynamique\&.
+.PP
+Chaque \fBCarte\fP est caractérisée par:
+.PP
+un identifiant,
+.PP
+un nom,
+.PP
+une description,
+.PP
+une taille,
+.PP
+un nombre de monstres,
+.PP
+un nombre de cases disponibles,
+.PP
+et un plateau qui lui sont propres\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Carte::Carte ()"
+
+.PP
+Constructeur sans argument\&. Construit une carte en initialisant tous ses paramètres à 0 ou NULL\&. 
+.SS "Carte::Carte (int taille, std::string name, std::string description, int nb_monstre)"
+
+.PP
+Constructeur avec arguments\&. Construit une carte en affectant ses nom, description, et taille, et construit le plateau de jeu à partir de ce dernier paramètre\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItaille\fP Taille d'un côté, la carte est carrée 
+.br
+\fInom\fP Nom que l'on va donner à la carte 
+.br
+\fIdescription\fP Description brève de la carte 
+.br
+\fInb_monstre\fP Nombre de monstres présents sur la carte 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void Carte::affichage_normal ()"
+
+.PP
+Affichage normal\&. Affiche la carte, avec ce que contient chaque case
+.PP
+(affichage du plateau) 
+.SS "void Carte::afficher_brut ()"
+
+.PP
+Affichage brut\&. Affiche une phrase avec le nom de la carte, le nombre de cases qu'il y a au total sur la carte et le nombre de monstre qu'il y a exactement sur la carte 
+.SS "void Carte::afficher_detail ()"
+
+.PP
+Affichage détaillé Affiche un petit texte avec tous les détails de la carte:
+.PP
+Affiche en premier le nom de la carte,
+.PP
+puis la taille d'un coté de la carte, et le nombre de case au total sur la carte
+.PP
+par la suite le nombre de monstre qu'il y a sur la carte,
+.PP
+et enfin affiche la description de la carte 
+.SS "std::string Carte::carteString (std::string lettreCarte, std::string nomFichier)"
+
+.PP
+\fBCarte\fP en ligne\&. Convertit toutes les caractéristiques d'une carte en string\&.
+.PP
+On génère l'ID, les obstacles et les entités sur la carte\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlettreCarte\fP string 
+.br
+\fInomFichier\fP string 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+nbLigneFichier(string) 
+.PP
+c_str() 
+.PP
+toString(int) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+string ligneFichier 
+.RE
+.PP
+
+.SS "bool Carte::caseAccessible (int i, int j)"
+
+.PP
+Case Accessible\&. Vérifie si une case ij est accessible ou pas\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIi\fP entier correspondant à la ligne 
+.br
+\fIj\fP entier correspondant à la colonne 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true si la case ij accessible 
+.PP
+false si la case ij n'est pas accessible 
+.RE
+.PP
+
+.SS "void Carte::coordonneejoueur ()"
+
+.PP
+Coordonnée Joueur\&. On demande les coordonnées du spawn du joueur\&.
+.PP
+Initialise les coordonnées du spawn de départ du joueur\&.
+.PP
+On réactualise le nombre de case dispo\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBlong_input()\fP 
+.PP
+c_str() 
+.PP
+atoi(string) 
+.RE
+.PP
+
+.SS "void Carte::coordonneemonstre ()"
+
+.PP
+Coordonnée monstre\&. Demande le nombre de monstres souhaités\&.
+.PP
+Vérifie que ce nombre est possible en fonction de la taille et du nombre de cases dispo sur la carte\&.
+.PP
+Demande et initialise les coordonnées de chaque monstre\&.
+.PP
+Vérifie que la case choisit est libre\&.
+.PP
+On réactualise le nombre de case dispo\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBlong_input()\fP 
+.PP
+atoi(string) 
+.PP
+c_str() 
+.RE
+.PP
+
+.SS "void Carte::coordonneeobstacle ()"
+
+.PP
+Coordonnée obstacle\&. Demande le nombre d'obstacles souhaités, vérifie que ce nombre est possible en fonction du nombre de cases dispo sur la carte, demande et initialise les coordonnées de chaque obstacle\&.
+.PP
+On ne demande pas le genre d'obstacle voulu maintenant\&.
+.PP
+On réactualise le nombre de case dispo\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBlong_input()\fP 
+.PP
+atoi(string) 
+.PP
+c_str() 
+.RE
+.PP
+
+.SS "void Carte::echangerContenuCase (int i1, int j1, int i2, int j2)"
+
+.PP
+Echange le contenu de la case plateau[i1][j1] avec ceux du plateau[i2][j2]\&. 
+.SS "std::string Carte::getDescription ()"
+
+.PP
+Description\&. Récupère la description de la carte\&.
+.PP
+string description (de la carte) 
+.SS "std::string Carte::getName ()"
+
+.PP
+Nom\&. Récupère le nom de la carte\&.
+.PP
+\fBReturns:\fP
+.RS 4
+string nom (de la carte) 
+.RE
+.PP
+
+.SS "int Carte::getNbrMonstres ()\fC [inline]\fP"
+
+.PP
+Nombre de monstre\&. Récupère le nombre de monstre présents sur la carte\&.
+.PP
+\fBReturns:\fP
+.RS 4
+nbr_monstre int nombre de monstre présent sur la carte 
+.RE
+.PP
+
+.SS "std::string** Carte::getPlateau ()\fC [inline]\fP"
+
+.PP
+Plateau\&. Récupère le plateau de la carte\&.
+.PP
+\fBReturns:\fP
+.RS 4
+plateau string ** 
+.RE
+.PP
+
+.SS "int Carte::getTaille ()\fC [inline]\fP"
+
+.PP
+Taille\&. Récupère la taille de la carte\&.
+.PP
+\fBReturns:\fP
+.RS 4
+taille int 
+.RE
+.PP
+
+.SS "void Carte::monstreMort (int x, int y)"
+
+.PP
+Fait mourir un monstre à la case x,y et enlève 1 à nbr_monstre\&. 
+.SS "int Carte::nbLigneFichier (std::string nomFichier)"
+
+.PP
+Nombre de ligne du fichier\&. Compte le nb de ligne du fichier pour créer l'identifiant unique d'un monstre\&.
+.PP
+On ouvre le fichier en lecture, on parcours tout le fichier en incrémentant le compteur à chaque lignes\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fInomFichier\fP string 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+c_str() 
+.PP
+ifstream 
+.PP
+getline() 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+nbLigne : compteur de nombre de ligne\&. 
+.RE
+.PP
+
+.SS "\fBCarte\fP Carte::operator= (const \fBCarte\fP a_copier)"
+
+.PP
+Copie de \fBCarte\fP\&. On copie une \fBCarte\fP\&.
+.PP
+On récupère les informations de la carte a_copier pour retourner une nouvelle carte avec ces même caractéristiques\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa_copier\fP \fBCarte\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+adresse \fBCarte\fP 
+.RE
+.PP
+
+.SS "void Carte::saisie ()"
+
+.PP
+Saisie\&. Permet de créer une carte : initialiser le type d'obstacle et de monstre\&.
+.PP
+On ouvre le fichier carte, on écrit le nom, la description, la taille et le nombre de monstre qui ont été assigné précédemment\&.
+.PP
+On parcours ensuite le plateau afin de retrouver la case joueur, les obstacles et de quel type ils sont\&.
+.PP
+A chaque fois qu'on tombe sur un monstre on récupère le vecteur de monstres pour faire choisir le monstre au client\&.
+.PP
+\fBSee also:\fP
+.RS 4
+ofstream 
+.PP
+\fBlong_input()\fP 
+.PP
+atoi(string) 
+.PP
+loadAllEntiteFromFile 
+.PP
+\fBafficher_brut()\fP 
+.RE
+.PP
+
+.SS "void Carte::saveInFile (std::string lettreCarte, std::string nomFichier)"
+
+.PP
+Sauvegarde de carte\&. Ecrit les lignes qui contiennent toutes les caractéristique d'une carte à la fin d'un fichier\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlettreCarte\fP string à écrire 
+.br
+\fInomfichier\fP string dans lequel écrire 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+ofstream 
+.PP
+c_str() 
+.PP
+carteString(string, string) 
+.RE
+.PP
+
+.SS "void Carte::setCase (int i, int j, std::string value)"
+
+.PP
+Case\&. Configurer la case de ligne i et de colonne j avec la valeur value\&. (Joueur, monstres, obstacle)\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIi\fP int ligne 
+.br
+\fIj\fP int colonne 
+.br
+\fIvalue\fP string valeur de la case 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+setPlayerPosition(int, int) 
+.RE
+.PP
+
+.SS "void Carte::setCaseDispo (int case_dispo)"
+
+.PP
+Case disponible\&. Configurer le nombre de case disponibles sur la carte\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcase_dispo\fP int nombre de case dispo 
+.RE
+.PP
+
+.SS "void Carte::setDescription (std::string desc)"
+
+.PP
+Description\&. Configurer la description souhaitée pour la carte\&. 
+.SS "void Carte::setId (std::string id)"
+
+.PP
+Id\&. Configurer l'identifiant de la carte\&.
+.PP
+Uniquement pour la carte par défaut, pas accessible pour la configuration générale\&. 
+.SS "void Carte::setName (std::string name)"
+
+.PP
+Nom\&. Configurer le nom souhaitée de la carte\&. 
+.SS "void Carte::setNbrMonstre (int nbr_monstre)"
+
+.PP
+Nombre de monstre\&. Configurer le nombre de monstres présent sur la carte\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fInbr_monstre\fP int nombre de monstre souhaité 
+.RE
+.PP
+
+.SS "void Carte::setPlateau (int taille)"
+
+.PP
+Plateau\&. Configurer la plateau par rapport à la taille demandé\&. (Suite au chargement d'une carte)\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fItaille\fP int d'un coté de la carte 
+.RE
+.PP
+
+.SS "void Carte::setTaille (int taille)"
+
+.PP
+Taille\&. Configurer la taille souhaitée de la carte\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "int Carte::nbElemProt\fC [static]\fP"
+
+.PP
+Nombre de cartes protégées\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Game from the source code\&.

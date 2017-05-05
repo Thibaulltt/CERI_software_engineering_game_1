@@ -1,0 +1,554 @@
+\hypertarget{classentite}{}\section{entite Class Reference}
+\label{classentite}\index{entite@{entite}}
+
+
+{\ttfamily \#include $<$entite.\+h$>$}
+
+Inheritance diagram for entite\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classentite}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classentite_a41b83303ba28a228fdfad7de3eed40fe}{entite} ()
+\begin{DoxyCompactList}\small\item\em Constructeur vide. \end{DoxyCompactList}\item 
+\hyperlink{classentite_a5e655b5c1999ae75dfca0b32de737b1e}{entite} (std\+::string \hyperlink{classentite_a904e8783de9fe2fc4306bf6b7822d025}{entite\+Id}, std\+::string \hyperlink{classentite_abe631a515b1cd0866dcfb078c4ceb07a}{entite\+Name}, int \hyperlink{classentite_a754557f56c1c1fcbcbd40eec68b60f65}{entite\+Hp\+Max}, int \hyperlink{classentite_ad9df70a9bb07f07b3ebf520941c3a35f}{entite\+Speed}, int \hyperlink{classentite_a696167d32c27b3b2a2fa6b473a888b18}{entite\+Mana\+Max}, std\+::string \hyperlink{classentite_a6fab1d9a04ade2cb97ec0904b12c82c9}{entite\+Description}, std\+::vector$<$ \hyperlink{classcompetence}{competence} $>$ all\+Skills)
+\begin{DoxyCompactList}\small\item\em Constructeur avec tout. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classentite_a3af765474e7f288752f24334d0fc6bbd}{get\+ID} ()
+\begin{DoxyCompactList}\small\item\em Getter pour l\textquotesingle{}id. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classentite_a0ebd43d682f234a39faa04bb34173d03}{get\+Name} ()
+\begin{DoxyCompactList}\small\item\em Getter pour le nom. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classentite_ab19b8d18b4d947c85063b2225bbb9144}{get\+Description} ()
+\begin{DoxyCompactList}\small\item\em Getter pour la description. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_ab8e6c4dd900884cba5bec025f1e55999}{get\+Hp\+Max} ()
+\begin{DoxyCompactList}\small\item\em Getter pour le nombre de points de vie max. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_ae41fa12581d2f94d5f6ae67fec4e56e9}{get\+Hp\+Current} ()
+\begin{DoxyCompactList}\small\item\em Getter pour le nombre de points de vie actuels. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_ab97281eadee20e03fe497396439260c9}{get\+Speed} ()
+\begin{DoxyCompactList}\small\item\em Getter pour la vitesse d\textquotesingle{}attaque de l\textquotesingle{}entite. \end{DoxyCompactList}\item 
+bool \hyperlink{classentite_a5a39811eb0c12ae85a23f152c8ba6d58}{get\+Alive} ()
+\begin{DoxyCompactList}\small\item\em Getter qui permet de savoir si l\textquotesingle{}entite est en vie. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_a427218420d74bdec1f79f93572ecf24a}{get\+Mana\+Max} ()
+\begin{DoxyCompactList}\small\item\em Getter pour la mana maximum de l\textquotesingle{}entite. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_ad3e7a419d79d7d7e836243c4920703e3}{get\+Mana\+Current} ()
+\begin{DoxyCompactList}\small\item\em Getter pour la mana actuelle de l\textquotesingle{}entite. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classcompetence}{competence} $>$ \hyperlink{classentite_a90c927665d7c0b7d6d5202604887e1e2}{get\+Skill\+Vect} ()
+\begin{DoxyCompactList}\small\item\em Getter qui renvoie un vecteur (std\+::vector) de compétences. \end{DoxyCompactList}\item 
+void \hyperlink{classentite_af775cfe5a1c47e62b7834ef9e4728b66}{set\+Hp\+Current} (int current)
+\begin{DoxyCompactList}\small\item\em Setter pour points de vie actuels. \end{DoxyCompactList}\item 
+void \hyperlink{classentite_a33be38cbd4590fd55c5338a749ed4c06}{set\+Mana\+Current} (int current)
+\begin{DoxyCompactList}\small\item\em Setter pour points de mana actuels. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_a983d51dcdfaaddaf95096587ea33a3ec}{nb\+Ligne\+Fichier} (std\+::string nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em Retourne le nombre de lignes d\textquotesingle{}un fichier. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classentite_aef8675e5f8592e0cc56661d4d5827d1f}{entite\+String} (std\+::string lettre\+Entite, std\+::string nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em Convertit une entité en string. \end{DoxyCompactList}\item 
+void \hyperlink{classentite_a7bd09aa63160345500b6d6c4dca6cf52}{save\+In\+File} (std\+::string lettre\+Entite, std\+::string nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em Ecriture d\textquotesingle{}une entité dans un fichier. \end{DoxyCompactList}\item 
+bool \hyperlink{classentite_a191b1da1ad1198918c533e552148b8b9}{is\+\_\+personnage} ()
+\begin{DoxyCompactList}\small\item\em Identification personnage. \end{DoxyCompactList}\item 
+bool \hyperlink{classentite_a0c583315bc4dbc9db089eb229b3977af}{is\+\_\+monstre} ()
+\begin{DoxyCompactList}\small\item\em Identification monstre. \end{DoxyCompactList}\item 
+void \hyperlink{classentite_af6ddcb65074eef70bdac220a5a3ed4cf}{afficher\+\_\+detail} ()
+\begin{DoxyCompactList}\small\item\em Affichage en détail. \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::string, std\+::string $>$ \hyperlink{classentite_a32384fdc121c3994d52bcb7936abf09a}{afficher\+\_\+combat} ()
+\begin{DoxyCompactList}\small\item\em Affichage en combat. \end{DoxyCompactList}\item 
+\hyperlink{classentite}{entite} \hyperlink{classentite_a74d72bf499b3b3f9dab723cf0dd88d01}{enlever\+Vie} (int degats)
+\begin{DoxyCompactList}\small\item\em Enlève x points de vie a l\textquotesingle{}entite. \end{DoxyCompactList}\item 
+bool \hyperlink{classentite_a48c1c38c58bbfa074885ac45a2584772}{enlever\+Mana} (int skill\+Mana\+Cost)
+\begin{DoxyCompactList}\small\item\em Enlève x points de mana a l\textquotesingle{}entite. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_a8f147ff4822de170f46850e5869e0d7d}{randomize\+Degat} (int damage, int fumble\+Chance, int crit\+Chance)
+\begin{DoxyCompactList}\small\item\em Modifie l\textquotesingle{}application normale des dégâts. \end{DoxyCompactList}\item 
+void \hyperlink{classentite_a4b1f0c17ffa7ca640b0eecd5a038873c}{afficher\+\_\+brut} ()
+\begin{DoxyCompactList}\small\item\em Affichage brut. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{classentite_a904e8783de9fe2fc4306bf6b7822d025}{entite\+Id}
+\begin{DoxyCompactList}\small\item\em Identifiant de l\textquotesingle{}entité. Est obtenu lors de la lecture du fichier des entités. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classentite_abe631a515b1cd0866dcfb078c4ceb07a}{entite\+Name}
+\begin{DoxyCompactList}\small\item\em Nom de l\textquotesingle{}entité. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classentite_a6fab1d9a04ade2cb97ec0904b12c82c9}{entite\+Description}
+\begin{DoxyCompactList}\small\item\em Description de l\textquotesingle{}entité. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_a754557f56c1c1fcbcbd40eec68b60f65}{entite\+Hp\+Max}
+\begin{DoxyCompactList}\small\item\em Nombre de points de vie maximale que l\textquotesingle{}entité peut avoir pendant le jeu. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_a09661bc80d898530a760153f6b690070}{entite\+Hp\+Current}
+\begin{DoxyCompactList}\small\item\em Nombre de points de vie que l\textquotesingle{}entité a au moment \char`\"{}n\char`\"{}. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_a696167d32c27b3b2a2fa6b473a888b18}{entite\+Mana\+Max}
+\begin{DoxyCompactList}\small\item\em Nombre de points de magie maximal que l\textquotesingle{}entité peut avoir pendant le jeu. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_ae194ea6eb360db3882fc0559a144899b}{entite\+Mana\+Current}
+\begin{DoxyCompactList}\small\item\em Nombre de points de magie que l\textquotesingle{}entité a au moment \char`\"{}n\char`\"{}. \end{DoxyCompactList}\item 
+int \hyperlink{classentite_ad9df70a9bb07f07b3ebf520941c3a35f}{entite\+Speed}
+\begin{DoxyCompactList}\small\item\em Vitesse d\textquotesingle{}attaque de l\textquotesingle{}entité. \end{DoxyCompactList}\item 
+bool \hyperlink{classentite_a5a69c21a4435817f2d960e0811d4474e}{entite\+Alive}
+\begin{DoxyCompactList}\small\item\em Booléen permettant de savoir si l\textquotesingle{}entité est en vie ou non. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classcompetence}{competence} $>$ \hyperlink{classentite_ad9d38b74abc49ec4fba0fcb27f4edaa9}{entite\+Skill\+Vect}
+\begin{DoxyCompactList}\small\item\em Vecteur ({\ttfamily std\+::vector}) permettant de stocker les compétences de l\textquotesingle{}entité. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classentite_a41b83303ba28a228fdfad7de3eed40fe}\label{classentite_a41b83303ba28a228fdfad7de3eed40fe}} 
+\index{entite@{entite}!entite@{entite}}
+\index{entite@{entite}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite()}{entite()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily entite\+::entite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur vide. 
+
+Crée une entité vide. \begin{DoxyWarning}{Warning}
+L\textquotesingle{}entité sera vide. Cela signifie qu\textquotesingle{}elle ne sera pas utilisable pour le jeu, sa vie étant égale à 0 
+\end{DoxyWarning}
+\begin{DoxyPostcond}{Postcondition}
+L\textquotesingle{}entite crée aura les paramètres suivants\+:
+\begin{DoxyItemize}
+\item entite\+Name = \char`\"{}\+Inconnu\char`\"{}
+\item entite\+Hp\+Max = 0
+\item entite\+Hp\+Current = 0
+\item entite\+Speed = 0
+\item entite\+Alive = true (sera changé immédiatement en false)
+\item entite\+Skill\+Vect = $<$vecteur vide$>$=\char`\"{}\char`\"{}$>$ 
+\end{DoxyItemize}
+\end{DoxyPostcond}
+\mbox{\Hypertarget{classentite_a5e655b5c1999ae75dfca0b32de737b1e}\label{classentite_a5e655b5c1999ae75dfca0b32de737b1e}} 
+\index{entite@{entite}!entite@{entite}}
+\index{entite@{entite}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite()}{entite()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily entite\+::entite (\begin{DoxyParamCaption}\item[{std\+::string}]{entite\+Id,  }\item[{std\+::string}]{entite\+Name,  }\item[{int}]{entite\+Hp\+Max,  }\item[{int}]{entite\+Speed,  }\item[{int}]{entite\+Mana\+Max,  }\item[{std\+::string}]{entite\+Description,  }\item[{std\+::vector$<$ \hyperlink{classcompetence}{competence} $>$}]{all\+Skills }\end{DoxyParamCaption})}
+
+
+
+Constructeur avec tout. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entite\+Id} & L\textquotesingle{}identifiant de l\textquotesingle{}entite \\
+\hline
+{\em entite\+Name} & Le nom de l\textquotesingle{}entite \\
+\hline
+{\em entite\+Hp\+Max} & Les points de vie max de l\textquotesingle{}entite \\
+\hline
+{\em entite\+Speed} & La vitesse de l\textquotesingle{}entite \\
+\hline
+{\em entite\+Mana\+Max} & Les points de mana max de l\textquotesingle{}entite \\
+\hline
+{\em entite\+Description} & La description de l\textquotesingle{}entite \\
+\hline
+{\em all\+Skills} & Un vecteur (std\+::vector) contenant toutes les compétences de cette entite. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classentite_a4b1f0c17ffa7ca640b0eecd5a038873c}\label{classentite_a4b1f0c17ffa7ca640b0eecd5a038873c}} 
+\index{entite@{entite}!afficher\+\_\+brut@{afficher\+\_\+brut}}
+\index{afficher\+\_\+brut@{afficher\+\_\+brut}!entite@{entite}}
+\subsubsection{\texorpdfstring{afficher\+\_\+brut()}{afficher\_brut()}}
+{\footnotesize\ttfamily void entite\+::afficher\+\_\+brut (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affichage brut. 
+
+Permet d\textquotesingle{}afficher les informations nécessaires à la gestion des entités (suppression) \mbox{\Hypertarget{classentite_a32384fdc121c3994d52bcb7936abf09a}\label{classentite_a32384fdc121c3994d52bcb7936abf09a}} 
+\index{entite@{entite}!afficher\+\_\+combat@{afficher\+\_\+combat}}
+\index{afficher\+\_\+combat@{afficher\+\_\+combat}!entite@{entite}}
+\subsubsection{\texorpdfstring{afficher\+\_\+combat()}{afficher\_combat()}}
+{\footnotesize\ttfamily std\+::pair$<$std\+::string,std\+::string$>$ entite\+::afficher\+\_\+combat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affichage en combat. 
+
+Permet de limiter l\textquotesingle{}affichage d\textquotesingle{}une entité à ses caractéristiques utiles en combat \mbox{\Hypertarget{classentite_af6ddcb65074eef70bdac220a5a3ed4cf}\label{classentite_af6ddcb65074eef70bdac220a5a3ed4cf}} 
+\index{entite@{entite}!afficher\+\_\+detail@{afficher\+\_\+detail}}
+\index{afficher\+\_\+detail@{afficher\+\_\+detail}!entite@{entite}}
+\subsubsection{\texorpdfstring{afficher\+\_\+detail()}{afficher\_detail()}}
+{\footnotesize\ttfamily void entite\+::afficher\+\_\+detail (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affichage en détail. 
+
+\mbox{\Hypertarget{classentite_a48c1c38c58bbfa074885ac45a2584772}\label{classentite_a48c1c38c58bbfa074885ac45a2584772}} 
+\index{entite@{entite}!enlever\+Mana@{enlever\+Mana}}
+\index{enlever\+Mana@{enlever\+Mana}!entite@{entite}}
+\subsubsection{\texorpdfstring{enlever\+Mana()}{enleverMana()}}
+{\footnotesize\ttfamily bool entite\+::enlever\+Mana (\begin{DoxyParamCaption}\item[{int}]{skill\+Mana\+Cost }\end{DoxyParamCaption})}
+
+
+
+Enlève x points de mana a l\textquotesingle{}entite. 
+
+Permet de vérifier la possibilité de retirer la mana pour utiliser une compétence, et la retire à l\textquotesingle{}entité lanceuse si c\textquotesingle{}est possible. 
+\begin{DoxyParams}{Parameters}
+{\em skill\+Mana\+Cost} & Coût en mana de la compétence souhaitée \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un booléen vérifiant la capacité à dépenser la mana. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classentite_a74d72bf499b3b3f9dab723cf0dd88d01}\label{classentite_a74d72bf499b3b3f9dab723cf0dd88d01}} 
+\index{entite@{entite}!enlever\+Vie@{enlever\+Vie}}
+\index{enlever\+Vie@{enlever\+Vie}!entite@{entite}}
+\subsubsection{\texorpdfstring{enlever\+Vie()}{enleverVie()}}
+{\footnotesize\ttfamily \hyperlink{classentite}{entite} entite\+::enlever\+Vie (\begin{DoxyParamCaption}\item[{int}]{degats }\end{DoxyParamCaption})}
+
+
+
+Enlève x points de vie a l\textquotesingle{}entite. 
+
+Cette fonction permet d\textquotesingle{}enlever des points de vie. Elle permet aussi de savoir si une entite est en vie (pts\+Vie $<$ 0) ou si elle est morte. \begin{DoxyReturn}{Returns}
+Un booléen qui est égal à {\ttfamily true} si le entite est mort, {\ttfamily false} sinon. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classentite_aef8675e5f8592e0cc56661d4d5827d1f}\label{classentite_aef8675e5f8592e0cc56661d4d5827d1f}} 
+\index{entite@{entite}!entite\+String@{entite\+String}}
+\index{entite\+String@{entite\+String}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+String()}{entiteString()}}
+{\footnotesize\ttfamily std\+::string entite\+::entite\+String (\begin{DoxyParamCaption}\item[{std\+::string}]{lettre\+Entite,  }\item[{std\+::string}]{nom\+Fichier }\end{DoxyParamCaption})}
+
+
+
+Convertit une entité en string. 
+
+Permet de prendre une entité, et d\textquotesingle{}en retourner les informations sous forme de chaîne de caractères 
+\begin{DoxyParams}{Parameters}
+{\em lettre\+Entite} & Première lettre du futur identifiant de l\textquotesingle{}entité \\
+\hline
+{\em nom\+Fichier} & Nom du fichier dans lequel sauvegarder l\textquotesingle{}entité \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Une chaîne de caractères décrivant l\textquotesingle{}entité 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classentite_a5a39811eb0c12ae85a23f152c8ba6d58}\label{classentite_a5a39811eb0c12ae85a23f152c8ba6d58}} 
+\index{entite@{entite}!get\+Alive@{get\+Alive}}
+\index{get\+Alive@{get\+Alive}!entite@{entite}}
+\subsubsection{\texorpdfstring{get\+Alive()}{getAlive()}}
+{\footnotesize\ttfamily bool entite\+::get\+Alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter qui permet de savoir si l\textquotesingle{}entite est en vie. 
+
+\mbox{\Hypertarget{classentite_ab19b8d18b4d947c85063b2225bbb9144}\label{classentite_ab19b8d18b4d947c85063b2225bbb9144}} 
+\index{entite@{entite}!get\+Description@{get\+Description}}
+\index{get\+Description@{get\+Description}!entite@{entite}}
+\subsubsection{\texorpdfstring{get\+Description()}{getDescription()}}
+{\footnotesize\ttfamily std\+::string entite\+::get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter pour la description. 
+
+\mbox{\Hypertarget{classentite_ae41fa12581d2f94d5f6ae67fec4e56e9}\label{classentite_ae41fa12581d2f94d5f6ae67fec4e56e9}} 
+\index{entite@{entite}!get\+Hp\+Current@{get\+Hp\+Current}}
+\index{get\+Hp\+Current@{get\+Hp\+Current}!entite@{entite}}
+\subsubsection{\texorpdfstring{get\+Hp\+Current()}{getHpCurrent()}}
+{\footnotesize\ttfamily int entite\+::get\+Hp\+Current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter pour le nombre de points de vie actuels. 
+
+\mbox{\Hypertarget{classentite_ab8e6c4dd900884cba5bec025f1e55999}\label{classentite_ab8e6c4dd900884cba5bec025f1e55999}} 
+\index{entite@{entite}!get\+Hp\+Max@{get\+Hp\+Max}}
+\index{get\+Hp\+Max@{get\+Hp\+Max}!entite@{entite}}
+\subsubsection{\texorpdfstring{get\+Hp\+Max()}{getHpMax()}}
+{\footnotesize\ttfamily int entite\+::get\+Hp\+Max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter pour le nombre de points de vie max. 
+
+\mbox{\Hypertarget{classentite_a3af765474e7f288752f24334d0fc6bbd}\label{classentite_a3af765474e7f288752f24334d0fc6bbd}} 
+\index{entite@{entite}!get\+ID@{get\+ID}}
+\index{get\+ID@{get\+ID}!entite@{entite}}
+\subsubsection{\texorpdfstring{get\+I\+D()}{getID()}}
+{\footnotesize\ttfamily std\+::string entite\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter pour l\textquotesingle{}id. 
+
+\mbox{\Hypertarget{classentite_ad3e7a419d79d7d7e836243c4920703e3}\label{classentite_ad3e7a419d79d7d7e836243c4920703e3}} 
+\index{entite@{entite}!get\+Mana\+Current@{get\+Mana\+Current}}
+\index{get\+Mana\+Current@{get\+Mana\+Current}!entite@{entite}}
+\subsubsection{\texorpdfstring{get\+Mana\+Current()}{getManaCurrent()}}
+{\footnotesize\ttfamily int entite\+::get\+Mana\+Current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter pour la mana actuelle de l\textquotesingle{}entite. 
+
+\mbox{\Hypertarget{classentite_a427218420d74bdec1f79f93572ecf24a}\label{classentite_a427218420d74bdec1f79f93572ecf24a}} 
+\index{entite@{entite}!get\+Mana\+Max@{get\+Mana\+Max}}
+\index{get\+Mana\+Max@{get\+Mana\+Max}!entite@{entite}}
+\subsubsection{\texorpdfstring{get\+Mana\+Max()}{getManaMax()}}
+{\footnotesize\ttfamily int entite\+::get\+Mana\+Max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter pour la mana maximum de l\textquotesingle{}entite. 
+
+\mbox{\Hypertarget{classentite_a0ebd43d682f234a39faa04bb34173d03}\label{classentite_a0ebd43d682f234a39faa04bb34173d03}} 
+\index{entite@{entite}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!entite@{entite}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily std\+::string entite\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter pour le nom. 
+
+\mbox{\Hypertarget{classentite_a90c927665d7c0b7d6d5202604887e1e2}\label{classentite_a90c927665d7c0b7d6d5202604887e1e2}} 
+\index{entite@{entite}!get\+Skill\+Vect@{get\+Skill\+Vect}}
+\index{get\+Skill\+Vect@{get\+Skill\+Vect}!entite@{entite}}
+\subsubsection{\texorpdfstring{get\+Skill\+Vect()}{getSkillVect()}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{classcompetence}{competence}$>$ entite\+::get\+Skill\+Vect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter qui renvoie un vecteur (std\+::vector) de compétences. 
+
+\mbox{\Hypertarget{classentite_ab97281eadee20e03fe497396439260c9}\label{classentite_ab97281eadee20e03fe497396439260c9}} 
+\index{entite@{entite}!get\+Speed@{get\+Speed}}
+\index{get\+Speed@{get\+Speed}!entite@{entite}}
+\subsubsection{\texorpdfstring{get\+Speed()}{getSpeed()}}
+{\footnotesize\ttfamily int entite\+::get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter pour la vitesse d\textquotesingle{}attaque de l\textquotesingle{}entite. 
+
+\mbox{\Hypertarget{classentite_a0c583315bc4dbc9db089eb229b3977af}\label{classentite_a0c583315bc4dbc9db089eb229b3977af}} 
+\index{entite@{entite}!is\+\_\+monstre@{is\+\_\+monstre}}
+\index{is\+\_\+monstre@{is\+\_\+monstre}!entite@{entite}}
+\subsubsection{\texorpdfstring{is\+\_\+monstre()}{is\_monstre()}}
+{\footnotesize\ttfamily bool entite\+::is\+\_\+monstre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Identification monstre. 
+
+Permet de déterminer la qualité de monstre d\textquotesingle{}une entité. \begin{DoxyReturn}{Returns}
+Booléen\+: vrai si l\textquotesingle{}entité est un monstre, faux sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classentite_a191b1da1ad1198918c533e552148b8b9}\label{classentite_a191b1da1ad1198918c533e552148b8b9}} 
+\index{entite@{entite}!is\+\_\+personnage@{is\+\_\+personnage}}
+\index{is\+\_\+personnage@{is\+\_\+personnage}!entite@{entite}}
+\subsubsection{\texorpdfstring{is\+\_\+personnage()}{is\_personnage()}}
+{\footnotesize\ttfamily bool entite\+::is\+\_\+personnage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Identification personnage. 
+
+Permet de déterminer la qualité de personnage d\textquotesingle{}une entité. \begin{DoxyReturn}{Returns}
+Booléen\+: vrai si l\textquotesingle{}entité est un personnage, faux sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classentite_a983d51dcdfaaddaf95096587ea33a3ec}\label{classentite_a983d51dcdfaaddaf95096587ea33a3ec}} 
+\index{entite@{entite}!nb\+Ligne\+Fichier@{nb\+Ligne\+Fichier}}
+\index{nb\+Ligne\+Fichier@{nb\+Ligne\+Fichier}!entite@{entite}}
+\subsubsection{\texorpdfstring{nb\+Ligne\+Fichier()}{nbLigneFichier()}}
+{\footnotesize\ttfamily int entite\+::nb\+Ligne\+Fichier (\begin{DoxyParamCaption}\item[{std\+::string}]{nom\+Fichier }\end{DoxyParamCaption})}
+
+
+
+Retourne le nombre de lignes d\textquotesingle{}un fichier. 
+
+Compte le nb de lignes du fichier pour créer l\textquotesingle{}identifiant unique d\textquotesingle{}un entite. L\textquotesingle{}identifiant sera {\ttfamily  nb\+Lignes + 1 } 
+\begin{DoxyParams}{Parameters}
+{\em nom\+Fichier} & Une string (std\+::string) qui sera le nom du fichier à ouvrir. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un entier représentant le nombre de lignes. 
+\end{DoxyReturn}
+\begin{DoxyPostcond}{Postcondition}
+La string contiendra les infos dans cet ordre \+:
+\begin{DoxyItemize}
+\item entite\+Identifiant (type {\ttfamily m$<$entier$>$})
+\item nom de l\textquotesingle{}entite
+\item nombre de points de vie
+\item vitesse d\textquotesingle{}attaque
+\item toutes les compétences , séparées par des {\ttfamily \+:} 
+\end{DoxyItemize}
+\end{DoxyPostcond}
+\mbox{\Hypertarget{classentite_a8f147ff4822de170f46850e5869e0d7d}\label{classentite_a8f147ff4822de170f46850e5869e0d7d}} 
+\index{entite@{entite}!randomize\+Degat@{randomize\+Degat}}
+\index{randomize\+Degat@{randomize\+Degat}!entite@{entite}}
+\subsubsection{\texorpdfstring{randomize\+Degat()}{randomizeDegat()}}
+{\footnotesize\ttfamily int entite\+::randomize\+Degat (\begin{DoxyParamCaption}\item[{int}]{damage,  }\item[{int}]{fumble\+Chance,  }\item[{int}]{crit\+Chance }\end{DoxyParamCaption})}
+
+
+
+Modifie l\textquotesingle{}application normale des dégâts. 
+
+Permet d\textquotesingle{}appliquer un modificateur de dégâts à une attaque (néfaste ou bénéfique).
+
+3 cas distincts\+:
+\begin{DoxyItemize}
+\item La valeur aléatoire renvoyée est inférieure au pourcentage plafond de fumble -\/$>$ les dégâts / soins sont divisés par 2.
+\item La valeur aléatoire renvoyée est supérieure au pourcentage plancher de critique -\/$>$ les dégâts / soins sont multipliés par 2.
+\item La valeur aléatoire renvoyée est entre ces deux limites -\/$>$ pas de changement. 
+\begin{DoxyParams}{Parameters}
+{\em damage} & La valeur de dégâts à modifier \\
+\hline
+{\em fumble\+Chance} & Le pourcentage de chances d\textquotesingle{}effectuer un fumble (moins de 10\% conseillés) \\
+\hline
+{\em crit\+Chance} & Le pourcentage de chances d\textquotesingle{}effectuer un critique \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La valeur modifiée 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classentite_a7bd09aa63160345500b6d6c4dca6cf52}\label{classentite_a7bd09aa63160345500b6d6c4dca6cf52}} 
+\index{entite@{entite}!save\+In\+File@{save\+In\+File}}
+\index{save\+In\+File@{save\+In\+File}!entite@{entite}}
+\subsubsection{\texorpdfstring{save\+In\+File()}{saveInFile()}}
+{\footnotesize\ttfamily void entite\+::save\+In\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{lettre\+Entite,  }\item[{std\+::string}]{nom\+Fichier }\end{DoxyParamCaption})}
+
+
+
+Ecriture d\textquotesingle{}une entité dans un fichier. 
+
+Permet de sauvegarder une entité dans un fichier 
+\begin{DoxyParams}{Parameters}
+{\em lettre\+Entite} & Première lettre du futur identifiant de l\textquotesingle{}entité \\
+\hline
+{\em nom\+Fichier} & Nom du fichier dans lequel sauvegarder l\textquotesingle{}entité \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classentite_af775cfe5a1c47e62b7834ef9e4728b66}\label{classentite_af775cfe5a1c47e62b7834ef9e4728b66}} 
+\index{entite@{entite}!set\+Hp\+Current@{set\+Hp\+Current}}
+\index{set\+Hp\+Current@{set\+Hp\+Current}!entite@{entite}}
+\subsubsection{\texorpdfstring{set\+Hp\+Current()}{setHpCurrent()}}
+{\footnotesize\ttfamily void entite\+::set\+Hp\+Current (\begin{DoxyParamCaption}\item[{int}]{current }\end{DoxyParamCaption})}
+
+
+
+Setter pour points de vie actuels. 
+
+\mbox{\Hypertarget{classentite_a33be38cbd4590fd55c5338a749ed4c06}\label{classentite_a33be38cbd4590fd55c5338a749ed4c06}} 
+\index{entite@{entite}!set\+Mana\+Current@{set\+Mana\+Current}}
+\index{set\+Mana\+Current@{set\+Mana\+Current}!entite@{entite}}
+\subsubsection{\texorpdfstring{set\+Mana\+Current()}{setManaCurrent()}}
+{\footnotesize\ttfamily void entite\+::set\+Mana\+Current (\begin{DoxyParamCaption}\item[{int}]{current }\end{DoxyParamCaption})}
+
+
+
+Setter pour points de mana actuels. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classentite_a5a69c21a4435817f2d960e0811d4474e}\label{classentite_a5a69c21a4435817f2d960e0811d4474e}} 
+\index{entite@{entite}!entite\+Alive@{entite\+Alive}}
+\index{entite\+Alive@{entite\+Alive}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+Alive}{entiteAlive}}
+{\footnotesize\ttfamily bool entite\+::entite\+Alive\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Booléen permettant de savoir si l\textquotesingle{}entité est en vie ou non. 
+
+\mbox{\Hypertarget{classentite_a6fab1d9a04ade2cb97ec0904b12c82c9}\label{classentite_a6fab1d9a04ade2cb97ec0904b12c82c9}} 
+\index{entite@{entite}!entite\+Description@{entite\+Description}}
+\index{entite\+Description@{entite\+Description}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+Description}{entiteDescription}}
+{\footnotesize\ttfamily std\+::string entite\+::entite\+Description\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Description de l\textquotesingle{}entité. 
+
+\mbox{\Hypertarget{classentite_a09661bc80d898530a760153f6b690070}\label{classentite_a09661bc80d898530a760153f6b690070}} 
+\index{entite@{entite}!entite\+Hp\+Current@{entite\+Hp\+Current}}
+\index{entite\+Hp\+Current@{entite\+Hp\+Current}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+Hp\+Current}{entiteHpCurrent}}
+{\footnotesize\ttfamily int entite\+::entite\+Hp\+Current\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Nombre de points de vie que l\textquotesingle{}entité a au moment \char`\"{}n\char`\"{}. 
+
+\mbox{\Hypertarget{classentite_a754557f56c1c1fcbcbd40eec68b60f65}\label{classentite_a754557f56c1c1fcbcbd40eec68b60f65}} 
+\index{entite@{entite}!entite\+Hp\+Max@{entite\+Hp\+Max}}
+\index{entite\+Hp\+Max@{entite\+Hp\+Max}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+Hp\+Max}{entiteHpMax}}
+{\footnotesize\ttfamily int entite\+::entite\+Hp\+Max\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Nombre de points de vie maximale que l\textquotesingle{}entité peut avoir pendant le jeu. 
+
+\mbox{\Hypertarget{classentite_a904e8783de9fe2fc4306bf6b7822d025}\label{classentite_a904e8783de9fe2fc4306bf6b7822d025}} 
+\index{entite@{entite}!entite\+Id@{entite\+Id}}
+\index{entite\+Id@{entite\+Id}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+Id}{entiteId}}
+{\footnotesize\ttfamily std\+::string entite\+::entite\+Id\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Identifiant de l\textquotesingle{}entité. Est obtenu lors de la lecture du fichier des entités. 
+
+\mbox{\Hypertarget{classentite_ae194ea6eb360db3882fc0559a144899b}\label{classentite_ae194ea6eb360db3882fc0559a144899b}} 
+\index{entite@{entite}!entite\+Mana\+Current@{entite\+Mana\+Current}}
+\index{entite\+Mana\+Current@{entite\+Mana\+Current}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+Mana\+Current}{entiteManaCurrent}}
+{\footnotesize\ttfamily int entite\+::entite\+Mana\+Current\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Nombre de points de magie que l\textquotesingle{}entité a au moment \char`\"{}n\char`\"{}. 
+
+\mbox{\Hypertarget{classentite_a696167d32c27b3b2a2fa6b473a888b18}\label{classentite_a696167d32c27b3b2a2fa6b473a888b18}} 
+\index{entite@{entite}!entite\+Mana\+Max@{entite\+Mana\+Max}}
+\index{entite\+Mana\+Max@{entite\+Mana\+Max}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+Mana\+Max}{entiteManaMax}}
+{\footnotesize\ttfamily int entite\+::entite\+Mana\+Max\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Nombre de points de magie maximal que l\textquotesingle{}entité peut avoir pendant le jeu. 
+
+\mbox{\Hypertarget{classentite_abe631a515b1cd0866dcfb078c4ceb07a}\label{classentite_abe631a515b1cd0866dcfb078c4ceb07a}} 
+\index{entite@{entite}!entite\+Name@{entite\+Name}}
+\index{entite\+Name@{entite\+Name}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+Name}{entiteName}}
+{\footnotesize\ttfamily std\+::string entite\+::entite\+Name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Nom de l\textquotesingle{}entité. 
+
+\mbox{\Hypertarget{classentite_ad9d38b74abc49ec4fba0fcb27f4edaa9}\label{classentite_ad9d38b74abc49ec4fba0fcb27f4edaa9}} 
+\index{entite@{entite}!entite\+Skill\+Vect@{entite\+Skill\+Vect}}
+\index{entite\+Skill\+Vect@{entite\+Skill\+Vect}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+Skill\+Vect}{entiteSkillVect}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{classcompetence}{competence}$>$ entite\+::entite\+Skill\+Vect\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Vecteur ({\ttfamily std\+::vector}) permettant de stocker les compétences de l\textquotesingle{}entité. 
+
+\mbox{\Hypertarget{classentite_ad9df70a9bb07f07b3ebf520941c3a35f}\label{classentite_ad9df70a9bb07f07b3ebf520941c3a35f}} 
+\index{entite@{entite}!entite\+Speed@{entite\+Speed}}
+\index{entite\+Speed@{entite\+Speed}!entite@{entite}}
+\subsubsection{\texorpdfstring{entite\+Speed}{entiteSpeed}}
+{\footnotesize\ttfamily int entite\+::entite\+Speed\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Vitesse d\textquotesingle{}attaque de l\textquotesingle{}entité. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/\hyperlink{entite_8h}{entite.\+h}\end{DoxyCompactItemize}

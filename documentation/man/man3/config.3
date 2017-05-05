@@ -1,0 +1,182 @@
+.TH "config" 3 "Fri May 5 2017" "The Game" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+config
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <config\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBconfig_carte\fP ()"
+.br
+.RI "Configuration de carte\&. "
+.ti -1c
+.RI "void \fBconfig_monstre\fP ()"
+.br
+.RI "Configuration de monstre\&. "
+.ti -1c
+.RI "void \fBconfig_perso\fP ()"
+.br
+.RI "Configuration de personnage\&. "
+.ti -1c
+.RI "template<typename T > std::string \fBidentif_objet\fP (T objet)"
+.br
+.RI "Caractère d'identification d'un objet\&. "
+.ti -1c
+.RI "int \fBchoix_taille\fP ()"
+.br
+.RI "Choix de la taille\&. "
+.ti -1c
+.RI "void \fBcreationCarte\fP ()"
+.br
+.RI "Création d'une carte\&. "
+.ti -1c
+.RI "\fBcompetence\fP \fBcreateCompetenceEntite\fP (\fBentite\fP dummy, int rang, int manaMax)"
+.br
+.RI "Création de compétence\&. "
+.ti -1c
+.RI "template<class T > void \fBcreationEntite\fP (T dummy, std::string nom_fichier)"
+.br
+.RI "Création d'une entité "
+.ti -1c
+.RI "template<class T > void \fBdeleteLineElement\fP (std::string nomFichier, std::vector< T > &allElement, std::string lettreElement, int nbElemProt)"
+.br
+.RI "Supprimer un élément\&. "
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "int config::choix_taille ()"
+
+.PP
+Choix de la taille\&. Permet de choisir la taille de la carte\&.
+.PP
+La taille doit être supérieure à 4 et inférieure à 255\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Taille de la carte 
+.RE
+.PP
+
+.SS "void config::config_carte ()"
+
+.PP
+Configuration de carte\&. Permet de créer ou de supprimer une carte\&. 
+.SS "void config::config_monstre ()"
+
+.PP
+Configuration de monstre\&. Permet de créer ou de supprimer un monstre\&. 
+.SS "void config::config_perso ()"
+
+.PP
+Configuration de personnage\&. Permet de créer ou de supprimer un personnage\&. 
+.SS "\fBcompetence\fP config::createCompetenceEntite (\fBentite\fP dummy, int rang, int manaMax)"
+
+.PP
+Création de compétence\&. Permet de créer une compétence d'entité\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdummy\fP Type spécifique de l'entité à utiliser 
+.br
+\fIrang\fP Identifiant du numéro de compétence à saisir (parmi le total choisi) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+La compétence créée 
+.RE
+.PP
+
+.SS "void config::creationCarte ()"
+
+.PP
+Création d'une carte\&. Permet de créer une carte et de la rajouter dans le fichier des cartes\&.
+.PP
+.IP "\(bu" 2
+Demande un nom pour la carte\&.
+.IP "\(bu" 2
+Demande une description pour la carte\&.
+.IP "\(bu" 2
+Demande une taille pour la carte\&.
+.IP "\(bu" 2
+Construit la carte\&.
+.IP "\(bu" 2
+Demande le placement du joueur\&.
+.IP "\(bu" 2
+Demande le placement des obstacles\&.
+.IP "\(bu" 2
+Demande le placement des monstres\&.
+.IP "\(bu" 2
+Assigne des monstres aux emplacements choisis\&.
+.IP "\(bu" 2
+Ecrit la carte dans le fichier\&. 
+.PP
+
+.SS "template<class T > void config::creationEntite (T dummy, std::string nom_fichier)\fC [inline]\fP"
+
+.PP
+Création d'une entité Permet de créer une entité et de la rajouter dans le fichier correspondant\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdummy\fP Type spécifique de l'entité à utiliser 
+.br
+\fInom_fichier\fP Nom du fichier dans lequel on veut insérer l'entité 
+.RE
+.PP
+
+.SS "template<class T > void config::deleteLineElement (std::string nomFichier, std::vector< T > & allElement, std::string lettreElement, int nbElemProt)\fC [inline]\fP"
+
+.PP
+Supprimer un élément\&. Cette fonction permet de supprimer un élément choisi par l'utilisateur\&.
+.PP
+Mode opératoire :
+.IP "\(bu" 2
+L'utilisateur choisit l'élément à supprimer dans le vecteur
+.IP "\(bu" 2
+On efface du vecteur l'élément choisi
+.IP "\(bu" 2
+Effacement de tout le fichier
+.IP "\(bu" 2
+Réecriture du fichier via le vecteur d'élément actualisé 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInomFichier\fP Le nom du fichier \&.txt dans lequel on veut supprimer une entité 
+.br
+\fIallEntite\fP Vecteur contenant tous les éléments disponibles 
+.br
+\fIlettreEntite\fP String permettant de savoir quel type d'élément on traite 
+.br
+\fInbElemProt\fP Entier déterminant le nombre d'éléments par défaut à protéger de la modification 
+.RE
+.PP
+
+.PP
+
+.SS "template<typename T > std::string config::identif_objet (T objet)\fC [inline]\fP"
+
+.PP
+Caractère d'identification d'un objet\&. Permet de récupérer un caractère identifiant un objet\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIobjet\fP Objet à identifier 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Caractère string identifiant l'objet 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Game from the source code\&.

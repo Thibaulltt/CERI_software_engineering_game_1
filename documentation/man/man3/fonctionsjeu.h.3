@@ -1,0 +1,62 @@
+.TH "/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/fonctionsjeu.h" 3 "Fri May 5 2017" "The Game" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/fonctionsjeu.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stack>\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include '\&.\&./headers/carte\&.h'\fP
+.br
+\fC#include '\&.\&./headers/competence\&.h'\fP
+.br
+\fC#include '\&.\&./headers/io\&.h'\fP
+.br
+\fC#include '\&.\&./headers/monstre\&.h'\fP
+.br
+\fC#include '\&.\&./headers/personnage\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBjeu\fP"
+.br
+.RI "Ceci sera la classe du jeu\&. Elle contient toutes les entités, la carte, ainsi que les fonctions nécessaires à la partie\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBsort_speed\fP (\fBentite\fP a, \fBentite\fP b)"
+.br
+.RI "Tri d'entités\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "bool sort_speed (\fBentite\fP a, \fBentite\fP b)"
+
+.PP
+Tri d'entités\&. Trie des entités selon la valeur de leur attribut de vitesse\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP Entité par rapport à laquelle on trie\&. 
+.br
+\fIb\fP Entité à trier\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Un booléen: true si la vitesse de a est supérieure à la vitesse de b\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Game from the source code\&.

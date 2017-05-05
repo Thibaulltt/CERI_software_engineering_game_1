@@ -1,0 +1,224 @@
+\hypertarget{classcompetence}{}\section{competence Class Reference}
+\label{classcompetence}\index{competence@{competence}}
+
+
+{\ttfamily \#include $<$competence.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classcompetence_ae47bad4331015d873fef6b006b987d38}{competence} ()
+\begin{DoxyCompactList}\small\item\em Constructeur sans arguments. \end{DoxyCompactList}\item 
+\hyperlink{classcompetence_ae214635d91c8b1c5a37352dccbcd2397}{competence} (std\+::string skill\+Name, int skill\+Damage, int skill\+Mana\+Cost)
+\begin{DoxyCompactList}\small\item\em Constructeur permettant de créer une compétence pour un personnage. \end{DoxyCompactList}\item 
+\hyperlink{classcompetence_a269947808c5e8662ecabb11e96a4d9c0}{competence} (std\+::string skill\+Name, int skill\+Damage)
+\begin{DoxyCompactList}\small\item\em Constructeur permettant de créer une compétence pour un monstre. \end{DoxyCompactList}\item 
+\hyperlink{classcompetence_a158b19a476ae306eeaaa6672aab62e6c}{$\sim$competence} ()
+\begin{DoxyCompactList}\small\item\em Destructeur de compétence. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classcompetence_abbb996751e239fc151caae2a73947710}{get\+Name} ()
+\begin{DoxyCompactList}\small\item\em Fonction retournant le nom d\textquotesingle{}une compétence. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classcompetence_ae0980a623fb74c32a630400cdb56cd14}{get\+Description} ()
+\begin{DoxyCompactList}\small\item\em Fonction retournant la description d\textquotesingle{}une compétence. \end{DoxyCompactList}\item 
+int \hyperlink{classcompetence_a752380fae93494815023b3a177e57f44}{get\+Damage} ()
+\begin{DoxyCompactList}\small\item\em Fonction retournant le nombre de points de dégâts à appliquer à une cible. \end{DoxyCompactList}\item 
+int \hyperlink{classcompetence_a8346c6ae95df148e42f26b9a94655c8f}{get\+Mana\+Cost} ()
+\begin{DoxyCompactList}\small\item\em Fonction retournant le nombre de points de magie à utiliser. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::string \hyperlink{classcompetence_adbd67d184b75c46bc22c1aef070d9246}{to\+String} (const T \&valeur)
+\begin{DoxyCompactList}\small\item\em Template permettant de retourner une string contenant un élément. \end{DoxyCompactList}\item 
+void \hyperlink{classcompetence_a8398d16c43f6ca6b44e3779730e022b6}{afficher\+\_\+detail} ()
+\begin{DoxyCompactList}\small\item\em Affichage d\textquotesingle{}une compétence. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classcompetence_a7e0e1108a22437875609defae6515f09}{afficher\+\_\+detail\+\_\+combat} ()
+\item 
+std\+::string \hyperlink{classcompetence_a4acc4e02f7e8c49a6d4d1db307e8f03d}{competence\+String} ()
+\begin{DoxyCompactList}\small\item\em Conversion en string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Permet de contenir une compétence en mémoire.
+
+Une compétence est formée grâce à \+:
+\begin{DoxyItemize}
+\item un nom ({\ttfamily skill\+Name})
+\item un nombre de points de dégâts à appliquer (si ce nombre est négatif, la compétence permet de soigner une cible)
+\item un coût en points de magie (si ce nombre est négatif, la compétence permet de régénerer des points de magie)
+\end{DoxyItemize}
+
+N\+O\+TE \+: Par convention, une compétence qui contient un nombre de points de mana sera utilisée sur un joueur. Un monstre n\textquotesingle{}a pas de magie à gérer. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompetence_ae47bad4331015d873fef6b006b987d38}\label{classcompetence_ae47bad4331015d873fef6b006b987d38}} 
+\index{competence@{competence}!competence@{competence}}
+\index{competence@{competence}!competence@{competence}}
+\subsubsection{\texorpdfstring{competence()}{competence()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily competence\+::competence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur sans arguments. 
+
+En sortant de ce constructeur, la compétence aura \+:
+\begin{DoxyItemize}
+\item skill\+Name = \char`\"{}\+Inconnu\char`\"{}
+\item skill\+Damage = 0
+\item skill\+Mana\+Cost = 0 
+\end{DoxyItemize}\mbox{\Hypertarget{classcompetence_ae214635d91c8b1c5a37352dccbcd2397}\label{classcompetence_ae214635d91c8b1c5a37352dccbcd2397}} 
+\index{competence@{competence}!competence@{competence}}
+\index{competence@{competence}!competence@{competence}}
+\subsubsection{\texorpdfstring{competence()}{competence()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily competence\+::competence (\begin{DoxyParamCaption}\item[{std\+::string}]{skill\+Name,  }\item[{int}]{skill\+Damage,  }\item[{int}]{skill\+Mana\+Cost }\end{DoxyParamCaption})}
+
+
+
+Constructeur permettant de créer une compétence pour un personnage. 
+
+Les compétences créées avec ce constructeur seront utilisées pour un personnage. La compétence aura donc comme données \+:
+\begin{DoxyItemize}
+\item competence\+::skill\+Name = skill\+Name
+\item competence\+::skill\+Damage = skill\+Damage
+\item competence\+::skill\+Mana\+Cost = skill\+Mana\+Cost 
+\begin{DoxyParams}{Parameters}
+{\em skill\+Name} & Nom à assigner à la compétence \\
+\hline
+{\em skill\+Damage} & Nombre de points de vie à assigner à la compétence (si ce nombre est négatif, la compétence permet de soigner une cible) \\
+\hline
+{\em skill\+Mana\+Cost} & Nombre de points de magie à assigner à la compétence (si ce nombre est négatif, la compétence permet de régénerer des points de magie) \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classcompetence_a269947808c5e8662ecabb11e96a4d9c0}\label{classcompetence_a269947808c5e8662ecabb11e96a4d9c0}} 
+\index{competence@{competence}!competence@{competence}}
+\index{competence@{competence}!competence@{competence}}
+\subsubsection{\texorpdfstring{competence()}{competence()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily competence\+::competence (\begin{DoxyParamCaption}\item[{std\+::string}]{skill\+Name,  }\item[{int}]{skill\+Damage }\end{DoxyParamCaption})}
+
+
+
+Constructeur permettant de créer une compétence pour un monstre. 
+
+Les compétences créées avec ce constructeur seront utilisées pour un monstre. La compétence aura donc comme données \+:
+\begin{DoxyItemize}
+\item competence\+::skill\+Name = skill\+Name
+\item competence\+::skill\+Damage = skill\+Damage 
+\begin{DoxyParams}{Parameters}
+{\em skill\+Name} & Nom à assigner à la compétence \\
+\hline
+{\em skill\+Damage} & Nombre de points de vie à assigner à la compétence (si ce nombre est négatif, la compétence permet de soigner une cible) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Les compétences créées utilisant ce constructeur seront assignées à des monstres. Par convention, un monstre n\textquotesingle{}a pas à gérer de magie. 
+\end{DoxyNote}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classcompetence_a158b19a476ae306eeaaa6672aab62e6c}\label{classcompetence_a158b19a476ae306eeaaa6672aab62e6c}} 
+\index{competence@{competence}!````~competence@{$\sim$competence}}
+\index{````~competence@{$\sim$competence}!competence@{competence}}
+\subsubsection{\texorpdfstring{$\sim$competence()}{~competence()}}
+{\footnotesize\ttfamily competence\+::$\sim$competence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur de compétence. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompetence_a8398d16c43f6ca6b44e3779730e022b6}\label{classcompetence_a8398d16c43f6ca6b44e3779730e022b6}} 
+\index{competence@{competence}!afficher\+\_\+detail@{afficher\+\_\+detail}}
+\index{afficher\+\_\+detail@{afficher\+\_\+detail}!competence@{competence}}
+\subsubsection{\texorpdfstring{afficher\+\_\+detail()}{afficher\_detail()}}
+{\footnotesize\ttfamily void competence\+::afficher\+\_\+detail (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affichage d\textquotesingle{}une compétence. 
+
+Affiche les éléments détaillés d\textquotesingle{}une compétence (nom, dégâts, coût). Si les dégâts sont négatifs, affiche \char`\"{}soins\char`\"{}. Si le coût est négatif, affiche \char`\"{}gain\char`\"{}. \mbox{\Hypertarget{classcompetence_a7e0e1108a22437875609defae6515f09}\label{classcompetence_a7e0e1108a22437875609defae6515f09}} 
+\index{competence@{competence}!afficher\+\_\+detail\+\_\+combat@{afficher\+\_\+detail\+\_\+combat}}
+\index{afficher\+\_\+detail\+\_\+combat@{afficher\+\_\+detail\+\_\+combat}!competence@{competence}}
+\subsubsection{\texorpdfstring{afficher\+\_\+detail\+\_\+combat()}{afficher\_detail\_combat()}}
+{\footnotesize\ttfamily std\+::string competence\+::afficher\+\_\+detail\+\_\+combat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcompetence_a4acc4e02f7e8c49a6d4d1db307e8f03d}\label{classcompetence_a4acc4e02f7e8c49a6d4d1db307e8f03d}} 
+\index{competence@{competence}!competence\+String@{competence\+String}}
+\index{competence\+String@{competence\+String}!competence@{competence}}
+\subsubsection{\texorpdfstring{competence\+String()}{competenceString()}}
+{\footnotesize\ttfamily std\+::string competence\+::competence\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Conversion en string. 
+
+Permet de convertir les caractéristiques d\textquotesingle{}une compétence en chaîne de caractère en vue de son écriture dans un fichier \begin{DoxyReturn}{Returns}
+Un string correspondant à la compétence 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompetence_a752380fae93494815023b3a177e57f44}\label{classcompetence_a752380fae93494815023b3a177e57f44}} 
+\index{competence@{competence}!get\+Damage@{get\+Damage}}
+\index{get\+Damage@{get\+Damage}!competence@{competence}}
+\subsubsection{\texorpdfstring{get\+Damage()}{getDamage()}}
+{\footnotesize\ttfamily int competence\+::get\+Damage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction retournant le nombre de points de dégâts à appliquer à une cible. 
+
+Est utilisée notemment pour l\textquotesingle{}affichage des possibilités du joueur pendant le combat contre un (des) \hyperlink{classmonstre}{monstre(s)}. \begin{DoxyReturn}{Returns}
+Un entier ({\ttfamily int}) contenant le nombre de points de dégâts à appliquer à une cible. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompetence_ae0980a623fb74c32a630400cdb56cd14}\label{classcompetence_ae0980a623fb74c32a630400cdb56cd14}} 
+\index{competence@{competence}!get\+Description@{get\+Description}}
+\index{get\+Description@{get\+Description}!competence@{competence}}
+\subsubsection{\texorpdfstring{get\+Description()}{getDescription()}}
+{\footnotesize\ttfamily std\+::string competence\+::get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction retournant la description d\textquotesingle{}une compétence. 
+
+Est utilisée notemment pour l\textquotesingle{}affichage des possibilités du joueur pendant le combat contre un (des) \hyperlink{classmonstre}{monstre(s)}. \begin{DoxyReturn}{Returns}
+Une string ({\ttfamily std\+::string}) contenant la description. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompetence_a8346c6ae95df148e42f26b9a94655c8f}\label{classcompetence_a8346c6ae95df148e42f26b9a94655c8f}} 
+\index{competence@{competence}!get\+Mana\+Cost@{get\+Mana\+Cost}}
+\index{get\+Mana\+Cost@{get\+Mana\+Cost}!competence@{competence}}
+\subsubsection{\texorpdfstring{get\+Mana\+Cost()}{getManaCost()}}
+{\footnotesize\ttfamily int competence\+::get\+Mana\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction retournant le nombre de points de magie à utiliser. 
+
+Est utilisée notemment pour l\textquotesingle{}affichage des possibilités du joueur pendant le combat contre un (des) \hyperlink{classmonstre}{monstre(s)}. \begin{DoxyReturn}{Returns}
+Un entier ({\ttfamily int}) contenant le nombre de points de magie à utiliser. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompetence_abbb996751e239fc151caae2a73947710}\label{classcompetence_abbb996751e239fc151caae2a73947710}} 
+\index{competence@{competence}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!competence@{competence}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily std\+::string competence\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction retournant le nom d\textquotesingle{}une compétence. 
+
+Est utilisée notemment pour l\textquotesingle{}affichage des possibilités du joueur pendant le combat contre un (des) \hyperlink{classmonstre}{monstre(s)}. \begin{DoxyReturn}{Returns}
+Une string ({\ttfamily std\+::string}) contenant le nom. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompetence_adbd67d184b75c46bc22c1aef070d9246}\label{classcompetence_adbd67d184b75c46bc22c1aef070d9246}} 
+\index{competence@{competence}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!competence@{competence}}
+\subsubsection{\texorpdfstring{to\+String()}{toString()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string competence\+::to\+String (\begin{DoxyParamCaption}\item[{const T \&}]{valeur }\end{DoxyParamCaption})}
+
+
+
+Template permettant de retourner une string contenant un élément. 
+
+Template permettant de retourner une string ({\ttfamily std\+::string}) contenant un élément de la classe {\ttfamily T} en forme de string. \begin{DoxyReturn}{Returns}
+Une string ({\ttfamily std\+::string}) rerésentant l\textquotesingle{}élément {\ttfamily T}. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/\hyperlink{competence_8h}{competence.\+h}\end{DoxyCompactItemize}

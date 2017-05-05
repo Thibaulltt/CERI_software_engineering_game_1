@@ -1,0 +1,42 @@
+\hypertarget{fonctionsjeu_8h}{}\section{/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/fonctionsjeu.h File Reference}
+\label{fonctionsjeu_8h}\index{/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/fonctionsjeu.\+h@{/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/fonctionsjeu.\+h}}
+{\ttfamily \#include $<$stack$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}../headers/carte.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../headers/competence.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../headers/io.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../headers/monstre.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../headers/personnage.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classjeu}{jeu}
+\begin{DoxyCompactList}\small\item\em Ceci sera la classe du jeu. Elle contient toutes les entités, la carte, ainsi que les fonctions nécessaires à la partie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{fonctionsjeu_8h_a50b5865580161a893e2e90d8dff249db}{sort\+\_\+speed} (\hyperlink{classentite}{entite} a, \hyperlink{classentite}{entite} b)
+\begin{DoxyCompactList}\small\item\em Tri d\textquotesingle{}entités. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{fonctionsjeu_8h_a50b5865580161a893e2e90d8dff249db}\label{fonctionsjeu_8h_a50b5865580161a893e2e90d8dff249db}} 
+\index{fonctionsjeu.\+h@{fonctionsjeu.\+h}!sort\+\_\+speed@{sort\+\_\+speed}}
+\index{sort\+\_\+speed@{sort\+\_\+speed}!fonctionsjeu.\+h@{fonctionsjeu.\+h}}
+\subsubsection{\texorpdfstring{sort\+\_\+speed()}{sort\_speed()}}
+{\footnotesize\ttfamily bool sort\+\_\+speed (\begin{DoxyParamCaption}\item[{\hyperlink{classentite}{entite}}]{a,  }\item[{\hyperlink{classentite}{entite}}]{b }\end{DoxyParamCaption})}
+
+
+
+Tri d\textquotesingle{}entités. 
+
+Trie des entités selon la valeur de leur attribut de vitesse. 
+\begin{DoxyParams}{Parameters}
+{\em a} & Entité par rapport à laquelle on trie. \\
+\hline
+{\em b} & Entité à trier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un booléen\+: true si la vitesse de a est supérieure à la vitesse de b. 
+\end{DoxyReturn}

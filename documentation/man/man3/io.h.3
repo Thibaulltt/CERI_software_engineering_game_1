@@ -1,0 +1,237 @@
+.TH "/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/io.h" 3 "Fri May 5 2017" "The Game" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/Users/thibault/GitHub/CERI_software_engineering_game_1/headers/io.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <algorithm>\fP
+.br
+\fC#include <fstream>\fP
+.br
+\fC#include <iostream>\fP
+.br
+\fC#include <sstream>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <termios\&.h>\fP
+.br
+\fC#include <typeinfo>\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include '\&.\&./headers/carte\&.h'\fP
+.br
+\fC#include '\&.\&./headers/competence\&.h'\fP
+.br
+\fC#include '\&.\&./headers/entite\&.h'\fP
+.br
+\fC#include '\&.\&./headers/monstre\&.h'\fP
+.br
+\fC#include '\&.\&./headers/personnage\&.h'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBio\fP"
+.br
+.RI "Cet espace sera un espace permettant de définir un buffer custom pour les input, ainsi que de pouvoir afficher tout ce que l'on souhaite\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBIO_H\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBio::ChangeTerminal\fP (bool Ech=0)"
+.br
+.RI "Changement des paramètres du terminal\&. "
+.ti -1c
+.RI "void \fBio::ResetTerminal\fP ()"
+.br
+.RI "Remet le terminal à zero\&. "
+.ti -1c
+.RI "int \fBio::getTerminalWidth\fP ()"
+.br
+.RI "Retourne la largeur du terminal\&. "
+.ti -1c
+.RI "int \fBio::getTerminalHeight\fP ()"
+.br
+.RI "Retourne la hauteur du terminal\&. "
+.ti -1c
+.RI "void \fBio::clearScreen\fP ()"
+.br
+.RI "Efface l'écran\&. "
+.ti -1c
+.RI "void \fBio::checkTerminalSize\fP ()"
+.br
+.RI "Vérifie la taille du terminal\&. "
+.ti -1c
+.RI "char \fBio::de\fP ()"
+.br
+.RI "Input\&. "
+.ti -1c
+.RI "std::string \fBio::long_input\fP ()"
+.br
+.RI "Entrée utilisateur contenant plus d'un caractère\&. "
+.ti -1c
+.RI "void \fBio::afficherCarte\fP (\fBCarte\fP &, int, bool reset=1)"
+.br
+.RI "Affichage de la carte\&. "
+.ti -1c
+.RI "void \fBio::updateMap\fP (\fBCarte\fP &jeu_carte, std::pair< int, int > newPlayerPos)"
+.br
+.RI "Met à jour l'affichage de la carte\&. "
+.ti -1c
+.RI "void \fBio::bienvenue\fP ()"
+.br
+.RI "Message d'accueil\&. "
+.ti -1c
+.RI "void \fBio::afficherMouvements\fP ()"
+.br
+.RI "Fonction permettant d'afficher un overlay sur la carte\&. "
+.ti -1c
+.RI "void \fBio::afficherMouvements\fP (std::string erreur_deplacement)"
+.br
+.RI "Fonction permettant d'afficher un overlay sur la carte\&. "
+.ti -1c
+.RI "void \fBio::afficherMouvements\fP (std::string deplacements_possibles, std::string erreur_deplacement)"
+.br
+.RI "Fonction permettant d'afficher un overlay sur la carte\&. "
+.ti -1c
+.RI "void \fBio::afficherMouvements\fP (std::string message, std::string deplacements_possibles, std::string erreur_deplacement)"
+.br
+.RI "Fonction permettant d'afficher un overlay sur la carte\&. "
+.ti -1c
+.RI "void \fBio::updateMessage\fP (std::string s, int pos)"
+.br
+.ti -1c
+.RI "void \fBio::removeLastChar\fP (std::stringstream &i)"
+.br
+.RI "Enlève le dernier caractère d'un stringstream\&. "
+.ti -1c
+.RI "bool \fBio::checkInput\fP (int x)"
+.br
+.RI "Vérifie que l'user entre des entiers\&. "
+.ti -1c
+.RI "bool \fBio::checkSeparatorEntite\fP (std::string uneLigne)"
+.br
+.RI "Verifie qu'une ligne est correcte dans un fichier texte d'entités (bon nombre de séparateurs) + //! Créer une competence\&. "
+.ti -1c
+.RI "bool \fBio::checkSeparatorSkill\fP (std::string nomFichier, int numLigne)"
+.br
+.RI "Verifie qu'un champ compétences est correct dans un fichier texte d'entités (bon nombre de séparateurs) "
+.ti -1c
+.RI "int \fBio::taille_str\fP (std::string)"
+.br
+.RI "Compte la taille d'une string mieux que la fonction std::string::size(), car elle ne compte pas les accents comme deux caractères\&. "
+.ti -1c
+.RI "void \fBio::setPlayerPosition\fP (int, int)"
+.br
+.ti -1c
+.RI "int \fBio::To_int\fP (std::string input)"
+.br
+.RI "Convertit un string en int\&. "
+.ti -1c
+.RI "template<typename T > void \fBio::afficher\fP (T object)"
+.br
+.RI "Affichage d'objet\&. "
+.ti -1c
+.RI "template<typename T > void \fBio::liste_elements\fP (std::vector< T > vect_element)"
+.br
+.RI "Affichage d'un ensemble d'objets\&. "
+.ti -1c
+.RI "template<typename T > void \fBio::choix_unique_element\fP (T &element, std::vector< T > vect_element, bool combat, bool aff=1)"
+.br
+.RI "Choix d'un élément unique\&. "
+.ti -1c
+.RI "void \fBio::aff_combat\fP (std::vector< \fBentite\fP > vect_entite)"
+.br
+.RI "Affichage des entités du combat\&. "
+.ti -1c
+.RI "std::vector< \fBcompetence\fP > \fBio::loadCompetenceFromFile\fP (std::string nomFichier, int numLigne)"
+.br
+.RI "Chargement des compétences\&. "
+.ti -1c
+.RI "std::vector< \fBCarte\fP > \fBio::loadAllCarteFromFile\fP (std::string nomFichier)"
+.br
+.RI "Chargement des cartes\&. "
+.ti -1c
+.RI "template<typename T > std::vector< T > \fBio::loadAllEntiteFromFile\fP (T temp, std::string nomFichier)"
+.br
+.RI "Chargement des entités\&. "
+.ti -1c
+.RI "template<typename T > std::string \fBio::toString\fP (const T &valeur)"
+.br
+.ti -1c
+.RI "bool \fBio::inputSepCheck\fP (std::string input)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBio::TermWidth\fP"
+.br
+.RI "Variable retennant la valeur de la largeur de la fenêtre du terminal\&. Elle permet de réduire le nombre de calculs à faire (étant donné que cette valeur est obtenue avec l'ouverture d'un fichier, son calcul prends donc quelques temps)\&. "
+.ti -1c
+.RI "int \fBio::TermHeight\fP"
+.br
+.RI "Variable retennant la valeur de la hauteur de la fenêtre du terminal\&. Elle permet de réduire le nombre de calculs à faire (étant donné que cette valeur est obtenue avec l'ouverture d'un fichier, son calcul prends donc quelques temps)\&. "
+.ti -1c
+.RI "std::string \fBio::BLANK\fP"
+.br
+.RI "Chaîne de caractères permettant de remettre à zéro la couleur du texte\&. "
+.ti -1c
+.RI "std::string \fBio::RED\fP"
+.br
+.RI "Chaîne de caractères permettant de rendre le texte affiché de couleur rouge\&. "
+.ti -1c
+.RI "std::string \fBio::GREEN\fP"
+.br
+.RI "Chaîne de caractères permettant de rendre le texte affiché de couleur verte\&. "
+.ti -1c
+.RI "std::string \fBio::YELLOW\fP"
+.br
+.RI "Chaîne de caractères permettant de rendre le texte affiché de couleur jaune\&. "
+.ti -1c
+.RI "std::string \fBio::BLUE\fP"
+.br
+.RI "Chaîne de caractères permettant de rendre le texte affiché de couleur bleue\&. "
+.ti -1c
+.RI "std::string \fBio::MAGENTA\fP"
+.br
+.RI "Chaîne de caractères permettant de rendre le texte affiché de couleur magenta\&. "
+.ti -1c
+.RI "int \fBio::mapPositionX\fP"
+.br
+.RI "Variable permettant de retenir à partir de quelle coordonnée 'x' la carte est affichée (si la carte est plus grande que la fenêtre de terminal, cette valeur ne sera pas toujours à 0 \&.\&.\&.) "
+.ti -1c
+.RI "int \fBio::mapPositiony\fP"
+.br
+.RI "Variable permettant de retenir à partir de quelle coordonnée 'y' la carte est affichée (si la carte est plus grande que la fenêtre de terminal, cette valeur ne sera pas toujours à 0 \&.\&.\&.) "
+.ti -1c
+.RI "int \fBio::interactionsOverlayY\fP"
+.br
+.RI "Stocke la position (x) de l'affichage de l'overlay des actions\&. Nous n'avons pas besoin du Y car l'overlay prends toute la largeur quoi qu'il arrive\&. "
+.ti -1c
+.RI "std::pair< int, int > \fBio::currentPlayerPosition\fP"
+.br
+.RI "Paire de valeurs (std::pair) gardant la position actuelle du joueur dans\&. "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define IO_H"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for The Game from the source code\&.

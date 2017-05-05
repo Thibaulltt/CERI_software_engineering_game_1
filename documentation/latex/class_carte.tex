@@ -1,0 +1,636 @@
+\hypertarget{class_carte}{}\section{Carte Class Reference}
+\label{class_carte}\index{Carte@{Carte}}
+
+
+Classe qui permet de modéliser une carte en mémoire.  
+
+
+
+
+{\ttfamily \#include $<$carte.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_carte_a06daaca86c31c80f8308f4a81d46dc9b}{Carte} ()
+\begin{DoxyCompactList}\small\item\em Constructeur sans argument. \end{DoxyCompactList}\item 
+\hyperlink{class_carte_a9caa77a82f34e01b04d18bce6cce8587}{Carte} (int taille, std\+::string name, std\+::string description, int nb\+\_\+monstre)
+\begin{DoxyCompactList}\small\item\em Constructeur avec arguments. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_ae11b9253ce5aa727b6c49320f92e0668}{coordonneejoueur} ()
+\begin{DoxyCompactList}\small\item\em Coordonnée Joueur. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_a2a0ac8476d52a07b9cbcec0507df840d}{coordonneeobstacle} ()
+\begin{DoxyCompactList}\small\item\em Coordonnée obstacle. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_ad3f5fbdd5c6a248e92bad65680493ccd}{coordonneemonstre} ()
+\begin{DoxyCompactList}\small\item\em Coordonnée monstre. \end{DoxyCompactList}\item 
+int \hyperlink{class_carte_a2cd533b7b1a04298a19e7eef566bc7f1}{nb\+Ligne\+Fichier} (std\+::string nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em Nombre de ligne du fichier. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_a0d325c0712010f2e02172fedbb4fcbe1}{saisie} ()
+\begin{DoxyCompactList}\small\item\em Saisie. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_a7f49f6e2b7f6cbb7daef97b31f66af48}{save\+In\+File} (std\+::string lettre\+Carte, std\+::string nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em Sauvegarde de carte. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_carte_ad87677958ae9383b25c55c5db0ee2cca}{carte\+String} (std\+::string lettre\+Carte, std\+::string nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_carte}{Carte} en ligne. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_carte_a376e889c21215615bfa3b5068f46e646}{get\+Name} ()
+\begin{DoxyCompactList}\small\item\em Nom. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_carte_a591705d6bb95c36ce4a034b3107ae85c}{get\+Description} ()
+\begin{DoxyCompactList}\small\item\em Description. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_ad7df9b5a827971f5c0036b5b1ffed5a4}{set\+Taille} (int taille)
+\begin{DoxyCompactList}\small\item\em Taille. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_a520750b429525b72885c3853727e8902}{set\+Id} (std\+::string id)
+\begin{DoxyCompactList}\small\item\em Id. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_a1d79dbe6ded5abd1e3f1a3192af0720e}{set\+Name} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Nom. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_afda8b2f0e96175d97c42afe87f535e15}{set\+Description} (std\+::string desc)
+\begin{DoxyCompactList}\small\item\em Description. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_ae9928759af0c0a63eb93039ec0d053b4}{set\+Plateau} (int taille)
+\begin{DoxyCompactList}\small\item\em Plateau. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_ac7dc1d4cb0accd36b36cb6c6c89103fd}{set\+Case} (int i, int j, std\+::string value)
+\begin{DoxyCompactList}\small\item\em Case. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_ae05165c486b5bc7645dc1e98b10ee395}{set\+Nbr\+Monstre} (int nbr\+\_\+monstre)
+\begin{DoxyCompactList}\small\item\em Nombre de monstre. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_a2204f308cb00bde0ede787fb2ea5fa85}{set\+Case\+Dispo} (int case\+\_\+dispo)
+\begin{DoxyCompactList}\small\item\em Case disponible. \end{DoxyCompactList}\item 
+\hyperlink{class_carte}{Carte} \hyperlink{class_carte_a4878501e2a178dd862471666b013f270}{operator=} (const \hyperlink{class_carte}{Carte} a\+\_\+copier)
+\begin{DoxyCompactList}\small\item\em Copie de \hyperlink{class_carte}{Carte}. \end{DoxyCompactList}\item 
+int \hyperlink{class_carte_a507502fe5beff8008e5608519086be12}{get\+Taille} ()
+\begin{DoxyCompactList}\small\item\em Taille. \end{DoxyCompactList}\item 
+std\+::string $\ast$$\ast$ \hyperlink{class_carte_a28937b5fe965b58289aee6ca0df3ca94}{get\+Plateau} ()
+\begin{DoxyCompactList}\small\item\em Plateau. \end{DoxyCompactList}\item 
+int \hyperlink{class_carte_abc46efd826637fba019f970df54919cc}{get\+Nbr\+Monstres} ()
+\begin{DoxyCompactList}\small\item\em Nombre de monstre. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_aa02757760851d19e549990e222d11fb5}{affichage\+\_\+normal} ()
+\begin{DoxyCompactList}\small\item\em Affichage normal. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_a11799a279fe00dc195ce80bfeb84b1fa}{afficher\+\_\+detail} ()
+\begin{DoxyCompactList}\small\item\em Affichage détaillé \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_a4f7a245946c6d2044b35f2137985746b}{afficher\+\_\+brut} ()
+\begin{DoxyCompactList}\small\item\em Affichage brut. \end{DoxyCompactList}\item 
+bool \hyperlink{class_carte_a3ea9d86aa5ace5a21216a23c7bfb1bab}{case\+Accessible} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Case Accessible. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_aac7d187afdc3bf0ded53535c0d0b9ec0}{echanger\+Contenu\+Case} (int i1, int j1, int i2, int j2)
+\begin{DoxyCompactList}\small\item\em Echange le contenu de la case plateau\mbox{[}i1\mbox{]}\mbox{[}j1\mbox{]} avec ceux du plateau\mbox{[}i2\mbox{]}\mbox{[}j2\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{class_carte_a80fa02e7f8da63b43c62e454082923b4}{monstre\+Mort} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Fait mourir un monstre à la case x,y et enlève 1 à nbr\+\_\+monstre. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{class_carte_a178a9ab642172029fec42f1c1cfa40ce}{nb\+Elem\+Prot}
+\begin{DoxyCompactList}\small\item\em Nombre de cartes protégées. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe qui permet de modéliser une carte en mémoire. 
+
+La classe \hyperlink{class_carte}{Carte} regroupe le plateau de jeu ainsi que le contenu de chaque case et créer une \hyperlink{class_carte}{Carte} en allocation dynamique.
+
+Chaque \hyperlink{class_carte}{Carte} est caractérisée par\+:
+
+un identifiant,
+
+un nom,
+
+une description,
+
+une taille,
+
+un nombre de monstres,
+
+un nombre de cases disponibles,
+
+et un plateau qui lui sont propres. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_carte_a06daaca86c31c80f8308f4a81d46dc9b}\label{class_carte_a06daaca86c31c80f8308f4a81d46dc9b}} 
+\index{Carte@{Carte}!Carte@{Carte}}
+\index{Carte@{Carte}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{Carte()}{Carte()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Carte\+::\+Carte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur sans argument. 
+
+Construit une carte en initialisant tous ses paramètres à 0 ou N\+U\+LL. \mbox{\Hypertarget{class_carte_a9caa77a82f34e01b04d18bce6cce8587}\label{class_carte_a9caa77a82f34e01b04d18bce6cce8587}} 
+\index{Carte@{Carte}!Carte@{Carte}}
+\index{Carte@{Carte}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{Carte()}{Carte()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Carte\+::\+Carte (\begin{DoxyParamCaption}\item[{int}]{taille,  }\item[{std\+::string}]{name,  }\item[{std\+::string}]{description,  }\item[{int}]{nb\+\_\+monstre }\end{DoxyParamCaption})}
+
+
+
+Constructeur avec arguments. 
+
+Construit une carte en affectant ses nom, description, et taille, et construit le plateau de jeu à partir de ce dernier paramètre. 
+\begin{DoxyParams}{Parameters}
+{\em taille} & Taille d\textquotesingle{}un côté, la carte est carrée \\
+\hline
+{\em nom} & Nom que l\textquotesingle{}on va donner à la carte \\
+\hline
+{\em description} & Description brève de la carte \\
+\hline
+{\em nb\+\_\+monstre} & Nombre de monstres présents sur la carte \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_carte_aa02757760851d19e549990e222d11fb5}\label{class_carte_aa02757760851d19e549990e222d11fb5}} 
+\index{Carte@{Carte}!affichage\+\_\+normal@{affichage\+\_\+normal}}
+\index{affichage\+\_\+normal@{affichage\+\_\+normal}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{affichage\+\_\+normal()}{affichage\_normal()}}
+{\footnotesize\ttfamily void Carte\+::affichage\+\_\+normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affichage normal. 
+
+Affiche la carte, avec ce que contient chaque case
+
+(affichage du plateau) \mbox{\Hypertarget{class_carte_a4f7a245946c6d2044b35f2137985746b}\label{class_carte_a4f7a245946c6d2044b35f2137985746b}} 
+\index{Carte@{Carte}!afficher\+\_\+brut@{afficher\+\_\+brut}}
+\index{afficher\+\_\+brut@{afficher\+\_\+brut}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{afficher\+\_\+brut()}{afficher\_brut()}}
+{\footnotesize\ttfamily void Carte\+::afficher\+\_\+brut (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affichage brut. 
+
+Affiche une phrase avec le nom de la carte, le nombre de cases qu\textquotesingle{}il y a au total sur la carte et le nombre de monstre qu\textquotesingle{}il y a exactement sur la carte \mbox{\Hypertarget{class_carte_a11799a279fe00dc195ce80bfeb84b1fa}\label{class_carte_a11799a279fe00dc195ce80bfeb84b1fa}} 
+\index{Carte@{Carte}!afficher\+\_\+detail@{afficher\+\_\+detail}}
+\index{afficher\+\_\+detail@{afficher\+\_\+detail}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{afficher\+\_\+detail()}{afficher\_detail()}}
+{\footnotesize\ttfamily void Carte\+::afficher\+\_\+detail (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affichage détaillé 
+
+Affiche un petit texte avec tous les détails de la carte\+:
+
+Affiche en premier le nom de la carte,
+
+puis la taille d\textquotesingle{}un coté de la carte, et le nombre de case au total sur la carte
+
+par la suite le nombre de monstre qu\textquotesingle{}il y a sur la carte,
+
+et enfin affiche la description de la carte \mbox{\Hypertarget{class_carte_ad87677958ae9383b25c55c5db0ee2cca}\label{class_carte_ad87677958ae9383b25c55c5db0ee2cca}} 
+\index{Carte@{Carte}!carte\+String@{carte\+String}}
+\index{carte\+String@{carte\+String}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{carte\+String()}{carteString()}}
+{\footnotesize\ttfamily std\+::string Carte\+::carte\+String (\begin{DoxyParamCaption}\item[{std\+::string}]{lettre\+Carte,  }\item[{std\+::string}]{nom\+Fichier }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_carte}{Carte} en ligne. 
+
+Convertit toutes les caractéristiques d\textquotesingle{}une carte en string.
+
+On génère l\textquotesingle{}ID, les obstacles et les entités sur la carte.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lettre\+Carte} & string \\
+\hline
+{\em nom\+Fichier} & string \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+nb\+Ligne\+Fichier(string) 
+
+c\+\_\+str() 
+
+to\+String(int) 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+string ligne\+Fichier 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_carte_a3ea9d86aa5ace5a21216a23c7bfb1bab}\label{class_carte_a3ea9d86aa5ace5a21216a23c7bfb1bab}} 
+\index{Carte@{Carte}!case\+Accessible@{case\+Accessible}}
+\index{case\+Accessible@{case\+Accessible}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{case\+Accessible()}{caseAccessible()}}
+{\footnotesize\ttfamily bool Carte\+::case\+Accessible (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+
+
+Case Accessible. 
+
+Vérifie si une case ij est accessible ou pas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & entier correspondant à la ligne \\
+\hline
+{\em j} & entier correspondant à la colonne \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la case ij accessible 
+
+false si la case ij n\textquotesingle{}est pas accessible 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_carte_ae11b9253ce5aa727b6c49320f92e0668}\label{class_carte_ae11b9253ce5aa727b6c49320f92e0668}} 
+\index{Carte@{Carte}!coordonneejoueur@{coordonneejoueur}}
+\index{coordonneejoueur@{coordonneejoueur}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{coordonneejoueur()}{coordonneejoueur()}}
+{\footnotesize\ttfamily void Carte\+::coordonneejoueur (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Coordonnée Joueur. 
+
+On demande les coordonnées du spawn du joueur.
+
+Initialise les coordonnées du spawn de départ du joueur.
+
+On réactualise le nombre de case dispo.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ab044be3afd7ac04eeb1a496af0f1d5c6}{long\+\_\+input()} 
+
+c\+\_\+str() 
+
+atoi(string) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_carte_ad3f5fbdd5c6a248e92bad65680493ccd}\label{class_carte_ad3f5fbdd5c6a248e92bad65680493ccd}} 
+\index{Carte@{Carte}!coordonneemonstre@{coordonneemonstre}}
+\index{coordonneemonstre@{coordonneemonstre}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{coordonneemonstre()}{coordonneemonstre()}}
+{\footnotesize\ttfamily void Carte\+::coordonneemonstre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Coordonnée monstre. 
+
+Demande le nombre de monstres souhaités.
+
+Vérifie que ce nombre est possible en fonction de la taille et du nombre de cases dispo sur la carte.
+
+Demande et initialise les coordonnées de chaque monstre.
+
+Vérifie que la case choisit est libre.
+
+On réactualise le nombre de case dispo.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ab044be3afd7ac04eeb1a496af0f1d5c6}{long\+\_\+input()} 
+
+atoi(string) 
+
+c\+\_\+str() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_carte_a2a0ac8476d52a07b9cbcec0507df840d}\label{class_carte_a2a0ac8476d52a07b9cbcec0507df840d}} 
+\index{Carte@{Carte}!coordonneeobstacle@{coordonneeobstacle}}
+\index{coordonneeobstacle@{coordonneeobstacle}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{coordonneeobstacle()}{coordonneeobstacle()}}
+{\footnotesize\ttfamily void Carte\+::coordonneeobstacle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Coordonnée obstacle. 
+
+Demande le nombre d\textquotesingle{}obstacles souhaités, vérifie que ce nombre est possible en fonction du nombre de cases dispo sur la carte, demande et initialise les coordonnées de chaque obstacle.
+
+On ne demande pas le genre d\textquotesingle{}obstacle voulu maintenant.
+
+On réactualise le nombre de case dispo.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceio_ab044be3afd7ac04eeb1a496af0f1d5c6}{long\+\_\+input()} 
+
+atoi(string) 
+
+c\+\_\+str() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_carte_aac7d187afdc3bf0ded53535c0d0b9ec0}\label{class_carte_aac7d187afdc3bf0ded53535c0d0b9ec0}} 
+\index{Carte@{Carte}!echanger\+Contenu\+Case@{echanger\+Contenu\+Case}}
+\index{echanger\+Contenu\+Case@{echanger\+Contenu\+Case}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{echanger\+Contenu\+Case()}{echangerContenuCase()}}
+{\footnotesize\ttfamily void Carte\+::echanger\+Contenu\+Case (\begin{DoxyParamCaption}\item[{int}]{i1,  }\item[{int}]{j1,  }\item[{int}]{i2,  }\item[{int}]{j2 }\end{DoxyParamCaption})}
+
+
+
+Echange le contenu de la case plateau\mbox{[}i1\mbox{]}\mbox{[}j1\mbox{]} avec ceux du plateau\mbox{[}i2\mbox{]}\mbox{[}j2\mbox{]}. 
+
+\mbox{\Hypertarget{class_carte_a591705d6bb95c36ce4a034b3107ae85c}\label{class_carte_a591705d6bb95c36ce4a034b3107ae85c}} 
+\index{Carte@{Carte}!get\+Description@{get\+Description}}
+\index{get\+Description@{get\+Description}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{get\+Description()}{getDescription()}}
+{\footnotesize\ttfamily std\+::string Carte\+::get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Description. 
+
+Récupère la description de la carte.
+
+string description (de la carte) \mbox{\Hypertarget{class_carte_a376e889c21215615bfa3b5068f46e646}\label{class_carte_a376e889c21215615bfa3b5068f46e646}} 
+\index{Carte@{Carte}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily std\+::string Carte\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Nom. 
+
+Récupère le nom de la carte.
+
+\begin{DoxyReturn}{Returns}
+string nom (de la carte) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_carte_abc46efd826637fba019f970df54919cc}\label{class_carte_abc46efd826637fba019f970df54919cc}} 
+\index{Carte@{Carte}!get\+Nbr\+Monstres@{get\+Nbr\+Monstres}}
+\index{get\+Nbr\+Monstres@{get\+Nbr\+Monstres}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{get\+Nbr\+Monstres()}{getNbrMonstres()}}
+{\footnotesize\ttfamily int Carte\+::get\+Nbr\+Monstres (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Nombre de monstre. 
+
+Récupère le nombre de monstre présents sur la carte.
+
+\begin{DoxyReturn}{Returns}
+nbr\+\_\+monstre int nombre de monstre présent sur la carte 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_carte_a28937b5fe965b58289aee6ca0df3ca94}\label{class_carte_a28937b5fe965b58289aee6ca0df3ca94}} 
+\index{Carte@{Carte}!get\+Plateau@{get\+Plateau}}
+\index{get\+Plateau@{get\+Plateau}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{get\+Plateau()}{getPlateau()}}
+{\footnotesize\ttfamily std\+::string$\ast$$\ast$ Carte\+::get\+Plateau (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Plateau. 
+
+Récupère le plateau de la carte.
+
+\begin{DoxyReturn}{Returns}
+plateau string $\ast$$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_carte_a507502fe5beff8008e5608519086be12}\label{class_carte_a507502fe5beff8008e5608519086be12}} 
+\index{Carte@{Carte}!get\+Taille@{get\+Taille}}
+\index{get\+Taille@{get\+Taille}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{get\+Taille()}{getTaille()}}
+{\footnotesize\ttfamily int Carte\+::get\+Taille (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Taille. 
+
+Récupère la taille de la carte.
+
+\begin{DoxyReturn}{Returns}
+taille int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_carte_a80fa02e7f8da63b43c62e454082923b4}\label{class_carte_a80fa02e7f8da63b43c62e454082923b4}} 
+\index{Carte@{Carte}!monstre\+Mort@{monstre\+Mort}}
+\index{monstre\+Mort@{monstre\+Mort}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{monstre\+Mort()}{monstreMort()}}
+{\footnotesize\ttfamily void Carte\+::monstre\+Mort (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Fait mourir un monstre à la case x,y et enlève 1 à nbr\+\_\+monstre. 
+
+\mbox{\Hypertarget{class_carte_a2cd533b7b1a04298a19e7eef566bc7f1}\label{class_carte_a2cd533b7b1a04298a19e7eef566bc7f1}} 
+\index{Carte@{Carte}!nb\+Ligne\+Fichier@{nb\+Ligne\+Fichier}}
+\index{nb\+Ligne\+Fichier@{nb\+Ligne\+Fichier}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{nb\+Ligne\+Fichier()}{nbLigneFichier()}}
+{\footnotesize\ttfamily int Carte\+::nb\+Ligne\+Fichier (\begin{DoxyParamCaption}\item[{std\+::string}]{nom\+Fichier }\end{DoxyParamCaption})}
+
+
+
+Nombre de ligne du fichier. 
+
+Compte le nb de ligne du fichier pour créer l\textquotesingle{}identifiant unique d\textquotesingle{}un monstre.
+
+On ouvre le fichier en lecture, on parcours tout le fichier en incrémentant le compteur à chaque lignes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom\+Fichier} & string \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+c\+\_\+str() 
+
+ifstream 
+
+getline() 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+nb\+Ligne \+: compteur de nombre de ligne. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_carte_a4878501e2a178dd862471666b013f270}\label{class_carte_a4878501e2a178dd862471666b013f270}} 
+\index{Carte@{Carte}!operator=@{operator=}}
+\index{operator=@{operator=}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_carte}{Carte} Carte\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_carte}{Carte}}]{a\+\_\+copier }\end{DoxyParamCaption})}
+
+
+
+Copie de \hyperlink{class_carte}{Carte}. 
+
+On copie une \hyperlink{class_carte}{Carte}.
+
+On récupère les informations de la carte a\+\_\+copier pour retourner une nouvelle carte avec ces même caractéristiques.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+\_\+copier} & \hyperlink{class_carte}{Carte} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+adresse \hyperlink{class_carte}{Carte} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_carte_a0d325c0712010f2e02172fedbb4fcbe1}\label{class_carte_a0d325c0712010f2e02172fedbb4fcbe1}} 
+\index{Carte@{Carte}!saisie@{saisie}}
+\index{saisie@{saisie}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{saisie()}{saisie()}}
+{\footnotesize\ttfamily void Carte\+::saisie (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Saisie. 
+
+Permet de créer une carte \+: initialiser le type d\textquotesingle{}obstacle et de monstre.
+
+On ouvre le fichier carte, on écrit le nom, la description, la taille et le nombre de monstre qui ont été assigné précédemment.
+
+On parcours ensuite le plateau afin de retrouver la case joueur, les obstacles et de quel type ils sont.
+
+A chaque fois qu\textquotesingle{}on tombe sur un monstre on récupère le vecteur de monstres pour faire choisir le monstre au client.
+
+\begin{DoxySeeAlso}{See also}
+ofstream 
+
+\hyperlink{namespaceio_ab044be3afd7ac04eeb1a496af0f1d5c6}{long\+\_\+input()} 
+
+atoi(string) 
+
+load\+All\+Entite\+From\+File 
+
+\hyperlink{class_carte_a4f7a245946c6d2044b35f2137985746b}{afficher\+\_\+brut()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_carte_a7f49f6e2b7f6cbb7daef97b31f66af48}\label{class_carte_a7f49f6e2b7f6cbb7daef97b31f66af48}} 
+\index{Carte@{Carte}!save\+In\+File@{save\+In\+File}}
+\index{save\+In\+File@{save\+In\+File}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{save\+In\+File()}{saveInFile()}}
+{\footnotesize\ttfamily void Carte\+::save\+In\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{lettre\+Carte,  }\item[{std\+::string}]{nom\+Fichier }\end{DoxyParamCaption})}
+
+
+
+Sauvegarde de carte. 
+
+Ecrit les lignes qui contiennent toutes les caractéristique d\textquotesingle{}une carte à la fin d\textquotesingle{}un fichier.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lettre\+Carte} & string à écrire \\
+\hline
+{\em nomfichier} & string dans lequel écrire \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+ofstream 
+
+c\+\_\+str() 
+
+carte\+String(string, string) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_carte_ac7dc1d4cb0accd36b36cb6c6c89103fd}\label{class_carte_ac7dc1d4cb0accd36b36cb6c6c89103fd}} 
+\index{Carte@{Carte}!set\+Case@{set\+Case}}
+\index{set\+Case@{set\+Case}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{set\+Case()}{setCase()}}
+{\footnotesize\ttfamily void Carte\+::set\+Case (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+
+
+Case. 
+
+Configurer la case de ligne i et de colonne j avec la valeur value. (Joueur, monstres, obstacle).
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & int ligne \\
+\hline
+{\em j} & int colonne \\
+\hline
+{\em value} & string valeur de la case \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+set\+Player\+Position(int, int) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_carte_a2204f308cb00bde0ede787fb2ea5fa85}\label{class_carte_a2204f308cb00bde0ede787fb2ea5fa85}} 
+\index{Carte@{Carte}!set\+Case\+Dispo@{set\+Case\+Dispo}}
+\index{set\+Case\+Dispo@{set\+Case\+Dispo}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{set\+Case\+Dispo()}{setCaseDispo()}}
+{\footnotesize\ttfamily void Carte\+::set\+Case\+Dispo (\begin{DoxyParamCaption}\item[{int}]{case\+\_\+dispo }\end{DoxyParamCaption})}
+
+
+
+Case disponible. 
+
+Configurer le nombre de case disponibles sur la carte.
+
+
+\begin{DoxyParams}{Parameters}
+{\em case\+\_\+dispo} & int nombre de case dispo \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_carte_afda8b2f0e96175d97c42afe87f535e15}\label{class_carte_afda8b2f0e96175d97c42afe87f535e15}} 
+\index{Carte@{Carte}!set\+Description@{set\+Description}}
+\index{set\+Description@{set\+Description}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{set\+Description()}{setDescription()}}
+{\footnotesize\ttfamily void Carte\+::set\+Description (\begin{DoxyParamCaption}\item[{std\+::string}]{desc }\end{DoxyParamCaption})}
+
+
+
+Description. 
+
+Configurer la description souhaitée pour la carte. \mbox{\Hypertarget{class_carte_a520750b429525b72885c3853727e8902}\label{class_carte_a520750b429525b72885c3853727e8902}} 
+\index{Carte@{Carte}!set\+Id@{set\+Id}}
+\index{set\+Id@{set\+Id}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{set\+Id()}{setId()}}
+{\footnotesize\ttfamily void Carte\+::set\+Id (\begin{DoxyParamCaption}\item[{std\+::string}]{id }\end{DoxyParamCaption})}
+
+
+
+Id. 
+
+Configurer l\textquotesingle{}identifiant de la carte.
+
+Uniquement pour la carte par défaut, pas accessible pour la configuration générale. \mbox{\Hypertarget{class_carte_a1d79dbe6ded5abd1e3f1a3192af0720e}\label{class_carte_a1d79dbe6ded5abd1e3f1a3192af0720e}} 
+\index{Carte@{Carte}!set\+Name@{set\+Name}}
+\index{set\+Name@{set\+Name}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{set\+Name()}{setName()}}
+{\footnotesize\ttfamily void Carte\+::set\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Nom. 
+
+Configurer le nom souhaitée de la carte. \mbox{\Hypertarget{class_carte_ae05165c486b5bc7645dc1e98b10ee395}\label{class_carte_ae05165c486b5bc7645dc1e98b10ee395}} 
+\index{Carte@{Carte}!set\+Nbr\+Monstre@{set\+Nbr\+Monstre}}
+\index{set\+Nbr\+Monstre@{set\+Nbr\+Monstre}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{set\+Nbr\+Monstre()}{setNbrMonstre()}}
+{\footnotesize\ttfamily void Carte\+::set\+Nbr\+Monstre (\begin{DoxyParamCaption}\item[{int}]{nbr\+\_\+monstre }\end{DoxyParamCaption})}
+
+
+
+Nombre de monstre. 
+
+Configurer le nombre de monstres présent sur la carte.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nbr\+\_\+monstre} & int nombre de monstre souhaité \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_carte_ae9928759af0c0a63eb93039ec0d053b4}\label{class_carte_ae9928759af0c0a63eb93039ec0d053b4}} 
+\index{Carte@{Carte}!set\+Plateau@{set\+Plateau}}
+\index{set\+Plateau@{set\+Plateau}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{set\+Plateau()}{setPlateau()}}
+{\footnotesize\ttfamily void Carte\+::set\+Plateau (\begin{DoxyParamCaption}\item[{int}]{taille }\end{DoxyParamCaption})}
+
+
+
+Plateau. 
+
+Configurer la plateau par rapport à la taille demandé. (Suite au chargement d\textquotesingle{}une carte).
+
+
+\begin{DoxyParams}{Parameters}
+{\em taille} & int d\textquotesingle{}un coté de la carte \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_carte_ad7df9b5a827971f5c0036b5b1ffed5a4}\label{class_carte_ad7df9b5a827971f5c0036b5b1ffed5a4}} 
+\index{Carte@{Carte}!set\+Taille@{set\+Taille}}
+\index{set\+Taille@{set\+Taille}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{set\+Taille()}{setTaille()}}
+{\footnotesize\ttfamily void Carte\+::set\+Taille (\begin{DoxyParamCaption}\item[{int}]{taille }\end{DoxyParamCaption})}
+
+
+
+Taille. 
+
+Configurer la taille souhaitée de la carte. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_carte_a178a9ab642172029fec42f1c1cfa40ce}\label{class_carte_a178a9ab642172029fec42f1c1cfa40ce}} 
+\index{Carte@{Carte}!nb\+Elem\+Prot@{nb\+Elem\+Prot}}
+\index{nb\+Elem\+Prot@{nb\+Elem\+Prot}!Carte@{Carte}}
+\subsubsection{\texorpdfstring{nb\+Elem\+Prot}{nbElemProt}}
+{\footnotesize\ttfamily int Carte\+::nb\+Elem\+Prot\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Nombre de cartes protégées. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/thibault/\+Git\+Hub/\+C\+E\+R\+I\+\_\+software\+\_\+engineering\+\_\+game\+\_\+1/headers/\hyperlink{carte_8h}{carte.\+h}\end{DoxyCompactItemize}
