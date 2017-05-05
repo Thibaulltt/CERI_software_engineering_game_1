@@ -39,7 +39,7 @@ pe:
 	@make archives/personnage.a
 fj:
 	@make archives/fonctionsjeu.a
-	@make fonctionsjeu.exe
+	@make TheGame
 io:
 	@make archives/io.a
 doc:
@@ -117,6 +117,6 @@ config.exe: objects/config_main.o objects/config.o
 io_main.exe: objects/io_main.o objects/io.o
 	@echo "Compiling $@ ..."
 	@g++ $^ $(OCARTE) $(OCOMPETENCE) $(ENTITE) $(MONSTRE) $(PERSONNAGE) -o $@ -std=c++11
-fonctionsjeu.exe: objects/fonctionsjeu.o objects/fonctionsjeu_main.o archives/io.a
+TheGame: objects/fonctionsjeu.o objects/fonctionsjeu_main.o archives/io.a
 	@echo "Compiling $@ ..."
 	@g++ $^ $(OENTITE) $(OPERSONNAGE) $(OCARTE) $(OMONSTRE) $(OCOMPETENCE) -o $@ -std=c++11
