@@ -479,12 +479,30 @@ int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entit
 	{
 		if ((* ite).is_personnage())	//Si personnage
 		{
-			cout << "Le personnage " << (* ite).getName() << " est mort." << endl;
+			updateMessage(std::string("Le personnage "+(* ite).getName()+" est mort."),3);
+			updateMessage("(Appuyez sur une touche)",4);
+			try
+			{
+				de();
+			}
+			catch (int deError)
+			{
+				throw deError;
+			}
 			nb_players--;
 		}
 		else	//Si monstre
 		{
-			cout << "Le monstre " << (* ite).getName() << " est mort." << endl;
+			updateMessage(std::string("Le monstre "+(* ite).getName()+" est mort."),3);
+			updateMessage("(Appuyez sur une touche)",4);
+			try
+			{
+				de();
+			}
+			catch (int deError)
+			{
+				throw deError;
+			}
 			nb_monsters--;
 		}
 	}
