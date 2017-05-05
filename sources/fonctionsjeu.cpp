@@ -84,7 +84,7 @@ void jeu::afficherJeu(int & result)
 		quitGame();
 		return;
 	}
-	while (true)
+	while (jeu_nombre_monstres != 0)
 	{
 		try
 		{
@@ -92,10 +92,16 @@ void jeu::afficherJeu(int & result)
 		}
 		catch (int deplacementError)
 		{
-			quitGame();
+			if (deplacementError == 0)
+				failedGame();
+			else
+				quitGame();
 			return;
 		}
+		jeu_nombre_monstres = jeu_carte.getNbrMonstres();
 	}
+	victoireGame();
+	quitGame();
 }
 std::string jeu::genererDeplacement(std::vector<bool>& v)
 {
