@@ -30,7 +30,7 @@ class jeu
 	std::vector<monstre> jeu_monstres;
 
 	//! Compte le nombre de monstres restant sur la carte.
-	int jeu_nombre_monstres = 1;							///Temporaire!!
+	int jeu_nombre_monstres;							///Temporaire!!
 
 public:
 	//! Constructeur par défaut sans argument.
