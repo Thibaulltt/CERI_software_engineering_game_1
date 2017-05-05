@@ -24,6 +24,9 @@ all:
 	@mkdir objects/
 	@mkdir archives/
 	@make -s main.exe
+	@make -s objects/config.o
+	@make -s objects/config_main.o
+	@make -s config.exe
 ca:
 	@make archives/carte.a
 en:
@@ -76,6 +79,9 @@ objects/io.o: sources/io.cpp
 objects/carte.o: sources/carte.cpp
 	@echo "Compiling $@ ..."
 	@g++ -c $< -o $@ -std=c++11
+objects/config.o: sources/config.cpp headers/config.h
+	@echo "Compiling $@ ..."
+	@g++ -c $< $(OALL) -o $@ -std=c++11 -pedantic -g
 objects/entite.o: sources/entite.cpp
 	@echo "Compiling $@ ..."
 	@g++ -c $< -o $@ -std=c++11
@@ -97,12 +103,17 @@ objects/fonctionsjeu.o:	sources/fonctionsjeu.cpp
 objects/io_main.o: tests/io_main.cpp
 	@echo "Compiling $@ ..."
 	@g++ -c $< -o $@ -std=c++11
+objects/config_main.o: tests/config_main.cpp
+	@echo "Compiling $@ ..."
+	@g++ -c $< -o $@ -std=c++11
 objects/fonctionsjeu_main.o: tests/fonctionsjeu_main.cpp
 	@echo "Compiling $@ ..."
 	@g++ -c $< -o $@ -std=c++11
 
 # Exécutables de test des classes :
 
+config.exe: objects/config_main.o objects/config.o
+	@g++ $^ $(OALL) -o $@ -std=c++11
 io_main.exe: objects/io_main.o objects/io.o
 	@echo "Compiling $@ ..."
 	@g++ $^ $(OCARTE) $(OCOMPETENCE) $(ENTITE) $(MONSTRE) $(PERSONNAGE) -o $@ -std=c++11

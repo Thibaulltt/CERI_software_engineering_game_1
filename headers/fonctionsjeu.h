@@ -30,7 +30,7 @@ class jeu
 	std::vector<monstre> jeu_monstres;
 
 	//! Compte le nombre de monstres restant sur la carte.
-	int jeu_nombre_monstres = 1;							///Temporaire!!
+	int jeu_nombre_monstres;							///Temporaire!!
 
 public:
 	//! Constructeur par défaut sans argument.
@@ -213,7 +213,16 @@ public:
 		\return Un entier: 1 si tous les monstres sont morts, 0 si tous les joueurs sont morts, 2 sinon.
 		\sa enleverVie()
 	*/
-    int appliquer_comp(entite indiv, entite target, std::vector<entite> & vect_entite, competence comp_util, int & nb_players, int & nb_monsters);
+	int appliquer_comp(entite indiv, entite target, std::vector<entite> & vect_entite, competence comp_util, int & nb_players, int & nb_monsters);
+
+	//! Quitte le jeu, sans que l'utilisateur n'ai gagné ni perdu.
+	void quitGame();
+
+	//! Affiche un message de victoire à l'utilisateur
+	void victoireGame();
+
+	//! Affiche un message de défait au joueur.
+	void failedGame();
 };
 
 //! Tri d'entités

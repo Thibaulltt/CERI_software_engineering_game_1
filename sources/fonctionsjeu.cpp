@@ -1,9 +1,13 @@
 #include <iostream>	// à remplacer avec notre librairie I/O plus tard
 #include <vector>
+#include <chrono>
+#include <thread>
 #include "../headers/carte.h"
 #include "../headers/fonctionsjeu.h"
 
 using namespace std;
+using namespace std::this_thread; // sleep_for, sleep_until
+using namespace std::chrono; // nanoseconds, system_clock, seconds
 
 jeu::jeu()
 {
@@ -14,14 +18,30 @@ jeu::jeu()
 	personnage pers;										//Dummy identification type template
 	string nom_file = "fichierPersonnage.txt";				//Nom fichier source personnages
 	tous_persos = loadAllEntiteFromFile(pers, nom_file);	//Remplissage vecteur personnages depuis fichier
-	choix_unique_element(jeu_perso, tous_persos, 0);		//Choix + assignation personnage partie
+	try
+	{
+		choix_unique_element(jeu_perso, tous_persos, 0);		//Choix + assignation personnage partie
+	}
+	catch (int cUEError)
+	{
+		quitGame();
+		throw cUEError;
+	}
 
 		//Choix carte
 	vector<Carte> toutes_cartes;							//Vecteur cartes
 	nom_file = "fichierCarte.txt";							//Nom fichier source cartes
 	toutes_cartes = loadAllCarteFromFile(nom_file);			//Chargement carte depuis fichier
-	choix_unique_element(jeu_carte, toutes_cartes, 0);		//Choix + assignation carte partie
-    jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
+	try
+	{
+		choix_unique_element(jeu_carte, toutes_cartes, 0);		//Choix + assignation carte partie
+	}
+	catch (int cUEError)
+	{
+		quitGame();
+		throw cUEError;
+	}
+	jeu_nombre_monstres = jeu_carte.getNbrMonstres();		//Récupération du nombre de monstres total
 
 		//Chargement monstres
 	monstre mons;											//Dummy identification type template
@@ -59,10 +79,33 @@ void jeu::setJeuCarte(Carte jeu_map)
 
 void jeu::afficherJeu(int & result)
 {
-	afficherCarte(jeu_carte, jeu_carte.getTaille(), 1);
-	while (true)
-		deplacement(result);
-	de();
+	try
+	{
+		afficherCarte(jeu_carte, jeu_carte.getTaille(), 1);
+	}
+	catch (int afficherError)
+	{
+		quitGame();
+		return;
+	}
+	while (jeu_nombre_monstres != 0)
+	{
+		try
+		{
+			deplacement(result);
+		}
+		catch (int deplacementError)
+		{
+			if (deplacementError == 0)
+				failedGame();
+			else
+				quitGame();
+			return;
+		}
+		jeu_nombre_monstres = jeu_carte.getNbrMonstres();
+	}
+	victoireGame();
+	quitGame();
 }
 std::string jeu::genererDeplacement(std::vector<bool>& v)
 {
@@ -130,11 +173,26 @@ void jeu::deplacement(int & result)
 	int x = currentPlayerPosition.first;
 	int y = currentPlayerPosition.second;
 	afficherMouvements(deplacement_possibles,"Dans quelle direction voulez-vous vous déplacer ?");
-	char deplacement_demande = de();
+	char deplacement_demande;
+	try
+	{
+		deplacement_demande = de();
+	}
+	catch (int deError)
+	{
+		throw deError;
+	}
 	while (inputAccepte.find(deplacement_demande) == string::npos)
 	{
 		afficherMouvements(deplacement_possibles,"Cette case est innaccessible !");
-		deplacement_demande = de();
+		try
+		{
+			deplacement_demande = de();
+		}
+		catch (int deError)
+		{
+			throw deError;
+		}
 	}
 	switch (deplacement_demande) {
 		case 'z':
@@ -162,24 +220,41 @@ void jeu::deplacement(int & result)
 			x++;
 			break;
 	}
-	updateMap(jeu_carte, std::make_pair(y,x));
+	try
+	{
+		updateMap(jeu_carte, std::make_pair(y,x));
+	}
+	catch (int updateMapError)
+	{
+		throw updateMapError;
+	}
 
 	///Combat, à tester
-//	string content = jeu_carte.getPlateau()[x][y];
-//
-//	cout << "contenu case: " << content << "\n";
-//
-//	if (content.substr(0, 1) == "m")
-//	{
-//		cout << "On rentre en mode combat\n";
-//		result = combat(content);
-//	}
+	string content = jeu_carte.getPlateau()[x][y];
+
+	if (content[0] == 'm')
+	{
+		try
+		{
+			result = combat(content.substr(0,content.find("/")));
+		}
+		catch (int combatError)
+		{
+			throw combatError;
+		}
+	}
+	if (result == 1)
+		jeu_carte.monstreMort(x,y);
 }
 
 
 int jeu::combat(string id_monstre)
 {
-	puts("** Combat **");
+	updateMessage("** Combat **",1);
+	updateMessage("",2);
+	updateMessage("",3);
+	updateMessage("Appuyez sur une touche pour continuer.",4);
+	de();
 
 	vector<entite> vect_entite;
 	vector<entite>::iterator ite;
@@ -188,8 +263,8 @@ int jeu::combat(string id_monstre)
 
 	if (loading == false)
 	{
-        puts("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...");
-        return 1;
+        	updateMessage("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...",1);
+        	return 1;
 	}
 
 	vector<int> vect_p;
@@ -209,12 +284,16 @@ int jeu::combat(string id_monstre)
 			if ((* ite).getAlive() == true)
 			{
 				aff_combat(vect_entite);	//Affichage infos utiles acteurs
-
-				comp_util = choix_comp(* ite);	//Choix compétence
-
-				target = choix_target(comp_util, (* ite), vect_entite, vect_p);	//Choix cible
-
-				sortie = appliquer_comp((* ite), target, vect_entite, comp_util, nb_players, nb_monsters);	//Effet compétence
+				try
+				{
+					comp_util = choix_comp(* ite);	//Choix compétence
+					target = choix_target(comp_util, (* ite), vect_entite, vect_p);	//Choix cible
+					sortie = appliquer_comp((* ite), target, vect_entite, comp_util, nb_players, nb_monsters);	//Effet compétence
+				}
+				catch (int erreurCiblage)
+				{
+					throw erreurCiblage;
+				}
 			}
 		}
 	}
@@ -285,14 +364,26 @@ competence jeu::choix_comp(entite & indiv)
 
 	if (indiv.is_personnage())	//Personnage
 	{
-		puts("\n- Choix de compétence -");
-		choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+		try
+		{
+			choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);	//Choix manuel
+		}
+		catch (int cUEError)
+		{
+			throw cUEError;
+		}
 
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
-			puts("Vous n'avez pas assez de mana pour utiliser cette compétence!");
-			puts("- Choix de compétence -");
-			choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+			updateMessage("Vous n'avez pas assez de mana pour utiliser cette compétence!",4);
+			try
+			{
+				choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);	//Choix manuel
+			}
+			catch (int cUEError)
+			{
+				throw cUEError;
+			}
 		}
 
 		if (indiv.getManaCurrent() > indiv.getManaMax())
@@ -319,8 +410,20 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 	{
 		if (indiv.is_personnage())	//Personnage
 		{
-			cout << "- Choix de la cible pour la compétence " << comp_util.getName() << " -" << endl;
-			choix_unique_element(target, vect_entite, 1);
+			updateMessage(std::string("- Choix de la cible pour la compétence " + comp_util.getName() + " -"),1);
+			std::string targetPossible;
+			for (int i = 0; i < vect_entite.size(); i++) {
+				targetPossible += std::string(to_string(i+1)+"- "+vect_entite[i].getName()+" ");
+			}
+			updateMessage(targetPossible,2);
+			try
+			{
+				choix_unique_element(target, vect_entite, 1, 0);
+			}
+			catch (int cUEError)
+			{
+				throw cUEError;
+			}
 		}
 		else	//Monstre
 		{
@@ -328,9 +431,18 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 			target = vect_entite[cible];
 		}
 
-		cout << endl << endl << indiv.getName() << " utilise la compétence ";
-		cout << comp_util.getName();
-		cout << " sur " << target.getName() << endl;
+		std::string actionFinale = indiv.getName()+" utilise la compétence "+comp_util.getName()+" sur "+target.getName();
+		updateMessage(actionFinale,3);
+		updateMessage("(Appuyez sur une touche)",4);
+		try
+		{
+			de();
+		}
+		catch (int deError)
+		{
+			throw deError;
+		}
+		actionFinale = "";
 	}
 
 	return target;
@@ -355,7 +467,7 @@ int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entit
  			}
 
 			(* ite) = (* ite).enleverVie(damage);	//Application attaque
-			cout << "(" << damage << " dégâts)\n";
+			//cout << "(" << damage << " dégâts)\n";
 
 			if ((* ite).getHpCurrent() > (* ite).getHpMax())
 			{
@@ -370,12 +482,30 @@ int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entit
 	{
 		if ((* ite).is_personnage())	//Si personnage
 		{
-			cout << "Le personnage " << (* ite).getName() << " est mort." << endl;
+			updateMessage(std::string("Le personnage "+(* ite).getName()+" est mort."),3);
+			updateMessage("(Appuyez sur une touche)",4);
+			try
+			{
+				de();
+			}
+			catch (int deError)
+			{
+				throw deError;
+			}
 			nb_players--;
 		}
 		else	//Si monstre
 		{
-			cout << "Le monstre " << (* ite).getName() << " est mort." << endl;
+			updateMessage(std::string("Le monstre "+(* ite).getName()+" est mort."),3);
+			updateMessage("(Appuyez sur une touche)",4);
+			try
+			{
+				de();
+			}
+			catch (int deError)
+			{
+				throw deError;
+			}
 			nb_monsters--;
 		}
 	}
@@ -383,7 +513,7 @@ int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entit
 	//Check conséquences combat
 	if (nb_players == 0)
 	{
-		return 0;	//Tous personnages morts, fin partie
+		throw 0;	//Tous personnages morts, fin partie
 	}
 	else if (nb_monsters == 0)
 	{
@@ -395,4 +525,53 @@ int jeu::appliquer_comp(entite indiv, entite target, vector<entite> & vect_entit
 bool sort_speed(entite a, entite b)
 {
 	return a.getSpeed() > b.getSpeed();
+}
+
+void jeu::quitGame()
+{
+	printf("\033[2J");	// Efface ecran
+	printf("\033[1;1H");	// Remet le curseur au debut de l'ecran
+	std::cout << "Merci d'avoir joué à The Game ! \nEn espérant vous revoir bientôt !" << std::endl;
+}
+
+void jeu::victoireGame()
+{
+	updateMessage("",1);
+	updateMessage("",2);
+	updateMessage("",3);
+	updateMessage("",4);
+	updateMessage("Bravo ! Vous avez réussi à finir le jeu ! Mais bien d'autres ",2);
+	updateMessage("monstres attendent dans les ténèbres, alors n'hésitez pas à revenir !",3);
+	try
+	{
+		de();
+	}
+	catch (...)
+	{
+		quitGame();
+		return;
+	}
+	quitGame();
+	return;
+}
+
+void jeu::failedGame()
+{
+	updateMessage("",1);
+	updateMessage("",2);
+	updateMessage("",3);
+	updateMessage("",4);
+	updateMessage("Vous avez fait face à votre destinée dans ce dongeon. Bien d'autres",2);
+	updateMessage("monstres attendent dans les ténèbres, alors n'hésitez pas à revenir !",3);
+	try
+	{
+		de();
+	}
+	catch (...)
+	{
+		quitGame();
+		return;
+	}
+	quitGame();
+	return;
 }
