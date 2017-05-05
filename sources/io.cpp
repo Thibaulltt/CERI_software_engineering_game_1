@@ -415,42 +415,42 @@ namespace io
 		printf("\033[%dC", TermWidth/2);	// Droite de TermWidth-2 cases
 	}
 	
-	void updateMessage(std::string nouveauMessage, int pos)		
- 	{		
- 		if (pos <= 0 || pos > 4)		
- 			pos = 3;		
- 		// Variables utilisées ici		
- 		int messagePositionY = TermHeight-5+pos;		
- 		char delimiteur = '%';		
- 		std::string couleurDelimiteur = BLUE;		
- 		
- 		if (nouveauMessage.size() > TermWidth-2)		
- 			nouveauMessage = nouveauMessage.substr(0,TermWidth - 5)+"...";		
- 		
- 		int deplacementNecessaire = TermWidth - 2 - nouveauMessage.size();		
- 		
-		// On remet le curseur au debut du terminal		
- 		// printf("\033[1;1H");		
- 		// On descend jusqu'à la ligne demandée		
- 		printf("\033[%i;1H", messagePositionY);		
- 		
- 		// On affiche		
- 		cout << couleurDelimiteur;		
- 		cout << delimiteur;		
- 		cout << BLANK;		
- 		cout << std::string(deplacementNecessaire/2, ' ');		
- 		cout << nouveauMessage;		
- 		cout << std::string(deplacementNecessaire/2 + deplacementNecessaire%2, ' ');		
- 		cout << couleurDelimiteur;		
- 		cout << delimiteur;		
- 		cout << BLANK;		
- 		cout << '\r';		
- 		
- 		// On remet le curseur au milieu du message		
- 		printf("\033[%d;1H", TermHeight);		
- 		printf("\033[2A");		
- 		printf("\033[%dC", TermWidth/2);		
- 	}
+	void updateMessage(std::string nouveauMessage, int pos)
+	{
+		if (pos <= 0 || pos > 4)
+			pos = 3;
+		// Variables utilisées ici
+		int messagePositionY = TermHeight-5+pos;
+		char delimiteur = '%';
+		std::string couleurDelimiteur = BLUE;
+		
+		if (nouveauMessage.size() > TermWidth-2)
+			nouveauMessage = nouveauMessage.substr(0,TermWidth - 5)+"...";
+
+		int deplacementNecessaire = TermWidth - 2 - nouveauMessage.size();
+
+		// On remet le curseur au debut du terminal
+		// printf("\033[1;1H");
+		// On descend jusqu'à la ligne demandée
+		printf("\033[%i;1H", messagePositionY);
+
+		// On affiche
+		cout << couleurDelimiteur;
+		cout << delimiteur;
+		cout << BLANK;
+		cout << std::string(deplacementNecessaire/2, ' ');
+		cout << nouveauMessage;
+		cout << std::string(deplacementNecessaire/2 + deplacementNecessaire%2, ' ');
+		cout << couleurDelimiteur;
+		cout << delimiteur;
+		cout << BLANK;
+		cout << '\r';
+
+		// On remet le curseur au milieu du message
+		printf("\033[%d;1H", TermHeight);
+		printf("\033[2A");
+		printf("\033[%dC", TermWidth/2);
+	}
 
 	void checkTerminalSize()
 	{
