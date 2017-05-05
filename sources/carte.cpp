@@ -599,7 +599,7 @@ void Carte::echangerContenuCase(int i1, int j1, int i2, int j2)
 	else	// Sinon (la case contient qqchose qui a été rendu accessible (monstre par exemple)).
 		plateau[i2][j2] = std::string(plateau[i2][j2]+"/"+old_content);	// On rajoute "/joueur" a la fin de la chaîne
 	if (old_content == "joueur")	// Si la case d'origine ne contenait que le joueur
-		plateau[i1][j1] = "v";	// La case devient vide
+		plateau[i1][j1] = 'v';	// La case devient vide
 	else				// Si la case d'origine contenait qqchose d'autre que le joueur
 		plateau[i1][j1] = plateau[i1][j1].substr(0,plateau[i1][j1].find("/"));	// On enlève "/joueur" de la fin de la chaîne si il existe
 	return;
