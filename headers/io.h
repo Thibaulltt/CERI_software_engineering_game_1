@@ -320,7 +320,7 @@ namespace io
 		\return L'élement choisi.
 		\sa liste_elements(), afficher(), afficher_detail()
 	*/
-	template<typename T> void choix_unique_element(T & element, std::vector<T> vect_element, bool combat)
+	template<typename T> void choix_unique_element(T & element, std::vector<T> vect_element, bool combat, bool aff = 1)
 	{
 		std::string type_name = typeid(T).name();						//String à partir du type appelant
 
