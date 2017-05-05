@@ -102,6 +102,8 @@ public:
 	*/
 	void afficher_detail();
 
+	std::string afficher_detail_combat();
+	
 	//! Conversion en string
 	/*!
         Permet de convertir les caractéristiques d'une compétence en chaîne de caractère en vue de son écriture dans un fichier
