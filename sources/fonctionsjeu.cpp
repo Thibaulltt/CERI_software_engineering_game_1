@@ -226,15 +226,21 @@ void jeu::deplacement(int & result)
 	}
 
 	///Combat, à tester
-//	string content = jeu_carte.getPlateau()[x][y];
-//
-//	cout << "contenu case: " << content << "\n";
-//
-//	if (content.substr(0, 1) == "m")
-//	{
-//		cout << "On rentre en mode combat\n";
-//		result = combat(content);
-//	}
+	string content = jeu_carte.getPlateau()[x][y];
+
+	if (content[0] == 'm')
+	{
+		try
+		{
+			result = combat(content.substr(0,content.find("/")));
+		}
+		catch (int combatError)
+		{
+			throw combatError;
+		}
+	}
+	if (result == 1)
+		jeu_carte.monstreMort(x,y);
 }
 
 
