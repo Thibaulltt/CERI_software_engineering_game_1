@@ -217,6 +217,12 @@ public:
 
 	//! Quitte le jeu, sans que l'utilisateur n'ai gagné ni perdu.
 	void quitGame();
+
+	//! Affiche un message de victoire à l'utilisateur
+	void victoireGame();
+
+	//! Affiche un message de défait au joueur.
+	void failedGame();
 };
 
 //! Tri d'entités
