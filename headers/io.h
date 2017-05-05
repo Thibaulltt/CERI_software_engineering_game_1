@@ -364,7 +364,6 @@ namespace io
 					throw deError;
 				}
 				input = c_input - '0';                                      //Trancription en chiffres
-			}
 
 			element = vect_element[input - 1];                              //Sélection de l'objet dans son vecteur
 
