@@ -246,7 +246,11 @@ void jeu::deplacement(int & result)
 
 int jeu::combat(string id_monstre)
 {
-	puts("** Combat **");
+	updateMessage("** Combat **",1);
+	updateMessage("",2);
+	updateMessage("",3);
+	updateMessage("Appuyez sur une touche pour continuer.",4);
+	de();
 
 	vector<entite> vect_entite;
 	vector<entite>::iterator ite;
