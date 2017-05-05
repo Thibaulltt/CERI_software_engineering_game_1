@@ -414,7 +414,7 @@ namespace io
 		printf("\033[2A");			// Haut de deux lignes
 		printf("\033[%dC", TermWidth/2);	// Droite de TermWidth-2 cases
 	}
-
+	
 	void updateMessage(std::string nouveauMessage, int pos)
 	{
 		if (pos <= 0 || pos > 4)
@@ -423,7 +423,7 @@ namespace io
 		int messagePositionY = TermHeight-5+pos;
 		char delimiteur = '%';
 		std::string couleurDelimiteur = BLUE;
-
+		
 		if (nouveauMessage.size() > TermWidth-2)
 			nouveauMessage = nouveauMessage.substr(0,TermWidth - 5)+"...";
 
@@ -535,7 +535,7 @@ namespace io
 			if (vect_entite[i].is_personnage())
 			{
 				std::pair<std::string,std::string> res = vect_entite[i].afficher_combat();
-				updateMessage(res.first,1);
+				updateMessage(res.first,1);		
 				updateMessage(res.second,2);
 			}
 		}
@@ -545,7 +545,7 @@ namespace io
 			if (!vect_entite[i].is_personnage())
 			{
 				std::pair<std::string,std::string> res = vect_entite[i].afficher_combat();
-				updateMessage(res.first,3);
+				updateMessage(res.first,3);		
 				updateMessage("Choisissez une action avec [1-4]",4);
 			}
 		}
@@ -878,20 +878,23 @@ namespace io
 		return output;
 	}
 
-	bool inputSepCheck(string input)
+	bool isNumber(string s_input)
 	{
-		if (input.find("/") != input.npos
-		|| input.find("_") != input.npos
-		|| input.find(":") != input.npos
-		|| input.find("(") != input.npos
-		|| input.find(")") != input.npos
-		|| input.find("|") != input.npos
-		|| input.find(",") != input.npos)
+		for (int i = 0; i < s_input.size(); i++)
 		{
-			return false;
+			if (s_input[i] == '-')
+			{
+				continue;
+			}
+			else if (!isdigit(s_input[i]))
+			{
+				return false;
+			}
 		}
+
 		return true;
 	}
+
 }
 
 bool checkSeparatorCarte(string uneLigne) //Retourne false si le nb de séparateurs dans une ligne n'est pas le nombre définit

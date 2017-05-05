@@ -1,13 +1,9 @@
 #include <iostream>	// à remplacer avec notre librairie I/O plus tard
 #include <vector>
-#include <chrono>
-#include <thread>
 #include "../headers/carte.h"
 #include "../headers/fonctionsjeu.h"
 
 using namespace std;
-using namespace std::this_thread; // sleep_for, sleep_until
-using namespace std::chrono; // nanoseconds, system_clock, seconds
 
 jeu::jeu()
 {
@@ -263,7 +259,7 @@ int jeu::combat(string id_monstre)
 
 	if (loading == false)
 	{
-        	updateMessage("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...",1);
+        	updateMessage("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...");
         	return 1;
 	}
 
@@ -376,6 +372,7 @@ competence jeu::choix_comp(entite & indiv)
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
 			updateMessage("Vous n'avez pas assez de mana pour utiliser cette compétence!",4);
+			
 			try
 			{
 				choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);	//Choix manuel

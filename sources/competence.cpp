@@ -99,7 +99,7 @@ void competence::afficher_detail()
 	}
 }
 
-std::string competence::afficher_detail_combat()
+std::string competence::afficher_detail_combat()		
 {
 	std::string vect;
 	vect.append(this->skillName);

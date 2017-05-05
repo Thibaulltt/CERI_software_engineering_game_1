@@ -185,11 +185,11 @@ namespace io
  	extern void afficherMouvements(std::string message, std::string deplacements_possibles, std::string erreur_deplacement);
 
 	extern void updateMessage(std::string s, int pos);
-
+	
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////// MISCELLANEOUS FONCTIONS ///////////////////////////////////
+	//////////////////////////////////// MISCELLANEOUS FONCTIONS ////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
@@ -331,7 +331,7 @@ namespace io
 
 		while (1)
 		{
-			std::transform(type_name.begin(), type_name.end(), type_name.begin(), ::tolower);
+				std::transform(type_name.begin(), type_name.end(), type_name.begin(), ::tolower);
 			if (aff)
 				std::cout << "Veuillez choisir votre " << type_name << " (1-9): ";
 			if (aff)
@@ -354,6 +354,7 @@ namespace io
 					std::puts("Input incorrect. Réessayez!");
 				else
 					updateMessage("Input incorrect. Réessayez!",4);
+				}
 				try
 				{
 					c_input = de();                                             //Input utilisateur
@@ -363,7 +364,6 @@ namespace io
 					throw deError;
 				}
 				input = c_input - '0';                                      //Trancription en chiffres
-			}
 
 			element = vect_element[input - 1];                              //Sélection de l'objet dans son vecteur
 
@@ -637,7 +637,7 @@ namespace io
 				std::istringstream (sentiteHpMax) >> entiteHpMax; //Conversion string to int
 				std::istringstream (sentiteSpeed) >> entiteSpeed; //Conversion string to int
 				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
-				std::istringstream (sentiteManaMax) >> entiteManaMax; //Conversion string to int
+
 				if (checkSeparatorSkill(nomFichier, cptLigne) == true) //Verification que le champ compétence est correct
 				{
 					allSkills = loadCompetenceFromFile(nomFichier, cptLigne); //Récupération des compétences
@@ -667,7 +667,8 @@ namespace io
 		return flux.str();
 	}
 
-	bool inputSepCheck(std::string input);
+	bool isNumber(std::string s_input);
+
 }
 
 #endif
