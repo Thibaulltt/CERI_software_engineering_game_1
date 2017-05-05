@@ -355,6 +355,10 @@ namespace io
 				else
 					updateMessage("Input incorrect. Réessayez!",4);
 				}
+				try
+				{
+					c_input = de();                                             //Input utilisateur
+				}
 				catch (int deError)
 				{
 					throw deError;
