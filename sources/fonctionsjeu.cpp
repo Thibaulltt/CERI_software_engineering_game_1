@@ -280,12 +280,16 @@ int jeu::combat(string id_monstre)
 			if ((* ite).getAlive() == true)
 			{
 				aff_combat(vect_entite);	//Affichage infos utiles acteurs
-
-				comp_util = choix_comp(* ite);	//Choix compétence
-
-				target = choix_target(comp_util, (* ite), vect_entite, vect_p);	//Choix cible
-
-				sortie = appliquer_comp((* ite), target, vect_entite, comp_util, nb_players, nb_monsters);	//Effet compétence
+try
+				{
+					comp_util = choix_comp(* ite);	//Choix compétence
+					target = choix_target(comp_util, (* ite), vect_entite, vect_p);	//Choix cible
+					sortie = appliquer_comp((* ite), target, vect_entite, comp_util, nb_players, nb_monsters);	//Effet compétence
+				}
+				catch (int erreurCiblage)
+				{
+					throw erreurCiblage;
+				}et compétence
 			}
 		}
 	}
@@ -363,20 +367,20 @@ competence jeu::choix_comp(entite & indiv)
 		}
 		catch (int cUEError)
 		{
-			quitGame();
+			throw cUEError;
 		}
 
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
-			puts("Vous n'avez pas assez de mana pour utiliser cette compétence!");
-			puts("- Choix de compétence -");
+			updateMessage("Vous n'avez pas assez de mana pour utiliser cette compétence!",4);
+			
 			try
 			{
-				choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+				choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);	//Choix manuel
 			}
 			catch (int cUEError)
 			{
-				quitGame();
+				throw cUEError;
 			}
 		}
 
