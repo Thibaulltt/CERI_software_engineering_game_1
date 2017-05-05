@@ -259,8 +259,8 @@ int jeu::combat(string id_monstre)
 
 	if (loading == false)
 	{
-        puts("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...");
-        return 1;
+        	updateMessage("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...");
+        	return 1;
 	}
 
 	vector<int> vect_p;
