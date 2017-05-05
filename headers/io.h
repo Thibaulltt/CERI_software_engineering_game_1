@@ -331,10 +331,11 @@ namespace io
 
 		while (1)
 		{
-			std::transform(type_name.begin(), type_name.end(), type_name.begin(), ::tolower);	//Passage en minuscule
-			std::cout << "Veuillez choisir votre " << type_name << " (1-9): ";
-
-			liste_elements(vect_element);                        			//Affichage des éléments parmi lesquels choisir
+				std::transform(type_name.begin(), type_name.end(), type_name.begin(), ::tolower);
+			if (aff)
+				std::cout << "Veuillez choisir votre " << type_name << " (1-9): ";
+			if (aff)
+				liste_elements(vect_element);                        			//Affichage des éléments parmi lesquels choisir
 
 			char c_input;
 			try
