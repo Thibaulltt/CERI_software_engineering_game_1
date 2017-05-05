@@ -17,3 +17,5 @@ Comment jouer ?
 ---------------
 
 Pour jouer, commencez par compiler le jeu (voir ci-dessus). Une fois le jeu compilé et lancé, vous jouerez au jeu comme vous le feriez sur n'importe quel autre jeu des années 80 : avec votre bon vieux clavier !
+
+[Documentation](https://raw.githubusercontent.com/Thibaulltt/CERI_software_engineering_game_1/master/documentation/html/index.html)
