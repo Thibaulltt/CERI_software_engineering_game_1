@@ -277,7 +277,7 @@ void entite::afficher_detail()
 	cout << endl << endl;
 }
 
-void entite::afficher_combat()
+std::pair<std::string,std::string> entite::afficher_combat()
 {
 	string vie;
 	vie.append("HP: ");
