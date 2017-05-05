@@ -220,21 +220,29 @@ void jeu::deplacement(int & result)
 	}
 
 	///Combat, à tester
-//	string content = jeu_carte.getPlateau()[x][y];
-//
-//	cout << "contenu case: " << content << "\n";
-//
-//	if (content.substr(0, 1) == "m")
-//	{
-//		cout << "On rentre en mode combat\n";
-//		result = combat(content);
-//	}
+	string content = jeu_carte.getPlateau()[x][y];
+
+	if (content[0] == 'm')
+	{
+		try
+		{
+			result = combat(content.substr(0,content.find("/")));
+		}
+		catch (int combatError)
+		{
+			throw combatError;
+		}
+	}
 }
 
 
 int jeu::combat(string id_monstre)
 {
-	puts("** Combat **");
+	updateMessage("** Combat **",1);
+	updateMessage("",2);
+	updateMessage("",3);
+	updateMessage("Appuyez sur une touche pour continuer.",4);
+	de();
 
 	vector<entite> vect_entite;
 	vector<entite>::iterator ite;
@@ -243,8 +251,8 @@ int jeu::combat(string id_monstre)
 
 	if (loading == false)
 	{
-        puts("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...");
-        return 1;
+        	updateMessage("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...",1);
+        	return 1;
 	}
 
 	vector<int> vect_p;
@@ -264,12 +272,16 @@ int jeu::combat(string id_monstre)
 			if ((* ite).getAlive() == true)
 			{
 				aff_combat(vect_entite);	//Affichage infos utiles acteurs
-
-				comp_util = choix_comp(* ite);	//Choix compétence
-
-				target = choix_target(comp_util, (* ite), vect_entite, vect_p);	//Choix cible
-
-				sortie = appliquer_comp((* ite), target, vect_entite, comp_util, nb_players, nb_monsters);	//Effet compétence
+				try
+				{
+					comp_util = choix_comp(* ite);	//Choix compétence
+					target = choix_target(comp_util, (* ite), vect_entite, vect_p);	//Choix cible
+					sortie = appliquer_comp((* ite), target, vect_entite, comp_util, nb_players, nb_monsters);	//Effet compétence
+				}
+				catch (int erreurCiblage)
+				{
+					throw erreurCiblage;
+				}
 			}
 		}
 	}
@@ -340,27 +352,25 @@ competence jeu::choix_comp(entite & indiv)
 
 	if (indiv.is_personnage())	//Personnage
 	{
-		puts("\n- Choix de compétence -");
 		try
 		{
-			choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+			choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);	//Choix manuel
 		}
 		catch (int cUEError)
 		{
-			quitGame();
+			throw cUEError;
 		}
 
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
-			puts("Vous n'avez pas assez de mana pour utiliser cette compétence!");
-			puts("- Choix de compétence -");
+			updateMessage("Vous n'avez pas assez de mana pour utiliser cette compétence!",4);
 			try
 			{
-				choix_unique_element(comp_util, indiv.getSkillVect(), 1);	//Choix manuel
+				choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);	//Choix manuel
 			}
 			catch (int cUEError)
 			{
-				quitGame();
+				throw cUEError;
 			}
 		}
 
@@ -395,7 +405,7 @@ entite jeu::choix_target(competence comp_util, entite & indiv, vector<entite> & 
 			}
 			catch (int cUEError)
 			{
-				quitGame();
+				throw cUEError;
 			}
 		}
 		else	//Monstre

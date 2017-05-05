@@ -234,8 +234,6 @@ namespace io
 				TermPosX++;
 				displayX++;
 			}
-			if (displayX == t && TermPosX != TermWidth-1)
-				std::cout << RED << "$" << BLANK;
 			while (TermPosX < TermWidth - 1)
 			{
 				std::cout << ' ';
@@ -252,6 +250,7 @@ namespace io
 
 	void updateMap(Carte& jeu_carte, std::pair<int,int> newPlayerPos)
 	{
+		// Si le joueur sort des "barrières" de la map affichée
 		if (    newPlayerPos.first >= mapPositionY + TermHeight - 6
 			|| newPlayerPos.first < mapPositionY
 			|| newPlayerPos.second >= mapPositionX + TermWidth
@@ -270,6 +269,7 @@ namespace io
 			}
 			return;
 		}
+		jeu_carte.echangerContenuCase(currentPlayerPosition.first, currentPlayerPosition.second, newPlayerPos.second, newPlayerPos.first);
 		printf("\033[0;0H");
 		if (currentPlayerPosition.second != mapPositionY)
 			printf("\033[%iB", currentPlayerPosition.second - mapPositionY);
@@ -284,7 +284,6 @@ namespace io
 		if (newPlayerPos.second == mapPositionX)
 			printf("\033[1D");
 		cout << RED << 'X' << BLANK << flush;
-		jeu_carte.echangerContenuCase(currentPlayerPosition.first, currentPlayerPosition.second, newPlayerPos.second, newPlayerPos.first);
 		currentPlayerPosition.first = newPlayerPos.second;
 		currentPlayerPosition.second = newPlayerPos.first;
 		return;
@@ -406,6 +405,43 @@ namespace io
 		printf("\033[%dC", TermWidth/2);	// Droite de TermWidth-2 cases
 	}
 
+	void updateMessage(std::string nouveauMessage, int pos)
+	{
+		if (pos <= 0 || pos > 4)
+			pos = 3;
+		// Variables utilisées ici
+		int messagePositionY = TermHeight-5+pos;
+		char delimiteur = '%';
+		std::string couleurDelimiteur = BLUE;
+
+		if (nouveauMessage.size() > TermWidth-2)
+			nouveauMessage = nouveauMessage.substr(0,TermWidth - 5)+"...";
+
+		int deplacementNecessaire = TermWidth - 2 - nouveauMessage.size();
+
+		// On remet le curseur au debut du terminal
+		// printf("\033[1;1H");
+		// On descend jusqu'à la ligne demandée
+		printf("\033[%i;1H", messagePositionY);
+
+		// On affiche
+		cout << couleurDelimiteur;
+		cout << delimiteur;
+		cout << BLANK;
+		cout << std::string(deplacementNecessaire/2, ' ');
+		cout << nouveauMessage;
+		cout << std::string(deplacementNecessaire/2 + deplacementNecessaire%2, ' ');
+		cout << couleurDelimiteur;
+		cout << delimiteur;
+		cout << BLANK;
+		cout << '\r';
+
+		// On remet le curseur au milieu du message
+		printf("\033[%d;1H", TermHeight);
+		printf("\033[2A");
+		printf("\033[%dC", TermWidth/2);
+	}
+
 	void checkTerminalSize()
 	{
 		// Met à jour la taille du terminal
@@ -488,7 +524,9 @@ namespace io
 		{
 			if (vect_entite[i].is_personnage())
 			{
-				vect_entite[i].afficher_combat();
+				std::pair<std::string,std::string> res = vect_entite[i].afficher_combat();
+				updateMessage(res.first,1);
+				updateMessage(res.second,2);
 			}
 		}
 
@@ -496,7 +534,9 @@ namespace io
 		{
 			if (!vect_entite[i].is_personnage())
 			{
-				vect_entite[i].afficher_combat();
+				std::pair<std::string,std::string> res = vect_entite[i].afficher_combat();
+				updateMessage(res.first,3);
+				updateMessage("Choisissez une action avec [1-4]",4);
 			}
 		}
 	}

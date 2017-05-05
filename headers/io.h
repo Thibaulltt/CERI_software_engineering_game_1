@@ -184,10 +184,12 @@ namespace io
  	*/
  	extern void afficherMouvements(std::string message, std::string deplacements_possibles, std::string erreur_deplacement);
 
+	extern void updateMessage(std::string s, int pos);
+
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////// MISCELLANEOUS FONCTIONS ////////////////////////////////////
+	//////////////////////////////////// MISCELLANEOUS FONCTIONS ///////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
@@ -318,7 +320,7 @@ namespace io
 		\return L'élement choisi.
 		\sa liste_elements(), afficher(), afficher_detail()
 	*/
-	template<typename T> void choix_unique_element(T & element, std::vector<T> vect_element, bool combat)
+	template<typename T> void choix_unique_element(T & element, std::vector<T> vect_element, bool combat, bool aff = 1)
 	{
 		std::string type_name = typeid(T).name();						//String à partir du type appelant
 
@@ -330,9 +332,10 @@ namespace io
 		while (1)
 		{
 			std::transform(type_name.begin(), type_name.end(), type_name.begin(), ::tolower);
-			std::cout << "Veuillez choisir votre " << type_name << " (1-9): ";
-
-			liste_elements(vect_element);                        			//Affichage des éléments parmi lesquels choisir
+			if (aff)
+				std::cout << "Veuillez choisir votre " << type_name << " (1-9): ";
+			if (aff)
+				liste_elements(vect_element);                        			//Affichage des éléments parmi lesquels choisir
 
 			char c_input;
 			try
@@ -347,7 +350,10 @@ namespace io
 
 			while (input <= 0 || input > vect_element.size())                //Input incorrect
 			{
-				std::puts("Input incorrect. Réessayez!");
+				if (aff)
+					std::puts("Input incorrect. Réessayez!");
+				else
+					updateMessage("Input incorrect. Réessayez!",4);
 				try
 				{
 					c_input = de();                                             //Input utilisateur
