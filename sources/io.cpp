@@ -414,7 +414,7 @@ namespace io
 		printf("\033[2A");			// Haut de deux lignes
 		printf("\033[%dC", TermWidth/2);	// Droite de TermWidth-2 cases
 	}
-	
+
 	void updateMessage(std::string nouveauMessage, int pos)
 	{
 		if (pos <= 0 || pos > 4)
@@ -423,7 +423,7 @@ namespace io
 		int messagePositionY = TermHeight-5+pos;
 		char delimiteur = '%';
 		std::string couleurDelimiteur = BLUE;
-		
+
 		if (nouveauMessage.size() > TermWidth-2)
 			nouveauMessage = nouveauMessage.substr(0,TermWidth - 5)+"...";
 
@@ -535,7 +535,7 @@ namespace io
 			if (vect_entite[i].is_personnage())
 			{
 				std::pair<std::string,std::string> res = vect_entite[i].afficher_combat();
-				updateMessage(res.first,1);		
+				updateMessage(res.first,1);
 				updateMessage(res.second,2);
 			}
 		}
@@ -545,7 +545,7 @@ namespace io
 			if (!vect_entite[i].is_personnage())
 			{
 				std::pair<std::string,std::string> res = vect_entite[i].afficher_combat();
-				updateMessage(res.first,3);		
+				updateMessage(res.first,3);
 				updateMessage("Choisissez une action avec [1-4]",4);
 			}
 		}
@@ -875,11 +875,12 @@ namespace io
 	{
 		for (int i = 0; i < s_input.size(); i++)
 		{
-			if (s_input[i] == '-')
+			if (s_input[0] == '-')
 			{
 				continue;
 			}
-			else if (!isdigit(s_input[i]))
+
+			if (!isdigit(s_input[i]))
 			{
 				return false;
 			}
