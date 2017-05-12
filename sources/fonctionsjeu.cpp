@@ -259,7 +259,7 @@ int jeu::combat(string id_monstre)
 
 	if (loading == false)
 	{
-        	updateMessage("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...");
+        	updateMessage("Un problème au niveau du chargement des entités est intervenu. Retour à la carte...", 1);
         	return 1;
 	}
 
@@ -372,7 +372,7 @@ competence jeu::choix_comp(entite & indiv)
 		while (indiv.enleverMana(comp_util.getManaCost()) == false)
 		{
 			updateMessage("Vous n'avez pas assez de mana pour utiliser cette compétence!",4);
-			
+
 			try
 			{
 				choix_unique_element(comp_util, indiv.getSkillVect(), 1, 0);	//Choix manuel

@@ -208,7 +208,7 @@ void Carte::coordonneemonstre()
 		s_input = long_input();
 		int input = atoi(s_input.c_str());
 
-		while (isNumber(s_input) == false || (input < 0 || input >= case_dispo))
+		while (isNumber(s_input) == false || input <= taille || input >= case_dispo)
 		{
 			puts("\n Input incorrect! Réessayez!\n");
 			puts("- Choix nombre de monstres -");
@@ -223,7 +223,7 @@ void Carte::coordonneemonstre()
 		return;
 	}
 
-	while (inputSepCheck(s_input) == false || nbr_monstre < taille || nbr_monstre > case_dispo)
+	while (isNumber(s_input) == false || nbr_monstre < taille || nbr_monstre > case_dispo)
 	{
 		puts("\n Input incorrect! Réessayez!\n");
 		puts("- Choix nombre de monstres -");
