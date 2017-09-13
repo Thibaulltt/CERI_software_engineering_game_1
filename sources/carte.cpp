@@ -49,14 +49,14 @@ Carte::Carte (int taille, string name, string desc, int nb_monstre)
 
 void Carte::coordonneejoueur()
 {
-	puts("- Choix placement joueur -");
+	puts("\n- Choix placement joueur -");
 
 	int coordonneejoueur1 = 0;
 	int coordonneejoueur2 = 0;
 	string s_input = "";
 	int input = 0;
 
-	puts("- Choix première coordonnée du joueur -");
+	cout << "- Choix première coordonnée du joueur: ";
 	try
 	{
 		s_input = long_input();
@@ -64,8 +64,8 @@ void Carte::coordonneejoueur()
 
 		while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
 		{
-			puts("\n Input incorrect! Réessayez!\n");
-			puts("- Choix première coordonnée du joueur -");
+			cout << "\nLa coordonnée doit être comprise entre " << 0 << " et " << taille - 1 << "! Réessayez!\n\n";
+			cout << "- Choix première coordonnée du joueur: ";
 			s_input = long_input();
 			input = atoi(s_input.c_str());
 		}
@@ -77,7 +77,7 @@ void Carte::coordonneejoueur()
 		return;
 	}
 
-	puts("- Choix seconde coordonnée du joueur -");
+	cout << "- Choix seconde coordonnée du joueur: ";
 	try
 	{
 		s_input = long_input();
@@ -85,8 +85,8 @@ void Carte::coordonneejoueur()
 
 		while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
 		{
-			puts("\n Input incorrect! Réessayez!\n");
-			puts("- Choix seconde coordonnée du joueur -");
+			cout << "\nLa coordonnée doit être comprise entre " << 0 << " et " << taille - 1 << "! Réessayez!\n\n";
+			cout << "- Choix seconde coordonnée du joueur: ";
 			s_input = long_input();
 			input = atoi(s_input.c_str());
 		}
@@ -104,7 +104,7 @@ void Carte::coordonneejoueur()
 
 void Carte::coordonneeobstacle()
 {
-	puts("- Choix obstacles -");
+	puts("\n- Choix obstacles -");
 
 	int nbr_obstacle=0;
 	int coordonneeobstacle1 = 0;
@@ -113,7 +113,7 @@ void Carte::coordonneeobstacle()
 	string s_input = "";
 	int input = 0;
 
-	puts("- Choix nombre d'obstacles -");
+	cout << "- Choix nombre d'obstacles: ";
 	try
 	{
 		s_input = long_input();
@@ -121,8 +121,8 @@ void Carte::coordonneeobstacle()
 
 		while (isNumber(s_input) == false || (input < 0 || input >= case_dispo))
 		{
-			puts("\n Input incorrect! Réessayez!\n");
-			puts("- Choix nombre d'obstacles -");
+			cout << "\nLe nombre d'obstacles doit être compris entre " << 0 << " et " << case_dispo - 1 << "! Réessayez!\n\n";
+			cout << "- Choix nombre d'obstacles: ";
 			s_input = long_input();
 			input = atoi(s_input.c_str());
 		}
@@ -136,7 +136,7 @@ void Carte::coordonneeobstacle()
 
 	while (i <= nbr_obstacle)
 	{
-		std::cout << "Placement obstacle quitté. Retour au menu principal." << std::endl;
+		cout << "- Choix première coordonnée de l'obstacle " << i << ": ";
 		try
 		{
 			s_input = long_input();
@@ -144,8 +144,8 @@ void Carte::coordonneeobstacle()
 
 			while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
 			{
-				puts("\n Input incorrect! Réessayez!\n");
-				puts("- Choix première coordonnée de l'obstacle -");
+				cout << "\nLa coordonnée doit être comprise entre " << 0 << " et " << taille - 1 << "! Réessayez!\n\n";
+				cout << "- Choix première coordonnée de l'obstacle " << i << ": ";
 				s_input = long_input();
 				input = atoi(s_input.c_str());
 			}
@@ -157,7 +157,7 @@ void Carte::coordonneeobstacle()
 			return;
 		}
 
-		cout << "- Choix seconde coordonnée de l'obstacle " << i << " -\n";
+		cout << "- Choix seconde coordonnée de l'obstacle " << i << ": ";
 		try
 		{
 			s_input = long_input();
@@ -165,8 +165,8 @@ void Carte::coordonneeobstacle()
 
 			while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
 			{
-				puts("\n Input incorrect! Réessayez!\n");
-				cout << "- Choix seconde coordonnée de l'obstacle " << i << " -\n";
+				cout << "\nLa coordonnée doit être comprise entre " << 0 << " et " << taille - 1 << "! Réessayez!\n\n";
+				cout << "- Choix seconde coordonnée de l'obstacle " << i << ": ";
 				s_input = long_input();
 				input = atoi(s_input.c_str());
 			}
@@ -185,7 +185,7 @@ void Carte::coordonneeobstacle()
 		}
 		else
 		{
-			puts("Cette case est deja occupée, veuillez en choisir une autre!");
+			puts("\nCette case est deja occupée, veuillez en choisir une autre!\n");
 		}
 	}
 	case_dispo = case_dispo - nbr_obstacle;
@@ -193,7 +193,7 @@ void Carte::coordonneeobstacle()
 
 void Carte::coordonneemonstre()
 {
-	puts("- Choix monstres -");;
+	puts("\n- Choix monstres -");;
 
 	int nbr_monstre = 0;
 	int coordonneemonstre1 = 0;
@@ -202,20 +202,29 @@ void Carte::coordonneemonstre()
 	std::string s_input = "";
 	int input = 0;
 
-	puts("- Choix nombre de monstres -");
+	cout << "- Choix nombre de monstres: ";
 	try
 	{
 		s_input = long_input();
 		int input = atoi(s_input.c_str());
 
-		while (isNumber(s_input) == false || input <= taille || input >= case_dispo)
+		while (isNumber(s_input) == false || input < taille || input > case_dispo)
 		{
-			puts("\n Input incorrect! Réessayez!\n");
-			puts("- Choix nombre de monstres -");
-			s_input = long_input();
-			input = atoi(s_input.c_str());
+			cout << "\nLe nombre de monstres doit être compris entre " << taille << " et " << case_dispo << "! Réessayez!\n\n";
+			cout << "- Choix nombre de monstres: ";
+			try
+			{
+				s_input = long_input();
+				input = atoi(s_input.c_str());
+			}
+			catch (int longInputError)
+			{
+				std::cout << "Placement monstre quitté. Retour au menu principal." << std::endl;
+				return;
+			}
 		}
 		nbr_monstre = input;
+		setNbrMonstre(nbr_monstre);
 	}
 	catch (int longInputError)
 	{
@@ -223,27 +232,9 @@ void Carte::coordonneemonstre()
 		return;
 	}
 
-	while (isNumber(s_input) == false || nbr_monstre < taille || nbr_monstre > case_dispo)
-	{
-		puts("\n Input incorrect! Réessayez!\n");
-		puts("- Choix nombre de monstres -");
-		try
-		{
-			s_input = long_input();
-		}
-		catch (int longInputError)
-		{
-			std::cout << "Placement monstre quitté. Retour au menu principal." << std::endl;
-			return;
-		}
-	}
-
-	nbr_monstre = atoi(s_input.c_str());
-	setNbrMonstre(nbr_monstre);
-
 	while (i <= nbr_monstre)
 	{
-		cout << "- Choix première coordonnée du monstre " << i << " -\n";
+		cout << "- Choix première coordonnée du monstre " << i << ": ";
 		try
 		{
 			s_input = long_input();
@@ -251,8 +242,8 @@ void Carte::coordonneemonstre()
 
 			while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
 			{
-				puts("\n Input incorrect! Réessayez!\n");
-				cout << "- Choix première coordonnée du monstre " << i << " -\n";
+				cout << "\nLa coordonnée doit être comprise entre " << 0 << " et " << taille - 1 << "! Réessayez!\n\n";
+				cout << "- Choix première coordonnée du monstre " << i << ": ";
 				s_input = long_input();
 				input = atoi(s_input.c_str());
 			}
@@ -264,7 +255,7 @@ void Carte::coordonneemonstre()
 			return;
 		}
 
-		cout << "- Choix seconde coordonnée du monstre " << i << " -\n";
+		cout << "- Choix seconde coordonnée du monstre " << i << ": ";
 		try
 		{
 			s_input = long_input();
@@ -272,8 +263,8 @@ void Carte::coordonneemonstre()
 
 			while (isNumber(s_input) == false || (input < 0 || input > taille - 1))
 			{
-				puts("\n Input incorrect! Réessayez!\n");
-				cout << "- Choix seconde coordonnée du monstre " << i << " -\n";
+				cout << "\nLa coordonnée doit être comprise entre " << 0 << " et " << taille - 1 << "! Réessayez!\n\n";
+				cout << "- Choix seconde coordonnée du monstre " << i << ": ";
 				s_input = long_input();
 				input = atoi(s_input.c_str());
 			}
@@ -292,7 +283,7 @@ void Carte::coordonneemonstre()
 		}
 		else
 		{
-			puts("Cette case est déjà occupée, veuillez en choisir une autre!");
+			puts("\nCette case est déjà occupée, veuillez en choisir une autre!\n");
 		}
 	}
 	case_dispo = case_dispo - nbr_monstre;
@@ -355,6 +346,7 @@ void Carte::saisie()
 		fichier << taille << "|";
 		fichier << nbr_monstre << "|";
 
+		cout << "\n";
 
 		//Choix joueur + obstacles
 		for (int i = 0 ; i < taille; i++)
@@ -367,7 +359,7 @@ void Carte::saisie()
 				}
 				if (plateau[i][j]=="o")
 				{
-					cout << "- Choix obstacle " << parc << "[case ("<< i << ","<< j << ")] -\n";
+					cout << "- Choix obstacle " << parc << " [case ("<< i << ","<< j << ")]: ";
 					parc++;
 					try
 					{
@@ -387,7 +379,7 @@ void Carte::saisie()
 
 		if (nbr_monstre > 0)
 		{
-			puts("- Monstres disponibles -");
+			puts("\n- Monstres disponibles -");
 
 			monstre duh;
 			vector<monstre> vect_monstre;
@@ -398,8 +390,8 @@ void Carte::saisie()
 			{
 				cout << i + 1 << "- ";
 				vect_monstre[i].afficher_brut();
-				cout << "\n";
 			}
+			cout << "\n";
 
 			for (int i = 0 ; i < taille; i++)
 			{
@@ -407,16 +399,16 @@ void Carte::saisie()
 				{
 					if (plateau[i][j]=="m")
 					{
-						cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << ") -\n";
+						cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << "): ";
 						try
 						{
 							s_input = long_input();
 							input = atoi(s_input.c_str());
 
-							while (isNumber(s_input) == false || input > vect_monstre.size())
+							while (isNumber(s_input) == false || input < 1 || input > vect_monstre.size())
 							{
-								puts("\n Input incorrect! Réessayez!\n");
-								cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << ") -\n";
+								cout << "\nL'élément doit être présent dans la liste! Réessayez!\n\n";
+								cout << "- Choix numéro du monstre de la case ("<< i << ","<< j << "): ";
 								s_input = long_input();
 								input = atoi(s_input.c_str());
 							}

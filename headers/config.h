@@ -88,7 +88,7 @@ public:
 		std::string s_input = "";
 		int input = 0;
 
-		std::cout << "- Choisissez un nom pour l'entite : ";
+		std::cout << "\n- Choisissez un nom pour l'entité: ";
 		std::string entiteName;
 		try
 		{
@@ -100,7 +100,7 @@ public:
 			throw longInputError;
 		}
 
-		std::cout << "- Choisissez le nombre de points de vie : ";
+		std::cout << "- Choisissez le nombre de points de vie: ";
 		int entiteHpMax = 0;
 		try
 		{
@@ -109,8 +109,8 @@ public:
 
 			while (isNumber(s_input) == false || input <= 0)
 			{
-				puts("\n Input incorrect! Réessayez!\n");
-				std::cout << "- Choisissez le nombre de points de vie : ";
+				puts("\nLe nombre de points de vie doit être supérieur à 0! Réessayez!\n\n");
+				std::cout << "- Choisissez le nombre de points de vie: ";
 				s_input = long_input();
 				input = atoi(s_input.c_str());
 			}
@@ -122,7 +122,7 @@ public:
 			throw longInputError;
 		}
 
-		std::cout << "- Choisissez la vitesse de l'entité : ";
+		std::cout << "- Choisissez la vitesse de l'entité: ";
 		int entiteSpeed = 0;
 		try
 		{
@@ -131,8 +131,8 @@ public:
 
 			while (isNumber(s_input) == false || input <= 0)
 			{
-				puts("\n Input incorrect! Réessayez!\n");
-				std::cout << "- Choisissez la vitesse de l'entité : ";
+				puts("\n La vitesse doit être supérieure à 0! Réessayez!\n\n");
+				std::cout << "- Choisissez la vitesse de l'entité: ";
 				s_input = long_input();
 				input = atoi(s_input.c_str());
 			}
@@ -143,13 +143,12 @@ public:
 			std::cout << std::endl;
 			throw longInputError;
 		}
-		std::cout << std::endl;
 
 		int entiteManaMax = 0;
 
 		if (dummy.is_personnage())
 		{
-			std::cout << "- Choisissez le nombre de points de mana du personnage : ";
+			std::cout << "- Choisissez le nombre de points de mana du personnage: ";
 			try
 			{
 				s_input = long_input();
@@ -157,8 +156,8 @@ public:
 
 				while (isNumber(s_input) == false || input < 0)
 				{
-					puts("\n Input incorrect! Réessayez!\n");
-					std::cout << "- Choisissez le nombre de points de mana : ";
+					puts("\n Le nombre de points de mana doit être supérieur à 0! Réessayez!\n");
+					std::cout << "- Choisissez le nombre de points de mana: ";
 					s_input = long_input();
 					input = atoi(s_input.c_str());
 				}
@@ -169,9 +168,8 @@ public:
 				std::cout << std::endl;
 				throw longInputError;
 			}
-			std::cout << std::endl;
 
-			std::cout << "- Choisissez une description pour l'entite : ";
+			std::cout << "- Choisissez une description pour l'entite: ";
 			std::string entiteDesc;
 			try
 			{
@@ -185,7 +183,7 @@ public:
 		}
 
 		int nbComp = 0;
-		std::cout << "- Choisissez le nombre de compétences de l'entité : ";
+		std::cout << "- Choisissez le nombre de compétences de l'entité: ";
 		try
 		{
 			s_input = long_input();
@@ -193,8 +191,8 @@ public:
 
 			while (isNumber(s_input) == false || input < 1 || input > 4)
 			{
-				puts("\n Input incorrect! Réessayez!\n");
-				std::cout << "- Choisissez le nombre de compétences de l'entité : ";
+				puts("\nLe nombre de compétences doit être compris entre 1 et 4! Réessayez!\n");
+				std::cout << "- Choisissez le nombre de compétences de l'entité: ";
 				s_input = long_input();
 				input = atoi(s_input.c_str());
 			}
@@ -260,7 +258,7 @@ public:
 						{
 							return;
 						}
-						puts("\n Input incorrect! Réessayez!\n");
+						std::puts("\n L'élément doit être présent dans la liste! Réessayez!\n");
 						std::cout << "Choisissez l'élément à supprimer (1-9) (q pour annuler): "; //Choix de l'utilisateur
 						s_input = long_input();
 						input = atoi(s_input.c_str());

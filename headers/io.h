@@ -185,7 +185,7 @@ namespace io
  	extern void afficherMouvements(std::string message, std::string deplacements_possibles, std::string erreur_deplacement);
 
 	extern void updateMessage(std::string s, int pos);
-	
+
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////
@@ -351,9 +351,9 @@ namespace io
 			while (input <= 0 || input > vect_element.size())                //Input incorrect
 			{
 				if (aff)
-					std::puts("Input incorrect. Réessayez!");
+					std::puts("Choisissez un élément dans la liste! Réessayez!");
 				else
-					updateMessage("Input incorrect. Réessayez!",4);
+					updateMessage("Choisissez un élément dans la liste! Réessayez!",4);
 				}
 				try
 				{

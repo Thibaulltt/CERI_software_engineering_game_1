@@ -33,7 +33,8 @@ int main ()
 			break;
 
 		case 2:
-			try{
+			try
+			{
 				test.config_monstre();
 			}
 			catch(...)
@@ -41,7 +42,8 @@ int main ()
 			break;
 
 		case 3:
-			try{
+			try
+			{
 				test.config_perso();
 			}
 			catch (...)
